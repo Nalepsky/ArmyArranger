@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -66,18 +65,51 @@ namespace ArmyArranger
             sqlconnect.Open();
             if (sqlconnect.State == System.Data.ConnectionState.Open)
             {
-                query = string.Format("CREATE TABLE test(id integer primary key autoincrement, name varchar(100))");
-                command = new SQLiteCommand(query, sqlconnect);
-                command.ExecuteNonQuery();
+                try
+                {
+                    query = string.Format("CREATE TABLE test(id integer primary key autoincrement, name varchar(100))");
+                    command = new SQLiteCommand(query, sqlconnect);
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
 
                 MessageBox.Show("Created");
             }
             else
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Database connection error.");
             }
             sqlconnect.Close();
         }
+
+        private void CreateArmyListButton_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine(((App)Application.Current).sharedTestValue);
+
+            CreateArmyListWindow newWindow = new CreateArmyListWindow();
+            newWindow.WindowState = this.WindowState;
+            newWindow.Top = this.Top;
+            newWindow.Left = this.Left;
+            newWindow.Height = this.Height;
+            newWindow.Width = this.Width;
+            newWindow.Show();
+            this.Close();
+        }
+
+        private void InputUnitsButton_Click(object sender, RoutedEventArgs e)
+        {
+            InputUnitsWindow newWindow = new InputUnitsWindow();
+            newWindow.WindowState = this.WindowState;
+            newWindow.Top = this.Top;
+            newWindow.Left = this.Left;
+            newWindow.Height = this.Height;
+            newWindow.Width = this.Width;
+            newWindow.Show();
+            this.Close();
         }
     }
 }
