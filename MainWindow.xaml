@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ArmyArranger"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="600">
     <Grid>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="200,140,0,0" VerticalAlignment="Top" Width="75" Background="#FF7C3030" Click="Button1_Click"/>
-
+        <Button x:Name="button1" Content="Send email" HorizontalAlignment="Left" Margin="258,267,0,0" VerticalAlignment="Top" Width="75" Background="#FF7C3030" Click="Button1_Click"/>
+        <Button x:Name="button2" Content="SQLite Connect" HorizontalAlignment="Left" Height="28" Margin="43,263,0,0" VerticalAlignment="Top" Width="123" Click="Button2_Click"/>
     </Grid>
 </Window>

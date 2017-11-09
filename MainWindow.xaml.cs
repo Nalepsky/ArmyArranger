@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net.Mail;
+using System.Data.SQLite;
 
 namespace ArmyArranger
 {
@@ -21,6 +23,10 @@ namespace ArmyArranger
     /// </summary>
     public partial class MainWindow : Window
     {
+        SQLiteConnection sqlconnect = new SQLiteConnection(string.Format("Data Source={0}", System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "testbase.db")));
+        SQLiteCommand command;
+        string query = "";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -55,6 +61,23 @@ namespace ArmyArranger
 
         }
 
-        
+        private void Button2_Click(object sender, RoutedEventArgs e)
+        {
+            sqlconnect.Open();
+            if (sqlconnect.State == System.Data.ConnectionState.Open)
+            {
+                query = string.Format("CREATE TABLE test(id integer primary key autoincrement, name varchar(100))");
+                command = new SQLiteCommand(query, sqlconnect);
+                command.ExecuteNonQuery();
+
+                MessageBox.Show("Created");
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
+            sqlconnect.Close();
+        }
+        }
     }
 }
