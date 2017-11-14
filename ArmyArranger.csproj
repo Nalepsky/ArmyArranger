@@ -75,6 +75,22 @@
     <Compile Include="CreateArmyListWindow.xaml.cs">
       <DependentUpon>CreateArmyListWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AddUnitsViewModel.cs" />
+    <Compile Include="ViewModels\CreateArmyListViewModel.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\ContactUsViewModel.cs" />
+    <Compile Include="Views\AddUnitsView.xaml.cs">
+      <DependentUpon>AddUnitsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateArmyListView.xaml.cs">
+      <DependentUpon>CreateArmyListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ContactUsView.xaml.cs">
+      <DependentUpon>ContactUsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuView.xaml.cs">
+      <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
     <Page Include="InputUnitsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -95,6 +111,22 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="CreateArmyListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddUnitsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateArmyListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ContactUsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -125,6 +157,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.106.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.106.0\build\net46\System.Data.SQLite.Core.targets')" />

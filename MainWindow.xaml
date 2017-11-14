@@ -4,12 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ArmyArranger"
+        xmlns:viewmodels="clr-namespace:ArmyArranger.ViewModels"
+        xmlns:views="clr-namespace:ArmyArranger.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="600" HorizontalAlignment="Center" VerticalAlignment="Center">
+        Title="Army Arranger" Height="500" Width="600" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Window.Resources>
+        <DataTemplate x:Name="MenuTemplate" DataType="{x:Type viewmodels:MenuViewModel}">
+            <views:MenuView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="AddUnitsTemplate" DataType="{x:Type viewmodels:AddUnitsViewModel}">
+            <views:AddUnits DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="CreateArmyListTemplate" DataType="{x:Type viewmodels:CreateArmyListViewModel}">
+            <views:CreatArmyList DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="SendMailTemplate" DataType="{x:Type viewmodels:ContactUsViewModel}">
+            <views:SendMail DataContext="{Binding}"/>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
-        <Button x:Name="button1" Content="Send email" HorizontalAlignment="Left" Margin="258,267,0,0" VerticalAlignment="Top" Width="75" Background="#FF7C3030" Click="Button1_Click"/>
-        <Button x:Name="button2" Content="SQLite Connect" HorizontalAlignment="Left" Height="28" Margin="43,263,0,0" VerticalAlignment="Top" Width="123" Click="Button2_Click"/>
-        <Button x:Name="InputUnitsButton" Content="Input Units" Margin="343,122,143,0"  VerticalAlignment="Top" Click="InputUnitsButton_Click"/>
-        <Button x:Name="CreateArmyListButton" Content="Create Army List" Margin="134,122,357,0" VerticalAlignment="Top" Click="CreateArmyListButton_Click"/>
+        <ContentControl Name="Screen" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Grid.RowSpan="5" Content="{Binding}"/>
     </Grid>
 </Window>
