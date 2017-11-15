@@ -13,6 +13,5 @@ namespace ArmyArranger
     /// </summary>
     public partial class App : Application
     {
-        public string sharedTestValue = "share";
     }
 }
