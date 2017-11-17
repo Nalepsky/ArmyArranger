@@ -25,21 +25,5 @@ namespace ArmyArranger.Views
         {
             InitializeComponent();
         }
-
-        private void AddUnitsButton_Click(object sender, RoutedEventArgs e)
-        {
-            App.Current.MainWindow.DataContext = new AddUnitsViewModel();
-
-        }
-
-        private void CreateArmyListButton_Click(object sender, RoutedEventArgs e)
-        {
-            App.Current.MainWindow.DataContext = new CreateArmyListViewModel();
-        }
-
-        private void SendEmailButton_Click(object sender, RoutedEventArgs e)
-        {
-            App.Current.MainWindow.DataContext = new ContactUsViewModel();
-        }
     }
 }

@@ -36,10 +36,10 @@
         <Label Content="Value 2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" />
         <TextBox Text="{Binding Value2, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2"/>
 
-        <Button Command="{Binding ValidateCommand, Mode=TwoWay}" Grid.Row="6">Test</Button>
+        <Button Content="Test" Command="{Binding ValidateCommand, Mode=TwoWay}" Grid.Row="6"/>
         <TextBlock Text="{Binding Result, UpdateSourceTrigger=PropertyChanged}" Grid.Row="6" Grid.ColumnSpan="3" Grid.Column="1" />
 
-        <Button Command="{Binding SaveData, Mode=TwoWay}" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2">Save to DB</Button>
+        <Button Content="Save to DB" Command="{Binding SaveData, Mode=TwoWay}" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2"/>
 
     </Grid>
 </UserControl>
