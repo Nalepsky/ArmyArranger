@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ArmyArranger.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Background="CadetBlue">
+    <Grid Background="#FFC4C6CB">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>

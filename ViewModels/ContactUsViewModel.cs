@@ -47,6 +47,7 @@ namespace ArmyArranger.ViewModels
         #region Commands
 
         public ICommand ConfirmMessage { get; set; }
+        public ICommand Back { get; set; }
 
         #endregion
 
@@ -55,11 +56,17 @@ namespace ArmyArranger.ViewModels
         public ContactUsViewModel()
         {
             ConfirmMessage = new DelegateCommand(SendEmail);
+            Back = new DelegateCommand(ChangeViewToMenu);
         }
 
         #endregion
 
         #region Actions
+
+        private void ChangeViewToMenu()
+        {
+            App.Current.MainWindow.DataContext = new MenuViewModel();
+        }
 
         private void SendEmail()
         {

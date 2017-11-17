@@ -22,7 +22,7 @@
             <views:SendMail DataContext="{Binding}"/>
         </DataTemplate>
     </Window.Resources>
-    <Grid>
+    <Grid Background="#FFC4C6CB">
         <ContentControl Name="Screen" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Grid.RowSpan="5" Content="{Binding}"/>
     </Grid>
 </Window>

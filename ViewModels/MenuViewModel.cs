@@ -37,12 +37,7 @@ namespace ArmyArranger.ViewModels
         #endregion
 
         #region Actions
-
-        //private void ChangeViewToAddUnits()
-        //{
-        //    App.Current.MainWindow.DataContext = new AddUnitsViewModel();
-        //}
-
+        
         private void ChangeViewToCreateArmyList()
         {
             App.Current.MainWindow.DataContext = new CreateArmyListViewModel();
