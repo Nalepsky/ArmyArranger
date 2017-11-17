@@ -26,7 +26,7 @@
             <Button x:Name="EditYourArmies" Content="Edit Your Armies" Command="{Binding EditYourArmies, Mode=TwoWay}" Cursor="Hand" Height="40" Margin="0,5"/>
             <Button x:Name="SendEmailButton" Content="Contact us" Command="{Binding ContactUs, Mode=TwoWay}" Cursor="Hand" Height="40" Margin="0,5"/>
             <Button x:Name="About" Content="About" Command="{Binding About, Mode=TwoWay}" Cursor="Hand" Height="40" Margin="0,5"/>
-            <Button x:Name="Exit" Content="Exit" Command="{Binding Exit, Mode=TwoWay}" Cursor="Hand" Height="40" Margin="0,5"/>
+            <Button x:Name="Exit" Content="Exit" Command="{Binding Exit, Mode=TwoWay}" Cursor="Hand" Height="40" Margin="0,35,0,5"/>
         </StackPanel>
     </Grid>
 </UserControl>

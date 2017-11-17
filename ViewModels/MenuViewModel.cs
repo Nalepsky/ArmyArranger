@@ -31,7 +31,7 @@ namespace ArmyArranger.ViewModels
             EditYourArmies = new DelegateCommand(ChangeViewToEditYourArmies);
             ContactUs = new DelegateCommand(ChangeViewToContactUs);
             About = new DelegateCommand(ChangeViewToAbout);
-            Exit = new DelegateCommand(ChangeViewToExit);
+            Exit = new DelegateCommand(QuitApp);
         }
 
         #endregion
@@ -63,9 +63,9 @@ namespace ArmyArranger.ViewModels
             App.Current.MainWindow.DataContext = new AboutViewModel();
         }
 
-        private void ChangeViewToExit()
+        private void QuitApp()
         {
-            //app shoud close here
+            App.Current.MainWindow.Close();
         }
 
         #endregion

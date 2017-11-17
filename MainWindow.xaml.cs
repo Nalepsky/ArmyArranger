@@ -26,7 +26,7 @@ namespace ArmyArranger
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MenuViewModel();
+            DataContext = new MenuViewModel();            
         }
     }
 }
