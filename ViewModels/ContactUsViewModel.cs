@@ -70,14 +70,14 @@ namespace ArmyArranger.ViewModels
         public ContactUsViewModel()
         {
             Send = new DelegateCommand(SendEmail);
-            Back = new DelegateCommand(ShowMenuView);
+            Back = new DelegateCommand(ChangeViewToMenu);
         }
 
         #endregion
 
         #region Actions
 
-        private void ShowMenuView()
+        private void ChangeViewToMenu()
         {
             App.Current.MainWindow.DataContext = new MenuViewModel();
         }
