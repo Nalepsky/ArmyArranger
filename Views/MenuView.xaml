@@ -7,23 +7,26 @@
              xmlns:viewmodels="clr-namespace:ArmyArranger.ViewModels"
              xmlns:views="clr-namespace:ArmyArranger.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="400" d:DesignWidth="500">
 
-    <Grid Background="RoyalBlue">
+    <Grid Background="#FFC4C6CB">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Column="1" Grid.Row="1" Grid.RowSpan="1" Background="AliceBlue">
-            <Button x:Name="SendEmailButton" Content="Contact us" Command="{Binding ContactUs, Mode=TwoWay}"/>
-            <Button x:Name="AddUnitsButton" Content="Add Units" Command="{Binding AddUnits, Mode=TwoWay}"/>
-                <Button x:Name="CreateArmyListButton" Content="Create Army List" Command="{Binding CreateArmyList, Mode=TwoWay}"/>
+        <Label Content="Army Arranger" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold"/>
+        <StackPanel Grid.Column="1" Grid.Row="1" Grid.RowSpan="1">
+            <Button x:Name="CreateArmyListButton" Content="Create Army List" Command="{Binding CreateArmyList, Mode=TwoWay}" Cursor="Hand" Height="40" Margin="0,5"/>
+            <Button x:Name="EditYourArmies" Content="Edit Your Armies" Command="{Binding EditYourArmies, Mode=TwoWay}" Cursor="Hand" Height="40" Margin="0,5"/>
+            <Button x:Name="SendEmailButton" Content="Contact us" Command="{Binding ContactUs, Mode=TwoWay}" Cursor="Hand" Height="40" Margin="0,5"/>
+            <Button x:Name="About" Content="About" Command="{Binding About, Mode=TwoWay}" Cursor="Hand" Height="40" Margin="0,5"/>
+            <Button x:Name="Exit" Content="Exit" Command="{Binding Exit, Mode=TwoWay}" Cursor="Hand" Height="40" Margin="0,5"/>
         </StackPanel>
     </Grid>
 </UserControl>

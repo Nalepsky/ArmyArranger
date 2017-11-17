@@ -85,10 +85,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AddUnitsViewModel.cs" />
     <Compile Include="ViewModels\CreateArmyListViewModel.cs" />
+    <Compile Include="ViewModels\EditYourArmiesViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\ContactUsViewModel.cs" />
+    <Compile Include="Views\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddUnitsView.xaml.cs">
       <DependentUpon>AddUnitsView.xaml</DependentUpon>
     </Compile>
@@ -97,6 +102,9 @@
     </Compile>
     <Compile Include="Views\ContactUsView.xaml.cs">
       <DependentUpon>ContactUsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditYourArmiesView.xaml.cs">
+      <DependentUpon>EditYourArmiesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
@@ -113,6 +121,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddUnitsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -122,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ContactUsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditYourArmiesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
