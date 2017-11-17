@@ -18,9 +18,9 @@ namespace ArmyArranger.Views
     /// <summary>
     /// Interaction logic for SendMail.xaml
     /// </summary>
-    public partial class SendMail : UserControl
+    public partial class ContactUsView : UserControl
     {
-        public SendMail()
+        public ContactUsView()
         {
             InitializeComponent();
         }

@@ -19,9 +19,9 @@ namespace ArmyArranger.Views
     /// <summary>
     /// Interaction logic for AddUnits.xaml
     /// </summary>
-    public partial class AddUnits : UserControl
+    public partial class AddUnitsView : UserControl
     {
-        public AddUnits()
+        public AddUnitsView()
         {
             InitializeComponent();
         }

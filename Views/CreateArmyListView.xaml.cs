@@ -18,9 +18,9 @@ namespace ArmyArranger.Views
     /// <summary>
     /// Interaction logic for CreatArmyList.xaml
     /// </summary>
-    public partial class CreatArmyList : UserControl
+    public partial class CreateArmyListView : UserControl
     {
-        public CreatArmyList()
+        public CreateArmyListView()
         {
             InitializeComponent();
         }
