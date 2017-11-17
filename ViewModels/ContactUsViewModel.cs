@@ -13,6 +13,20 @@ namespace ArmyArranger.ViewModels
         #region Propeties
 
 
+        private string _topic;
+        public string Topic
+        {
+            get
+            {
+                return _topic;
+            }
+            set
+            {
+                _topic = value;
+                RaisePropertyChanged(nameof(Topic));
+            }
+        }
+
         private string _emailAddress;
         public string EmailAddress
         {
@@ -46,7 +60,7 @@ namespace ArmyArranger.ViewModels
 
         #region Commands
 
-        public ICommand ConfirmMessage { get; set; }
+        public ICommand Send { get; set; }
         public ICommand Back { get; set; }
 
         #endregion
@@ -55,15 +69,15 @@ namespace ArmyArranger.ViewModels
 
         public ContactUsViewModel()
         {
-            ConfirmMessage = new DelegateCommand(SendEmail);
-            Back = new DelegateCommand(ChangeViewToMenu);
+            Send = new DelegateCommand(SendEmail);
+            Back = new DelegateCommand(ShowMenuView);
         }
 
         #endregion
 
         #region Actions
 
-        private void ChangeViewToMenu()
+        private void ShowMenuView()
         {
             App.Current.MainWindow.DataContext = new MenuViewModel();
         }
@@ -77,19 +91,19 @@ namespace ArmyArranger.ViewModels
 
                 mail.From = new MailAddress("armyarranger@gmail.com");
                 mail.To.Add("armyarranger@gmail.com");
-                mail.Subject = EmailAddress;
-                mail.Body = Message;
+                mail.Subject = Topic;
+                mail.Body = EmailAddress + "\n\n" + Message;
 
                 SmtpServer.Port = 587;
                 SmtpServer.Credentials = new System.Net.NetworkCredential("ArmyArranger", "ArmyArrangerPass");
                 SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);
-                MessageBox.Show("Mail został pomyslnie wysłany. Dziękujemy za kontakt.");
+                MessageBox.Show("Email sent.\nThank you for your feedback.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Wysyłanie nie powiodło się. \nSprawdź swoje połączenie z internetem.\n\n\n" + ex.ToString());
+                MessageBox.Show("Email error.\nPlease check your internet connection.\n\n\n" + ex.ToString());
             }
         }
 
