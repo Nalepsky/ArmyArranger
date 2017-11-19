@@ -18,9 +18,9 @@ namespace ArmyArranger.Views
     /// <summary>
     /// Interaction logic for NationsView.xaml
     /// </summary>
-    public partial class NationsView : UserControl
+    public partial class AddNationsView : UserControl
     {
-        public NationsView()
+        public AddNationsView()
         {
             InitializeComponent();
         }
