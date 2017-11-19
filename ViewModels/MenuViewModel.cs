@@ -14,7 +14,6 @@ namespace ArmyArranger.ViewModels
         #region Commands
        
         public ICommand CreateArmyList { get; set; }
-        //public ICommand AddUnits { get; set; }
         public ICommand EditYourArmies { get; set; }
         public ICommand ContactUs { get; set; }
         public ICommand About { get; set; }
@@ -25,8 +24,7 @@ namespace ArmyArranger.ViewModels
         #region Constructors
 
         public MenuViewModel()
-        {
-            //AddUnits = new DelegateCommand(ChangeViewToAddUnits);            
+        {          
             CreateArmyList = new DelegateCommand(ChangeViewToCreateArmyList);
             EditYourArmies = new DelegateCommand(ChangeViewToEditYourArmies);
             ContactUs = new DelegateCommand(ChangeViewToContactUs);

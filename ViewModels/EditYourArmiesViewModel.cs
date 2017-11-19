@@ -17,6 +17,11 @@ namespace ArmyArranger.ViewModels
 
         #region Commands
 
+        public ICommand Nations { get; set; }
+        public ICommand Selectors { get; set; }
+        public ICommand Units { get; set; }
+        public ICommand Weapons { get; set; }
+        public ICommand Rules { get; set; }
         public ICommand Back { get; set; }
 
         #endregion
@@ -25,12 +30,42 @@ namespace ArmyArranger.ViewModels
 
         public EditYourArmiesViewModel()
         {
-            Back = new DelegateCommand(ChangeViewToMenu);
+            Nations = new DelegateCommand(ChangeViewToAddNations);
+            Selectors = new DelegateCommand(ChangeViewToAddSelectors);
+            Units = new DelegateCommand(ChangeViewToAddUnits);
+            Weapons = new DelegateCommand(ChangeViewToAddWeapons);
+            Rules = new DelegateCommand(ChangeViewToAddRules);
+            Back = new DelegateCommand(ChangeViewToMenu);       
         }
 
         #endregion
 
         #region Actions
+
+        private void ChangeViewToAddNations()
+        {
+            App.Current.MainWindow.DataContext = new AddNationsViewModel();
+        }
+
+        private void ChangeViewToAddSelectors()
+        {
+            App.Current.MainWindow.DataContext = new AddSelectorsViewModel();
+        }
+
+        private void ChangeViewToAddUnits()
+        {
+            App.Current.MainWindow.DataContext = new AddUnitsViewModel();
+        }
+
+        private void ChangeViewToAddWeapons()
+        {
+            App.Current.MainWindow.DataContext = new AddWeaponsViewModel();
+        }
+
+        private void ChangeViewToAddRules()
+        {
+            App.Current.MainWindow.DataContext = new AddRulesViewModel();
+        }
 
         private void ChangeViewToMenu()
         {

@@ -8,20 +8,23 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Background="#FFC4C6CB">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>            
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Button Content="Back" Command="{Binding Back, Mode=TwoWay}" Grid.Column="1" Grid.Row="5" Cursor="Hand" VerticalAlignment="Center"/>
+        <Label Content="Edit Armies" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold"/>
+        <StackPanel Grid.Column="1" Grid.Row="1" Grid.RowSpan="1">
+            <Button x:Name="Nations" Content="Nations" Command="{Binding Nations, Mode=TwoWay}" Cursor="Hand" Height="40" Margin="0,5"/>
+            <Button x:Name="Selectors" Content="Selectors" Command="{Binding Selectors, Mode=TwoWay}" Cursor="Hand" Height="40" Margin="0,5"/>
+            <Button x:Name="Units" Content="Units" Command="{Binding Units, Mode=TwoWay}" Cursor="Hand" Height="40" Margin="0,5"/>
+            <Button x:Name="Weapons" Content="Weapons" Command="{Binding Weapons, Mode=TwoWay}" Cursor="Hand" Height="40" Margin="0,5"/>
+            <Button x:Name="Rules" Content="Rules" Command="{Binding Weapons, Mode=TwoWay}" Cursor="Hand" Height="40" Margin="0,5"/>
+        </StackPanel>
+        <Button Content="Back" Command="{Binding Back, Mode=TwoWay}" Grid.Column="0" Grid.Row="2" Cursor="Hand" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

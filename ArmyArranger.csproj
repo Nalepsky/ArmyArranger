@@ -86,16 +86,29 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModels\AboutViewModel.cs" />
+    <Compile Include="ViewModels\AddRulesViewModel.cs" />
     <Compile Include="ViewModels\AddUnitsViewModel.cs" />
+    <Compile Include="ViewModels\AddWeaponsViewModel.cs" />
     <Compile Include="ViewModels\CreateArmyListViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmiesViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\ContactUsViewModel.cs" />
+    <Compile Include="ViewModels\AddNationsViewModel.cs" />
+    <Compile Include="ViewModels\AddSelectorsViewModel.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddRulesView.xaml.cs">
+      <DependentUpon>AddRulesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddSelectorsView.xaml.cs">
+      <DependentUpon>AddSelectorsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddUnitsView.xaml.cs">
       <DependentUpon>AddUnitsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddWeaponsView.xaml.cs">
+      <DependentUpon>AddWeaponsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CreateArmyListView.xaml.cs">
       <DependentUpon>CreateArmyListView.xaml</DependentUpon>
@@ -108,6 +121,9 @@
     </Compile>
     <Compile Include="Views\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddNationsView.xaml.cs">
+      <DependentUpon>AddNationsView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -125,7 +141,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddRulesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddSelectorsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddUnitsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddWeaponsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -142,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddNationsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
