@@ -22,6 +22,7 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
+        <Label Content="CreateArmyList"/>
         <Button Content="Back" Command="{Binding Back, Mode=TwoWay}" Grid.Column="1" Grid.Row="5" Cursor="Hand" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

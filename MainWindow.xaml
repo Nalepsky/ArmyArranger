@@ -24,7 +24,7 @@
         <DataTemplate DataType="{x:Type viewmodels:AboutViewModel}">
             <views:AboutView DataContext="{Binding}"/>
         </DataTemplate>
-
+        
         <DataTemplate DataType="{x:Type viewmodels:AddNationsViewModel}">
             <views:AboutView DataContext="{Binding}"/>
         </DataTemplate>
