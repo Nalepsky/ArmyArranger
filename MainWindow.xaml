@@ -24,6 +24,22 @@
         <DataTemplate DataType="{x:Type viewmodels:AboutViewModel}">
             <views:AboutView DataContext="{Binding}"/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewmodels:AddNationsViewModel}">
+            <views:AboutView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:AddSelectorsViewModel}">
+            <views:AboutView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:AddUnitsViewModel}">
+            <views:AboutView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:AddWeaponsViewModel}">
+            <views:AboutView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:AddRulesViewModel}">
+            <views:AboutView DataContext="{Binding}"/>
+        </DataTemplate>
     </Window.Resources>
     <Grid Background="#FFC4C6CB">
         <ContentControl Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Grid.RowSpan="5" Content="{Binding}"/>

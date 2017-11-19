@@ -61,6 +61,7 @@ namespace ArmyArranger.ViewModels
 
         public ICommand ValidateCommand { get; set; }
         public ICommand SaveData { get; set; }
+        public ICommand Back { get; set; }
 
         #endregion
 
@@ -69,8 +70,8 @@ namespace ArmyArranger.ViewModels
         public AddUnitsViewModel()
         {
             ValidateCommand = new DelegateCommand(ValidateAction);
-
             SaveData = new DelegateCommand(SaveToDB);
+            Back = new DelegateCommand(ChangeViewToEditYourArmies);
         }
 
         #endregion
@@ -117,6 +118,11 @@ namespace ArmyArranger.ViewModels
                     MessageBox.Show("Database connection error.");
                 }
                 sqlconnect.Close();
+        }
+
+        private void ChangeViewToEditYourArmies()
+        {
+            App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
         }
 
         #endregion
