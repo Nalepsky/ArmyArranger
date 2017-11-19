@@ -23,5 +23,6 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Button Content="Back" Command="{Binding Back, Mode=TwoWay}" Grid.Column="1" Grid.Row="5" Cursor="Hand" VerticalAlignment="Center"/>
+        <Label x:Name="label" Content="About" Grid.Column="2" HorizontalAlignment="Left" Margin="20,5,0,0" Grid.Row="2" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

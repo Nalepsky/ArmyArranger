@@ -23,7 +23,7 @@
             <Button x:Name="Selectors" Content="Selectors" Command="{Binding Selectors, Mode=TwoWay}" Cursor="Hand" Height="40" Margin="0,5"/>
             <Button x:Name="Units" Content="Units" Command="{Binding Units, Mode=TwoWay}" Cursor="Hand" Height="40" Margin="0,5"/>
             <Button x:Name="Weapons" Content="Weapons" Command="{Binding Weapons, Mode=TwoWay}" Cursor="Hand" Height="40" Margin="0,5"/>
-            <Button x:Name="Rules" Content="Rules" Command="{Binding Weapons, Mode=TwoWay}" Cursor="Hand" Height="40" Margin="0,5"/>
+            <Button x:Name="Rules" Content="Rules" Command="{Binding Rules, Mode=TwoWay}" Cursor="Hand" Height="40" Margin="0,5"/>
         </StackPanel>
         <Button Content="Back" Command="{Binding Back, Mode=TwoWay}" Grid.Column="0" Grid.Row="2" Cursor="Hand" VerticalAlignment="Center"/>
     </Grid>
