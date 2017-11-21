@@ -44,27 +44,27 @@ namespace ArmyArranger.ViewModels
 
         private void ChangeViewToAddNations()
         {
-            App.Current.MainWindow.DataContext = new AddNationsViewModel();
+            App.Current.MainWindow.DataContext = new EditYourArmies.AddNationsViewModel();
         }
 
         private void ChangeViewToAddSelectors()
         {
-            App.Current.MainWindow.DataContext = new AddSelectorsViewModel();
+            App.Current.MainWindow.DataContext = new EditYourArmies.AddSelectorsViewModel();
         }
 
         private void ChangeViewToAddUnits()
         {
-            App.Current.MainWindow.DataContext = new AddUnitsViewModel();
+            App.Current.MainWindow.DataContext = new EditYourArmies.AddUnitsViewModel();
         }
 
         private void ChangeViewToAddWeapons()
         {
-            App.Current.MainWindow.DataContext = new AddWeaponsViewModel();
+            App.Current.MainWindow.DataContext = new EditYourArmies.AddWeaponsViewModel();
         }
 
         private void ChangeViewToAddRules()
         {
-            App.Current.MainWindow.DataContext = new AddRulesViewModel();
+            App.Current.MainWindow.DataContext = new EditYourArmies.AddRulesViewModel();
         }
 
         private void ChangeViewToMenu()

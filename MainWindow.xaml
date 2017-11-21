@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ArmyArranger"
         xmlns:viewmodels="clr-namespace:ArmyArranger.ViewModels"
+        xmlns:viewmodelsEditYourArmies="clr-namespace:ArmyArranger.ViewModels.EditYourArmies"
         xmlns:views="clr-namespace:ArmyArranger.Views"
+        xmlns:viewsEditYourArmies="clr-namespace:ArmyArranger.Views.EditYourArmies"
         mc:Ignorable="d"
         Title="Army Arranger" Height="500" Width="600" HorizontalAlignment="Center" VerticalAlignment="Center">
     <Window.Resources>
@@ -24,21 +26,21 @@
         <DataTemplate DataType="{x:Type viewmodels:AboutViewModel}">
             <views:AboutView DataContext="{Binding}"/>
         </DataTemplate>
-        
-        <DataTemplate DataType="{x:Type viewmodels:AddNationsViewModel}">
-            <views:AddNationsView DataContext="{Binding}"/>
+
+        <DataTemplate DataType="{x:Type viewmodelsEditYourArmies:AddNationsViewModel}">
+            <viewsEditYourArmies:AddNationsView DataContext="{Binding}"/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:AddSelectorsViewModel}">
-            <views:AddSelectorsView DataContext="{Binding}"/>
+        <DataTemplate DataType="{x:Type viewmodelsEditYourArmies:AddSelectorsViewModel}">
+            <viewsEditYourArmies:AddSelectorsView DataContext="{Binding}"/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:AddUnitsViewModel}">
-            <views:AddUnitsView DataContext="{Binding}"/>
+        <DataTemplate DataType="{x:Type viewmodelsEditYourArmies:AddUnitsViewModel}">
+            <viewsEditYourArmies:AddUnitsView DataContext="{Binding}"/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:AddWeaponsViewModel}">
-            <views:AddWeaponsView DataContext="{Binding}"/>
+        <DataTemplate DataType="{x:Type viewmodelsEditYourArmies:AddWeaponsViewModel}">
+            <viewsEditYourArmies:AddWeaponsView DataContext="{Binding}"/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:AddRulesViewModel}">
-            <views:AddRulesView DataContext="{Binding}"/>
+        <DataTemplate DataType="{x:Type viewmodelsEditYourArmies:AddRulesViewModel}">
+            <viewsEditYourArmies:AddRulesView DataContext="{Binding}"/>
         </DataTemplate>
     </Window.Resources>
     <Grid Background="#FFC4C6CB">

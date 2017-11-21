@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ArmyArranger.Views
+namespace ArmyArranger.Views.EditYourArmies
 {
     /// <summary>
-    /// Interaction logic for AddRulesView.xaml
+    /// Interaction logic for AddSelectorsView.xaml
     /// </summary>
-    public partial class AddRulesView : UserControl
+    public partial class AddSelectorsView : UserControl
     {
-        public AddRulesView()
+        public AddSelectorsView()
         {
             InitializeComponent();
         }

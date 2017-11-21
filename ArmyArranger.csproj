@@ -86,28 +86,28 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModels\AboutViewModel.cs" />
-    <Compile Include="ViewModels\AddRulesViewModel.cs" />
-    <Compile Include="ViewModels\AddUnitsViewModel.cs" />
-    <Compile Include="ViewModels\AddWeaponsViewModel.cs" />
+    <Compile Include="ViewModels\EditYourArmies\AddRulesViewModel.cs" />
+    <Compile Include="ViewModels\EditYourArmies\AddUnitsViewModel.cs" />
+    <Compile Include="ViewModels\EditYourArmies\AddWeaponsViewModel.cs" />
     <Compile Include="ViewModels\CreateArmyListViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmiesViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\ContactUsViewModel.cs" />
-    <Compile Include="ViewModels\AddNationsViewModel.cs" />
-    <Compile Include="ViewModels\AddSelectorsViewModel.cs" />
+    <Compile Include="ViewModels\EditYourArmies\AddNationsViewModel.cs" />
+    <Compile Include="ViewModels\EditYourArmies\AddSelectorsViewModel.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddRulesView.xaml.cs">
+    <Compile Include="Views\EditYourArmies\AddRulesView.xaml.cs">
       <DependentUpon>AddRulesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddSelectorsView.xaml.cs">
+    <Compile Include="Views\EditYourArmies\AddSelectorsView.xaml.cs">
       <DependentUpon>AddSelectorsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddUnitsView.xaml.cs">
+    <Compile Include="Views\EditYourArmies\AddUnitsView.xaml.cs">
       <DependentUpon>AddUnitsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddWeaponsView.xaml.cs">
+    <Compile Include="Views\EditYourArmies\AddWeaponsView.xaml.cs">
       <DependentUpon>AddWeaponsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CreateArmyListView.xaml.cs">
@@ -122,7 +122,7 @@
     <Compile Include="Views\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddNationsView.xaml.cs">
+    <Compile Include="Views\EditYourArmies\AddNationsView.xaml.cs">
       <DependentUpon>AddNationsView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -141,19 +141,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddRulesView.xaml">
+    <Page Include="Views\EditYourArmies\AddRulesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddSelectorsView.xaml">
+    <Page Include="Views\EditYourArmies\AddSelectorsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddUnitsView.xaml">
+    <Page Include="Views\EditYourArmies\AddUnitsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddWeaponsView.xaml">
+    <Page Include="Views\EditYourArmies\AddWeaponsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -173,7 +173,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddNationsView.xaml">
+    <Page Include="Views\EditYourArmies\AddNationsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -2,9 +2,9 @@
 using System.Windows.Input;
 using Prism.Commands;
 
-namespace ArmyArranger.ViewModels
+namespace ArmyArranger.ViewModels.EditYourArmies
 {
-    class AddRulesViewModel
+    class AddSelectorsViewModel
     {
         #region Propeties
 
@@ -20,7 +20,7 @@ namespace ArmyArranger.ViewModels
 
         #region Constructors
 
-        public AddRulesViewModel()
+        public AddSelectorsViewModel()
         {
             Back = new DelegateCommand(ChangeViewToEditYourArmies);
         }

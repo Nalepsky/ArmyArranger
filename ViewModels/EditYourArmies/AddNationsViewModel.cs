@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using Prism.Commands;
 
-namespace ArmyArranger.ViewModels
+namespace ArmyArranger.ViewModels.EditYourArmies
 {
     class AddNationsViewModel
     {

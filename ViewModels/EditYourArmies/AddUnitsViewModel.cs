@@ -5,7 +5,7 @@ using Prism.Mvvm;
 using System.Data.SQLite;
 using System;
 
-namespace ArmyArranger.ViewModels
+namespace ArmyArranger.ViewModels.EditYourArmies
 {
     public class AddUnitsViewModel : BindableBase
     {

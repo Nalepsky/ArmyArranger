@@ -12,15 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ArmyArranger.ViewModels;
 
-namespace ArmyArranger.Views
+namespace ArmyArranger.Views.EditYourArmies
 {
     /// <summary>
-    /// Interaction logic for AddWeaponsView.xaml
+    /// Interaction logic for AddUnits.xaml
     /// </summary>
-    public partial class AddWeaponsView : UserControl
+    public partial class AddUnitsView : UserControl
     {
-        public AddWeaponsView()
+        public AddUnitsView()
         {
             InitializeComponent();
         }
