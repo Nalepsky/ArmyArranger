@@ -6,25 +6,28 @@
         xmlns:local="clr-namespace:ArmyArranger"
         xmlns:viewmodels="clr-namespace:ArmyArranger.ViewModels"
         xmlns:viewmodelsEditYourArmies="clr-namespace:ArmyArranger.ViewModels.EditYourArmies"
+        xmlns:viewmodelsMenu="clr-namespace:ArmyArranger.ViewModels.Menu"
         xmlns:views="clr-namespace:ArmyArranger.Views"
         xmlns:viewsEditYourArmies="clr-namespace:ArmyArranger.Views.EditYourArmies"
+        xmlns:viewsMenu="clr-namespace:ArmyArranger.Views.Menu"
         mc:Ignorable="d"
         Title="Army Arranger" Height="500" Width="600" HorizontalAlignment="Center" VerticalAlignment="Center">
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewmodels:MenuViewModel}">
             <views:MenuView DataContext="{Binding}"/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:CreateArmyListViewModel}">
-            <views:CreateArmyListView DataContext="{Binding}"/>
+        
+        <DataTemplate DataType="{x:Type viewmodelsMenu:CreateArmyListViewModel}">
+            <viewsMenu:CreateArmyListView DataContext="{Binding}"/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:EditYourArmiesViewModel}">
-            <views:EditYourArmiesView DataContext="{Binding}"/>
+        <DataTemplate DataType="{x:Type viewmodelsMenu:EditYourArmiesViewModel}">
+            <viewsMenu:EditYourArmiesView DataContext="{Binding}"/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:ContactUsViewModel}">
-            <views:ContactUsView DataContext="{Binding}"/>
+        <DataTemplate DataType="{x:Type viewmodelsMenu:ContactUsViewModel}">
+            <viewsMenu:ContactUsView DataContext="{Binding}"/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:AboutViewModel}">
-            <views:AboutView DataContext="{Binding}"/>
+        <DataTemplate DataType="{x:Type viewmodelsMenu:AboutViewModel}">
+            <viewsMenu:AboutView DataContext="{Binding}"/>
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewmodelsEditYourArmies:AddNationsViewModel}">

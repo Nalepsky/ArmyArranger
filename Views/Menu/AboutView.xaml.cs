@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ArmyArranger.Views
+namespace ArmyArranger.Views.Menu
 {
     /// <summary>
     /// Interaction logic for AboutView.xaml

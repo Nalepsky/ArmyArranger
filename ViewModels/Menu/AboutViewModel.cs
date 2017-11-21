@@ -5,7 +5,7 @@ using Prism.Mvvm;
 using System.Net.Mail;
 using System;
 
-namespace ArmyArranger.ViewModels
+namespace ArmyArranger.ViewModels.Menu
 {
     public class AboutViewModel
     {

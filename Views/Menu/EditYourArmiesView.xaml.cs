@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ArmyArranger.Views
+namespace ArmyArranger.Views.Menu
 {
     /// <summary>
-    /// Interaction logic for SendMail.xaml
+    /// Interaction logic for EditYourArmiesView.xaml
     /// </summary>
-    public partial class ContactUsView : UserControl
+    public partial class EditYourArmiesView : UserControl
     {
-        public ContactUsView()
+        public EditYourArmiesView()
         {
             InitializeComponent();
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using Prism.Commands;
+using ArmyArranger.ViewModels.Menu;
 
 namespace ArmyArranger.ViewModels.EditYourArmies
 {

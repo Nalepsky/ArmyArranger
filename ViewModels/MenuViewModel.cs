@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using ArmyArranger.Models;
+using ArmyArranger.ViewModels.Menu;
 
 namespace ArmyArranger.ViewModels
 {
