@@ -2,7 +2,6 @@
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Mvvm;
-using System.Data.SQLite;
 using System;
 
 namespace ArmyArranger.ViewModels.EditYourArmies
@@ -60,7 +59,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         #region Commands
 
         public ICommand ValidateCommand { get; set; }
-        public ICommand SaveData { get; set; }
         public ICommand Back { get; set; }
 
         #endregion
@@ -70,7 +68,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         public AddUnitsViewModel()
         {
             ValidateCommand = new DelegateCommand(ValidateAction);
-            SaveData = new DelegateCommand(SaveToDB);
             Back = new DelegateCommand(ChangeViewToEditYourArmies);
         }
 
@@ -87,37 +84,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 return;
             }
             Result = "You set val1=" + Value1 + " val2=" + Value2;
-        }
-
-        private void SaveToDB()
-        {
-
-            SQLiteConnection sqlconnect = new SQLiteConnection(string.Format("Data Source={0}", System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "testbase.db")));
-            SQLiteCommand command;
-            string query = "";
-
-            sqlconnect.Open();
-                if (sqlconnect.State == System.Data.ConnectionState.Open)
-                {
-                    try
-                    {
-                        query = string.Format("CREATE TABLE test(val1 varchar(100), val2 varchar(100))");
-                        command = new SQLiteCommand(query, sqlconnect);
-                        command.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                        return;
-                    }
-
-                    MessageBox.Show("Created");
-                }
-                else
-                {
-                    MessageBox.Show("Database connection error.");
-                }
-                sqlconnect.Close();
         }
 
         private void ChangeViewToEditYourArmies()

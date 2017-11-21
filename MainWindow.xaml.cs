@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Net.Mail;
 using System.Data.SQLite;
 using ArmyArranger.ViewModels;
+using ArmyArranger.Models;
 
 namespace ArmyArranger
 {
@@ -26,7 +27,8 @@ namespace ArmyArranger
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MenuViewModel();            
+            DataContext = new MenuViewModel();
+            Database.Connect();
         }
     }
 }
