@@ -32,14 +32,16 @@
             <ListBoxItem>Weapon3</ListBoxItem>
             <ListBoxItem>New Weapon</ListBoxItem>
         </ListBox>
-        <Label Content="Weapon name:" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center"/>
+        <Label Content="Weapon name:" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBox x:Name="Name" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" Cursor="Hand"/>
-        <Label Content="Range" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center"/>
+        <Label Content="Range" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBox x:Name="Range" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" Cursor="Hand"/>
-        <Label Content="Shots" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center"/>
+        <Label Content="Shots" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBox x:Name="Shots" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" Cursor="Hand"/>
-        <Label Content="Penetration" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center"/>
+        <Label Content="Penetration" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBox x:Name="Penetration" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center" Cursor="Hand"/>
+        <Label Content="Requires loader" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <CheckBox x:Name="Loader" Grid.Column="3" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <Label Content="Select Rules" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Center"/>
         <ListBox Grid.Column="4" Grid.Row="2" Grid.RowSpan="4" Cursor="Hand" Margin="8,0,0,0">
