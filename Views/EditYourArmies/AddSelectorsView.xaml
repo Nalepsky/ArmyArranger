@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:ArmyArranger.Views.EditYourArmies"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Background="#FFC4C6CB">
+
+    <Grid Background="#FFC4C6CB">        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
@@ -23,7 +24,24 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
@@ -58,14 +76,68 @@
             <ComboBoxItem Name="nation3">USA</ComboBoxItem>
         </ComboBox>
 
-        <Label Content="Mandatory Units" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Mandatory Units" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
         <ListBox Grid.Column="1" Grid.Row="6">
             <ListBoxItem>Unit1</ListBoxItem>
             <ListBoxItem>Unit2</ListBoxItem>
             <ListBoxItem>Unit3</ListBoxItem>
         </ListBox>
-        <TextBox x:Name="NumberOfUnits" Grid.Column="2" Grid.Row="6" VerticalAlignment="Center"/>
+        <TextBox x:Name="NumberOfMandatoryUnits" Grid.Column="2" Grid.Row="6" VerticalAlignment="Center"/>
         <Button Content="Add next units" Grid.Column="1" Grid.Row="7" Cursor="Hand" VerticalAlignment="Center"/>
+
+        <Label Content="Headquaeters" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+        <ListBox Grid.Column="1" Grid.Row="9">
+            <ListBoxItem>Unit1</ListBoxItem>
+            <ListBoxItem>Unit2</ListBoxItem>
+            <ListBoxItem>Unit3</ListBoxItem>
+        </ListBox>
+        <TextBox x:Name="NumberOfHeadquaetersUnits" Grid.Column="2" Grid.Row="9" VerticalAlignment="Center"/>
+        <Button Content="Add next units" Grid.Column="1" Grid.Row="10" Cursor="Hand" VerticalAlignment="Center"/>
+
+        <Label Content="Infntry" Grid.Column="1" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+        <ListBox Grid.Column="1" Grid.Row="12">
+            <ListBoxItem>Unit1</ListBoxItem>
+            <ListBoxItem>Unit2</ListBoxItem>
+            <ListBoxItem>Unit3</ListBoxItem>
+        </ListBox>
+        <TextBox x:Name="NumberOfInfntryUnits" Grid.Column="2" Grid.Row="13" VerticalAlignment="Center"/>
+        <Button Content="Add next units" Grid.Column="1" Grid.Row="14" Cursor="Hand" VerticalAlignment="Center"/>
+
+        <Label Content="Artillery" Grid.Column="1" Grid.Row="15" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+        <ListBox Grid.Column="1" Grid.Row="16">
+            <ListBoxItem>Unit1</ListBoxItem>
+            <ListBoxItem>Unit2</ListBoxItem>
+            <ListBoxItem>Unit3</ListBoxItem>
+        </ListBox>
+        <TextBox x:Name="NumberOfArtilleryUnits" Grid.Column="2" Grid.Row="17" VerticalAlignment="Center"/>
+        <Button Content="Add next units" Grid.Column="1" Grid.Row="18" Cursor="Hand" VerticalAlignment="Center"/>
+
+        <Label Content="ArmouredCars" Grid.Column="1" Grid.Row="18" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+        <ListBox Grid.Column="1" Grid.Row="19">
+            <ListBoxItem>Unit1</ListBoxItem>
+            <ListBoxItem>Unit2</ListBoxItem>
+            <ListBoxItem>Unit3</ListBoxItem>
+        </ListBox>
+        <TextBox x:Name="NumberOfArmouredCarsUnits" Grid.Column="2" Grid.Row="20" VerticalAlignment="Center"/>
+        <Button Content="Add next units" Grid.Column="1" Grid.Row="21" Cursor="Hand" VerticalAlignment="Center"/>
+
+        <Label Content="Tanks, Tank destroyers, Asault guns, Self-propelled artillery and Anti-aircraft vehicles" Grid.Column="1" Grid.Row="21" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+        <ListBox Grid.Column="1" Grid.Row="22">
+            <ListBoxItem>Unit1</ListBoxItem>
+            <ListBoxItem>Unit2</ListBoxItem>
+            <ListBoxItem>Unit3</ListBoxItem>
+        </ListBox>
+        <TextBox x:Name="NumberOfVehicleUnits" Grid.Column="2" Grid.Row="23" VerticalAlignment="Center"/>
+        <Button Content="Add next units" Grid.Column="1" Grid.Row="24" Cursor="Hand" VerticalAlignment="Center"/>
+
+        <Label Content="Transports and Tows" Grid.Column="1" Grid.Row="25" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+        <ListBox Grid.Column="1" Grid.Row="26">
+            <ListBoxItem>Unit1</ListBoxItem>
+            <ListBoxItem>Unit2</ListBoxItem>
+            <ListBoxItem>Unit3</ListBoxItem>
+        </ListBox>
+        <TextBox x:Name="NumberOfTransportsUnits" Grid.Column="2" Grid.Row="27" VerticalAlignment="Center"/>
+        <Button Content="Add next units" Grid.Column="1" Grid.Row="28" Cursor="Hand" VerticalAlignment="Center"/>
 
         <Button Content="Back" Command="{Binding Back, Mode=TwoWay}" Grid.Column="1" Grid.Row="99" Cursor="Hand" VerticalAlignment="Center"/>
     </Grid>
