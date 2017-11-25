@@ -61,6 +61,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         public ICommand ValidateCommand { get; set; }
         public ICommand Back { get; set; }
+        public ICommand Next { get; set; }
 
         #endregion
 
@@ -70,6 +71,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             ValidateCommand = new DelegateCommand(ValidateAction);
             Back = new DelegateCommand(ChangeViewToEditYourArmies);
+            Next = new DelegateCommand(ChangeViewToAddOptions);
         }
 
         #endregion
@@ -90,6 +92,11 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         private void ChangeViewToEditYourArmies()
         {
             App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
+        }
+
+        private void ChangeViewToAddOptions()
+        {
+            App.Current.MainWindow.DataContext = new AddOptionsViewModel();
         }
 
         #endregion
