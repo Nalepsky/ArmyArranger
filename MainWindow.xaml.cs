@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using System.Net.Mail;
 using System.Data.SQLite;
 using ArmyArranger.ViewModels;
-using ArmyArranger.Models;
+using ArmyArranger.Global;
 
 namespace ArmyArranger
 {

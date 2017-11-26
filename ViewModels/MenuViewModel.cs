@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using ArmyArranger.Models;
+using ArmyArranger.Global;
 using ArmyArranger.ViewModels.Menu;
 
 namespace ArmyArranger.ViewModels

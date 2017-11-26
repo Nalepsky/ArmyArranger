@@ -4,11 +4,14 @@ using Prism.Commands;
 using Prism.Mvvm;
 using System.Net.Mail;
 using System;
+using ArmyArranger.Models;
 
 namespace ArmyArranger.ViewModels.Menu
 {
     public class ContactUsViewModel : BindableBase
     {
+        ContactUsModel ContactUsModel = new ContactUsModel();
+
 
         #region Propeties
 
@@ -84,27 +87,7 @@ namespace ArmyArranger.ViewModels.Menu
 
         private void SendEmail()
         {
-            try
-            {
-                MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-
-                mail.From = new MailAddress("armyarranger@gmail.com");
-                mail.To.Add("armyarranger@gmail.com");
-                mail.Subject = Topic;
-                mail.Body = EmailAddress + "\n\n" + Message;
-
-                SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("ArmyArranger", "ArmyArrangerPass");
-                SmtpServer.EnableSsl = true;
-
-                SmtpServer.Send(mail);
-                MessageBox.Show("Email sent.\nThank you for your feedback.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Email error.\nPlease check your internet connection.\n\n\n" + ex.ToString());
-            }
+            ContactUsModel.SendEmail(Topic, EmailAddress, Message);
         }
 
         #endregion
