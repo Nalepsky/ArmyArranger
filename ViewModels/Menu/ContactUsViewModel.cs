@@ -12,7 +12,6 @@ namespace ArmyArranger.ViewModels.Menu
     {
         ContactUsModel ContactUsModel = new ContactUsModel();
 
-
         #region Propeties
 
 
@@ -80,14 +79,14 @@ namespace ArmyArranger.ViewModels.Menu
 
         #region Actions
 
-        private void ChangeViewToMenu()
-        {
-            App.Current.MainWindow.DataContext = new MenuViewModel();
-        }
-
         private void SendEmail()
         {
             ContactUsModel.SendEmail(Topic, EmailAddress, Message);
+        }
+
+        private void ChangeViewToMenu()
+        {
+            App.Current.MainWindow.DataContext = new MenuViewModel();
         }
 
         #endregion
