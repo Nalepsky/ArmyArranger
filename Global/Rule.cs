@@ -9,28 +9,25 @@ namespace ArmyArranger.Global
 {
     class Rule
     {
-        string Name = "null";
-        string Description = "null";
-        string Type = "null";
-        string Source = "null";
+        string Name;
+        string Description;
+        string Type;
+        string Source;
 
         public Rule(string name, string description, string type, string source)
         {
-            if (name != null)
-                Name = "'" + name + "'";
+            Name = (name != null) ? "'" + name + "'" : "null";
 
-            if (description != null)
-                Description = "'" + description + "'";
+            Description = (description != null) ? "'" + description + "'" : "null";
 
-            if (type != null)
-                Type = "'" + type + "'";
+            Type = (type != null) ? "'" + type + "'" : "null";
 
-            if (source != null)
-                Source = "'" + source + "'";
+            Source = (source != null) ? "'" + source + "'" : "null";          
         }
 
         public void SaveToDB()
         {
+            
             Database.ExecuteCommand("INSERT INTO Rule (Name, Description, Type, Source) VALUES (" + Name + "," + Description + "," + Type + "," + Source + ")");
         }
     }

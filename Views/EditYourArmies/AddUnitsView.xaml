@@ -73,8 +73,8 @@
         <TextBox x:Name="BasePoints" Grid.Column="2" Grid.Row="7" Cursor="Hand" VerticalAlignment="Center"/>
         <Label Content="Composition" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBox x:Name="Composition" Grid.Column="2" Grid.Row="8"   Cursor="Hand" VerticalAlignment="Center"/>
-        <Label Content="Weapons Describtion" Grid.Column="1" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox x:Name="WeaponsDescribtion" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="2"  Cursor="Hand"/>
+        <Label Content="Weapons Description" Grid.Column="1" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox x:Name="WeaponsDescription" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="2"  Cursor="Hand"/>
         <Label Content="Weapons" Grid.Column="1" Grid.Row="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBox x:Name="Weapons" Grid.Column="2" Grid.Row="10"  Cursor="Hand" VerticalAlignment="Center"/>
         <Label Content="Experience Level" Grid.Column="1" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
