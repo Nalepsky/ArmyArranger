@@ -86,6 +86,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Global\GameRule.cs" />
+    <Compile Include="Global\Nation.cs" />
+    <Compile Include="Global\Option.cs" />
+    <Compile Include="Global\Selector.cs" />
+    <Compile Include="Global\Unit.cs" />
+    <Compile Include="Global\Weapon.cs" />
     <Compile Include="Models\ContactUsModel.cs" />
     <Compile Include="Global\Database.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddOptionsViewModel.cs" />
