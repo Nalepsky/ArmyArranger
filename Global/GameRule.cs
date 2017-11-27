@@ -7,14 +7,14 @@ using System.Windows;
 
 namespace ArmyArranger.Global
 {
-    class Rule
+    class GameRule
     {
         string Name;
         string Description;
         string Type;
         string Source;
 
-        public Rule(string name, string description, string type, string source)
+        public GameRule(string name, string description, string type, string source)
         {
             Name = (name != null) ? "'" + name + "'" : "null";
 

@@ -85,7 +85,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void ConfirmChanges()
         {
-            Rule NewRule = new Rule(Name, Description, Type, Source);
+            GameRule NewRule = new GameRule(Name, Description, Type, Source);
             NewRule.SaveToDB();
         }
 

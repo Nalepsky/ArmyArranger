@@ -10,6 +10,7 @@
         xmlns:views="clr-namespace:ArmyArranger.Views"
         xmlns:viewsEditYourArmies="clr-namespace:ArmyArranger.Views.EditYourArmies"
         xmlns:viewsMenu="clr-namespace:ArmyArranger.Views.Menu"
+        xmlns:global="clr-namespace:ArmyArranger.Global"
         mc:Ignorable="d"
         Title="Army Arranger" Height="500" Width="600" HorizontalAlignment="Center" VerticalAlignment="Center">
     <Window.Resources>
