@@ -4,35 +4,13 @@ using Prism.Commands;
 using ArmyArranger.ViewModels.Menu;
 using System.Windows;
 using Prism.Mvvm;
+using ArmyArranger.Global;
 
 namespace ArmyArranger.ViewModels.EditYourArmies
 {
-    class Rule
-    {
-        string Name { get; set; }
-        string Describtion { get; set; }
-        string Type { get; set; }
-        string Source { get; set; }
-
-        public Rule(string name, string source, string type, string describtion)
-        {
-            Name = name;
-            Describtion = describtion;
-            Type = type;
-            Source = source;
-        }
-
-        public string Query()
-        {
-            return "temporary string";
-        }
-    }
-
     class AddRulesViewModel : BindableBase
     {
         #region Propeties
-
-        private Rule NewRule = null;
 
         private string _name;
         public string Name
@@ -67,14 +45,14 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
-        private string _describtion;
-        public string Describtion
+        private string _description;
+        public string Description
         {
-            get { return _describtion; }
+            get { return _description; }
             set
             {
-                _describtion = value;
-                RaisePropertyChanged(nameof(Describtion));
+                _description = value;
+                RaisePropertyChanged(nameof(Description));
             }
         }
 
@@ -107,9 +85,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void ConfirmChanges()
         {
-            NewRule = new Rule(_name, _source, _type, _describtion);
-            string msg = _name + "\n" + _source + "\n" + _type + "\n" + _describtion;
-            MessageBox.Show(msg);
+            Rule NewRule = new Rule(Name, Description, Type, Source);
+            NewRule.SaveToDB();
         }
 
         #endregion
