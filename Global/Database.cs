@@ -42,10 +42,13 @@ namespace ArmyArranger.Global
                 command = new SQLiteCommand("" +
                     "CREATE TABLE IF NOT EXISTS Unit(" +
                     "ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE," +
-                    "Count INTEGER NOT NULL," +
+                    "Name INTEGER NOT NULL," +
+                    "Type VARCHAR(50) NOT NULL," +
+                    "Composition VARCHAR(50) NOT NULL," +
                     "Experience INTEGER NOT NULL," +
                     "EquipmentDescription VARCHAR(255) NULL," +
                     "Defence INTEGER NULL," +
+                    "BasePoints INTEGER NULL," +
                     "NationID INTEGER NOT NULL," +
                     "FOREIGN KEY(NationID) REFERENCES Nation(ID)" +
                     ")", sqlconnect);
