@@ -13,6 +13,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
     class AddRulesViewModel : BindableBase
     {
         GameRule GameRule = new GameRule();
+        GameRule lastChoosenRule;
         #region Propeties
 
         private ObservableCollection<GameRule> _rulesList;
@@ -86,6 +87,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         #region Commands
 
         public ICommand OnLoad { get; set; }
+        public ICommand MouseClick { get; set; }
         public ICommand Back { get; set; }
         public ICommand Confirm { get; set; }
 
@@ -97,6 +99,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         public AddRulesViewModel()
         {
             OnLoad = new DelegateCommand(FunctionOnLoad);
+            MouseClick = new DelegateCommand(FunctionOnClick);
             Back = new DelegateCommand(ChangeViewToEditYourArmies);
             Confirm = new DelegateCommand(ConfirmChanges);
         }
@@ -109,6 +112,19 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             GameRule.LoadAll();
             RulesList = GameRule.RulesCollection;
+        }
+
+        private void FunctionOnClick()
+        {
+            if (lastChoosenRule != SelectedRule)
+            {
+                Name = SelectedRule.Name;
+                Description = SelectedRule.Description;
+                Type = SelectedRule.Type;
+                Source = SelectedRule.Source;
+
+                lastChoosenRule = SelectedRule;
+            }
         }
 
         private void ChangeViewToEditYourArmies()

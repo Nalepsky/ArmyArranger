@@ -15,9 +15,9 @@ namespace ArmyArranger.Global
 
         int ID;
         public string Name { get; set; }
-        string Description;
-        string Type;
-        string Source;
+        public string Description { get; set; }
+        public string Type { get; set; }
+        public string Source { get; set; }
 
         public GameRule(){ }
 
