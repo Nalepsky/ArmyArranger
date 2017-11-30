@@ -4,8 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ArmyArranger.Views.EditYourArmies"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding OnLoad}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
     <Grid Background="#FFC4C6CB" Name="Test">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -26,11 +34,12 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Label Content="Rules" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
-        <ListBox Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" Cursor="Hand">
-            <ListBoxItem>Rule1</ListBoxItem>
-            <ListBoxItem>Rule2</ListBoxItem>
-            <ListBoxItem>Rule3</ListBoxItem>
-            <ListBoxItem>New Rule</ListBoxItem>
+        <ListBox ItemsSource="{Binding RulesList}" SelectedItem="{Binding SelectedRule, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" Cursor="Hand">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
         <Label Content="Rule name:" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center"/>
         <TextBox x:Name="Name" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" Cursor="Hand" />

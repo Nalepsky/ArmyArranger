@@ -12,6 +12,7 @@ namespace ArmyArranger.Global
     {
         static SQLiteConnection sqlconnect = new SQLiteConnection(string.Format("Data Source={0}", System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "testbase.db")));
         static SQLiteCommand command;
+        static SQLiteDataReader result;
 
         static public void Connect()
         {
@@ -115,27 +116,18 @@ namespace ArmyArranger.Global
         }
 
 
-        static public void ExecuteCommand(string query)
+        static public SQLiteDataReader ExecuteCommand(string query)
         {
-            if (sqlconnect.State == System.Data.ConnectionState.Open)
+            try
             {
-                try
-                {
-                    command = new SQLiteCommand(query, sqlconnect);
-                    command.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    return;
-                }
-                MessageBox.Show("Command Executed");
+                command = new SQLiteCommand(query, sqlconnect);
+                result = command.ExecuteReader();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Database connection error.");
+                throw ex;
             }
-
+            return result;
         }
     }
 }

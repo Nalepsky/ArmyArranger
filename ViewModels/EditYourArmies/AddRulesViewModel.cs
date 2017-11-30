@@ -5,12 +5,37 @@ using ArmyArranger.ViewModels.Menu;
 using System.Windows;
 using Prism.Mvvm;
 using ArmyArranger.Global;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace ArmyArranger.ViewModels.EditYourArmies
 {
     class AddRulesViewModel : BindableBase
     {
+        GameRule GameRule = new GameRule();
         #region Propeties
+
+        private ObservableCollection<GameRule> _rulesList;
+        public ObservableCollection<GameRule> RulesList
+        {
+            get { return _rulesList; }
+            set
+            {
+                _rulesList = value;
+                RaisePropertyChanged(nameof(RulesList));
+            }
+        }
+
+        private GameRule _selectedRule;
+        public GameRule SelectedRule
+        {
+            get { return _selectedRule; }
+            set
+            {
+                _selectedRule = value;
+                RaisePropertyChanged(nameof(SelectedRule));
+            }
+        }
 
         private string _name;
         public string Name
@@ -60,6 +85,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         #region Commands
 
+        public ICommand OnLoad { get; set; }
         public ICommand Back { get; set; }
         public ICommand Confirm { get; set; }
 
@@ -70,6 +96,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         public AddRulesViewModel()
         {
+            OnLoad = new DelegateCommand(FunctionOnLoad);
             Back = new DelegateCommand(ChangeViewToEditYourArmies);
             Confirm = new DelegateCommand(ConfirmChanges);
         }
@@ -78,6 +105,12 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         #region Actions
 
+        private void FunctionOnLoad()
+        {
+            GameRule.LoadAll();
+            RulesList = GameRule.RulesCollection;
+        }
+
         private void ChangeViewToEditYourArmies()
         {
             App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
@@ -85,8 +118,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void ConfirmChanges()
         {
-            GameRule NewRule = new GameRule(Name, Description, Type, Source);
-            NewRule.SaveToDB();
+            GameRule.SaveToDB(Name, Description, Type, Source);
         }
 
         #endregion
