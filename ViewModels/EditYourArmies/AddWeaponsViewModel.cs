@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using Prism.Commands;
 using ArmyArranger.ViewModels.Menu;
+using ArmyArranger.Global;
 
 namespace ArmyArranger.ViewModels.EditYourArmies
 {
@@ -9,13 +10,14 @@ namespace ArmyArranger.ViewModels.EditYourArmies
     {
         #region Propeties
 
-
+        Weapon NewWeapon = new Weapon();
 
         #endregion
 
         #region Commands
 
         public ICommand Back { get; set; }
+        public ICommand Confirm { get; set; }
 
         #endregion
 
@@ -24,6 +26,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         public AddWeaponsViewModel()
         {
             Back = new DelegateCommand(ChangeViewToEditYourArmies);
+            Confirm = new DelegateCommand(ConfirmChanges);
         }
 
         #endregion
@@ -33,6 +36,11 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         private void ChangeViewToEditYourArmies()
         {
             App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
+        }
+
+        private void ConfirmChanges()
+        {
+            NewWeapon.SaveToDB();
         }
 
         #endregion

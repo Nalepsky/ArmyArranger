@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ArmyArranger.Global
 {
@@ -13,20 +14,23 @@ namespace ArmyArranger.Global
         string Shots;
         string Penetration;
         string RequiresLoader;
+        string Rules;
 
-        public Weapon(string name, string range, string shots, string penetration, string requiresLoader)
+        public Weapon() { }
+
+        public Weapon(string name, string range, string shots, string penetration, string requiresLoader, string rules)
         {
             Name = (name != null) ? "'" + name + "'" : "null";
             Range = (range != null) ? "'" + range + "'" : "null";
             Shots = (shots != null) ? "'" + shots + "'" : "null";
             Penetration = (penetration != null) ? "'" + penetration + "'" : "null";
             RequiresLoader = (requiresLoader != null) ? "'" + requiresLoader + "'" : "null";
+            Rules = (rules != null) ? "'" + rules + "'" : "null";
+        }
 
-            Name = name;
-            Range = range;
-            Shots = shots;
-            Penetration = penetration;
-            RequiresLoader = requiresLoader;
+        public void SaveToDB()
+        {
+            
         }
     }
 }

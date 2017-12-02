@@ -12,9 +12,10 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 {
     class AddRulesViewModel : BindableBase
     {
-        GameRule GameRule = new GameRule();
-        GameRule lastChoosenRule;
         #region Propeties
+
+        GameRule NewGameRule = new GameRule();
+        GameRule lastChoosenRule;
 
         private ObservableCollection<GameRule> _rulesList;
         public ObservableCollection<GameRule> RulesList
@@ -110,7 +111,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void FunctionOnLoad()
         {
-            GameRule.LoadAll();
+            NewGameRule.LoadAll();
             RulesList = GameRule.RulesCollection;
         }
 
@@ -134,7 +135,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void ConfirmChanges()
         {
-            GameRule.SaveToDB(Name, Description, Type, Source);
+            NewGameRule.SaveToDB(Name, Description, Type, Source);
         }
 
         #endregion
