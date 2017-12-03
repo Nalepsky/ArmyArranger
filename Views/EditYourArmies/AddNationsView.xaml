@@ -31,8 +31,9 @@
         </ListBox>
 
         <Label Content="Name" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox x:Name="Describtion" Grid.Column="3" Grid.Row="1" Cursor="Hand" VerticalAlignment="Center"/>
+        <TextBox x:Name="Description" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Grid.Row="1" Cursor="Hand" VerticalAlignment="Center"/>
 
         <Button Content="Back" Command="{Binding Back, Mode=TwoWay}" Grid.Column="1" Grid.Row="4" Cursor="Hand" VerticalAlignment="Center"/>
+        <Button Content="Confirm" Command="{Binding Confirm, Mode=TwoWay}" Grid.Column="4" Grid.Row="7" Cursor="Hand" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

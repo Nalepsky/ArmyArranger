@@ -8,146 +8,147 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
     <ScrollViewer>
-    <Grid Background="#FFC4C6CB" ScrollViewer.VerticalScrollBarVisibility="Auto">        
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+        <Grid Background="#FFC4C6CB" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-       
-        <Label Content="Selectors" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
-        <ListBox Grid.Column="1" Grid.Row="1" Cursor="Hand">
-            <ListBoxItem>Poland</ListBoxItem>
-            <ListBoxItem>Germany</ListBoxItem>
-            <ListBoxItem>ZSRR</ListBoxItem>
-            <ListBoxItem>New Nation</ListBoxItem>
-        </ListBox>
-        <ListBox Grid.Column="2" Grid.Row="1" Cursor="Hand">
-            <ListBoxItem>Selector1</ListBoxItem>
-            <ListBoxItem>Selector2</ListBoxItem>
-            <ListBoxItem>Selector3</ListBoxItem>
-            <ListBoxItem>New Selector</ListBoxItem>
-        </ListBox>
-        <ListBox Grid.Column="3" Grid.Row="1" Cursor="Hand">
-            <ListBoxItem>Rule1</ListBoxItem>
-            <ListBoxItem>Rule2</ListBoxItem>
-            <ListBoxItem>Rule3</ListBoxItem>
-            <ListBoxItem>New Rule</ListBoxItem>
-        </ListBox>
 
-        <Label Content="Selector Name" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox x:Name="SelectorName" Grid.Column="2" Grid.Row="2" Cursor="Hand" VerticalAlignment="Center"/>
-        <Label Content="Year" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox x:Name="Year" Grid.Column="2" Grid.Row="3" Cursor="Hand" VerticalAlignment="Center"/>
-        <Label Content="Nation" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <ComboBox x:Name="Nation" Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" Cursor="Hand">
-            <ComboBoxItem Name="nation1">Poland</ComboBoxItem>
-            <ComboBoxItem Name="nation2">Germany</ComboBoxItem>
-            <ComboBoxItem Name="nation3">USA</ComboBoxItem>
-        </ComboBox>
+            <Label Content="Selectors" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <ListBox Grid.Column="1" Grid.Row="1" Cursor="Hand">
+                <ListBoxItem>Poland</ListBoxItem>
+                <ListBoxItem>Germany</ListBoxItem>
+                <ListBoxItem>ZSRR</ListBoxItem>
+                <ListBoxItem>New Nation</ListBoxItem>
+            </ListBox>
+            <ListBox Grid.Column="2" Grid.Row="1" Cursor="Hand">
+                <ListBoxItem>Selector1</ListBoxItem>
+                <ListBoxItem>Selector2</ListBoxItem>
+                <ListBoxItem>Selector3</ListBoxItem>
+                <ListBoxItem>New Selector</ListBoxItem>
+            </ListBox>
+            <ListBox Grid.Column="3" Grid.Row="1" Cursor="Hand">
+                <ListBoxItem>Rule1</ListBoxItem>
+                <ListBoxItem>Rule2</ListBoxItem>
+                <ListBoxItem>Rule3</ListBoxItem>
+                <ListBoxItem>New Rule</ListBoxItem>
+            </ListBox>
 
-        <Label Content="Mandatory Units" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-        <ListBox Grid.Column="1" Grid.Row="6">
-            <ListBoxItem>Unit1</ListBoxItem>
-            <ListBoxItem>Unit2</ListBoxItem>
-            <ListBoxItem>Unit3</ListBoxItem>
-        </ListBox>
-        <TextBox x:Name="NumberOfMandatoryUnits" Grid.Column="2" Grid.Row="6" VerticalAlignment="Center"/>
-        <Button Content="Add next units" Grid.Column="1" Grid.Row="7" Cursor="Hand" VerticalAlignment="Center"/>
+            <Label Content="Selector Name" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBox x:Name="SelectorName" Text="{Binding SelectorName, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="2" Cursor="Hand" VerticalAlignment="Center"/>
+            <Label Content="Year" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBox x:Name="Year" Text="{Binding Year, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="3" Cursor="Hand" VerticalAlignment="Center"/>
+            <Label Content="Nation" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <ComboBox x:Name="Nation" Text="{Binding Nation, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" Cursor="Hand">
+                <ComboBoxItem Name="nation1">Poland</ComboBoxItem>
+                <ComboBoxItem Name="nation2">Germany</ComboBoxItem>
+                <ComboBoxItem Name="nation3">USA</ComboBoxItem>
+            </ComboBox>
 
-        <Label Content="Headquaeters" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-        <ListBox Grid.Column="1" Grid.Row="9">
-            <ListBoxItem>Unit1</ListBoxItem>
-            <ListBoxItem>Unit2</ListBoxItem>
-            <ListBoxItem>Unit3</ListBoxItem>
-        </ListBox>
-        <TextBox x:Name="NumberOfHeadquaetersUnits" Grid.Column="2" Grid.Row="9" VerticalAlignment="Center"/>
-        <Button Content="Add next units" Grid.Column="1" Grid.Row="10" Cursor="Hand" VerticalAlignment="Center"/>
+            <Label Content="Mandatory Units" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+            <ListBox Grid.Column="1" Grid.Row="6">
+                <ListBoxItem>Unit1</ListBoxItem>
+                <ListBoxItem>Unit2</ListBoxItem>
+                <ListBoxItem>Unit3</ListBoxItem>
+            </ListBox>
+            <TextBox x:Name="NumberOfMandatoryUnits" Grid.Column="2" Grid.Row="6" VerticalAlignment="Center"/>
+            <Button Content="Add next units" Grid.Column="1" Grid.Row="7" Cursor="Hand" VerticalAlignment="Center"/>
 
-        <Label Content="Infntry" Grid.Column="1" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-        <ListBox Grid.Column="1" Grid.Row="12">
-            <ListBoxItem>Unit1</ListBoxItem>
-            <ListBoxItem>Unit2</ListBoxItem>
-            <ListBoxItem>Unit3</ListBoxItem>
-        </ListBox>
-        <TextBox x:Name="NumberOfInfntryUnits" Grid.Column="2" Grid.Row="13" VerticalAlignment="Center"/>
-        <Button Content="Add next units" Grid.Column="1" Grid.Row="14" Cursor="Hand" VerticalAlignment="Center"/>
+            <Label Content="Headquaeters" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+            <ListBox Grid.Column="1" Grid.Row="9">
+                <ListBoxItem>Unit1</ListBoxItem>
+                <ListBoxItem>Unit2</ListBoxItem>
+                <ListBoxItem>Unit3</ListBoxItem>
+            </ListBox>
+            <TextBox x:Name="NumberOfHeadquaetersUnits" Grid.Column="2" Grid.Row="9" VerticalAlignment="Center"/>
+            <Button Content="Add next units" Grid.Column="1" Grid.Row="10" Cursor="Hand" VerticalAlignment="Center"/>
 
-        <Label Content="Artillery" Grid.Column="1" Grid.Row="15" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-        <ListBox Grid.Column="1" Grid.Row="16">
-            <ListBoxItem>Unit1</ListBoxItem>
-            <ListBoxItem>Unit2</ListBoxItem>
-            <ListBoxItem>Unit3</ListBoxItem>
-        </ListBox>
-        <TextBox x:Name="NumberOfArtilleryUnits" Grid.Column="2" Grid.Row="17" VerticalAlignment="Center"/>
-        <Button Content="Add next units" Grid.Column="1" Grid.Row="18" Cursor="Hand" VerticalAlignment="Center"/>
+            <Label Content="Infntry" Grid.Column="1" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+            <ListBox Grid.Column="1" Grid.Row="12">
+                <ListBoxItem>Unit1</ListBoxItem>
+                <ListBoxItem>Unit2</ListBoxItem>
+                <ListBoxItem>Unit3</ListBoxItem>
+            </ListBox>
+            <TextBox x:Name="NumberOfInfntryUnits" Grid.Column="2" Grid.Row="13" VerticalAlignment="Center"/>
+            <Button Content="Add next units" Grid.Column="1" Grid.Row="14" Cursor="Hand" VerticalAlignment="Center"/>
 
-        <Label Content="ArmouredCars" Grid.Column="1" Grid.Row="19" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-        <ListBox Grid.Column="1" Grid.Row="20">
-            <ListBoxItem>Unit1</ListBoxItem>
-            <ListBoxItem>Unit2</ListBoxItem>
-            <ListBoxItem>Unit3</ListBoxItem>
-        </ListBox>
-        <TextBox x:Name="NumberOfArmouredCarsUnits" Grid.Column="2" Grid.Row="21" VerticalAlignment="Center"/>
-        <Button Content="Add next units" Grid.Column="1" Grid.Row="22" Cursor="Hand" VerticalAlignment="Center"/>
+            <Label Content="Artillery" Grid.Column="1" Grid.Row="15" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+            <ListBox Grid.Column="1" Grid.Row="16">
+                <ListBoxItem>Unit1</ListBoxItem>
+                <ListBoxItem>Unit2</ListBoxItem>
+                <ListBoxItem>Unit3</ListBoxItem>
+            </ListBox>
+            <TextBox x:Name="NumberOfArtilleryUnits" Grid.Column="2" Grid.Row="17" VerticalAlignment="Center"/>
+            <Button Content="Add next units" Grid.Column="1" Grid.Row="18" Cursor="Hand" VerticalAlignment="Center"/>
 
-        <Label Content="Tanks, Tank destroyers, Asault guns, Self-propelled artillery and Anti-aircraft vehicles" Grid.Column="1" Grid.Row="23" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-        <ListBox Grid.Column="1" Grid.Row="24">
-            <ListBoxItem>Unit1</ListBoxItem>
-            <ListBoxItem>Unit2</ListBoxItem>
-            <ListBoxItem>Unit3</ListBoxItem>
-        </ListBox>
-        <TextBox x:Name="NumberOfVehicleUnits" Grid.Column="2" Grid.Row="25" VerticalAlignment="Center"/>
-        <Button Content="Add next units" Grid.Column="1" Grid.Row="26" Cursor="Hand" VerticalAlignment="Center"/>
+            <Label Content="ArmouredCars" Grid.Column="1" Grid.Row="19" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+            <ListBox Grid.Column="1" Grid.Row="20">
+                <ListBoxItem>Unit1</ListBoxItem>
+                <ListBoxItem>Unit2</ListBoxItem>
+                <ListBoxItem>Unit3</ListBoxItem>
+            </ListBox>
+            <TextBox x:Name="NumberOfArmouredCarsUnits" Grid.Column="2" Grid.Row="21" VerticalAlignment="Center"/>
+            <Button Content="Add next units" Grid.Column="1" Grid.Row="22" Cursor="Hand" VerticalAlignment="Center"/>
 
-        <Label Content="Transports and Tows" Grid.Column="1" Grid.Row="27" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-        <ListBox Grid.Column="1" Grid.Row="28">
-            <ListBoxItem>Unit1</ListBoxItem>
-            <ListBoxItem>Unit2</ListBoxItem>
-            <ListBoxItem>Unit3</ListBoxItem>
-        </ListBox>
-        <TextBox x:Name="NumberOfTransportsUnits" Grid.Column="2" Grid.Row="29" VerticalAlignment="Center"/>
-        <Button Content="Add next units" Grid.Column="1" Grid.Row="30" Cursor="Hand" VerticalAlignment="Center"/>
+            <Label Content="Tanks, Tank destroyers, Asault guns, Self-propelled artillery and Anti-aircraft vehicles" Grid.Column="1" Grid.Row="23" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+            <ListBox Grid.Column="1" Grid.Row="24">
+                <ListBoxItem>Unit1</ListBoxItem>
+                <ListBoxItem>Unit2</ListBoxItem>
+                <ListBoxItem>Unit3</ListBoxItem>
+            </ListBox>
+            <TextBox x:Name="NumberOfVehicleUnits" Grid.Column="2" Grid.Row="25" VerticalAlignment="Center"/>
+            <Button Content="Add next units" Grid.Column="1" Grid.Row="26" Cursor="Hand" VerticalAlignment="Center"/>
 
-        <Button Content="Back" Command="{Binding Back, Mode=TwoWay}" Grid.Column="1" Grid.Row="99" Cursor="Hand" VerticalAlignment="Center"/>
+            <Label Content="Transports and Tows" Grid.Column="1" Grid.Row="27" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+            <ListBox Grid.Column="1" Grid.Row="28">
+                <ListBoxItem>Unit1</ListBoxItem>
+                <ListBoxItem>Unit2</ListBoxItem>
+                <ListBoxItem>Unit3</ListBoxItem>
+            </ListBox>
+            <TextBox x:Name="NumberOfTransportsUnits" Grid.Column="2" Grid.Row="29" VerticalAlignment="Center"/>
+            <Button Content="Add next units" Grid.Column="1" Grid.Row="30" Cursor="Hand" VerticalAlignment="Center"/>
+
+            <Button Content="Back" Command="{Binding Back, Mode=TwoWay}" Grid.Column="1" Grid.Row="99" Cursor="Hand" VerticalAlignment="Center"/>
+            <Button Content="Confirm" Command="{Binding Confirm, Mode=TwoWay}" Grid.Column="4" Grid.Row="7" Cursor="Hand" VerticalAlignment="Center"/>
         </Grid>
     </ScrollViewer>
 </UserControl>

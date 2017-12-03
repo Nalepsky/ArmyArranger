@@ -34,13 +34,14 @@
         </ListBox>
 
         <Label Content="Description" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox x:Name="Describtion" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Cursor="Hand" VerticalAlignment="Center"/>
+        <TextBox x:Name="Description" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Cursor="Hand" VerticalAlignment="Center"/>
         <Label Content="Point Value" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox x:Name="PointValue" Grid.Column="2" Grid.Row="4" Cursor="Hand" VerticalAlignment="Center"/>
+        <TextBox x:Name="PointValue" Text="{Binding PointValue, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="4" Cursor="Hand" VerticalAlignment="Center"/>
         <Label Content="Weapon or Rule" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox x:Name="Weapon" Grid.Column="2" Grid.Row="5" Cursor="Hand" VerticalAlignment="Center"/>
-        <TextBox x:Name="WeaponOrRule" Grid.Column="3" Grid.Row="5" Cursor="Hand" VerticalAlignment="Center"/>
+        <TextBox x:Name="Weapon" Text="{Binding Weapon, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="5" Cursor="Hand" VerticalAlignment="Center"/>
+        <TextBox x:Name="Rule" Text="{Binding Rule, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Grid.Row="5" Cursor="Hand" VerticalAlignment="Center"/>
 
         <Button Content="Back" Command="{Binding Back, Mode=TwoWay}" Grid.Column="1" Grid.Row="99" Cursor="Hand" VerticalAlignment="Center"/>
+        <Button Content="Confirm" Command="{Binding Confirm, Mode=TwoWay}" Grid.Column="4" Grid.Row="7" Cursor="Hand" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>
