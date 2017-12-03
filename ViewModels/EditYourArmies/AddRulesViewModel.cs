@@ -14,7 +14,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
     {
         #region Propeties
 
-        GameRule NewGameRule = new GameRule();
+        GameRule EmptyGameRule = new GameRule();
         GameRule lastChoosenRule;
 
         private ObservableCollection<GameRule> _rulesList;
@@ -83,12 +83,24 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
+        private string _confirmButtonText;
+        public string ConfirmButtonText
+        {
+            get { return _confirmButtonText; }
+            set
+            {
+                _confirmButtonText = value;
+                RaisePropertyChanged(nameof(ConfirmButtonText));
+            }
+        }
+
         #endregion
 
         #region Commands
 
         public ICommand OnLoad { get; set; }
         public ICommand MouseClick { get; set; }
+        public ICommand AddNew { get; set; }
         public ICommand Back { get; set; }
         public ICommand Confirm { get; set; }
 
@@ -101,6 +113,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             OnLoad = new DelegateCommand(FunctionOnLoad);
             MouseClick = new DelegateCommand(FunctionOnClick);
+            AddNew = new DelegateCommand(PrepareToAddNew);
             Back = new DelegateCommand(ChangeViewToEditYourArmies);
             Confirm = new DelegateCommand(ConfirmChanges);
         }
@@ -111,7 +124,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void FunctionOnLoad()
         {
-            NewGameRule.LoadAll();
+            ConfirmButtonText = "Confirm";
+            EmptyGameRule.LoadAll();
             RulesList = GameRule.RulesCollection;
         }
 
@@ -124,8 +138,22 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 Type = SelectedRule.Type;
                 Source = SelectedRule.Source;
 
+                ConfirmButtonText = "Update";
+
                 lastChoosenRule = SelectedRule;
             }
+        }
+
+        private void PrepareToAddNew()
+        {
+            Name = "";
+            Description = "";
+            Type = "";
+            Source = "";
+            SelectedRule = EmptyGameRule;
+            lastChoosenRule = EmptyGameRule;
+
+            ConfirmButtonText = "Confirm";
         }
 
         private void ChangeViewToEditYourArmies()
@@ -135,7 +163,12 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void ConfirmChanges()
         {
-            NewGameRule.SaveToDB(Name, Description, Type, Source);
+            if (SelectedRule == null || SelectedRule.isEmpty)
+            {
+                EmptyGameRule.CreateNewAndSaveToDB(Name, Description, Type, Source);
+            }
+            else
+                SelectedRule.UpdateInDB(Name, Description, Type, Source);
         }
 
         #endregion

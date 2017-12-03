@@ -1,25 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Data.SQLite;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
 namespace ArmyArranger.Global
 {
-    class GameRule
+    class GameRule : INotifyPropertyChanged
     {
         public static ObservableCollection<GameRule> RulesCollection = new ObservableCollection<GameRule>();
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged<T>([CallerMemberName]string caller = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(caller));
+        }
+
 
         int ID;
-        public string Name { get; set; }
+        private string _name;
+        public string Name
+        {
+            get { return _name; }
+            set {  _name = value;  OnPropertyChanged<GameRule>(); }
+        }
         public string Description { get; set; }
         public string Type { get; set; }
         public string Source { get; set; }
+        public Boolean isEmpty;
 
-        public GameRule(){ }
+        public GameRule(){
+            isEmpty = true;
+        }
 
         public GameRule(int id, string name, string description, string type, string source)
         {
@@ -30,9 +47,11 @@ namespace ArmyArranger.Global
             Source = source;
 
             RulesCollection.Add(this);
+
+            isEmpty = false;
         }
 
-        public void SaveToDB(string name, string description, string type, string source)
+        public void CreateNewAndSaveToDB(string name, string description, string type, string source)
         {
             string sql_name = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + name + "'";
             string sql_description = (String.IsNullOrWhiteSpace(description)) ? "null" : "'" + description + "'";
@@ -49,6 +68,28 @@ namespace ArmyArranger.Global
                 return;
             }
             new GameRule(RulesCollection.Count, name, description, type, source);
+        }
+        public void UpdateInDB(string name, string description, string type, string source)
+        {
+            string sql_name = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + name + "'";
+            string sql_description = (String.IsNullOrWhiteSpace(description)) ? "null" : "'" + description + "'";
+            string sql_type = (String.IsNullOrWhiteSpace(type)) ? "null" : "'" + type + "'";
+            string sql_source = (String.IsNullOrWhiteSpace(source)) ? "null" : "'" + source + "'";
+
+            try
+            {
+                Database.ExecuteCommand("UPDATE Rule SET Name = " + sql_name + ", Description = " + sql_description + ", Type = " + sql_type + ", Source = " + sql_source + " WHERE ID = " + ID);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            Name = name;
+            Description = description;
+            Type = type;
+            Source = source;
         }
 
         public void LoadAll()
