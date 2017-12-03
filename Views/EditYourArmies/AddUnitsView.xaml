@@ -70,17 +70,17 @@
         </ComboBox>
 
         <Label Content="Base Points" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox x:Name="BasePoints" Grid.Column="2" Grid.Row="7" Cursor="Hand" VerticalAlignment="Center"/>
+        <TextBox x:Name="BasePoints" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="7" Cursor="Hand" VerticalAlignment="Center"/>
         <Label Content="Composition" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox x:Name="Composition" Grid.Column="2" Grid.Row="8"   Cursor="Hand" VerticalAlignment="Center"/>
+        <TextBox x:Name="Composition" Text="{Binding Composition, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="8"   Cursor="Hand" VerticalAlignment="Center"/>
         <Label Content="Weapons Description" Grid.Column="1" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox x:Name="WeaponsDescription" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="2"  Cursor="Hand"/>
+        <TextBox x:Name="WeaponsDescription" Text="{Binding WeaponsDescription, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="2"  Cursor="Hand"/>
         <Label Content="Weapons" Grid.Column="1" Grid.Row="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox x:Name="Weapons" Grid.Column="2" Grid.Row="10"  Cursor="Hand" VerticalAlignment="Center"/>
+        <TextBox x:Name="Weapons" Text="{Binding Weapons, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="10"  Cursor="Hand" VerticalAlignment="Center"/>
         <Label Content="Experience Level" Grid.Column="1" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox x:Name="ExperienceLevel" Grid.Column="2" Grid.Row="11"  Cursor="Hand" VerticalAlignment="Center"/>
+        <TextBox x:Name="ExperienceLevel" Text="{Binding ExperienceLevel, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="11"  Cursor="Hand" VerticalAlignment="Center"/>
         <Label Content="Aurmour Class (only if viehicle)" Grid.Column="1" Grid.Row="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox x:Name="AurmourClass" Grid.Column="2" Grid.Row="12"  Cursor="Hand" VerticalAlignment="Center"/>
+        <TextBox x:Name="AurmourClass" Text="{Binding AurmourClass, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="12"  Cursor="Hand" VerticalAlignment="Center"/>
 
         <Button Content="Back" Command="{Binding Back, Mode=TwoWay}" Grid.Column="0" Grid.Row="99" Cursor="Hand" VerticalAlignment="Center"/>
         <Button Content="Next" Command="{Binding Next, Mode=TwoWay}" Grid.Column="4" Grid.Row="99" Cursor="Hand" VerticalAlignment="Center"/>
