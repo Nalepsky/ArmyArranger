@@ -21,6 +21,11 @@ namespace ArmyArranger.Global
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(caller));
         }
 
+        public void ClearRulesCollection()
+        {
+            RulesCollection.Clear();
+        }
+
 
         int ID;
         private string _name;

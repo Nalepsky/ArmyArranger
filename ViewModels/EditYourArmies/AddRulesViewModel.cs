@@ -158,6 +158,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void ChangeViewToEditYourArmies()
         {
+            EmptyGameRule.ClearRulesCollection();
             App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
         }
 
