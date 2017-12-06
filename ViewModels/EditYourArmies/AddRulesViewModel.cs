@@ -7,6 +7,7 @@ using Prism.Mvvm;
 using ArmyArranger.Global;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using ArmyArranger.Models;
 
 namespace ArmyArranger.ViewModels.EditYourArmies
 {
@@ -17,6 +18,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         GameRule EmptyGameRule = new GameRule();
         GameRule lastChoosenRule;
 
+        AddRulesModel AddRules_Model = new AddRulesModel();
+
         private ObservableCollection<GameRule> _rulesList;
         public ObservableCollection<GameRule> RulesList
         {
@@ -25,7 +28,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             {
                 _rulesList = value;
                 RaisePropertyChanged(nameof(RulesList));
-            }
+            }            
         }
 
         private GameRule _selectedRule;
@@ -164,12 +167,31 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void ConfirmChanges()
         {
-            if (SelectedRule == null || SelectedRule.isEmpty)
+            if (SelectedRule == null || SelectedRule.isEmpty || SelectedRule.Name != Name) //no rule selected
             {
-                EmptyGameRule.CreateNewAndSaveToDB(Name, Description, Type, Source);
+                bool flag = true;
+                foreach (GameRule x in _rulesList)
+                {
+                    if (x.Name == Name)
+                    {
+                        if (AddRules_Model.OverrideCheckbox(Name) == 1)
+                        {
+                            SelectedRule = x;
+                            SelectedRule.UpdateInDB(Name, Description, Type, Source);
+                            flag = false;
+                        }
+                        
+                    }
+
+                }
+                if (flag)
+                    EmptyGameRule.CreateNewAndSaveToDB(Name, Description, Type, Source);
             }
-            else
+            else if (AddRules_Model.SaveModeCheckbox() == 1)     //rule selected, and user want to change it
                 SelectedRule.UpdateInDB(Name, Description, Type, Source);
+
+
+
         }
 
         #endregion
