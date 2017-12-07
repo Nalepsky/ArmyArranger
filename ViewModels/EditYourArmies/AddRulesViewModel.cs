@@ -28,7 +28,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             {
                 _rulesList = value;
                 RaisePropertyChanged(nameof(RulesList));
-            }            
+            }
         }
 
         private GameRule _selectedRule;
@@ -165,9 +165,9 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
         }
 
-        private void ConfirmChanges()
+        private void ConfirmChanges() //this whole code will go to Model
         {
-            if (SelectedRule == null || SelectedRule.isEmpty || SelectedRule.Name != Name) //no rule selected
+            if (SelectedRule == null || SelectedRule.isEmpty || SelectedRule.Name != Name)
             {
                 bool flag = true;
                 foreach (GameRule x in _rulesList)
@@ -180,18 +180,22 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                             SelectedRule.UpdateInDB(Name, Description, Type, Source);
                             flag = false;
                         }
-                        
                     }
-
                 }
                 if (flag)
                     EmptyGameRule.CreateNewAndSaveToDB(Name, Description, Type, Source);
             }
-            else if (AddRules_Model.SaveModeCheckbox() == 1)     //rule selected, and user want to change it
-                SelectedRule.UpdateInDB(Name, Description, Type, Source);
-
-
-
+            else
+            {
+                int saveOption = AddRules_Model.SaveModeCheckbox();
+                if (saveOption == 1)
+                    SelectedRule.UpdateInDB(Name, Description, Type, Source);
+                else if (saveOption == -1)
+                {
+                    //show messagebox with input field for new Name
+                    //EmptyGameRule.CreateNewAndSaveToDB(Name, Description, Type, Source);
+                }
+            }
         }
 
         #endregion
