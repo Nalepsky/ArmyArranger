@@ -15,9 +15,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
     {
         #region Propeties
 
-        GameRule EmptyGameRule = new GameRule();
-        GameRule lastChoosenRule;
-
         AddRulesModel AddRules_Model = new AddRulesModel();
 
         private ObservableCollection<GameRule> _rulesList;
@@ -31,13 +28,12 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
-        private GameRule _selectedRule;
         public GameRule SelectedRule
         {
-            get { return _selectedRule; }
+            get { return AddRules_Model.SelectedRule; }
             set
             {
-                _selectedRule = value;
+                AddRules_Model.SelectedRule = value;
                 RaisePropertyChanged(nameof(SelectedRule));
             }
         }
@@ -107,7 +103,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         public ICommand Back { get; set; }
         public ICommand Confirm { get; set; }
 
-
         #endregion
 
         #region Constructors
@@ -128,22 +123,20 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         private void FunctionOnLoad()
         {
             ConfirmButtonText = "Confirm";
-            EmptyGameRule.LoadAll();
+            AddRules_Model.EmptyGameRule.LoadAll();
             RulesList = GameRule.RulesCollection;
         }
 
         private void FunctionOnClick()
         {
-            if (lastChoosenRule != SelectedRule)
+            if (AddRules_Model.ChosenEqualsSelected())
             {
                 Name = SelectedRule.Name;
-                Description = SelectedRule.Description;
-                Type = SelectedRule.Type;
-                Source = SelectedRule.Source;
+                Description = AddRules_Model.SelectedRule.Description;
+                Type = AddRules_Model.SelectedRule.Type;
+                Source = AddRules_Model.SelectedRule.Source;
 
                 ConfirmButtonText = "Update";
-
-                lastChoosenRule = SelectedRule;
             }
         }
 
@@ -152,50 +145,22 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             Name = "";
             Description = "";
             Type = "";
-            Source = "";
-            SelectedRule = EmptyGameRule;
-            lastChoosenRule = EmptyGameRule;
+            Source = "";            
 
             ConfirmButtonText = "Confirm";
+
+            AddRules_Model.ClearRules();
         }
 
         private void ChangeViewToEditYourArmies()
         {
-            EmptyGameRule.ClearRulesCollection();
+            AddRules_Model.EmptyGameRule.ClearRulesCollection();
             App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
         }
 
-        private void ConfirmChanges() //this whole code will go to Model
+        private void ConfirmChanges() 
         {
-            if (SelectedRule == null || SelectedRule.isEmpty || SelectedRule.Name != Name)
-            {
-                bool flag = true;
-                foreach (GameRule x in _rulesList)
-                {
-                    if (x.Name == Name)
-                    {
-                        if (AddRules_Model.OverrideCheckbox(Name) == 1)
-                        {
-                            SelectedRule = x;
-                            SelectedRule.UpdateInDB(Name, Description, Type, Source);
-                            flag = false;
-                        }
-                    }
-                }
-                if (flag)
-                    EmptyGameRule.CreateNewAndSaveToDB(Name, Description, Type, Source);
-            }
-            else
-            {
-                int saveOption = AddRules_Model.SaveModeCheckbox();
-                if (saveOption == 1)
-                    SelectedRule.UpdateInDB(Name, Description, Type, Source);
-                else if (saveOption == -1)
-                {
-                    //show messagebox with input field for new Name
-                    //EmptyGameRule.CreateNewAndSaveToDB(Name, Description, Type, Source);
-                }
-            }
+            AddRules_Model.ConfirmChanges(Name, Description, Type, Source, RulesList);
         }
 
         #endregion
