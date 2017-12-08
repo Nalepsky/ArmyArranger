@@ -28,12 +28,13 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
+        private GameRule _selectedRule;
         public GameRule SelectedRule
         {
-            get { return AddRules_Model.SelectedRule; }
+            get { return _selectedRule; }
             set
             {
-                AddRules_Model.SelectedRule = value;
+                _selectedRule = value;
                 RaisePropertyChanged(nameof(SelectedRule));
             }
         }
@@ -101,6 +102,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         public ICommand MouseClick { get; set; }
         public ICommand AddNew { get; set; }
         public ICommand Back { get; set; }
+        public ICommand Remove { get; set; }
         public ICommand Confirm { get; set; }
 
         #endregion
@@ -113,6 +115,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             MouseClick = new DelegateCommand(FunctionOnClick);
             AddNew = new DelegateCommand(PrepareToAddNew);
             Back = new DelegateCommand(ChangeViewToEditYourArmies);
+            Remove = new DelegateCommand(RemoveSelectedRule);
             Confirm = new DelegateCommand(ConfirmChanges);
         }
 
@@ -122,19 +125,19 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void FunctionOnLoad()
         {
-            ConfirmButtonText = "Confirm";
+            ConfirmButtonText = "Save New";
             AddRules_Model.EmptyGameRule.LoadAll();
             RulesList = GameRule.RulesCollection;
         }
 
         private void FunctionOnClick()
         {
-            if (AddRules_Model.ChosenEqualsSelected())
+            if (AddRules_Model.ChosenEqualsSelected(SelectedRule))
             {
                 Name = SelectedRule.Name;
-                Description = AddRules_Model.SelectedRule.Description;
-                Type = AddRules_Model.SelectedRule.Type;
-                Source = AddRules_Model.SelectedRule.Source;
+                Description = SelectedRule.Description;
+                Type = SelectedRule.Type;
+                Source = SelectedRule.Source;
 
                 ConfirmButtonText = "Update";
             }
@@ -146,8 +149,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             Description = "";
             Type = "";
             Source = "";            
-
-            ConfirmButtonText = "Confirm";
+            ConfirmButtonText = "Save New";
 
             AddRules_Model.ClearRules();
         }
@@ -158,9 +160,18 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
         }
 
+        private void RemoveSelectedRule()
+        {
+            AddRules_Model.RemoveRule(SelectedRule);
+        }
+
         private void ConfirmChanges() 
         {
-            AddRules_Model.ConfirmChanges(Name, Description, Type, Source, RulesList);
+            AddRules_Model.ConfirmChanges(Name, Description, Type, Source, SelectedRule, RulesList);
+            Name = SelectedRule.Name;
+            Description = SelectedRule.Description;
+            Type = SelectedRule.Type;
+            Source = SelectedRule.Source;
         }
 
         #endregion

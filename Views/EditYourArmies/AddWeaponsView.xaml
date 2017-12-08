@@ -33,7 +33,7 @@
             <ListBoxItem>New Weapon</ListBoxItem>
         </ListBox>
         <Label Content="Weapon name:" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox x:Name="Name" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" Cursor="Hand"/>
+        <TextBox x:Name="WeaponName" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" Cursor="Hand"/>
         <Label Content="Range" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBox x:Name="Range" Text="{Binding Range, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" Cursor="Hand"/>
         <Label Content="Shots" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>

@@ -69,8 +69,7 @@ namespace ArmyArranger.Global
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                return;
+                throw ex;
             }
             new GameRule(RulesCollection.Count, name, description, type, source);
         }
@@ -87,14 +86,25 @@ namespace ArmyArranger.Global
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                return;
+                throw ex;
             }
 
             Name = name;
             Description = description;
             Type = type;
             Source = source;
+        }
+        public void Remove()
+        {
+            try
+            {
+                Database.ExecuteCommand("DELETE FROM Rule WHERE ID = " + ID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            RulesCollection.Remove(this);
         }
 
         public void LoadAll()
