@@ -42,9 +42,9 @@ namespace ArmyArranger.Models
             if(lastChoosenRule != SelectedRule)
             {
                 lastChoosenRule = SelectedRule;
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
 
         public void ClearRules()
@@ -62,8 +62,7 @@ namespace ArmyArranger.Models
                         MessageBox.Show("Rule changed!", "Save");
                         return 1;
                     case MessageBoxResult.No:
-                        MessageBox.Show("Rule with that name alredy exist, please create new name!", "Save");
-                    return -1;
+                        return -1;
                     default:
                         return 0;
                 }
@@ -85,10 +84,10 @@ namespace ArmyArranger.Models
 
         public void ConfirmChanges(string Name, string Description, string Type, string Source, ObservableCollection<GameRule> RulesList) //this whole code will go to Model
         {
-            if (SelectedRule == null || SelectedRule.isEmpty || SelectedRule.Name != Name)
+            if (SelectedRule == null || SelectedRule.isEmpty || SelectedRule.Name != Name) //new rule, or overriding unselected rule
             {
                 bool flag = true;
-                foreach (GameRule x in RulesList)
+                foreach (GameRule x in RulesList) //check if rule with this name alredy exist
                 {
                     if (x.Name == Name)
                     {
@@ -97,6 +96,7 @@ namespace ArmyArranger.Models
                             SelectedRule = x;
                             SelectedRule.UpdateInDB(Name, Description, Type, Source);
                             flag = false;
+                            break;
                         }
                     }
                 }
@@ -108,10 +108,9 @@ namespace ArmyArranger.Models
                 int saveOption = SaveModeCheckbox();
                 if (saveOption == 1)
                     SelectedRule.UpdateInDB(Name, Description, Type, Source);
-                else if (saveOption == -1)
+                else 
                 {
-
-                    //show messagebox with input field for new Name
+                    MessageBox.Show("Please, enter new name: <text input will be added here, I hope...>", "Save");
                     //EmptyGameRule.CreateNewAndSaveToDB(Name, Description, Type, Source);
                 }
             }
