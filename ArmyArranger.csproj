@@ -85,7 +85,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Global\GameRule.cs" />
+    <Compile Include="Global\Rule.cs" />
     <Compile Include="Global\Nation.cs" />
     <Compile Include="Global\Option.cs" />
     <Compile Include="Global\Selector.cs" />

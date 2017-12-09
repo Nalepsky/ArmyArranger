@@ -12,8 +12,8 @@ namespace ArmyArranger.Models
     {
         #region Properties
 
-        public GameRule EmptyGameRule = new GameRule();
-        public GameRule lastChoosenRule;
+        public Rule EmptyRule = new Rule();
+        public Rule lastChoosenRule;
 
 
         #endregion
@@ -33,7 +33,7 @@ namespace ArmyArranger.Models
         {
             try
             {
-                EmptyGameRule.CreateNewAndSaveToDB(name, description, type, source);
+                EmptyRule.CreateNewAndSaveToDB(name, description, type, source);
             }
             catch (Exception ex)
             {
@@ -43,7 +43,7 @@ namespace ArmyArranger.Models
             MessageBox.Show("Successfully added");
         }
 
-        public void UpdateRule(GameRule SelectedRule, string name, string description, string type, string source)
+        public void UpdateRule(Rule SelectedRule, string name, string description, string type, string source)
         {
             if (SelectedRule == null)
                 return;
@@ -63,7 +63,7 @@ namespace ArmyArranger.Models
             MessageBox.Show("Successfully updated");
         }
 
-        public void RemoveRule(GameRule SelectedRule)
+        public void RemoveRule(Rule SelectedRule)
         {
             if (SelectedRule == null)
                 return;
@@ -82,7 +82,7 @@ namespace ArmyArranger.Models
         }
 
 
-        public bool ChosenEqualsSelected(GameRule SelectedRule)
+        public bool ChosenEqualsSelected(Rule SelectedRule)
         {
             if(lastChoosenRule != SelectedRule)
             {
@@ -94,7 +94,7 @@ namespace ArmyArranger.Models
 
         public void ClearRules()
         {
-            lastChoosenRule = EmptyGameRule;
+            lastChoosenRule = EmptyRule;
         }
 
         public bool PromptQuestion(string question)
@@ -111,12 +111,12 @@ namespace ArmyArranger.Models
 
         }
 
-        public void ConfirmChanges(string Name, string Description, string Type, string Source, GameRule SelectedRule, ObservableCollection<GameRule> RulesList)
+        public void ConfirmChanges(string Name, string Description, string Type, string Source, Rule SelectedRule, ObservableCollection<Rule> RulesList)
         {
             if (String.IsNullOrWhiteSpace(Name))
                 return;
 
-            GameRule RuleWithThisName = RulesList.FirstOrDefault(rule => rule.Name == Name);
+            Rule RuleWithThisName = RulesList.FirstOrDefault(rule => rule.Name == Name);
 
             if (SelectedRule == null)
             {

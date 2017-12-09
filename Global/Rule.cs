@@ -6,9 +6,9 @@ using System.Runtime.CompilerServices;
 
 namespace ArmyArranger.Global
 {
-    class GameRule : INotifyPropertyChanged
+    class Rule : INotifyPropertyChanged
     {
-        public static ObservableCollection<GameRule> RulesCollection = new ObservableCollection<GameRule>();
+        public static ObservableCollection<Rule> RulesCollection = new ObservableCollection<Rule>();
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged<T>([CallerMemberName]string caller = null)
         {
@@ -26,18 +26,18 @@ namespace ArmyArranger.Global
         public string Name
         {
             get { return _name; }
-            set {  _name = value;  OnPropertyChanged<GameRule>(); }
+            set {  _name = value;  OnPropertyChanged<Rule>(); }
         }
         public string Description { get; set; }
         public string Type { get; set; }
         public string Source { get; set; }
         public Boolean isEmpty;
 
-        public GameRule(){
+        public Rule(){
             isEmpty = true;
         }
 
-        public GameRule(int id, string name, string description, string type, string source)
+        public Rule(int id, string name, string description, string type, string source)
         {
             ID = id;
             Name = name;
@@ -65,7 +65,7 @@ namespace ArmyArranger.Global
             {
                 throw ex;
             }
-            new GameRule(RulesCollection.Count, name, description, type, source);
+            new Rule(RulesCollection.Count, name, description, type, source);
         }
         public void UpdateInDB(string name, string description, string type, string source)
         {
@@ -106,7 +106,7 @@ namespace ArmyArranger.Global
             SQLiteDataReader result = Database.ExecuteCommand("SELECT * FROM Rule");
             while (result.Read())
             {
-                new GameRule(result.GetInt32(0), result.GetString(1), result.GetString(2), result.GetString(3), result.GetString(4));
+                new Rule(result.GetInt32(0), result.GetString(1), result.GetString(2), result.GetString(3), result.GetString(4));
             }
             result.Close();
         }
