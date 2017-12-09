@@ -47,8 +47,6 @@ namespace ArmyArranger.Models
         {
             if (SelectedNation == null)
                 return;
-            if (name == SelectedNation.Name)
-                return;
 
 
             try

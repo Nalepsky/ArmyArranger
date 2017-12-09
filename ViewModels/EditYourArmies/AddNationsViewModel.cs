@@ -130,6 +130,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             AddNations_Model.ConfirmChanges(Name, SelectedNation, NationsList);
             if(SelectedNation != null)
                 Name = SelectedNation.Name;
+            else
+                Name = "";
         }
 
         #endregion

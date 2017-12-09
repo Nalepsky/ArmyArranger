@@ -21,7 +21,7 @@ namespace ArmyArranger.Global
         }
 
 
-        int ID;
+        public int ID;
         private string _name;
         public string Name
         {

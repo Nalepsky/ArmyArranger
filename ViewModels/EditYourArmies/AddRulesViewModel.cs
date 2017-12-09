@@ -178,6 +178,13 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 Type = SelectedRule.Type;
                 Source = SelectedRule.Source;
             }
+            else
+            {
+                Name = "";
+                Description = "";
+                Type = "";
+                Source = "";
+            }
         }
 
         #endregion

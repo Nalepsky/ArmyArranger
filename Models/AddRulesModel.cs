@@ -6,7 +6,7 @@ using System.Windows;
 
 
 
-namespace ArmyArranger.Models 
+namespace ArmyArranger.Models
 {
     class AddRulesModel
     {
@@ -47,8 +47,6 @@ namespace ArmyArranger.Models
         {
             if (SelectedRule == null)
                 return;
-            if((name == SelectedRule.Name) && (description == SelectedRule.Description) && (type == SelectedRule.Type) && (source == SelectedRule.Source))
-                return;
 
 
             try
@@ -84,7 +82,7 @@ namespace ArmyArranger.Models
 
         public bool ChosenEqualsSelected(Rule SelectedRule)
         {
-            if(lastChoosenRule != SelectedRule)
+            if (lastChoosenRule != SelectedRule)
             {
                 lastChoosenRule = SelectedRule;
                 return true;
@@ -122,7 +120,7 @@ namespace ArmyArranger.Models
             {
                 if (RuleWithThisName != null)
                 {
-                    if (PromptQuestion("Nation '" + Name + "' alredy exist, do you want to override it?"))
+                    if (PromptQuestion("Rule '" + Name + "' alredy exist, do you want to override it?"))
                         UpdateRule(RuleWithThisName, Name, Description, Type, Source);
                 }
                 else
@@ -138,12 +136,12 @@ namespace ArmyArranger.Models
                 }
                 else if (RuleWithThisName != null)
                 {
-                    if (PromptQuestion("Nation '" + Name + "' alredy exist, do you want to override it?"))
+                    if (PromptQuestion("Rule '" + Name + "' alredy exist, do you want to override it?"))
                         UpdateRule(RuleWithThisName, Name, Description, Type, Source);
                 }
                 else
                 {
-                    if (PromptQuestion("Do you wish to update name of choosen nation? \nOtherwise new nation with given name will by added."))
+                    if (PromptQuestion("Do you wish to update name of choosen rule? \nOtherwise new rule with given name will by added."))
                         UpdateRule(SelectedRule, Name, Description, Type, Source);
                     else
                         AddRule(Name, Description, Type, Source);
