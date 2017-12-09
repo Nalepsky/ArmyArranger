@@ -91,6 +91,7 @@
     <Compile Include="Global\Selector.cs" />
     <Compile Include="Global\Unit.cs" />
     <Compile Include="Global\Weapon.cs" />
+    <Compile Include="Models\AddNationsModel.cs" />
     <Compile Include="Models\AddRulesModel.cs" />
     <Compile Include="Models\ContactUsModel.cs" />
     <Compile Include="Global\Database.cs" />

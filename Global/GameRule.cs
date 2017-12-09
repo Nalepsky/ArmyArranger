@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data.SQLite;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace ArmyArranger.Global
 {
@@ -109,7 +103,7 @@ namespace ArmyArranger.Global
 
         public void LoadAll()
         {
-            SQLiteDataReader result = Database.ExecuteCommand("SELECT * FROM rule");
+            SQLiteDataReader result = Database.ExecuteCommand("SELECT * FROM Rule");
             while (result.Read())
             {
                 new GameRule(result.GetInt32(0), result.GetString(1), result.GetString(2), result.GetString(3), result.GetString(4));

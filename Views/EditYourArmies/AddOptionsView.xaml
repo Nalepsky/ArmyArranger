@@ -4,8 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ArmyArranger.Views.EditYourArmies"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding OnLoad}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="MouseUp">
+            <i:InvokeCommandAction Command="{Binding MouseClick}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
     <Grid Background="#FFC4C6CB">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -26,11 +37,12 @@
         </Grid.RowDefinitions>
 
         <Label Content="Options" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
-        <ListBox Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="3" Cursor="Hand">
-            <ListBoxItem>Oprion1</ListBoxItem>
-            <ListBoxItem>Oprion2</ListBoxItem>
-            <ListBoxItem>Oprion3</ListBoxItem>
-            <ListBoxItem>Oprion4</ListBoxItem>
+        <ListBox ItemsSource="{Binding OptionsList}" SelectedItem="{Binding SelectedOption, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="3" Cursor="Hand">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
 
         <Label Content="Description" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>

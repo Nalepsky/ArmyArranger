@@ -4,8 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ArmyArranger.Views.EditYourArmies"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding OnLoad}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="MouseUp">
+            <i:InvokeCommandAction Command="{Binding MouseClick}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <ScrollViewer>
         <Grid Background="#FFC4C6CB" ScrollViewer.VerticalScrollBarVisibility="Auto">
@@ -71,6 +81,27 @@
                 <ListBoxItem>Rule2</ListBoxItem>
                 <ListBoxItem>Rule3</ListBoxItem>
                 <ListBoxItem>New Rule</ListBoxItem>
+            </ListBox>
+            <ListBox ItemsSource="{Binding NationsList}" SelectedItem="{Binding SelectedNation, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" Cursor="Hand" Height="100">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding NationName}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ListBox ItemsSource="{Binding SelectorsList}" SelectedItem="{Binding SelectedSelector, Mode=TwoWay}" Grid.Column="2" Grid.Row="1" Cursor="Hand" Height="100">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding SelectorName}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ListBox ItemsSource="{Binding RulesList}" SelectedItem="{Binding SelectedRule, Mode=TwoWay}" Grid.Column="3" Grid.Row="1" Cursor="Hand" Height="100">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding RuleName}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
 
             <Label Content="Selector Name" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>

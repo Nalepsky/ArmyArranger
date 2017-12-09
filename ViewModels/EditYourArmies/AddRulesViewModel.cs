@@ -1,12 +1,9 @@
-﻿using System;
-﻿using System.Windows.Input;
+﻿﻿using System.Windows.Input;
 using Prism.Commands;
 using ArmyArranger.ViewModels.Menu;
-using System.Windows;
 using Prism.Mvvm;
 using ArmyArranger.Global;
 using System.Collections.ObjectModel;
-using System.Collections.Generic;
 using ArmyArranger.Models;
 
 namespace ArmyArranger.ViewModels.EditYourArmies
@@ -132,7 +129,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void FunctionOnClick()
         {
-            if (AddRules_Model.ChosenEqualsSelected(SelectedRule))
+            if (AddRules_Model.ChosenEqualsSelected(SelectedRule) && SelectedRule != null)
             {
                 Name = SelectedRule.Name;
                 Description = SelectedRule.Description;
@@ -150,8 +147,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             Type = "";
             Source = "";            
             ConfirmButtonText = "Save New";
-
             AddRules_Model.ClearRules();
+            SelectedRule = null;
         }
 
         private void ChangeViewToEditYourArmies()
@@ -163,15 +160,24 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         private void RemoveSelectedRule()
         {
             AddRules_Model.RemoveRule(SelectedRule);
+            Name = "";
+            Description = "";
+            Type = "";
+            Source = "";
+            SelectedRule = null;
+            ConfirmButtonText = "Save New";
         }
 
         private void ConfirmChanges() 
         {
             AddRules_Model.ConfirmChanges(Name, Description, Type, Source, SelectedRule, RulesList);
-            Name = SelectedRule.Name;
-            Description = SelectedRule.Description;
-            Type = SelectedRule.Type;
-            Source = SelectedRule.Source;
+            if (SelectedRule != null)
+            {
+                Name = SelectedRule.Name;
+                Description = SelectedRule.Description;
+                Type = SelectedRule.Type;
+                Source = SelectedRule.Source;
+            }
         }
 
         #endregion

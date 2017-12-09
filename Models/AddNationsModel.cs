@@ -6,34 +6,34 @@ using System.Windows;
 
 
 
-namespace ArmyArranger.Models 
+namespace ArmyArranger.Models
 {
-    class AddRulesModel
+    class AddNationsModel
     {
         #region Properties
 
-        public GameRule EmptyGameRule = new GameRule();
-        public GameRule lastChoosenRule;
+        public Nation EmptyNation = new Nation();
+        public Nation lastChoosenNation;
 
 
         #endregion
 
         #region Constructors
 
-        public AddRulesModel()
+        public AddNationsModel()
         {
 
         }
 
         #endregion
 
-        #region Actions   
+        #region Actions
 
-        public void AddRule(string name, string description, string type, string source)
+        public void AddNation(string name)
         {
             try
             {
-                EmptyGameRule.CreateNewAndSaveToDB(name, description, type, source);
+                EmptyNation.CreateNewAndSaveToDB(name);
             }
             catch (Exception ex)
             {
@@ -43,17 +43,17 @@ namespace ArmyArranger.Models
             MessageBox.Show("Successfully added");
         }
 
-        public void UpdateRule(GameRule SelectedRule, string name, string description, string type, string source)
+        public void UpdateNation(Nation SelectedNation, string name)
         {
-            if (SelectedRule == null)
+            if (SelectedNation == null)
                 return;
-            if((name == SelectedRule.Name) && (description == SelectedRule.Description) && (type == SelectedRule.Type) && (source == SelectedRule.Source))
+            if (name == SelectedNation.Name)
                 return;
 
 
             try
             {
-                SelectedRule.UpdateInDB(name, description, type, source);
+                SelectedNation.UpdateInDB(name);
             }
             catch (Exception ex)
             {
@@ -63,15 +63,15 @@ namespace ArmyArranger.Models
             MessageBox.Show("Successfully updated");
         }
 
-        public void RemoveRule(GameRule SelectedRule)
+        public void RemoveNation(Nation SelectedNation)
         {
-            if (SelectedRule == null)
+            if (SelectedNation == null)
                 return;
 
 
             try
             {
-                SelectedRule.Remove();
+                SelectedNation.Remove();
             }
             catch (Exception ex)
             {
@@ -82,19 +82,19 @@ namespace ArmyArranger.Models
         }
 
 
-        public bool ChosenEqualsSelected(GameRule SelectedRule)
+        public bool ChosenEqualsSelected(Nation SelectedNation)
         {
-            if(lastChoosenRule != SelectedRule)
+            if (lastChoosenNation != SelectedNation)
             {
-                lastChoosenRule = SelectedRule;
+                lastChoosenNation = SelectedNation;
                 return true;
             }
             return false;
         }
 
-        public void ClearRules()
+        public void ClearNations()
         {
-            lastChoosenRule = EmptyGameRule;
+            lastChoosenNation = EmptyNation;
         }
 
         public bool PromptQuestion(string question)
@@ -111,44 +111,47 @@ namespace ArmyArranger.Models
 
         }
 
-        public void ConfirmChanges(string Name, string Description, string Type, string Source, GameRule SelectedRule, ObservableCollection<GameRule> RulesList)
+        public void ConfirmChanges(string Name, Nation SelectedNation, ObservableCollection<Nation> NationsList)
         {
             if (String.IsNullOrWhiteSpace(Name))
                 return;
 
-            GameRule RuleWithThisName = RulesList.FirstOrDefault(rule => rule.Name == Name);
+            Nation NationWithThisName = NationsList.FirstOrDefault(nation => nation.Name == Name);
 
-            if (SelectedRule == null)
+
+            if (SelectedNation == null)
             {
-                if (RuleWithThisName != null)
+                if (NationWithThisName != null)
                 {
                     if (PromptQuestion("Nation '" + Name + "' alredy exist, do you want to override it?"))
-                        UpdateRule(RuleWithThisName, Name, Description, Type, Source);
+                        UpdateNation(NationWithThisName, Name);
                 }
                 else
                 {
-                    AddRule(Name, Description, Type, Source);
+                    AddNation(Name);
                 }
             }
             else
             {
-                if (SelectedRule.Name == Name)
+                if (SelectedNation.Name == Name)
                 {
-                    UpdateRule(SelectedRule, Name, Description, Type, Source);
+                    UpdateNation(SelectedNation, Name);
                 }
-                else if (RuleWithThisName != null)
+                else if (NationWithThisName != null)
                 {
                     if (PromptQuestion("Nation '" + Name + "' alredy exist, do you want to override it?"))
-                        UpdateRule(RuleWithThisName, Name, Description, Type, Source);
+                        UpdateNation(NationWithThisName, Name);
                 }
                 else
                 {
                     if (PromptQuestion("Do you wish to update name of choosen nation? \nOtherwise new nation with given name will by added."))
-                        UpdateRule(SelectedRule, Name, Description, Type, Source);
+                        UpdateNation(SelectedNation, Name);
                     else
-                        AddRule(Name, Description, Type, Source);
+                        AddNation(Name);
                 }
             }
+
+
         }
 
         #endregion
