@@ -131,7 +131,7 @@ namespace ArmyArranger.Global
                 Name = result.GetString(1);
                 Range = result.GetInt32(2);
                 Shots = result.GetInt32(3);
-                Penetration = result.GetInt32(4);
+                Penetration = (!result.IsDBNull(4)) ? result.GetInt32(4) : 0;
                 RequiresLoader = result["RequiresLoader"] as bool? ?? false;
 
                 new Weapon(ID, Name, Range, Shots, Penetration, RequiresLoader);
