@@ -12,7 +12,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
     {
         #region Propeties
 
-        AddRulesModel AddRules_Model = new AddRulesModel();
+        AddRulesModel thisModel = new AddRulesModel();
 
         private ObservableCollection<Rule> _rulesList;
         public ObservableCollection<Rule> RulesList
@@ -123,13 +123,13 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         private void FunctionOnLoad()
         {
             ConfirmButtonText = "Save New";
-            AddRules_Model.EmptyRule.LoadAll();
+            thisModel.EmptyRule.LoadAll();
             RulesList = Rule.RulesCollection;
         }
 
         private void FunctionOnClick()
         {
-            if (AddRules_Model.ChosenEqualsSelected(SelectedRule) && SelectedRule != null)
+            if (thisModel.ChosenEqualsSelected(SelectedRule) && SelectedRule != null)
             {
                 Name = SelectedRule.Name;
                 Description = SelectedRule.Description;
@@ -147,19 +147,19 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             Type = "";
             Source = "";            
             ConfirmButtonText = "Save New";
-            AddRules_Model.ClearRules();
+            thisModel.ClearRules();
             SelectedRule = null;
         }
 
         private void ChangeViewToEditYourArmies()
         {
-            AddRules_Model.EmptyRule.ClearRulesCollection();
+            thisModel.EmptyRule.ClearRulesCollection();
             App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
         }
 
         private void RemoveSelectedRule()
         {
-            AddRules_Model.RemoveRule(SelectedRule);
+            thisModel.RemoveRule(SelectedRule);
             Name = "";
             Description = "";
             Type = "";
@@ -170,7 +170,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void ConfirmChanges() 
         {
-            AddRules_Model.ConfirmChanges(Name, Description, Type, Source, SelectedRule, RulesList);
+            thisModel.ConfirmChanges(Name, Description, Type, Source, SelectedRule, RulesList);
             if (SelectedRule != null)
             {
                 Name = SelectedRule.Name;

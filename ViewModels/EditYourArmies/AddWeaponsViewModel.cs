@@ -12,8 +12,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
     {
         #region Propeties
 
-        AddWeaponsModel AddWeapons_Model = new AddWeaponsModel();
-        AddRulesModel AddRules_Model = new AddRulesModel();
+        AddWeaponsModel thisModel = new AddWeaponsModel();
+        AddRulesModel rulesModel = new AddRulesModel();
 
         private ObservableCollection<Weapon> _weaponsList;
         public ObservableCollection<Weapon> WeaponsList
@@ -171,15 +171,15 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         private void FunctionOnLoad()
         {
             ConfirmButtonText = "Save New";
-            AddWeapons_Model.EmptyWeapon.LoadAll();
+            thisModel.EmptyWeapon.LoadAll();
             WeaponsList = Weapon.WeaponsCollection;
-            AddWeapons_Model.EmptyRule.LoadAll();
+            thisModel.EmptyRule.LoadAll();
             RulesList = Rule.RulesCollection;
         }
 
         private void FunctionOnClick()
         {
-            if (AddWeapons_Model.ChosenWeaponEqualsSelected(SelectedWeapon) && SelectedWeapon != null)
+            if (thisModel.ChosenWeaponEqualsSelected(SelectedWeapon) && SelectedWeapon != null)
             {
                 Name = SelectedWeapon.Name;
                 Range = SelectedWeapon.Range;
@@ -189,7 +189,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
                 ConfirmButtonText = "Update";
             }
-            if (AddWeapons_Model.ChosenRuleEqualsSelected(SelectedRule) && SelectedRule != null)
+            if (thisModel.ChosenRuleEqualsSelected(SelectedRule) && SelectedRule != null)
             {
                 RuleName = SelectedRule.Name;
             }
@@ -203,29 +203,29 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             Penetration = 0;
             RequiresLoader = false;
             ConfirmButtonText = "Save New";
-            AddWeapons_Model.ClearWeapons();
-            AddWeapons_Model.ClearRules();
+            thisModel.ClearWeapons();
+            thisModel.ClearRules();
             SelectedWeapon = null;
             SelectedRule = null;
         }
 
         private void ChangeViewToEditYourArmies()
         {
-            AddWeapons_Model.EmptyWeapon.ClearWeaponsCollection();
-            AddRules_Model.EmptyRule.ClearRulesCollection();
+            thisModel.EmptyWeapon.ClearWeaponsCollection();
+            rulesModel.EmptyRule.ClearRulesCollection();
             App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
         }
 
         private void ChangeViewToAddRules()
         {
-            AddWeapons_Model.EmptyWeapon.ClearWeaponsCollection();
-            AddRules_Model.EmptyRule.ClearRulesCollection();
+            thisModel.EmptyWeapon.ClearWeaponsCollection();
+            rulesModel.EmptyRule.ClearRulesCollection();
             App.Current.MainWindow.DataContext = new AddRulesViewModel();
         }
 
         private void RemoveSelectedWeapon()
         {
-            AddWeapons_Model.RemoveWeapon(SelectedWeapon);
+            thisModel.RemoveWeapon(SelectedWeapon);
             Name = "";
             Range = 0;
             Shots = 0;
@@ -241,7 +241,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             if (SelectedRule != null)
                 ruleID = SelectedRule.ID;
 
-            AddWeapons_Model.ConfirmChanges(Name, Range, Shots, Penetration, RequiresLoader, ruleID, SelectedWeapon, WeaponsList);
+            thisModel.ConfirmChanges(Name, Range, Shots, Penetration, RequiresLoader, ruleID, SelectedWeapon, WeaponsList);
             if (SelectedWeapon != null)
             {
                 Name = SelectedWeapon.Name;

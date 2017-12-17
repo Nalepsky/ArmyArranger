@@ -12,7 +12,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
     {
         #region Propeties
 
-        AddNationsModel AddNations_Model = new AddNationsModel();
+        AddNationsModel thisModel = new AddNationsModel();
 
         private ObservableCollection<Nation> _nationsList;
         public ObservableCollection<Nation> NationsList
@@ -90,13 +90,13 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         private void FunctionOnLoad()
         {
             ConfirmButtonText = "Save New";
-            AddNations_Model.EmptyNation.LoadAll();
+            thisModel.EmptyNation.LoadAll();
             NationsList = Nation.NationsCollecion;
         }
 
         private void FunctionOnClick()
         {
-            if (AddNations_Model.ChosenEqualsSelected(SelectedNation) && SelectedNation != null)
+            if (thisModel.ChosenEqualsSelected(SelectedNation) && SelectedNation != null)
             {
                 Name = SelectedNation.Name;
                 ConfirmButtonText = "Update";
@@ -107,19 +107,19 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             Name = "";
             ConfirmButtonText = "Save New";
-            AddNations_Model.ClearNations();
+            thisModel.ClearNations();
             SelectedNation = null;
         }
 
         private void ChangeViewToEditYourArmies()
         {
-            AddNations_Model.EmptyNation.ClearNationsCollecion();
+            thisModel.EmptyNation.ClearNationsCollecion();
             App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
         }
 
         private void RemoveSelectedRule()
         {
-            AddNations_Model.RemoveNation(SelectedNation);
+            thisModel.RemoveNation(SelectedNation);
             Name = "";
             SelectedNation = null;
             ConfirmButtonText = "Save New";
@@ -127,7 +127,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void ConfirmChanges()
         {
-            AddNations_Model.ConfirmChanges(Name, SelectedNation, NationsList);
+            thisModel.ConfirmChanges(Name, SelectedNation, NationsList);
             if(SelectedNation != null)
                 Name = SelectedNation.Name;
             else
