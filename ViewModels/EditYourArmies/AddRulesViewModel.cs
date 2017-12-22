@@ -14,8 +14,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         AddRulesModel thisModel = new AddRulesModel();
 
-        private ObservableCollection<Rule> _rulesList;
-        public ObservableCollection<Rule> RulesList
+        private ObservableCollection<GameRule> _rulesList;
+        public ObservableCollection<GameRule> RulesList
         {
             get { return _rulesList; }
             set
@@ -25,8 +25,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
-        private Rule _selectedRule;
-        public Rule SelectedRule
+        private GameRule _selectedRule;
+        public GameRule SelectedRule
         {
             get { return _selectedRule; }
             set
@@ -124,7 +124,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             ConfirmButtonText = "Save New";
             thisModel.EmptyRule.LoadAll();
-            RulesList = Rule.RulesCollection;
+            RulesList = GameRule.RulesCollection;
         }
 
         private void FunctionOnClick()

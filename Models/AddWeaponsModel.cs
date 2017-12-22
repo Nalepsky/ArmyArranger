@@ -13,9 +13,9 @@ namespace ArmyArranger.Models
         #region Properties
 
         public Weapon EmptyWeapon = new Weapon();
-        public Rule EmptyRule = new Rule();
+        public GameRule EmptyRule = new GameRule();
         public Weapon lastChoosenWeapon;
-        public Rule lastChoosenRule;
+        public GameRule lastChoosenRule;
 
 
         #endregion
@@ -92,7 +92,7 @@ namespace ArmyArranger.Models
             return false;
         }
 
-        public bool ChosenRuleEqualsSelected(Rule selectedRule)
+        public bool ChosenRuleEqualsSelected(GameRule selectedRule)
         {
             if (lastChoosenRule != selectedRule)
             {
