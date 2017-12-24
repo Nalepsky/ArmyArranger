@@ -101,6 +101,60 @@ namespace ArmyArranger.Global
                     "Name VARCHAR(50) NOT NULL" +
                     ")", sqlconnect);
                 command.ExecuteNonQuery();
+
+                command = new SQLiteCommand("" +
+                    "CREATE TABLE IF NOT EXISTS Unit_Weapon(" +
+                    "UnitID INTEGER NOT NULL," +
+                    "WeaponID INTEGER NOT NULL," +
+                    "FOREIGN KEY(UnitID) REFERENCES Unit(ID)" +
+                    "FOREIGN KEY(WeaponID) REFERENCES Weapon(ID)" +
+                    ")", sqlconnect);
+                command.ExecuteNonQuery();
+
+                command = new SQLiteCommand("" +
+                    "CREATE TABLE IF NOT EXISTS Rule_Unit(" +
+                    "RuleID INTEGER NOT NULL," +
+                    "UnitID INTEGER NOT NULL," +
+                    "FOREIGN KEY(RuleID) REFERENCES Rule(ID)" +
+                    "FOREIGN KEY(UnitID) REFERENCES Unit(ID)" +                 
+                    ")", sqlconnect);
+                command.ExecuteNonQuery();
+
+                command = new SQLiteCommand("" +
+                    "CREATE TABLE IF NOT EXISTS Rule_Nation(" +
+                    "RuleID INTEGER NOT NULL," +
+                    "NationID INTEGER NOT NULL," +
+                    "FOREIGN KEY(RuleID) REFERENCES Rule(ID)" +
+                    "FOREIGN KEY(NationID) REFERENCES Nation(ID)" +
+                    ")", sqlconnect);
+                command.ExecuteNonQuery();
+
+                command = new SQLiteCommand("" +
+                    "CREATE TABLE IF NOT EXISTS Rule_Selector(" +
+                    "RuleID INTEGER NOT NULL," +
+                    "SelectorID INTEGER NOT NULL," +
+                    "FOREIGN KEY(RuleID) REFERENCES Rule(ID)" +
+                    "FOREIGN KEY(SelectorID) REFERENCES Selector(ID)" +
+                    ")", sqlconnect);
+                command.ExecuteNonQuery();
+
+                command = new SQLiteCommand("" +
+                    "CREATE TABLE IF NOT EXISTS Rule_Option(" +
+                    "RuleID INTEGER NOT NULL," +
+                    "OptionID INTEGER NOT NULL," +
+                    "FOREIGN KEY(RuleID) REFERENCES Rule(ID)" +
+                    "FOREIGN KEY(OptionID) REFERENCES Option(ID)" +
+                    ")", sqlconnect);
+                command.ExecuteNonQuery();
+
+                command = new SQLiteCommand("" +
+                    "CREATE TABLE IF NOT EXISTS Rule_Weapon(" +
+                    "RuleID INTEGER NOT NULL," +
+                    "WeaponID INTEGER NOT NULL," +
+                    "FOREIGN KEY(RuleID) REFERENCES Rule(ID)" +
+                    "FOREIGN KEY(WeaponID) REFERENCES Weapon(ID)" +
+                    ")", sqlconnect);
+                command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
