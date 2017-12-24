@@ -113,10 +113,11 @@ namespace ArmyArranger.Global
 
         public void LoadAll(String type)
         {
-            SQLiteDataReader result = Database.ExecuteCommand("SELECT * FROM Rule");
+            SQLiteDataReader result = Database.ExecuteCommand("SELECT * FROM Rule WHERE Type = '"+type+"'");
             while (result.Read())
-                if (result.GetString(3) == type)
-                    new GameRule(result.GetInt32(0), result.GetString(1), result.GetString(2), result.GetString(3), result.GetString(4));
+            {
+                new GameRule(result.GetInt32(0), result.GetString(1), result.GetString(2), result.GetString(3), result.GetString(4));
+            }
 
             result.Close();
         }
