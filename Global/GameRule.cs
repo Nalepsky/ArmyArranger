@@ -31,6 +31,12 @@ namespace ArmyArranger.Global
         public string Description { get; set; }
         public string Type { get; set; }
         public string Source { get; set; }
+        private bool _isSelected;
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set { _isSelected = value; OnPropertyChanged<GameRule>(); }
+        }
         public Boolean isEmpty;
 
         public GameRule(){

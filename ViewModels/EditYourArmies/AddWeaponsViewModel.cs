@@ -5,6 +5,8 @@ using Prism.Mvvm;
 using ArmyArranger.Global;
 using System.Collections.ObjectModel;
 using ArmyArranger.Models;
+using System;
+using System.Linq;
 
 namespace ArmyArranger.ViewModels.EditYourArmies
 {
@@ -45,17 +47,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             {
                 _rulesList = value;
                 RaisePropertyChanged(nameof(RulesList));
-            }
-        }
-
-        private GameRule _selectedRule;
-        public GameRule SelectedRule
-        {
-            get { return _selectedRule; }
-            set
-            {
-                _selectedRule = value;
-                RaisePropertyChanged(nameof(SelectedRule));
             }
         }
 
@@ -186,12 +177,9 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 Shots = SelectedWeapon.Shots;
                 Penetration = SelectedWeapon.Penetration;
                 RequiresLoader = SelectedWeapon.RequiresLoader;
+                thisModel.CheckActiveRules(SelectedWeapon);
 
                 ConfirmButtonText = "Update";
-            }
-            if (thisModel.ChosenRuleEqualsSelected(SelectedRule) && SelectedRule != null)
-            {
-                RuleName = SelectedRule.Name;
             }
         }
 
@@ -206,7 +194,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             thisModel.ClearWeapons();
             thisModel.ClearRules();
             SelectedWeapon = null;
-            SelectedRule = null;
         }
 
         private void ChangeViewToEditYourArmies()
@@ -237,11 +224,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void ConfirmChanges()
         {
-            int ruleID =-1;
-            if (SelectedRule != null)
-                ruleID = SelectedRule.ID;
-
-            thisModel.ConfirmChanges(Name, Range, Shots, Penetration, RequiresLoader, ruleID, SelectedWeapon, WeaponsList);
+            ObservableCollection<GameRule> SelectedRulesList = new ObservableCollection<GameRule>(RulesList.Where(w => (w.IsSelected == true)));
+            thisModel.ConfirmChanges(Name, Range, Shots, Penetration, RequiresLoader, SelectedWeapon, WeaponsList, SelectedRulesList);
             if (SelectedWeapon != null)
             {
                 Name = SelectedWeapon.Name;

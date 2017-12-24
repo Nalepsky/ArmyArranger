@@ -94,6 +94,7 @@
     <Compile Include="Models\AddNationsModel.cs" />
     <Compile Include="Models\AddWeaponsModel.cs" />
     <Compile Include="Models\AddRulesModel.cs" />
+    <Compile Include="Models\AddUnitsModel.cs" />
     <Compile Include="Models\ContactUsModel.cs" />
     <Compile Include="Global\Database.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddOptionsViewModel.cs" />

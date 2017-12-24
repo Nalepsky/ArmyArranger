@@ -16,9 +16,10 @@
             <i:InvokeCommandAction Command="{Binding MouseClick}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
+
     <Grid Background="#FFC4C6CB">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -48,7 +49,9 @@
 
         <Label Content="Nations" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"/>
         <ListBox Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Cursor="Hand" Margin="5,0">
-            <ListBoxItem>Poland</ListBoxItem>
+            <ListBoxItem>
+                <CheckBox Content="dupa"/>
+            </ListBoxItem>
             <ListBoxItem>Germany</ListBoxItem>
             <ListBoxItem>ZSRR</ListBoxItem>
         </ListBox>
@@ -92,6 +95,15 @@
         <TextBox x:Name="ExperienceLevel" Text="{Binding ExperienceLevel, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="11"  Cursor="Hand" VerticalAlignment="Center"/>
         <Label Content="Aurmour Class (only if viehicle)" Grid.Column="1" Grid.Row="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBox x:Name="AurmourClass" Text="{Binding AurmourClass, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="12"  Cursor="Hand" VerticalAlignment="Center"/>
+
+        <ListBox ItemsSource="{Binding RulesList}" SelectedItem="{Binding SelectedRule, Mode=TwoWay}"  Grid.Column="4" Grid.Row="4" Grid.RowSpan="6" Cursor="Hand" Margin="8,0,0,0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="Add/Edit Rule" Command="{Binding GoToRules, Mode=TwoWay}" Grid.Column="4" Height="20" Grid.Row="10" VerticalAlignment="Top"  Margin="8,0,0,0"/>
 
         <Button Content="Back" Command="{Binding Back, Mode=TwoWay}" Grid.Column="0" Grid.Row="99" Cursor="Hand" VerticalAlignment="Center"/>
         <Button Content="Next" Command="{Binding Next, Mode=TwoWay}" Grid.Column="4" Grid.Row="99" Cursor="Hand" VerticalAlignment="Center"/>

@@ -15,8 +15,6 @@ namespace ArmyArranger.Models
         public Weapon EmptyWeapon = new Weapon();
         public GameRule EmptyRule = new GameRule();
         public Weapon lastChoosenWeapon;
-        public GameRule lastChoosenRule;
-
 
         #endregion
 
@@ -31,11 +29,11 @@ namespace ArmyArranger.Models
 
         #region Actions   
 
-        public void AddWeapon(string name, int range, int shots, int penetration, bool requiresLoader, int ruleID)
+        public void AddWeapon(string name, int range, int shots, int penetration, bool requiresLoader, ObservableCollection<GameRule> rulesList)
         {
             try
             {
-                EmptyWeapon.CreateNewAndSaveToDB(name, range, shots, penetration, requiresLoader, ruleID);
+                EmptyWeapon.CreateNewAndSaveToDB(name, range, shots, penetration, requiresLoader, rulesList);
             }
             catch (Exception ex)
             {
@@ -45,7 +43,7 @@ namespace ArmyArranger.Models
             MessageBox.Show("Successfully added");
         }
 
-        public void UpdateWeapon(Weapon selectedWeapon, string name, int range, int shots, int penetration, bool requiresLoader, int ruleID)
+        public void UpdateWeapon(Weapon selectedWeapon, string name, int range, int shots, int penetration, bool requiresLoader, ObservableCollection<GameRule> rulesList)
         {
             if (selectedWeapon == null)
                 return;
@@ -53,7 +51,7 @@ namespace ArmyArranger.Models
 
             try
             {
-                selectedWeapon.UpdateInDB(name, range, shots, penetration, requiresLoader, ruleID);
+                selectedWeapon.UpdateInDB(name, range, shots, penetration, requiresLoader, rulesList);
             }
             catch (Exception ex)
             {
@@ -67,7 +65,6 @@ namespace ArmyArranger.Models
         {
             if (selectedWeapon == null)
                 return;
-
 
             try
             {
@@ -92,16 +89,6 @@ namespace ArmyArranger.Models
             return false;
         }
 
-        public bool ChosenRuleEqualsSelected(GameRule selectedRule)
-        {
-            if (lastChoosenRule != selectedRule)
-            {
-                lastChoosenRule = selectedRule;
-                return true;
-            }
-            return false;
-        }
-
 
         public void ClearWeapons()
         {
@@ -110,9 +97,34 @@ namespace ArmyArranger.Models
 
         public void ClearRules()
         {
-            lastChoosenRule = EmptyRule;
+            foreach (GameRule tempRule in GameRule.RulesCollection)
+            {
+                tempRule.IsSelected = false;
+            }
         }
-        
+
+        public void CheckActiveRules(Weapon selectedWeapon)
+        {
+            Console.WriteLine(GameRule.RulesCollection.Count);
+            foreach (GameRule tempRule in GameRule.RulesCollection)
+            {
+                foreach ( int dupa in selectedWeapon.ListOfActiveRules)
+                {
+                    Console.WriteLine(dupa);
+                }
+                if (selectedWeapon.ListOfActiveRules.Contains(tempRule.ID))
+                {
+                    tempRule.IsSelected = true;
+                    Console.WriteLine("jj");
+                }
+                    
+                else{
+                    tempRule.IsSelected = false;
+                    Console.WriteLine("kk");
+                }
+                    
+            }
+        }
 
         public bool PromptQuestion(string question)
         {
@@ -128,7 +140,7 @@ namespace ArmyArranger.Models
 
         }
 
-        public void ConfirmChanges(string name, int range, int shots, int penetration, bool requiresLoader, int ruleID, Weapon selectedWeapon, ObservableCollection<Weapon> weaponsList)
+        public void ConfirmChanges(string name, int range, int shots, int penetration, bool requiresLoader, Weapon selectedWeapon, ObservableCollection<Weapon> weaponsList, ObservableCollection<GameRule> selectedRulesList)
         {
             if (String.IsNullOrWhiteSpace(name))
                 return;
@@ -140,30 +152,30 @@ namespace ArmyArranger.Models
                 if (WeaponWithThisname != null)
                 {
                     if (PromptQuestion("Weapon '" + name + "' alredy exist, do you want to override it?"))
-                        UpdateWeapon(WeaponWithThisname, name, range, shots, penetration, requiresLoader, ruleID);
+                        UpdateWeapon(WeaponWithThisname, name, range, shots, penetration, requiresLoader, selectedRulesList);
                 }
                 else
                 {
-                    AddWeapon(name, range, shots, penetration, requiresLoader, ruleID);
+                    AddWeapon(name, range, shots, penetration, requiresLoader, selectedRulesList);
                 }
             }
             else
             {
                 if (selectedWeapon.Name == name)
                 {
-                    UpdateWeapon(selectedWeapon, name, range, shots, penetration, requiresLoader, ruleID);
+                    UpdateWeapon(selectedWeapon, name, range, shots, penetration, requiresLoader, selectedRulesList);
                 }
                 else if (WeaponWithThisname != null)
                 {
                     if (PromptQuestion("Weapon '" + name + "' alredy exist, do you want to override it?"))
-                        UpdateWeapon(WeaponWithThisname, name, range, shots, penetration, requiresLoader, ruleID);
+                        UpdateWeapon(WeaponWithThisname, name, range, shots, penetration, requiresLoader, selectedRulesList);
                 }
                 else
                 {
                     if (PromptQuestion("Do you wish to update name of choosen weapon? \nOtherwise new weapon with given name will by added."))
-                        UpdateWeapon(selectedWeapon, name, range, shots, penetration, requiresLoader, ruleID);
+                        UpdateWeapon(selectedWeapon, name, range, shots, penetration, requiresLoader, selectedRulesList);
                     else
-                        AddWeapon(name, range, shots, penetration, requiresLoader, ruleID);
+                        AddWeapon(name, range, shots, penetration, requiresLoader, selectedRulesList);
                 }
             }
         }

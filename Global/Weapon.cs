@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.SQLite;
@@ -34,13 +35,14 @@ namespace ArmyArranger.Global
         public int Penetration { get; set; }
         public bool RequiresLoader { get; set; }
         public bool isEmpty;
+        public List<int> ListOfActiveRules = new List<int>();
 
         public Weapon()
         {
             isEmpty = true;
         }
 
-        public Weapon(int id, string name, int range, int shots, int penetration, bool requiresLoader)
+        public Weapon(int id, string name, int range, int shots, int penetration, bool requiresLoader, List<int> listOfActiveRules)
         {
             ID = id;
             Name = name;
@@ -48,51 +50,57 @@ namespace ArmyArranger.Global
             Shots = shots;
             Penetration = penetration;
             RequiresLoader = requiresLoader;
+            ListOfActiveRules = listOfActiveRules;
+            Console.WriteLine(ListOfActiveRules.Count);
 
             WeaponsCollection.Add(this);
 
             isEmpty = false;
         }
 
-        public void CreateNewAndSaveToDB(string name, int range, int shots, int penetration, bool requiresLoader, int ruleID)
+        public void CreateNewAndSaveToDB(string name, int range, int shots, int penetration, bool requiresLoader, ObservableCollection<GameRule> selectedRulesList)
         {
+            int id;
             string sql_name = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + name + "'";
             int sql_range = range;
             int sql_shots = shots;
             int sql_penetration = penetration;
             string sql_requiresLoader = "'"+requiresLoader+"'";
+            List<int> newListOfActiveRules = new List<int>();
 
             try
             {
                 Database.ExecuteCommand("INSERT INTO Weapon (Name, Range, Shots, Penetration, RequiresLoader) VALUES (" + sql_name + "," + sql_range + "," + sql_shots + "," + sql_penetration + "," + sql_requiresLoader + ")");
+                id = Database.GetLastInsertedID();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            if(ruleID != -1)
+            foreach (GameRule rule in selectedRulesList)
             {
                 try
                 {
-                    MessageBox.Show("(Weapon.cs) TODO: make able to add multiple rulest to one weapon");
-                    Database.ExecuteCommand("INSERT INTO Rule_Weapon (RuleID, WeaponID) VALUES (" + ruleID + "," + WeaponsCollection.Count + ")");
+                    Database.ExecuteCommand("INSERT INTO Rule_Weapon (RuleID, WeaponID) VALUES (" + rule.ID + "," + id + ")");
                 }
                 catch (Exception ex)
                 {
                     throw ex;
                 }
+                newListOfActiveRules.Add(rule.ID);
             }
-            new Weapon(WeaponsCollection.Count, name, range, shots, penetration, requiresLoader);
+            new Weapon(id, name, range, shots, penetration, requiresLoader, newListOfActiveRules);
         }
 
-        public void UpdateInDB(string name, int range, int shots, int penetration, bool requiresLoader, int ruleID)
+        public void UpdateInDB(string name, int range, int shots, int penetration, bool requiresLoader, ObservableCollection<GameRule> selectedRulesList)
         {
             string sql_name = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + name + "'";
             int sql_range = range;
             int sql_shots = shots;
             int sql_penetration = penetration;
             string sql_requiresLoader = "'" + requiresLoader + "'";
+            List<int> newListOfActiveRules = new List<int>();
 
             try
             {
@@ -103,26 +111,34 @@ namespace ArmyArranger.Global
                 throw ex;
             }
 
-            if (ruleID != -1)
+            try
+            {
+                Database.ExecuteCommand("DELETE FROM Rule_Weapon WHERE WeaponID = " + ID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            foreach (GameRule rule in selectedRulesList)
             {
                 try
                 {
-                    MessageBox.Show("(Weapon.cs) TODO: make able to add multiple rulest to one weapon");
-                    Database.ExecuteCommand("DELETE FROM Rule_Weapon WHERE WeaponID = " + ID); // delete every rule for this weapon
-                    Database.ExecuteCommand("INSERT INTO Rule_Weapon (RuleID, WeaponID) VALUES (" + ruleID + "," + ID + ")"); // then add only selected one
+                    Database.ExecuteCommand("INSERT INTO Rule_Weapon (RuleID, WeaponID) VALUES (" + rule.ID + "," + ID + ")");
                 }
                 catch (Exception ex)
                 {
                     throw ex;
                 }
+                newListOfActiveRules.Add(rule.ID);
             }
-                
+
 
             Name = name;
             Range = range;
             Shots = shots;
             Penetration = penetration;
             RequiresLoader = requiresLoader;
+            ListOfActiveRules = newListOfActiveRules;
         }
         public void Remove()
         {
@@ -148,6 +164,8 @@ namespace ArmyArranger.Global
                 Shots,
                 Penetration;
             bool RequiresLoader;
+            List<int> newListOfActiveRules;
+
             while (result.Read())
             {
                 ID = result.GetInt32(0);
@@ -157,7 +175,14 @@ namespace ArmyArranger.Global
                 Penetration = (!result.IsDBNull(4)) ? result.GetInt32(4) : 0;
                 RequiresLoader = result["RequiresLoader"] as bool? ?? false;
 
-                new Weapon(ID, Name, Range, Shots, Penetration, RequiresLoader);
+                newListOfActiveRules = new List<int>();
+                SQLiteDataReader ruleResult = Database.ExecuteCommand("SELECT RuleID FROM Rule_Weapon WHERE WeaponID = "+ID);
+                while (ruleResult.Read())
+                {
+                    newListOfActiveRules.Add(ruleResult.GetInt32(0));
+                }
+
+                new Weapon(ID, Name, Range, Shots, Penetration, RequiresLoader, newListOfActiveRules);
             }
             result.Close();
         }

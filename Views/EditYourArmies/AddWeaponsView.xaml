@@ -58,10 +58,10 @@
         <Label Content="Requires loader" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <CheckBox x:Name="Loader" IsChecked="{Binding RequiresLoader, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-        <ListBox ItemsSource="{Binding RulesList}" SelectedItem="{Binding SelectedRule, Mode=TwoWay}"  Grid.Column="4" Grid.Row="2" Grid.RowSpan="4" Cursor="Hand" Margin="8,0,0,0">
+        <ListBox ItemsSource="{Binding RulesList}" Grid.Column="4" Grid.Row="2" Grid.RowSpan="4" Cursor="Hand" Margin="8,0,0,0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}" />
+                    <CheckBox Content="{Binding Name}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

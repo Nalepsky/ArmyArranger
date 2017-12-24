@@ -43,14 +43,15 @@ namespace ArmyArranger.Global
                 command = new SQLiteCommand("" +
                     "CREATE TABLE IF NOT EXISTS Unit(" +
                     "ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE," +
-                    "Name INTEGER NOT NULL," +
+                    "Name VARCHAR(50) NOT NULL," +
+                    "NationID INTEGER NOT NULL," +
                     "Type VARCHAR(50) NOT NULL," +
                     "Composition VARCHAR(50) NOT NULL," +
                     "Experience INTEGER NOT NULL," +
-                    "EquipmentDescription VARCHAR(255) NULL," +
-                    "Defence INTEGER NULL," +
+                    "WeaponDescription VARCHAR(255) NULL," +
+                    "Weapons VARCHAR(50) NOT NULL," +
+                    "ArmourClass INTEGER NULL," +
                     "BasePoints INTEGER NULL," +
-                    "NationID INTEGER NOT NULL," +
                     "FOREIGN KEY(NationID) REFERENCES Nation(ID)" +
                     ")", sqlconnect);
                 command.ExecuteNonQuery();
@@ -182,6 +183,25 @@ namespace ArmyArranger.Global
                 throw ex;
             }
             return result;
+        }
+
+        static public int GetLastInsertedID()
+        {
+            try
+            {
+                using (SQLiteCommand cmd = sqlconnect.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT last_insert_rowid()";
+                    cmd.ExecuteNonQuery();
+                    int lastID = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    return lastID;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
