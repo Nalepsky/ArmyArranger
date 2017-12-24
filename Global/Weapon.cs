@@ -64,7 +64,6 @@ namespace ArmyArranger.Global
 
             try
             {
-                Console.WriteLine("INSERT INTO Weapon (Name, Range, Shots, Penetration, RequiresLoader) VALUES (" + sql_name + "," + sql_range + "," + sql_shots + "," + sql_penetration + "," + sql_requiresLoader + ")");
                 Database.ExecuteCommand("INSERT INTO Weapon (Name, Range, Shots, Penetration, RequiresLoader) VALUES (" + sql_name + "," + sql_range + "," + sql_shots + "," + sql_penetration + "," + sql_requiresLoader + ")");
             }
             catch (Exception ex)
@@ -73,10 +72,20 @@ namespace ArmyArranger.Global
             }
 
             if(ruleID != -1)
-                MessageBox.Show("(Weapon.cs) TODO: save record with WeaponID = " + WeaponsCollection.Count + " and RuleID = " + ruleID);
-
+            {
+                try
+                {
+                    MessageBox.Show("(Weapon.cs) TODO: make able to add multiple rulest to one weapon");
+                    Database.ExecuteCommand("INSERT INTO Rule_Weapon (RuleID, WeaponID) VALUES (" + ruleID + "," + WeaponsCollection.Count + ")");
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
             new Weapon(WeaponsCollection.Count, name, range, shots, penetration, requiresLoader);
         }
+
         public void UpdateInDB(string name, int range, int shots, int penetration, bool requiresLoader, int ruleID)
         {
             string sql_name = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + name + "'";
@@ -95,7 +104,19 @@ namespace ArmyArranger.Global
             }
 
             if (ruleID != -1)
-                MessageBox.Show("(Weapon.cs) TODO: save record with WeaponID = " + ID + " and RuleID = " + ruleID);
+            {
+                try
+                {
+                    MessageBox.Show("(Weapon.cs) TODO: make able to add multiple rulest to one weapon");
+                    Database.ExecuteCommand("DELETE FROM Rule_Weapon WHERE WeaponID = " + ID); // delete every rule for this weapon
+                    Database.ExecuteCommand("INSERT INTO Rule_Weapon (RuleID, WeaponID) VALUES (" + ruleID + "," + ID + ")"); // then add only selected one
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+                
 
             Name = name;
             Range = range;
@@ -108,6 +129,8 @@ namespace ArmyArranger.Global
             try
             {
                 Database.ExecuteCommand("DELETE FROM Weapon WHERE ID = " + ID);
+                Database.ExecuteCommand("DELETE FROM Rule_Weapon WHERE WeaponID = " + ID);
+                Database.ExecuteCommand("DELETE FROM Unit_Weapon WHERE WeaponID = " + ID);
             }
             catch (Exception ex)
             {
