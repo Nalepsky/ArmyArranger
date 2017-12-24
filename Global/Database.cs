@@ -49,7 +49,6 @@ namespace ArmyArranger.Global
                     "Composition VARCHAR(50) NOT NULL," +
                     "Experience INTEGER NOT NULL," +
                     "WeaponDescription VARCHAR(255) NULL," +
-                    "Weapons VARCHAR(50) NOT NULL," +
                     "ArmourClass INTEGER NULL," +
                     "BasePoints INTEGER NULL," +
                     "FOREIGN KEY(NationID) REFERENCES Nation(ID)" +

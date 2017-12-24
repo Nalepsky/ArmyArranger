@@ -51,7 +51,6 @@ namespace ArmyArranger.Global
             Penetration = penetration;
             RequiresLoader = requiresLoader;
             ListOfActiveRules = listOfActiveRules;
-            Console.WriteLine(ListOfActiveRules.Count);
 
             WeaponsCollection.Add(this);
 

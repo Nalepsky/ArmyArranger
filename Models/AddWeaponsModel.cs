@@ -105,24 +105,12 @@ namespace ArmyArranger.Models
 
         public void CheckActiveRules(Weapon selectedWeapon)
         {
-            Console.WriteLine(GameRule.RulesCollection.Count);
             foreach (GameRule tempRule in GameRule.RulesCollection)
             {
-                foreach ( int dupa in selectedWeapon.ListOfActiveRules)
-                {
-                    Console.WriteLine(dupa);
-                }
                 if (selectedWeapon.ListOfActiveRules.Contains(tempRule.ID))
-                {
                     tempRule.IsSelected = true;
-                    Console.WriteLine("jj");
-                }
-                    
-                else{
+                else
                     tempRule.IsSelected = false;
-                    Console.WriteLine("kk");
-                }
-                    
             }
         }
 
