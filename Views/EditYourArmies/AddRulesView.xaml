@@ -51,11 +51,11 @@
         <TextBox x:Name="Source" Text="{Binding Source, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" Cursor="Hand"/>
         <Label Content="Type" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center"/>
         <ComboBox x:Name="Type" Text="{Binding Type, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" Cursor="Hand">
-            <ComboBoxItem Name="type1">Weapon</ComboBoxItem>
-            <ComboBoxItem Name="type2">Unit</ComboBoxItem>
-            <ComboBoxItem Name="type3">Selector</ComboBoxItem>
-            <ComboBoxItem Name="type4">Army</ComboBoxItem>
-            <ComboBoxItem Name="type5">Other</ComboBoxItem>
+            <ComboBoxItem>Weapon</ComboBoxItem>
+            <ComboBoxItem>Unit</ComboBoxItem>
+            <ComboBoxItem>Selector</ComboBoxItem>
+            <ComboBoxItem>Army</ComboBoxItem>
+            <ComboBoxItem>Other</ComboBoxItem>
         </ComboBox>
         <Label Content="Description:" Grid.Column="2" Grid.Row="5"  HorizontalAlignment="Center"/>
         <TextBox x:Name="Description" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="2" Margin="15,7,0,0" Cursor="Hand"/>

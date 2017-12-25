@@ -50,17 +50,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
-        private string _ruleName;
-        public string RuleName
-        {
-            get { return _ruleName; }
-            set
-            {
-                _ruleName = value;
-                RaisePropertyChanged(nameof(RuleName));
-            }
-        }
-
         private string _name;
         public string Name
         {
