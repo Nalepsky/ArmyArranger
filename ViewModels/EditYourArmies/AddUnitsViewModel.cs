@@ -16,6 +16,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         AddUnitsModel thisModel = new AddUnitsModel();
         AddRulesModel rulesModel = new AddRulesModel();
+        AddWeaponsModel weaponsModel = new AddWeaponsModel();
 
         private ObservableCollection<Unit> _unitsList;
         public ObservableCollection<Unit> UnitsList
@@ -47,6 +48,17 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             {
                 _rulesList = value;
                 RaisePropertyChanged(nameof(RulesList));
+            }
+        }
+
+        private ObservableCollection<Weapon> _weaponsList;
+        public ObservableCollection<Weapon> WeaponsList
+        {
+            get { return _weaponsList; }
+            set
+            {
+                _weaponsList = value;
+                RaisePropertyChanged(nameof(WeaponsList));
             }
         }
 
@@ -189,6 +201,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             UnitsList = Unit.UnitsCollection;
             thisModel.EmptyRule.LoadAll("Unit");
             RulesList = GameRule.RulesCollection;
+            thisModel.EmptyWeapon.LoadAll();
+            WeaponsList = Weapon.WeaponsCollection;
         }
 
         private void FunctionOnClick()
@@ -204,6 +218,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 ArmourClass = SelectedUnit.ArmourClass;
                 BasePoints = SelectedUnit.BasePoints;
                 thisModel.CheckActiveRules(SelectedUnit);
+                thisModel.CheckActiveWeapons(SelectedUnit);
 
                 ConfirmButtonText = "Update";
             }
@@ -221,6 +236,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             BasePoints = 0;
             thisModel.ClearUnits();
             thisModel.ClearRules();
+            thisModel.ClearWeapons();
             SelectedUnit = null;
         }
 
@@ -228,6 +244,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             thisModel.EmptyUnit.ClearUnitsCollection();
             rulesModel.EmptyRule.ClearRulesCollection();
+            weaponsModel.EmptyWeapon.ClearWeaponsCollection();
             App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
         }
 
@@ -262,7 +279,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         private void ConfirmChanges()
         {
             ObservableCollection<GameRule> SelectedRulesList = new ObservableCollection<GameRule>(RulesList.Where(w => (w.IsSelected == true)));
-            thisModel.ConfirmChanges(Name, NationID, Type, Composition, Experience, WeaponDescription, ArmourClass, BasePoints, SelectedUnit, UnitsList, SelectedRulesList);
+            ObservableCollection<Weapon> SelectedWeaponsList = new ObservableCollection<Weapon>(WeaponsList.Where(w => (w.IsSelected == true)));
+            thisModel.ConfirmChanges(Name, NationID, Type, Composition, Experience, WeaponDescription, ArmourClass, BasePoints, SelectedUnit, UnitsList, SelectedRulesList, SelectedWeaponsList);
             if (SelectedUnit != null)
             {
                 Name = SelectedUnit.Name;

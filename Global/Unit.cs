@@ -39,13 +39,14 @@ namespace ArmyArranger.Global
         public int BasePoints { get; set; }
         public bool isEmpty;
         public List<int> ListOfActiveRules = new List<int>();
+        public List<int> ListOfActiveWeapons = new List<int>();
 
         public Unit()
         {
             isEmpty = true;
         }
 
-        public Unit(int id, string name, int nationID, string type, string composition, int experience, string weaponDescription, int armourClass, int basePoints, List<int> listOfActiveRules)
+        public Unit(int id, string name, int nationID, string type, string composition, int experience, string weaponDescription, int armourClass, int basePoints, List<int> listOfActiveRules, List<int> listOfActiveWeapons)
         {
             ID = id;
             Name = name;
@@ -57,13 +58,14 @@ namespace ArmyArranger.Global
             ArmourClass = armourClass;
             BasePoints = basePoints;
             ListOfActiveRules = listOfActiveRules;
+            ListOfActiveWeapons = listOfActiveWeapons;
 
             UnitsCollection.Add(this);
 
             isEmpty = false;
         }
 
-        public void CreateNewAndSaveToDB(string name, int nationID, string type, string composition, int experience, string weaponDescription, int armourClass, int basePoints, ObservableCollection<GameRule> selectedRulesList)
+        public void CreateNewAndSaveToDB(string name, int nationID, string type, string composition, int experience, string weaponDescription, int armourClass, int basePoints, ObservableCollection<GameRule> selectedRulesList, ObservableCollection<Weapon> selectedWeaponsList)
         {
             int id;
             string sql_name = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + name + "'";
@@ -75,6 +77,7 @@ namespace ArmyArranger.Global
             int sql_armourClass = armourClass;
             int sql_basePoints = basePoints;
             List<int> newListOfActiveRules = new List<int>();
+            List<int> newListOfActiveWeapons = new List<int>();
 
             try
             {
@@ -90,7 +93,6 @@ namespace ArmyArranger.Global
             {
                 try
                 {
-                    MessageBox.Show("(Unit.cs) TODO: make able to add multiple rulest to one unit");
                     Database.ExecuteCommand("INSERT INTO Rule_Unit (RuleID, UnitID) VALUES (" + rule.ID + "," + id + ")");
                 }
                 catch (Exception ex)
@@ -99,10 +101,24 @@ namespace ArmyArranger.Global
                 }
                 newListOfActiveRules.Add(rule.ID);
             }
-            new Unit(id, name, nationID, type, composition, experience, weaponDescription, armourClass, basePoints, newListOfActiveRules);
+
+            foreach (Weapon weapon in selectedWeaponsList)
+            {
+                try
+                {
+                    Database.ExecuteCommand("INSERT INTO Unit_Weapon (WeaponID, UnitID) VALUES (" + weapon.ID + "," + id + ")");
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                newListOfActiveWeapons.Add(weapon.ID);
+            }
+
+            new Unit(id, name, nationID, type, composition, experience, weaponDescription, armourClass, basePoints, newListOfActiveRules, newListOfActiveWeapons);
         }
 
-        public void UpdateInDB(string name, int nationID, string type, string composition, int experience, string weaponDescription, int armourClass, int basePoints, ObservableCollection<GameRule> selectedRulesList)
+        public void UpdateInDB(string name, int nationID, string type, string composition, int experience, string weaponDescription, int armourClass, int basePoints, ObservableCollection<GameRule> selectedRulesList, ObservableCollection<Weapon> selectedWeaponsList)
         {
             string sql_name = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + name + "'";
             int sql_nationID = nationID;
@@ -113,10 +129,11 @@ namespace ArmyArranger.Global
             int sql_armourClass = armourClass;
             int sql_basePoints = basePoints;
             List<int> newListOfActiveRules = new List<int>();
+            List<int> newListOfActiveWeapons = new List<int>();
 
             try
             {
-                Database.ExecuteCommand("UPDATE Unit SET Name = " + sql_name + ", NationID = " + sql_nationID + ", Type = " + sql_type + ", Composition = " + sql_composition + ", Experience = " + sql_experience + ", WeaponDescription = " + sql_weaponDescription + ", ArmourClass = " + sql_armourClass + ", BasePoints = " + sql_basePoints);
+                Database.ExecuteCommand("UPDATE Unit SET Name = " + sql_name + ", NationID = " + sql_nationID + ", Type = " + sql_type + ", Composition = " + sql_composition + ", Experience = " + sql_experience + ", WeaponDescription = " + sql_weaponDescription + ", ArmourClass = " + sql_armourClass + ", BasePoints = " + sql_basePoints + " WHERE ID = " + ID);
             }
             catch (Exception ex)
             {
@@ -144,6 +161,27 @@ namespace ArmyArranger.Global
                 newListOfActiveRules.Add(rule.ID);
             }
 
+            try
+            {
+                Database.ExecuteCommand("DELETE FROM Unit_Weapon WHERE UnitID = " + ID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            foreach (Weapon weapon in selectedWeaponsList)
+            {
+                try
+                {
+                    Database.ExecuteCommand("INSERT INTO Unit_Weapon (WeaponID, UnitID) VALUES (" + weapon.ID + "," + ID + ")");
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                newListOfActiveWeapons.Add(weapon.ID);
+            }
+
             Name = name;
             NationID = nationID;
             Type = type;
@@ -152,6 +190,8 @@ namespace ArmyArranger.Global
             WeaponDescription = weaponDescription;
             ArmourClass = armourClass;
             BasePoints = basePoints;
+            ListOfActiveRules = newListOfActiveRules;
+            ListOfActiveWeapons = newListOfActiveWeapons;
         }
         public void Remove()
         {
@@ -159,7 +199,7 @@ namespace ArmyArranger.Global
             {
                 Database.ExecuteCommand("DELETE FROM Unit WHERE ID = " + ID);
                 Database.ExecuteCommand("DELETE FROM Rule_Unit WHERE UnitID = " + ID);
-                Database.ExecuteCommand("DELETE FROM Unit_Unit WHERE UnitID = " + ID);
+                Database.ExecuteCommand("DELETE FROM Unit_Weapon WHERE UnitID = " + ID);
             }
             catch (Exception ex)
             {
@@ -181,6 +221,7 @@ namespace ArmyArranger.Global
                 ArmourClass,
                 BasePoints;
             List<int> newListOfActiveRules;
+            List<int> newListOfActiveWeapons;
 
             while (result.Read())
             {
@@ -201,7 +242,14 @@ namespace ArmyArranger.Global
                     newListOfActiveRules.Add(ruleResult.GetInt32(0));
                 }
 
-                new Unit(ID, Name, NationID, Type, Composition, Experience, WeaponDescription, ArmourClass, BasePoints, newListOfActiveRules);
+                newListOfActiveWeapons = new List<int>();
+                SQLiteDataReader weaponResult = Database.ExecuteCommand("SELECT WeaponID FROM Unit_Weapon WHERE UnitID = " + ID);
+                while (weaponResult.Read())
+                {
+                    newListOfActiveWeapons.Add(weaponResult.GetInt32(0));
+                }
+
+                new Unit(ID, Name, NationID, Type, Composition, Experience, WeaponDescription, ArmourClass, BasePoints, newListOfActiveRules, newListOfActiveWeapons);
             }
             result.Close();
         }

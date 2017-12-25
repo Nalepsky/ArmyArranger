@@ -23,7 +23,7 @@ namespace ArmyArranger.Global
         }
 
 
-        int ID;
+        public int ID;
         private string _name;
         public string Name
         {
@@ -34,6 +34,12 @@ namespace ArmyArranger.Global
         public int Shots { get; set; }
         public int Penetration { get; set; }
         public bool RequiresLoader { get; set; }
+        private bool _isSelected;
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set { _isSelected = value; OnPropertyChanged<Weapon>(); }
+        }
         public bool isEmpty;
         public List<int> ListOfActiveRules = new List<int>();
 

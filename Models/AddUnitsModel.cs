@@ -14,8 +14,8 @@ namespace ArmyArranger.Models
 
         public Unit EmptyUnit = new Unit();
         public GameRule EmptyRule = new GameRule();
+        public Weapon EmptyWeapon = new Weapon();
         public Unit lastChoosenUnit;
-        public GameRule lastChoosenRule;
 
 
         #endregion
@@ -31,11 +31,11 @@ namespace ArmyArranger.Models
 
         #region Actions
 
-        public void AddUnit(string name, int nationID, string type, string composition, int experience, string weaponDescription, int armourClass, int basePoints, ObservableCollection<GameRule> rulesList)
+        public void AddUnit(string name, int nationID, string type, string composition, int experience, string weaponDescription, int armourClass, int basePoints, ObservableCollection<GameRule> rulesList, ObservableCollection<Weapon> weaponsList)
         {
             try
             {
-                EmptyUnit.CreateNewAndSaveToDB(name, nationID, type, composition, experience, weaponDescription, armourClass, basePoints, rulesList);
+                EmptyUnit.CreateNewAndSaveToDB(name, nationID, type, composition, experience, weaponDescription, armourClass, basePoints, rulesList, weaponsList);
             }
             catch (Exception ex)
             {
@@ -45,15 +45,14 @@ namespace ArmyArranger.Models
             MessageBox.Show("Successfully added");
         }
 
-        public void UpdateUnit(Unit selectedUnit, string name, int nationID, string type, string composition, int experience, string weaponDescription, int armourClass, int basePoints, ObservableCollection<GameRule> rulesList)
+        public void UpdateUnit(Unit selectedUnit, string name, int nationID, string type, string composition, int experience, string weaponDescription, int armourClass, int basePoints, ObservableCollection<GameRule> rulesList, ObservableCollection<Weapon> weaponsList)
         {
             if (selectedUnit == null)
                 return;
 
-
             try
             {
-                selectedUnit.UpdateInDB(name, nationID, type, composition, experience, weaponDescription, armourClass, basePoints, rulesList);
+                selectedUnit.UpdateInDB(name, nationID, type, composition, experience, weaponDescription, armourClass, basePoints, rulesList, weaponsList);
             }
             catch (Exception ex)
             {
@@ -92,16 +91,6 @@ namespace ArmyArranger.Models
             return false;
         }
 
-        public bool ChosenRuleEqualsSelected(GameRule selectedRule)
-        {
-            if (lastChoosenRule != selectedRule)
-            {
-                lastChoosenRule = selectedRule;
-                return true;
-            }
-            return false;
-        }
-
 
         public void ClearUnits()
         {
@@ -116,6 +105,14 @@ namespace ArmyArranger.Models
             }
         }
 
+        public void ClearWeapons()
+        {
+            foreach (Weapon tempWeapon in Weapon.WeaponsCollection)
+            {
+                tempWeapon.IsSelected = false;
+            }
+        }
+
         public void CheckActiveRules(Unit selectedUnit)
         {
             foreach (GameRule tempRule in GameRule.RulesCollection)
@@ -124,6 +121,17 @@ namespace ArmyArranger.Models
                     tempRule.IsSelected = true;
                 else
                     tempRule.IsSelected = false;
+            }
+        }
+
+        public void CheckActiveWeapons(Unit selectedUnit)
+        {
+            foreach (Weapon tempWeapon in Weapon.WeaponsCollection)
+            {
+                if (selectedUnit.ListOfActiveWeapons.Contains(tempWeapon.ID))
+                    tempWeapon.IsSelected = true;
+                else
+                    tempWeapon.IsSelected = false;
             }
         }
 
@@ -142,7 +150,7 @@ namespace ArmyArranger.Models
 
         }
 
-        public void ConfirmChanges(string name, int nationID, string type, string composition, int experience, string weaponDescription, int armourClass, int basePoints, Unit selectedUnit, ObservableCollection<Unit> unitsList, ObservableCollection<GameRule> selectedRulesList)
+        public void ConfirmChanges(string name, int nationID, string type, string composition, int experience, string weaponDescription, int armourClass, int basePoints, Unit selectedUnit, ObservableCollection<Unit> unitsList, ObservableCollection<GameRule> selectedRulesList, ObservableCollection<Weapon> selectedWeaponsList)
         {
             if (String.IsNullOrWhiteSpace(name))
                 return;
@@ -154,30 +162,30 @@ namespace ArmyArranger.Models
                 if (UnitWithThisName != null)
                 {
                     if (PromptQuestion("Unit '" + name + "' alredy exist, do you want to override it?"))
-                        UpdateUnit(UnitWithThisName, name, nationID, type, composition, experience, weaponDescription, armourClass, basePoints, selectedRulesList);
+                        UpdateUnit(UnitWithThisName, name, nationID, type, composition, experience, weaponDescription, armourClass, basePoints, selectedRulesList, selectedWeaponsList);
                 }
                 else
                 {
-                    AddUnit(name, nationID, type, composition, experience, weaponDescription, armourClass, basePoints, selectedRulesList);
+                    AddUnit(name, nationID, type, composition, experience, weaponDescription, armourClass, basePoints, selectedRulesList, selectedWeaponsList);
                 }
             }
             else
             {
                 if (selectedUnit.Name == name)
                 {
-                    UpdateUnit(selectedUnit, name, nationID, type, composition, experience, weaponDescription, armourClass, basePoints, selectedRulesList);
+                    UpdateUnit(selectedUnit, name, nationID, type, composition, experience, weaponDescription, armourClass, basePoints, selectedRulesList, selectedWeaponsList);
                 }
                 else if (UnitWithThisName != null)
                 {
                     if (PromptQuestion("Unit '" + name + "' alredy exist, do you want to override it?"))
-                        UpdateUnit(UnitWithThisName, name, nationID, type, composition, experience, weaponDescription, armourClass, basePoints, selectedRulesList);
+                        UpdateUnit(UnitWithThisName, name, nationID, type, composition, experience, weaponDescription, armourClass, basePoints, selectedRulesList, selectedWeaponsList);
                 }
                 else
                 {
                     if (PromptQuestion("Do you wish to update name of choosen unit? \nOtherwise new unit with given name will by added."))
-                        UpdateUnit(selectedUnit, name, nationID, type, composition, experience, weaponDescription, armourClass, basePoints, selectedRulesList);
+                        UpdateUnit(selectedUnit, name, nationID, type, composition, experience, weaponDescription, armourClass, basePoints, selectedRulesList, selectedWeaponsList);
                     else
-                        AddUnit(name, nationID, type, composition, experience, weaponDescription, armourClass, basePoints, selectedRulesList);
+                        AddUnit(name, nationID, type, composition, experience, weaponDescription, armourClass, basePoints, selectedRulesList, selectedWeaponsList);
                 }
             }
         }
