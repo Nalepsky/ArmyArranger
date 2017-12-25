@@ -15,7 +15,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         #region Propeties
 
         AddWeaponsModel thisModel = new AddWeaponsModel();
-        AddRulesModel rulesModel = new AddRulesModel();
 
         private ObservableCollection<Weapon> _weaponsList;
         public ObservableCollection<Weapon> WeaponsList
@@ -179,23 +178,23 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             Shots = 0;
             Penetration = 0;
             RequiresLoader = false;
-            ConfirmButtonText = "Save New";
             thisModel.ClearWeapons();
             thisModel.ClearRules();
             SelectedWeapon = null;
+            ConfirmButtonText = "Save New";
         }
 
         private void ChangeViewToEditYourArmies()
         {
             thisModel.EmptyWeapon.ClearWeaponsCollection();
-            rulesModel.EmptyRule.ClearRulesCollection();
+            thisModel.EmptyRule.ClearRulesCollection();
             App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
         }
 
         private void ChangeViewToAddRules()
         {
             thisModel.EmptyWeapon.ClearWeaponsCollection();
-            rulesModel.EmptyRule.ClearRulesCollection();
+            thisModel.EmptyRule.ClearRulesCollection();
             App.Current.MainWindow.DataContext = new AddRulesViewModel();
         }
 
@@ -207,6 +206,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             Shots = 0;
             Penetration = 0;
             RequiresLoader = false;
+            thisModel.ClearWeapons();
+            thisModel.ClearRules();
             SelectedWeapon = null;
             ConfirmButtonText = "Save New";
         }
@@ -230,6 +231,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 Shots = 0;
                 Penetration = 0;
                 RequiresLoader = false;
+                thisModel.ClearWeapons();
+                thisModel.ClearRules();
             }
         }
 

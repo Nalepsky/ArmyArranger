@@ -15,6 +15,8 @@ namespace ArmyArranger.Models
         public Unit EmptyUnit = new Unit();
         public GameRule EmptyRule = new GameRule();
         public Weapon EmptyWeapon = new Weapon();
+        public Nation EmptyNation = new Nation();
+
         public Unit lastChoosenUnit;
 
 

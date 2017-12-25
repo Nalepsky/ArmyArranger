@@ -67,9 +67,9 @@ namespace ArmyArranger.Global
         {
             int id;
             string sql_name = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + name + "'";
-            int sql_range = range;
-            int sql_shots = shots;
-            int sql_penetration = penetration;
+            string sql_range = (range == 0) ? "null" : "'" + range + "'";
+            string sql_shots = (shots == 0) ? "null" : "'" + shots + "'";
+            string sql_penetration = (penetration == 0) ? "null" : "'" + penetration + "'";
             string sql_requiresLoader = "'"+requiresLoader+"'";
             List<int> newListOfActiveRules = new List<int>();
 

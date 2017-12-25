@@ -69,13 +69,13 @@ namespace ArmyArranger.Global
         {
             int id;
             string sql_name = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + name + "'";
-            int sql_nationID = nationID;
+            string sql_nationID = (nationID == 0) ? "null" : "'" + nationID + "'";
             string sql_type = (String.IsNullOrWhiteSpace(type)) ? "null" : "'" + type + "'";
             string sql_composition = (String.IsNullOrWhiteSpace(composition)) ? "null" : "'" + composition + "'";
-            int sql_experience = experience;
+            string sql_experience = (experience == 0) ? "null" : "'" + experience + "'"; ;
             string sql_weaponDescription = (String.IsNullOrWhiteSpace(weaponDescription)) ? "null" : "'" + weaponDescription + "'";
-            int sql_armourClass = armourClass;
-            int sql_basePoints = basePoints;
+            string sql_armourClass = (armourClass == 0) ? "null" : "'" + armourClass + "'"; ;
+            string sql_basePoints = (basePoints == 0) ? "null" : "'" + basePoints + "'"; ;
             List<int> newListOfActiveRules = new List<int>();
             List<int> newListOfActiveWeapons = new List<int>();
 
@@ -228,10 +228,10 @@ namespace ArmyArranger.Global
                 ID = result.GetInt32(0);
                 Name = result.GetString(1);
                 NationID = (!result.IsDBNull(2)) ? result.GetInt32(2) : 0;
-                Type = result.GetString(3);
+                Type = (!result.IsDBNull(3)) ? result.GetString(3) : "";
                 BasePoints = (!result.IsDBNull(4)) ? result.GetInt32(4) : 0;
-                Composition = result.GetString(5);
-                WeaponDescription = result.GetString(6);
+                Composition = (!result.IsDBNull(5)) ? result.GetString(5) : "";
+                WeaponDescription = (!result.IsDBNull(6)) ? result.GetString(6) : "";
                 Experience = (!result.IsDBNull(7)) ? result.GetInt32(7) : 0;
                 ArmourClass = (!result.IsDBNull(8)) ? result.GetInt32(8) : 0;
 

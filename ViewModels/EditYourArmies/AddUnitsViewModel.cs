@@ -15,8 +15,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         #region Propeties
 
         AddUnitsModel thisModel = new AddUnitsModel();
-        AddRulesModel rulesModel = new AddRulesModel();
-        AddWeaponsModel weaponsModel = new AddWeaponsModel();
 
         private ObservableCollection<Unit> _unitsList;
         public ObservableCollection<Unit> UnitsList
@@ -62,6 +60,28 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
+        private ObservableCollection<Nation> _nationsList;
+        public ObservableCollection<Nation> NationsList
+        {
+            get { return _nationsList; }
+            set
+            {
+                _nationsList = value;
+                RaisePropertyChanged(nameof(NationsList));
+            }
+        }
+
+        public Nation _selectedNation;
+        public Nation SelectedNation
+        {
+            get { return _selectedNation; }
+            set
+            {
+                _selectedNation = value;
+                RaisePropertyChanged(nameof(SelectedNation));
+            }
+        }
+
         private string _name;
         public string Name
         {
@@ -73,16 +93,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
-        private int _nationID;
-        public int NationID
-        {
-            get { return _nationID; }
-            set
-            {
-                _nationID = value;
-                RaisePropertyChanged(nameof(NationID));
-            }
-        }
+
 
         private string _type;
         public string Type
@@ -203,6 +214,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             RulesList = GameRule.RulesCollection;
             thisModel.EmptyWeapon.LoadAll();
             WeaponsList = Weapon.WeaponsCollection;
+            thisModel.EmptyNation.LoadAll();
+            NationsList = Nation.NationsCollecion;
         }
 
         private void FunctionOnClick()
@@ -210,7 +223,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             if (thisModel.ChosenUnitEqualsSelected(SelectedUnit) && SelectedUnit != null)
             {
                 Name = SelectedUnit.Name;
-                NationID = SelectedUnit.NationID;
+                SelectedNation = NationsList.Single(x => x.ID == SelectedUnit.NationID);
                 Type = SelectedUnit.Type;
                 Composition = SelectedUnit.Composition;
                 Experience = SelectedUnit.Experience;
@@ -227,7 +240,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         private void PrepareToAddNew()
         {
             Name = "";
-            NationID = 0;
+            SelectedNation = null;
             Type = "";
             Composition = "";
             Experience = 0;
@@ -238,27 +251,33 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             thisModel.ClearRules();
             thisModel.ClearWeapons();
             SelectedUnit = null;
+            ConfirmButtonText = "Save New";
         }
 
         private void ChangeViewToEditYourArmies()
         {
             thisModel.EmptyUnit.ClearUnitsCollection();
-            rulesModel.EmptyRule.ClearRulesCollection();
-            weaponsModel.EmptyWeapon.ClearWeaponsCollection();
+            thisModel.EmptyRule.ClearRulesCollection();
+            thisModel.EmptyWeapon.ClearWeaponsCollection();
+            thisModel.EmptyNation.ClearNationsCollecion();
             App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
         }
 
         private void ChangeViewToAddRules()
         {
             thisModel.EmptyUnit.ClearUnitsCollection();
-            rulesModel.EmptyRule.ClearRulesCollection();
+            thisModel.EmptyRule.ClearRulesCollection();
+            thisModel.EmptyWeapon.ClearWeaponsCollection();
+            thisModel.EmptyNation.ClearNationsCollecion();
             App.Current.MainWindow.DataContext = new AddRulesViewModel();
         }
 
         private void ChangeViewToAddWeapons()
         {
             thisModel.EmptyUnit.ClearUnitsCollection();
-            rulesModel.EmptyRule.ClearRulesCollection();
+            thisModel.EmptyRule.ClearRulesCollection();
+            thisModel.EmptyWeapon.ClearWeaponsCollection();
+            thisModel.EmptyNation.ClearNationsCollecion();
             App.Current.MainWindow.DataContext = new AddWeaponsViewModel();
         }
 
@@ -266,13 +285,17 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             thisModel.RemoveUnit(SelectedUnit);
             Name = "";
-            NationID = 0;
+            SelectedNation = null;
             Type = "";
             Composition = "";
             Experience = 0;
             WeaponDescription = null;
             ArmourClass = 0;
             BasePoints = 0;
+            thisModel.ClearUnits();
+            thisModel.ClearRules();
+            thisModel.ClearWeapons();
+            SelectedUnit = null;
             ConfirmButtonText = "Save New";
         }
 
@@ -280,11 +303,13 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             ObservableCollection<GameRule> SelectedRulesList = new ObservableCollection<GameRule>(RulesList.Where(w => (w.IsSelected == true)));
             ObservableCollection<Weapon> SelectedWeaponsList = new ObservableCollection<Weapon>(WeaponsList.Where(w => (w.IsSelected == true)));
-            thisModel.ConfirmChanges(Name, NationID, Type, Composition, Experience, WeaponDescription, ArmourClass, BasePoints, SelectedUnit, UnitsList, SelectedRulesList, SelectedWeaponsList);
+            int SelectedNationID = (SelectedNation != null) ? SelectedNation.ID : 0;
+
+            thisModel.ConfirmChanges(Name, SelectedNationID, Type, Composition, Experience, WeaponDescription, ArmourClass, BasePoints, SelectedUnit, UnitsList, SelectedRulesList, SelectedWeaponsList);
             if (SelectedUnit != null)
             {
                 Name = SelectedUnit.Name;
-                NationID = SelectedUnit.NationID;
+                SelectedNation = NationsList.Single(x => x.ID == SelectedUnit.NationID);
                 Type = SelectedUnit.Type;
                 Composition = SelectedUnit.Composition;
                 Experience = SelectedUnit.Experience;
@@ -295,13 +320,16 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             else
             {
                 Name = "";
-                NationID = 0;
+                SelectedNation = null;
                 Type = "";
                 Composition = "";
                 Experience = 0;
                 WeaponDescription = null;
                 ArmourClass = 0;
                 BasePoints = 0;
+                thisModel.ClearUnits();
+                thisModel.ClearRules();
+                thisModel.ClearWeapons();
             }
         }
 
