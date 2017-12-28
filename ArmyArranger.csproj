@@ -85,18 +85,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddEntryWindow.xaml.cs">
+      <DependentUpon>AddEntryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Global\GameRule.cs" />
     <Compile Include="Global\Nation.cs" />
     <Compile Include="Global\Option.cs" />
     <Compile Include="Global\Selector.cs" />
     <Compile Include="Global\Unit.cs" />
     <Compile Include="Global\Weapon.cs" />
+    <Compile Include="Models\AddEntryModel.cs" />
     <Compile Include="Models\AddNationsModel.cs" />
+    <Compile Include="Models\AddSelectorsModel.cs" />
     <Compile Include="Models\AddWeaponsModel.cs" />
     <Compile Include="Models\AddRulesModel.cs" />
     <Compile Include="Models\AddUnitsModel.cs" />
     <Compile Include="Models\ContactUsModel.cs" />
     <Compile Include="Global\Database.cs" />
+    <Compile Include="ViewModels\EditYourArmies\AddEntryViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddOptionsViewModel.cs" />
     <Compile Include="ViewModels\Menu\AboutViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddRulesViewModel.cs" />
@@ -108,6 +114,9 @@
     <Compile Include="ViewModels\Menu\ContactUsViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddNationsViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddSelectorsViewModel.cs" />
+    <Compile Include="Views\EditYourArmies\AddEntryView.xaml.cs">
+      <DependentUpon>AddEntryView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EditYourArmies\AddOptionsView.xaml.cs">
       <DependentUpon>AddOptionsView.xaml</DependentUpon>
     </Compile>
@@ -141,6 +150,10 @@
     <Compile Include="Views\EditYourArmies\AddNationsView.xaml.cs">
       <DependentUpon>AddNationsView.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddEntryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -153,6 +166,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\EditYourArmies\AddEntryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\EditYourArmies\AddOptionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

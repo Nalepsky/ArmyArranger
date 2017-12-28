@@ -12,24 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Net.Mail;
-using System.Data.SQLite;
-using ArmyArranger.ViewModels;
-using ArmyArranger.Global;
-using ArmyArranger.ViewModels.EditYourArmies;
 
-namespace ArmyArranger
+namespace ArmyArranger.Views.EditYourArmies
 {
     /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
+    /// Interaction logic for AddEntryView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddEntryView : UserControl
     {
-        public MainWindow()
+        public AddEntryView()
         {
             InitializeComponent();
-            DataContext = new MenuViewModel();
-            Database.Connect();
         }
     }
 }

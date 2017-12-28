@@ -21,15 +21,20 @@ using ArmyArranger.ViewModels.EditYourArmies;
 namespace ArmyArranger
 {
     /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
+    /// Interaction logic for AddEntryWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
+    public partial class AddEntryWindow : Window
+    {       
+        public AddEntryWindow()
         {
             InitializeComponent();
-            DataContext = new MenuViewModel();
+            
             Database.Connect();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataContext = new AddEntryViewModel();
         }
     }
 }
