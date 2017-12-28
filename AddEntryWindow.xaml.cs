@@ -28,12 +28,6 @@ namespace ArmyArranger
         public AddEntryWindow()
         {
             InitializeComponent();
-            
-            Database.Connect();
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
             DataContext = new AddEntryViewModel();
         }
     }
