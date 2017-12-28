@@ -16,7 +16,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         #region Propeties
 
         AddSelectorsModel thisModel = new AddSelectorsModel();
-        AddRulesModel rulesModel = new AddRulesModel();
+        AddRulesModel rulesModel = new AddRulesModel();       
 
         private ObservableCollection<Selector> _selectorsList;
         public ObservableCollection<Selector> SelectorsList
@@ -37,6 +37,17 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             {
                 _rulesList = value;
                 RaisePropertyChanged(nameof(RulesList));
+            }
+        }
+
+        private ObservableCollection<GameRule> _mandatoryentries;
+        public ObservableCollection<GameRule> MandatoryEntries
+        {
+            get { return _mandatoryentries; }
+            set
+            {
+                _mandatoryentries = value;
+                RaisePropertyChanged(nameof(MandatoryEntries));
             }
         }
 
@@ -62,6 +73,50 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
+        private GameRule _selectedselector;
+        public GameRule SelectedSelector
+        {
+            get { return _selectedselector; }
+            set
+            {
+                _selectedselector = value;
+                RaisePropertyChanged(nameof(SelectedSelector));
+            }
+        }
+
+        private GameRule _selectedrule;
+        public GameRule SelectedRule
+        {
+            get { return _selectedrule; }
+            set
+            {
+                _selectedrule = value;
+                RaisePropertyChanged(nameof(SelectedRule));
+            }
+        }
+
+        private Entry _selectedentry;
+        public Entry SelectedEntry
+        {
+            get { return _selectedentry; }
+            set
+            {
+                _selectedentry = value;
+                RaisePropertyChanged(nameof(SelectedEntry));
+            }
+        }
+
+        private Nation _selectednation;
+        public Nation SelectedNation
+        {
+            get { return _selectednation; }
+            set
+            {
+                _selectednation = value;
+                RaisePropertyChanged(nameof(SelectedNation));
+            }
+        }
+
         private string _ruleName;
         public string RuleName
         {
@@ -73,12 +128,37 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
+        private string _selectorname;
+        public string SelectorName
+        {
+            get { return _selectorname; }
+            set
+            {
+                _selectorname = value;
+                RaisePropertyChanged(nameof(SelectorName));
+            }
+        }
+
+        private string _year;
+        public string Year
+        {
+            get { return _year; }
+            set
+            {
+                _year = value;
+                RaisePropertyChanged(nameof(Year));
+            }
+        }
+
+
+
         #endregion
 
         #region Commands
 
         public ICommand OnLoad { get; set; }
         public ICommand Back { get; set; }
+        public ICommand Confirm { get; set; }
         public ICommand AddNextMandatory { get; set; }
 
         #endregion
@@ -89,6 +169,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             OnLoad = new DelegateCommand(FunctionOnLoad);
             Back = new DelegateCommand(ChangeViewToEditYourArmies);
+            Confirm = new DelegateCommand(ChangeViewToEditYourArmies);
             AddNextMandatory = new DelegateCommand(OpenEntryWindow);
         }
 
