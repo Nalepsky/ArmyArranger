@@ -219,7 +219,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         }
 
         private void FunctionOnClick()
-        {
+        {               
             if (thisModel.ChosenUnitEqualsSelected(SelectedUnit) && SelectedUnit != null)
             {
                 Name = SelectedUnit.Name;

@@ -4,8 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ArmyArranger.Views.EditYourArmies"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="400">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding OnLoad}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="MouseUp">
+            <i:InvokeCommandAction Command="{Binding MouseClick}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <Grid Background="LightBlue">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -22,11 +33,12 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Label Content="Add Units to Entry" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
-        <TextBox Text="{Binding S}" Grid.Column="2" Grid.Row="1" />
+        <Label Content="Add Units to Entry" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Center" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center"/>        
         <Label Content="Units" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <ListBox ItemsSource="{Binding UnitsList}" SelectedItem="{Binding SelectedWeapon, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="4" Cursor="Hand">
+        <ListBox ItemsSource="{Binding UnitsList}" SelectedItem="{Binding CurrentUnit1, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="4" Cursor="Hand">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" />
@@ -34,20 +46,25 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Label Content="Selected Units" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <ListBox ItemsSource="{Binding SelectedUnitsList}" SelectedItem="{Binding SelectedWeapon, Mode=TwoWay}" Grid.Column="3" Grid.Row="2" Grid.RowSpan="4" Cursor="Hand">
+        <ListBox ItemsSource="{Binding SelectedUnitsList}" SelectedItem="{Binding CurrentUnit2, Mode=TwoWay}" Grid.Column="3" Grid.Row="2" Grid.RowSpan="4" Cursor="Hand">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}" />
+                    <CheckBox Content="{Binding Name}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button Content="Add" Command="{Binding Back, Mode=TwoWay}" Grid.Column="2" Grid.Row="2" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <Button Content="Add All" Command="{Binding Back, Mode=TwoWay}" Grid.Column="2" Grid.Row="3" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <Button Content="Remove All" Command="{Binding Back, Mode=TwoWay}" Grid.Column="2" Grid.Row="4" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <Button Content="Remove" Command="{Binding Back, Mode=TwoWay}" Grid.Column="2" Grid.Row="5" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Button Content="Add" Command="{Binding Add, Mode=TwoWay}" Grid.Column="2" Grid.Row="2" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Button Content="Add All" Command="{Binding AddAll, Mode=TwoWay}" Grid.Column="2" Grid.Row="3" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Button Content="Remove All" Command="{Binding RemoveAll, Mode=TwoWay}" Grid.Column="2" Grid.Row="4" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Button Content="Remove" Command="{Binding Remove, Mode=TwoWay}" Grid.Column="2" Grid.Row="5" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-        <Button Content="Back" Command="{Binding Back, Mode=TwoWay}" Grid.Column="1" Grid.Row="7" Cursor="Hand" VerticalAlignment="Center"/>
-        <Button Content="Confirm" Command="{Binding Confirm, Mode=TwoWay}" Grid.Column="3" Grid.Row="7" Cursor="Hand" VerticalAlignment="Center"/>
+        <Label Content="Minimum number of units" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Maximum number of units" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding Min}" Grid.Column="3" Grid.Row="6" VerticalAlignment="Center" />
+        <TextBox Text="{Binding Max}" Grid.Column="3" Grid.Row="7" VerticalAlignment="Center" />
+
+        <Button Content="Back" Command="{Binding Back, Mode=TwoWay}" Grid.Column="1" Grid.Row="8" Cursor="Hand" VerticalAlignment="Center"/>
+        <Button Content="Confirm" Command="{Binding Confirm, Mode=TwoWay}" Grid.Column="3" Grid.Row="8" Cursor="Hand" VerticalAlignment="Center"/>
     </Grid>    
 </UserControl>

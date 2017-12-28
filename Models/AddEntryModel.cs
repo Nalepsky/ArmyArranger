@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArmyArranger.Global;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,20 @@ namespace ArmyArranger.Models
 {
     class AddEntryModel
     {
+        #region Properties
+        String EntryString;
+        //i.e. 0-1;unitID,exclusionFlag;unitID,exclusionFlag|
 
+        public Unit EmptyUnit = new Unit();
+
+        public AddEntryModel()
+        {
+            EntryString = "";
+        }
+        #endregion
+
+        #region Constructors
+
+        #endregion
     }
 }
