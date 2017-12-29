@@ -40,6 +40,17 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
+        private ObservableCollection<Unit> _excludingUnitsList;
+        public ObservableCollection<Unit> ExcludingUnitsList
+        {
+            get { return _excludingUnitsList; }
+            set
+            {
+                _excludingUnitsList = value;
+                RaisePropertyChanged(nameof(ExcludingUnitsList));
+            }
+        }
+
         private Unit _currentUnit1;
         public Unit CurrentUnit1
         {
@@ -50,7 +61,51 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 RaisePropertyChanged(nameof(CurrentUnit1));
             }
         }
-                
+
+        private Unit _currentUnit2;
+        public Unit CurrentUnit2
+        {
+            get { return _currentUnit2; }
+            set
+            {
+                _currentUnit2 = value;
+                RaisePropertyChanged(nameof(CurrentUnit2));
+            }
+        }
+
+        private Unit _excludingUnit;
+        public Unit ExcludingUnit
+        {
+            get { return _excludingUnit; }
+            set
+            {
+                _excludingUnit = value;
+                RaisePropertyChanged(nameof(ExcludingUnit));
+            }
+        }
+
+        private int _min;
+        public int Min
+        {
+            get { return _min; }
+            set
+            {
+                _min = value;
+                RaisePropertyChanged(nameof(Min));
+            }
+        }
+
+        private int _max;
+        public int Max
+        {
+            get { return _max; }
+            set
+            {
+                _max = value;
+                RaisePropertyChanged(nameof(Max));
+            }
+        }
+
         #endregion
 
         #region Commands
@@ -60,6 +115,10 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         public ICommand AddAll { get; set; }
         public ICommand Remove { get; set; }
         public ICommand RemoveAll { get; set; }
+        public ICommand Cancel { get; set; }
+        public ICommand Next { get; set; }
+        public ICommand AddToExcluding { get; set; }
+        public ICommand RemoveFromExcluding { get; set; }
 
         #endregion
 
@@ -71,6 +130,12 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             MouseClick = new DelegateCommand(FunctionOnClick);
             Add = new DelegateCommand(FunctionAdd);
             AddAll = new DelegateCommand(FunctionAddAll);
+            Remove = new DelegateCommand(FunctionRemove);
+            RemoveAll = new DelegateCommand(FunctionRemoveAll);
+            Cancel = new DelegateCommand(FunctionCancel);
+            Next = new DelegateCommand(FunctionNext);
+            AddToExcluding = new DelegateCommand(FunctionAddToExcluding);
+            RemoveFromExcluding = new DelegateCommand(FunctionRemoveFromExcluding);
 
         }
 
@@ -82,8 +147,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             thisModel.EmptyUnit.LoadAll();
             UnitsList = Unit.UnitsCollection;
-            SelectedUnitsList = thisModel.SelectedunitsList;
-            Console.WriteLine("onload");
+            SelectedUnitsList = thisModel.SelectedUnitsList;
+            ExcludingUnitsList = thisModel.ExcludingUnitsList;
         }
 
         private void FunctionOnClick()
@@ -103,6 +168,38 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             CurrentUnit1 = null;
         }
 
+        private void FunctionRemoveAll()
+        {
+            SelectedUnitsList = thisModel.RemoveAll();
+            CurrentUnit2 = null;
+        }
+
+        private void FunctionRemove()
+        {            
+            SelectedUnitsList = thisModel.Remove(CurrentUnit2);
+            CurrentUnit2 = null;
+        }
+
+        private void FunctionNext()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void FunctionCancel()
+        {
+            
+        }
+
+        private void FunctionAddToExcluding()
+        {
+            ExcludingUnitsList = thisModel.AddToExcluding(CurrentUnit2);
+        }
+
+        private void FunctionRemoveFromExcluding()
+        {
+            ExcludingUnitsList = thisModel.RemoveFromExcluding(ExcludingUnit);
+        }
+        
         #endregion
     }
 }

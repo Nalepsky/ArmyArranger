@@ -28,7 +28,7 @@ namespace ArmyArranger
         public AddEntryWindow()
         {
             InitializeComponent();
-            DataContext = new AddEntryViewModel();
+            DataContext = new AddEntryViewModel();            
         }
     }
 }

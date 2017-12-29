@@ -23,6 +23,8 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -49,7 +51,15 @@
         <ListBox ItemsSource="{Binding SelectedUnitsList}" SelectedItem="{Binding CurrentUnit2, Mode=TwoWay}" Grid.Column="3" Grid.Row="2" Grid.RowSpan="4" Cursor="Hand">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <CheckBox Content="{Binding Name}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Label Content="Excluding Units" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <ListBox ItemsSource="{Binding ExcludingUnitsList}" SelectedItem="{Binding ExcludingUnit, Mode=TwoWay}" Grid.Column="5" Grid.Row="2" Grid.RowSpan="4" Cursor="Hand">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
@@ -59,12 +69,18 @@
         <Button Content="Remove All" Command="{Binding RemoveAll, Mode=TwoWay}" Grid.Column="2" Grid.Row="4" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <Button Content="Remove" Command="{Binding Remove, Mode=TwoWay}" Grid.Column="2" Grid.Row="5" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
+        <Button Content="+" Command="{Binding AddToExcluding, Mode=TwoWay}" Grid.Column="4" Grid.Row="3" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Button Content="-" Command="{Binding RemoveFromExcluding, Mode=TwoWay}" Grid.Column="4" Grid.Row="4" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
         <Label Content="Minimum number of units" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Label Content="Maximum number of units" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBox Text="{Binding Min}" Grid.Column="3" Grid.Row="6" VerticalAlignment="Center" />
         <TextBox Text="{Binding Max}" Grid.Column="3" Grid.Row="7" VerticalAlignment="Center" />
 
-        <Button Content="Back" Command="{Binding Back, Mode=TwoWay}" Grid.Column="1" Grid.Row="8" Cursor="Hand" VerticalAlignment="Center"/>
-        <Button Content="Confirm" Command="{Binding Confirm, Mode=TwoWay}" Grid.Column="3" Grid.Row="8" Cursor="Hand" VerticalAlignment="Center"/>
+        <TextBlock Text="If you want any units to be exclude, click them and press '+'" Grid.Column="5" Grid.Row="6" Grid.RowSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"
+           TextAlignment="Left" />
+
+        <Button Content="Back" Command="{Binding Cancel, Mode=TwoWay}" Grid.Column="1" Grid.Row="8" Cursor="Hand" VerticalAlignment="Center"/>
+        <Button Content="Next" Command="{Binding Next, Mode=TwoWay}" Grid.Column="5" Grid.Row="8" Cursor="Hand" VerticalAlignment="Center"/>
     </Grid>    
 </UserControl>

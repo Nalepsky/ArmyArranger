@@ -7,7 +7,7 @@
         xmlns:viewmodelsEditYourArmies="clr-namespace:ArmyArranger.ViewModels.EditYourArmies"
         xmlns:viewsEditYourArmies="clr-namespace:ArmyArranger.Views.EditYourArmies"
         mc:Ignorable="d"
-        Title="AddEntry" Height="300" Width="300">
+        Title="AddEntry" Height="500" Width="600">
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewmodelsEditYourArmies:AddEntryViewModel}">
             <viewsEditYourArmies:AddEntryView DataContext="{Binding}"/>

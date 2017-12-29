@@ -15,7 +15,8 @@ namespace ArmyArranger.Models
         //i.e. 0-1;unitID,exclusionFlag;unitID,exclusionFlag|
 
         public Unit EmptyUnit = new Unit();
-        public ObservableCollection<Unit> SelectedunitsList = new ObservableCollection<Unit>();
+        public ObservableCollection<Unit> SelectedUnitsList = new ObservableCollection<Unit>();
+        public ObservableCollection<Unit> ExcludingUnitsList = new ObservableCollection<Unit>();
 
         public AddEntryModel()
         {
@@ -32,15 +33,47 @@ namespace ArmyArranger.Models
         public ObservableCollection<Unit> Add(Unit NewUnit)
         {
             if(NewUnit != null)
-                SelectedunitsList.Add(NewUnit);
-            return SelectedunitsList;
+                SelectedUnitsList.Add(NewUnit);
+            return SelectedUnitsList;
         }
 
         public ObservableCollection<Unit> AddAll(ObservableCollection<Unit> UnitsList)
         {
-            SelectedunitsList = UnitsList;
+            SelectedUnitsList = UnitsList;
                 
-            return SelectedunitsList;
+            return SelectedUnitsList;
+        }
+
+        public ObservableCollection<Unit> RemoveAll()
+        {
+            return SelectedUnitsList = null;
+        }
+
+        public ObservableCollection<Unit> Remove(Unit DeleteUnit)
+        {
+            SelectedUnitsList.Remove(SelectedUnitsList.Where(i => i.Name == DeleteUnit.Name).Single());
+            
+            return SelectedUnitsList;
+        }
+
+        public ObservableCollection<Unit> AddToExcluding(Unit NewUnit)
+        {
+            if (NewUnit != null)
+                ExcludingUnitsList.Add(NewUnit);
+            return ExcludingUnitsList;
+        }
+
+        public ObservableCollection<Unit> RemoveFromExcluding(Unit DeleteUnit)
+        {
+            
+
+            return ExcludingUnitsList.Remove(SelectedUnitsList.Where(i => i.Name == DeleteUnit.Name).Single());
+        }
+
+        public void Clear()
+        {
+            SelectedUnitsList.Clear();
+            ExcludingUnitsList.Clear();
         }
 
         #endregion
