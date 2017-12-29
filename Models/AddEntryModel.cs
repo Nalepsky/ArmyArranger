@@ -38,10 +38,8 @@ namespace ArmyArranger.Models
         }
 
         public ObservableCollection<Unit> AddAll(ObservableCollection<Unit> UnitsList)
-        {
-            SelectedUnitsList = UnitsList;
-                
-            return SelectedUnitsList;
+        {                   
+            return SelectedUnitsList = UnitsList;
         }
 
         public ObservableCollection<Unit> RemoveAll()
@@ -65,9 +63,9 @@ namespace ArmyArranger.Models
 
         public ObservableCollection<Unit> RemoveFromExcluding(Unit DeleteUnit)
         {
-            
+            ExcludingUnitsList.Remove(SelectedUnitsList.Where(i => i.Name == DeleteUnit.Name).Single());
 
-            return ExcludingUnitsList.Remove(SelectedUnitsList.Where(i => i.Name == DeleteUnit.Name).Single());
+            return ExcludingUnitsList;
         }
 
         public void Clear()
