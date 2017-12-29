@@ -16,6 +16,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
     {        
         #region Propeties
         AddEntryModel thisModel = new AddEntryModel();
+        
 
         private ObservableCollection<Unit> _unitsList;
         public ObservableCollection<Unit> UnitsList
@@ -42,10 +43,9 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         private Unit _currentUnit1;
         public Unit CurrentUnit1
         {
-            get { Console.WriteLine("dupaget"); return _currentUnit1; }
+            get { return _currentUnit1; }
             set
             {
-                Console.WriteLine("dupaset");
                 _currentUnit1 = value;
                 RaisePropertyChanged(nameof(CurrentUnit1));
             }
@@ -70,6 +70,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             OnLoad = new DelegateCommand(FunctionOnLoad);
             MouseClick = new DelegateCommand(FunctionOnClick);
             Add = new DelegateCommand(FunctionAdd);
+            AddAll = new DelegateCommand(FunctionAddAll);
 
         }
 
@@ -81,6 +82,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             thisModel.EmptyUnit.LoadAll();
             UnitsList = Unit.UnitsCollection;
+            SelectedUnitsList = thisModel.SelectedunitsList;
             Console.WriteLine("onload");
         }
 
@@ -91,8 +93,14 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void FunctionAdd()
         {
-            if(CurrentUnit1 != null)
-                SelectedUnitsList.Add(CurrentUnit1);
+            SelectedUnitsList = thisModel.Add(CurrentUnit1);
+            CurrentUnit1 = null;
+        }
+        
+        private void FunctionAddAll()
+        {
+            SelectedUnitsList = thisModel.AddAll(UnitsList);
+            CurrentUnit1 = null;
         }
 
         #endregion
