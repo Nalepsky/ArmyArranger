@@ -208,7 +208,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         public void OnMessageSend(string message)
         {
-            Console.WriteLine("hej"+message);
+            Console.WriteLine(message);
         }
 
         #endregion
