@@ -12,16 +12,16 @@ namespace ArmyArranger.Global
     {
         public static ObservableCollection<Selector> SelectorsCollection = new ObservableCollection<Selector>();
 
-        string Name;
-        string Date;
-        string Mandatory;
-        string Headquarters;
-        string Infantry;
-        string ArmouredCars;
-        string Artilery;
-        string Tanks;
-        string Transport;
-        string NationId;
+        public string Name { get; set; }
+        public string Date { get; set; }
+        public string Mandatory { get; set; }
+        public string Headquarters{ get; set; }
+        public string Infantry { get; set; }
+        public string ArmouredCars { get; set; }
+        public string Artilery { get; set; }
+        public string Tanks { get; set; }
+        public string Transport { get; set; }
+        public string NationId { get; set; }
         public List<int> ListOfActiveRules = new List<int>();
 
 

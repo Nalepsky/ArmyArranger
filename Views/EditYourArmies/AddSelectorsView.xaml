@@ -84,6 +84,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
+            <Button Content="Add new" Command="{Binding Back, Mode=TwoWay}" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Label Content="Selector Name" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <TextBox x:Name="SelectorName" Text="{Binding SelectorName, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="2" Cursor="Hand" VerticalAlignment="Center"/>
             <Label Content="Year" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>

@@ -41,8 +41,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
-        private ObservableCollection<GameRule> _mandatoryentries;
-        public ObservableCollection<GameRule> MandatoryEntries
+        private ObservableCollection<string> _mandatoryentries;
+        public ObservableCollection<string> MandatoryEntries
         {
             get { return _mandatoryentries; }
             set

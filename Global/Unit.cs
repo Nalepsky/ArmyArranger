@@ -46,6 +46,11 @@ namespace ArmyArranger.Global
             isEmpty = true;
         }
 
+        public Unit(int id)
+        {
+            LoadID(id);
+        }
+
         public Unit(int id, string name, int nationID, string type, string composition, int experience, string weaponDescription, int armourClass, int basePoints, List<int> listOfActiveRules, List<int> listOfActiveWeapons)
         {
             ID = id;
@@ -206,6 +211,24 @@ namespace ArmyArranger.Global
                 throw ex;
             }
             UnitsCollection.Remove(this);
+        }
+
+        public void LoadID(int id)
+        {
+            SQLiteDataReader result = Database.ExecuteCommand("SELECT * FROM Unit WHERE ID = " + id);
+
+            while (result.Read())
+            {
+                ID = id;
+                Name = result.GetString(1);
+                NationID = (!result.IsDBNull(2)) ? result.GetInt32(2) : 0;
+                Type = (!result.IsDBNull(3)) ? result.GetString(3) : "";
+                BasePoints = (!result.IsDBNull(4)) ? result.GetInt32(4) : 0;
+                Composition = (!result.IsDBNull(5)) ? result.GetString(5) : "";
+                WeaponDescription = (!result.IsDBNull(6)) ? result.GetString(6) : "";
+                Experience = (!result.IsDBNull(7)) ? result.GetInt32(7) : 0;
+                ArmourClass = (!result.IsDBNull(8)) ? result.GetInt32(8) : 0;
+            }            
         }
 
         public void LoadAll()
