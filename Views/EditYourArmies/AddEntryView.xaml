@@ -80,7 +80,7 @@
         <TextBlock Text="If you want any units to be exclude, click them and press '+'" Grid.Column="5" Grid.Row="6" Grid.RowSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"
            TextAlignment="Left" />
 
-        <Button Content="Back" Command="{Binding Cancel, Mode=TwoWay}" Grid.Column="1" Grid.Row="8" Cursor="Hand" VerticalAlignment="Center"/>
-        <Button Content="Next" Command="{Binding Next, Mode=TwoWay}" Grid.Column="5" Grid.Row="8" Cursor="Hand" VerticalAlignment="Center"/>
+        <Button Content="Cancel" Command="{Binding Cancel, Mode=TwoWay}" Grid.Column="1" Grid.Row="8" Cursor="Hand" VerticalAlignment="Center"/>
+        <Button Content="Confirm" Command="{Binding Next, Mode=TwoWay}" Grid.Column="5" Grid.Row="8" Cursor="Hand" VerticalAlignment="Center"/>
     </Grid>    
 </UserControl>

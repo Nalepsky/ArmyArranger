@@ -23,7 +23,7 @@ namespace ArmyArranger.Global
         }
 
 
-        int ID;
+        public int ID { get; set; }
         private string _name;
         public string Name
         {

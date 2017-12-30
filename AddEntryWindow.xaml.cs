@@ -25,10 +25,10 @@ namespace ArmyArranger
     /// </summary>
     public partial class AddEntryWindow : Window
     {       
-        public AddEntryWindow()
+        public AddEntryWindow(WindowsService service)
         {
             InitializeComponent();
-            DataContext = new AddEntryViewModel();            
+            DataContext = new AddEntryViewModel(service);             
         }
     }
 }

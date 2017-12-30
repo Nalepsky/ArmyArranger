@@ -11,12 +11,13 @@ using System.Windows;
 
 namespace ArmyArranger.ViewModels.EditYourArmies
 {
-    class AddSelectorsViewModel : BindableBase
+    class AddSelectorsViewModel : BindableBase, IShareString
     {
         #region Propeties
 
         AddSelectorsModel thisModel = new AddSelectorsModel();
-        AddRulesModel rulesModel = new AddRulesModel();       
+        AddRulesModel rulesModel = new AddRulesModel();
+        WindowsService service = new WindowsService();
 
         private ObservableCollection<Selector> _selectorsList;
         public ObservableCollection<Selector> SelectorsList
@@ -198,9 +199,16 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         }
 
         private void OpenEntryWindow()
+        {            
+            Window EntryWindow = new AddEntryWindow(service);
+            service.AddSubscriber(this);
+            EntryWindow.Show();
+            
+        }
+
+        public void OnMessageSend(string message)
         {
-            Window EntryWindow = new AddEntryWindow();
-            EntryWindow.Show();            
+            Console.WriteLine("hej"+message);
         }
 
         #endregion

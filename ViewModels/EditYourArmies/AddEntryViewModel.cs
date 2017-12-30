@@ -12,11 +12,11 @@ using System.Windows.Input;
 
 namespace ArmyArranger.ViewModels.EditYourArmies
 {
-    class AddEntryViewModel : BindableBase
+    class AddEntryViewModel : BindableBase, IShareString
     {        
         #region Propeties
         AddEntryModel thisModel = new AddEntryModel();
-        
+        public WindowsService WindowsService { get; set; }              
 
         private ObservableCollection<Unit> _unitsList;
         public ObservableCollection<Unit> UnitsList
@@ -124,8 +124,11 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         #region Constructors
 
-        public AddEntryViewModel()
+        public AddEntryViewModel(WindowsService service)
         {
+            WindowsService = service;
+            Max = 1;
+
             OnLoad = new DelegateCommand(FunctionOnLoad);
             MouseClick = new DelegateCommand(FunctionOnClick);
             Add = new DelegateCommand(FunctionAdd);
@@ -175,14 +178,16 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         }
 
         private void FunctionRemove()
-        {            
+        {
+            ExcludingUnitsList = thisModel.RemoveFromExcluding(CurrentUnit2);
             SelectedUnitsList = thisModel.Remove(CurrentUnit2);
+            
             CurrentUnit2 = null;
         }
 
         private void FunctionNext()
         {
-            throw new NotImplementedException();
+            WindowsService.SendMessageToSubscribers(thisModel.CreateString(Min, Max));
         }
 
         private void FunctionCancel()
@@ -198,6 +203,11 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         private void FunctionRemoveFromExcluding()
         {
             ExcludingUnitsList = thisModel.RemoveFromExcluding(ExcludingUnit);
+        }
+
+        public void OnMessageSend(string message)
+        {
+            Console.WriteLine(message);
         }
         
         #endregion

@@ -30,6 +30,25 @@ namespace ArmyArranger.Models
 
         #region Actions
 
+        public string CreateString(int min, int max)
+        {
+            //i.e. 0-1;unitID,exclusionFlag;unitID,exclusionFlag|
+
+            EntryString = min + "-" + max;
+
+            foreach(var unit in SelectedUnitsList)
+            {
+                EntryString += ";" + unit.ID + ",";
+                if (ExcludingUnitsList.Contains(SelectedUnitsList.Where(i => i.Name == unit.Name).Single()))
+                    EntryString += "true";
+                else
+                    EntryString += "false";
+
+            }
+            EntryString += "|";
+            return EntryString;
+        }
+
         public ObservableCollection<Unit> Add(Unit NewUnit)
         {
             if(NewUnit != null)
@@ -39,11 +58,12 @@ namespace ArmyArranger.Models
 
         public ObservableCollection<Unit> AddAll(ObservableCollection<Unit> UnitsList)
         {                   
-            return SelectedUnitsList = UnitsList;
+            return SelectedUnitsList = new ObservableCollection<Unit>(UnitsList);
         }
 
         public ObservableCollection<Unit> RemoveAll()
         {
+            ExcludingUnitsList.Clear();
             return SelectedUnitsList = null;
         }
 

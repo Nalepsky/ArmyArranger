@@ -90,11 +90,13 @@
     </Compile>
     <Compile Include="Global\Entry.cs" />
     <Compile Include="Global\GameRule.cs" />
+    <Compile Include="Global\IShareString.cs" />
     <Compile Include="Global\Nation.cs" />
     <Compile Include="Global\Option.cs" />
     <Compile Include="Global\Selector.cs" />
     <Compile Include="Global\Unit.cs" />
     <Compile Include="Global\Weapon.cs" />
+    <Compile Include="Global\WindowsService.cs" />
     <Compile Include="Models\AddEntryModel.cs" />
     <Compile Include="Models\AddNationsModel.cs" />
     <Compile Include="Models\AddSelectorsModel.cs" />
