@@ -192,7 +192,9 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void FunctionCancel()
         {
-            
+            UnitsList.Clear();
+            SelectedUnitsList.Clear();
+            ExcludingUnitsList.Clear();
         }
 
         private void FunctionAddToExcluding()

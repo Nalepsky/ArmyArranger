@@ -35,10 +35,15 @@ namespace ArmyArranger.Models
 
         #region Actions       
         
+        public void AddMandatoryEntry(String NewEntry)
+        {
+            EmptySelector.Mandatory += NewEntry;
+        }
+
         public ObservableCollection<Entry> GetMandatoryentries()
         {
+            MandatoryEntriesList.Clear();
             MandatoryString = EmptySelector.Mandatory;
-            MandatoryString = MandatoryString.Trim('\'');
             String[] MandatoryEntries = MandatoryString.Split('|');
             
 

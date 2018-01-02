@@ -211,7 +211,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         public void OnMessageSend(string message)
         {
-            Console.WriteLine(message);
+            thisModel.AddMandatoryEntry(message);
+            MandatoryEntries = thisModel.GetMandatoryentries();
         }
 
         private void FunctionOnClick()
