@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 
 namespace ArmyArranger.Global
 {
-    class GameRule : INotifyPropertyChanged
+    public class GameRule : INotifyPropertyChanged
     {
         public static ObservableCollection<GameRule> RulesCollection = new ObservableCollection<GameRule>();
         public event PropertyChangedEventHandler PropertyChanged;

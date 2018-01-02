@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace ArmyArranger.Global
 {
-    class Unit : INotifyPropertyChanged
+    public class Unit : INotifyPropertyChanged
     {
         public static ObservableCollection<Unit> UnitsCollection = new ObservableCollection<Unit>();
         public event PropertyChangedEventHandler PropertyChanged;

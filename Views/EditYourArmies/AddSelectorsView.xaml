@@ -102,7 +102,7 @@
             </ComboBox>
 
             <Label Content="Mandatory Units" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-            <ListBox ItemsSource="{Binding MandatoryEntries}" SelectedItem="{Binding SelectedEntry, Mode=TwoWay}" Grid.Column="1" Grid.Row="6">
+            <ListBox ItemsSource="{Binding MandatoryEntries}" SelectedItem="{Binding SelectedMandatoryEntry, Mode=TwoWay}" Grid.Column="1" Grid.Row="6">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}" />
@@ -110,6 +110,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
             <Button Content="Add next entry" Command="{Binding AddNextMandatory, Mode=TwoWay}" Grid.Column="2" Grid.Row="6" VerticalAlignment="Center"/>
+            <Button Content="Edit entry" Command="{Binding EditMandatory, Mode=TwoWay}" Grid.Column="3" Grid.Row="6" VerticalAlignment="Center"/>
 
             <Label Content="Headquaeters" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
             <ListBox Grid.Column="1" Grid.Row="9">

@@ -128,6 +128,27 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             WindowsService = service;
             Max = 1;
+            
+            OnLoad = new DelegateCommand(FunctionOnLoad);
+            MouseClick = new DelegateCommand(FunctionOnClick);
+            Add = new DelegateCommand(FunctionAdd);
+            AddAll = new DelegateCommand(FunctionAddAll);
+            Remove = new DelegateCommand(FunctionRemove);
+            RemoveAll = new DelegateCommand(FunctionRemoveAll);
+            Cancel = new DelegateCommand(FunctionCancel);
+            Next = new DelegateCommand(FunctionNext);
+            AddToExcluding = new DelegateCommand(FunctionAddToExcluding);
+            RemoveFromExcluding = new DelegateCommand(FunctionRemoveFromExcluding);
+        }
+
+        public AddEntryViewModel(WindowsService service, Entry E)
+        {
+            WindowsService = service;
+            Max = E.Max;
+            Min = E.Min;
+
+            thisModel.SelectedUnitsList = E.UnitList;
+            thisModel.ExcludingUnitsList = E.ExcludingUnitList;
 
             OnLoad = new DelegateCommand(FunctionOnLoad);
             MouseClick = new DelegateCommand(FunctionOnClick);
@@ -139,7 +160,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             Next = new DelegateCommand(FunctionNext);
             AddToExcluding = new DelegateCommand(FunctionAddToExcluding);
             RemoveFromExcluding = new DelegateCommand(FunctionRemoveFromExcluding);
-
         }
 
         #endregion

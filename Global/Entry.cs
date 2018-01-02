@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ArmyArranger.Global
-{    class Entry
+{   public class Entry
     {
         public int Min { get; set; }
         public int Max { get; set; }
@@ -14,6 +14,5 @@ namespace ArmyArranger.Global
 
         public ObservableCollection<Unit> UnitList = new ObservableCollection<Unit>();
         public ObservableCollection<Unit> ExcludingUnitList = new ObservableCollection<Unit>();
-
     }
 }

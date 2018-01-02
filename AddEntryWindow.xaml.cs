@@ -30,5 +30,11 @@ namespace ArmyArranger
             InitializeComponent();
             DataContext = new AddEntryViewModel(service);             
         }
+
+        public AddEntryWindow(WindowsService service, Entry E)
+        {
+            InitializeComponent();
+            DataContext = new AddEntryViewModel(service, E);
+        }
     }
 }

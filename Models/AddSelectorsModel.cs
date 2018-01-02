@@ -44,7 +44,6 @@ namespace ArmyArranger.Models
         {
             MandatoryEntriesList.Clear();
             MandatoryString = EmptySelector.Mandatory;
-            Console.WriteLine(MandatoryString);
             String[] MandatoryEntries = MandatoryString.Split('|');
             
 
@@ -84,11 +83,6 @@ namespace ArmyArranger.Models
                     }
                     MandatoryEntriesList.Add(E);
                 }                
-            }
-            Console.WriteLine();
-            foreach(var v in MandatoryEntriesList)
-            {
-                Console.WriteLine(v.Name);
             }
             return MandatoryEntriesList;
         }

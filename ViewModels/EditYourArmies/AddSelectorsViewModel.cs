@@ -96,14 +96,14 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
-        private Entry _selectedentry;
-        public Entry SelectedEntry
+        private Entry _selectedMandatoryentry;
+        public Entry SelectedMandatoryEntry
         {
-            get { return _selectedentry; }
+            get { return _selectedMandatoryentry; }
             set
             {
-                _selectedentry = value;
-                RaisePropertyChanged(nameof(SelectedEntry));
+                _selectedMandatoryentry = value;
+                RaisePropertyChanged(nameof(SelectedMandatoryEntry));
             }
         }
 
@@ -161,6 +161,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         public ICommand Back { get; set; }
         public ICommand Confirm { get; set; }
         public ICommand AddNextMandatory { get; set; }
+        public ICommand EditMandatory { get; set; }
         public ICommand MouseClick { get; set; }
 
         #endregion
@@ -174,6 +175,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             Back = new DelegateCommand(ChangeViewToEditYourArmies);
             Confirm = new DelegateCommand(ChangeViewToEditYourArmies);
             AddNextMandatory = new DelegateCommand(OpenEntryWindow);
+            EditMandatory = new DelegateCommand(OpenEditEntryWindow);
         }
 
         #endregion
@@ -205,7 +207,16 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {            
             Window EntryWindow = new AddEntryWindow(service);
             service.AddSubscriber(this);
-            EntryWindow.Show();
+            EntryWindow.Show();            
+        }
+        private void OpenEditEntryWindow()
+        {
+            if(SelectedMandatoryEntry != null)
+            {
+                Window EntryWindow = new AddEntryWindow(service, SelectedMandatoryEntry);
+                service.AddSubscriber(this);
+                EntryWindow.Show();
+            }
             
         }
 
