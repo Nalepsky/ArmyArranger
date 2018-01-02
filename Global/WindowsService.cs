@@ -20,7 +20,7 @@ namespace ArmyArranger.Global
 
         public void AddSubscriber(IShareString wind)
         {
-            if (wind != null)
+            if (wind != null && subscribers.Contains(wind) == false)
             {
                 subscribers.Add(wind);
             }

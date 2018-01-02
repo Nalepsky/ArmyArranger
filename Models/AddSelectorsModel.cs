@@ -44,6 +44,7 @@ namespace ArmyArranger.Models
         {
             MandatoryEntriesList.Clear();
             MandatoryString = EmptySelector.Mandatory;
+            Console.WriteLine(MandatoryString);
             String[] MandatoryEntries = MandatoryString.Split('|');
             
 
@@ -69,7 +70,11 @@ namespace ArmyArranger.Models
                         {
                             String[] UnitFlag = El.Split(',');
                             if (nameFlag == true)
+                            {
                                 E.Name = UnitFlag[0] + "...";
+                                nameFlag = false;
+                            }
+                                
                             Unit newUnit = new Unit(Int32.Parse(UnitFlag[0]));
                             E.UnitList.Add(newUnit);
 
@@ -80,7 +85,11 @@ namespace ArmyArranger.Models
                     MandatoryEntriesList.Add(E);
                 }                
             }
-            
+            Console.WriteLine();
+            foreach(var v in MandatoryEntriesList)
+            {
+                Console.WriteLine(v.Name);
+            }
             return MandatoryEntriesList;
         }
 

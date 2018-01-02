@@ -211,6 +211,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         public void OnMessageSend(string message)
         {
+            Console.WriteLine("wiadomosc"+message);
             thisModel.AddMandatoryEntry(message);
             MandatoryEntries = thisModel.GetMandatoryentries();
         }
