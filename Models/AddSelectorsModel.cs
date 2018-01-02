@@ -15,6 +15,7 @@ namespace ArmyArranger.Models
         public Selector EmptySelector = new Selector();
         public GameRule EmptyRule = new GameRule();
         public Nation EmptyNation = new Nation();
+        public Selector LastChosenSelector;
         public ObservableCollection<Entry> MandatoryEntriesList = new ObservableCollection<Entry>();
 
         private string MandatoryString;
@@ -26,6 +27,8 @@ namespace ArmyArranger.Models
         public AddSelectorsModel()
         {
             MandatoryString = EmptySelector.Mandatory;
+            Console.WriteLine(MandatoryString);
+            LastChosenSelector = null;
         }
 
         #endregion
@@ -34,43 +37,57 @@ namespace ArmyArranger.Models
         
         public ObservableCollection<Entry> GetMandatoryentries()
         {
+            MandatoryString = EmptySelector.Mandatory;
+            MandatoryString = MandatoryString.Trim('\'');
             String[] MandatoryEntries = MandatoryString.Split('|');
             
 
             foreach(var Entry in MandatoryEntries)
             {
-                String[] Elements = Entry.Split(';');
-                Entry E = new Entry();
-                bool flag = true;
-                bool nameFlag = true;
-
-                foreach (var El in Elements)
+                if(Entry != "")
                 {
-                    if(flag == true)
-                    {
-                        flag = false;
-                        String[] MinMax = El.Split('-');
-                        E.Min = Int32.Parse(MinMax[0]);
-                        E.Max = Int32.Parse(MinMax[1]);
-                    }
-                    else
-                    {
-                        String[] UnitFlag = El.Split(',');
-                        if (nameFlag == true)
-                            E.Name = UnitFlag[0] + "...";
-                        Unit newUnit = new Unit(Int32.Parse(UnitFlag[0]));
-                        E.UnitList.Add(newUnit);
+                    String[] Elements = Entry.Split(';');
+                    Entry E = new Entry();
+                    bool flag = true;
+                    bool nameFlag = true;
 
-                        if (UnitFlag[1] == "true")
-                            E.ExcludingUnitList.Add(newUnit);
-                    }                   
-                }
-                
-                MandatoryEntriesList.Add(E);
+                    foreach (var El in Elements)
+                    {
+                        if (flag == true)
+                        {
+                            flag = false;
+                            String[] MinMax = El.Split('-');
+                            E.Min = Int32.Parse(MinMax[0]);
+                            E.Max = Int32.Parse(MinMax[1]);
+                        }
+                        else
+                        {
+                            String[] UnitFlag = El.Split(',');
+                            if (nameFlag == true)
+                                E.Name = UnitFlag[0] + "...";
+                            Unit newUnit = new Unit(Int32.Parse(UnitFlag[0]));
+                            E.UnitList.Add(newUnit);
+
+                            if (UnitFlag[1] == "true")
+                                E.ExcludingUnitList.Add(newUnit);
+                        }
+                    }
+                    MandatoryEntriesList.Add(E);
+                }                
             }
             
             return MandatoryEntriesList;
-        }        
+        }
+
+        public bool ChosenEqualsSelected(Selector SelectedSelector)
+        {
+            if (LastChosenSelector != SelectedSelector)
+            {
+                LastChosenSelector = SelectedSelector;
+                return true;
+            }
+            return false;
+        }
 
         #endregion
     }

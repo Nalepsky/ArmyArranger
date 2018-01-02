@@ -41,8 +41,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
-        private ObservableCollection<string> _mandatoryentries;
-        public ObservableCollection<string> MandatoryEntries
+        private ObservableCollection<Entry> _mandatoryentries;
+        public ObservableCollection<Entry> MandatoryEntries
         {
             get { return _mandatoryentries; }
             set
@@ -74,8 +74,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
-        private GameRule _selectedselector;
-        public GameRule SelectedSelector
+        private Selector _selectedselector;
+        public Selector SelectedSelector
         {
             get { return _selectedselector; }
             set
@@ -161,6 +161,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         public ICommand Back { get; set; }
         public ICommand Confirm { get; set; }
         public ICommand AddNextMandatory { get; set; }
+        public ICommand MouseClick { get; set; }
 
         #endregion
 
@@ -169,6 +170,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         public AddSelectorsViewModel()
         {
             OnLoad = new DelegateCommand(FunctionOnLoad);
+            MouseClick = new DelegateCommand(FunctionOnClick);
             Back = new DelegateCommand(ChangeViewToEditYourArmies);
             Confirm = new DelegateCommand(ChangeViewToEditYourArmies);
             AddNextMandatory = new DelegateCommand(OpenEntryWindow);
@@ -194,6 +196,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             thisModel.EmptyNation.ClearNationsCollecion();
             thisModel.EmptyRule.ClearRulesCollection();
+            thisModel.EmptySelector.ClearSelectorsCollection();
             
             App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
         }
@@ -209,6 +212,19 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         public void OnMessageSend(string message)
         {
             Console.WriteLine(message);
+        }
+
+        private void FunctionOnClick()
+        {
+            if (thisModel.ChosenEqualsSelected(SelectedSelector) && SelectedSelector != null)
+            {
+                thisModel.EmptySelector = SelectedSelector;
+                SelectorName = SelectedSelector.Name;
+                Year = SelectedSelector.Date;
+                //add nation later
+                MandatoryEntries = thisModel.GetMandatoryentries();
+            }
+            
         }
 
         #endregion

@@ -31,18 +31,24 @@ namespace ArmyArranger.Global
 
         public Selector(string name, string date, string mandatory, string headquarters, string infantry, string armouredCars, string artilery, string tanks, string transport, string nationId, List<int> listOfActiveRules)
         {
-            Name = (name != null) ? "'" + name + "'" : "null";
-            Date = (date != null) ? "'" + date + "'" : "null";
-            Mandatory = (mandatory != null) ? "'" + mandatory + "'" : "null";
-            Headquarters = (headquarters != null) ? "'" + headquarters + "'" : "null";
-            Infantry = (infantry != null) ? "'" + infantry + "'" : "null";
-            ArmouredCars = (armouredCars != null) ? "'" + armouredCars + "'" : "null";
-            Artilery = (artilery != null) ? "'" + artilery + "'" : "null";
-            Tanks = (tanks != null) ? "'" + tanks + "'" : "null";
-            Transport = (transport != null) ? "'" + transport + "'" : "null";
-            NationId = (nationId != null) ? "'" + nationId + "'" : "null";
+            Name = (name != null) ? name : "null";
+            Date = (date != null) ? date : "null";
+            Mandatory = (mandatory != null) ? mandatory : "null";
+            Headquarters = (headquarters != null) ? headquarters : "null";
+            Infantry = (infantry != null) ? infantry : "null";
+            ArmouredCars = (armouredCars != null) ? armouredCars : "null";
+            Artilery = (artilery != null) ? artilery : "null";
+            Tanks = (tanks != null) ? tanks : "null";
+            Transport = (transport != null) ? transport : "null";
+            NationId = (nationId != null) ? nationId : "null";
             ListOfActiveRules = listOfActiveRules;
+            SelectorsCollection.Add(this);
             Console.WriteLine(ListOfActiveRules.Count);
+        }
+
+        public void ClearSelectorsCollection()
+        {
+            SelectorsCollection.Clear();
         }
 
         public void LoadAll()
@@ -57,8 +63,8 @@ namespace ArmyArranger.Global
              ArmouredCars,
              Artilery,
              Tanks,
-             Transport,
-             NationID;
+             Transport;
+            int NationID;
 
             List<int> newListOfActiveRules;
 
@@ -74,7 +80,7 @@ namespace ArmyArranger.Global
                 Artilery = (!result.IsDBNull(7)) ? result.GetString(7) : "";
                 Tanks = (!result.IsDBNull(8)) ? result.GetString(8) : "";
                 Transport = (!result.IsDBNull(9)) ? result.GetString(9) : "";
-                NationID = (!result.IsDBNull(10)) ? result.GetString(10) : "";
+                NationID = (!result.IsDBNull(10)) ? result.GetInt32(10) : -1;
 
                 newListOfActiveRules = new List<int>();
                 SQLiteDataReader ruleResult = Database.ExecuteCommand("SELECT RuleID FROM Rule_Selector WHERE SelectorID = " + ID);
