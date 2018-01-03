@@ -51,7 +51,7 @@ namespace ArmyArranger.Models
 
         public ObservableCollection<Unit> Add(Unit NewUnit)
         {
-            if(NewUnit != null)
+            if(NewUnit != null && !SelectedUnitsList.Contains(NewUnit))
                 SelectedUnitsList.Add(NewUnit);
             return SelectedUnitsList;
         }
