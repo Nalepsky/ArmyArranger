@@ -35,6 +35,6 @@ namespace ArmyArranger
         {
             InitializeComponent();
             DataContext = new AddEntryViewModel(service, E);
-        }
+        }        
     }
 }

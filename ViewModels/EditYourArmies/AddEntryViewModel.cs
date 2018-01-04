@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ArmyArranger.ViewModels.EditYourArmies
@@ -119,7 +120,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         public ICommand Next { get; set; }
         public ICommand AddToExcluding { get; set; }
         public ICommand RemoveFromExcluding { get; set; }
-
+                
         #endregion
 
         #region Constructors
@@ -208,6 +209,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         private void FunctionNext()
         {
             WindowsService.SendMessageToSubscribers(thisModel.CreateString(Min, Max));
+            FunctionCancel();
         }
 
         private void FunctionCancel()

@@ -113,58 +113,76 @@
             <Button Content="Edit entry" Command="{Binding EditMandatory, Mode=TwoWay}" Grid.Column="3" Grid.Row="6" VerticalAlignment="Center"/>
 
             <Label Content="Headquaeters" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-            <ListBox Grid.Column="1" Grid.Row="9">
-                <ListBoxItem>Unit1</ListBoxItem>
-                <ListBoxItem>Unit2</ListBoxItem>
-                <ListBoxItem>Unit3</ListBoxItem>
+            <ListBox ItemsSource="{Binding HeadquaetersEntries}" SelectedItem="{Binding SelectedHeadquaetersEntry, Mode=TwoWay}" Grid.Column="1" Grid.Row="9">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
-            <TextBox x:Name="NumberOfHeadquaetersUnits" Grid.Column="2" Grid.Row="9" VerticalAlignment="Center"/>
-            <Button Content="Add next units" Grid.Column="1" Grid.Row="10" Cursor="Hand" VerticalAlignment="Center"/>
+            <Button Content="Add next entry" Command="{Binding AddNextHeadquaeters, Mode=TwoWay}" Grid.Column="2" Grid.Row="9" VerticalAlignment="Center"/>
+            <Button Content="Edit entry" Command="{Binding EditHeadquaeters, Mode=TwoWay}" Grid.Column="3" Grid.Row="9" VerticalAlignment="Center"/>
 
-            <Label Content="Infntry" Grid.Column="1" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-            <ListBox Grid.Column="1" Grid.Row="12">
-                <ListBoxItem>Unit1</ListBoxItem>
-                <ListBoxItem>Unit2</ListBoxItem>
-                <ListBoxItem>Unit3</ListBoxItem>
+
+            <Label Content="Infantry" Grid.Column="1" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+            <ListBox ItemsSource="{Binding InfantryEntries}" SelectedItem="{Binding SelectedInfantryEntry, Mode=TwoWay}" Grid.Column="1" Grid.Row="12">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
-            <TextBox x:Name="NumberOfInfntryUnits" Grid.Column="2" Grid.Row="13" VerticalAlignment="Center"/>
-            <Button Content="Add next units" Grid.Column="1" Grid.Row="14" Cursor="Hand" VerticalAlignment="Center"/>
+            <Button Content="Add next entry" Command="{Binding AddNextInfantry, Mode=TwoWay}" Grid.Column="2" Grid.Row="12" VerticalAlignment="Center"/>
+            <Button Content="Edit entry" Command="{Binding EditInfantry, Mode=TwoWay}" Grid.Column="3" Grid.Row="12" VerticalAlignment="Center"/>
+
 
             <Label Content="Artillery" Grid.Column="1" Grid.Row="15" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-            <ListBox Grid.Column="1" Grid.Row="16">
-                <ListBoxItem>Unit1</ListBoxItem>
-                <ListBoxItem>Unit2</ListBoxItem>
-                <ListBoxItem>Unit3</ListBoxItem>
+            <ListBox ItemsSource="{Binding ArtilleryEntries}" SelectedItem="{Binding SelectedArtilleryEntry, Mode=TwoWay}" Grid.Column="1" Grid.Row="16">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
-            <TextBox x:Name="NumberOfArtilleryUnits" Grid.Column="2" Grid.Row="17" VerticalAlignment="Center"/>
-            <Button Content="Add next units" Grid.Column="1" Grid.Row="18" Cursor="Hand" VerticalAlignment="Center"/>
+            <Button Content="Add next entry" Command="{Binding AddNextArtillery, Mode=TwoWay}" Grid.Column="2" Grid.Row="16" VerticalAlignment="Center"/>
+            <Button Content="Edit entry" Command="{Binding EditArtillery, Mode=TwoWay}" Grid.Column="3" Grid.Row="16" VerticalAlignment="Center"/>
+
 
             <Label Content="ArmouredCars" Grid.Column="1" Grid.Row="19" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-            <ListBox Grid.Column="1" Grid.Row="20">
-                <ListBoxItem>Unit1</ListBoxItem>
-                <ListBoxItem>Unit2</ListBoxItem>
-                <ListBoxItem>Unit3</ListBoxItem>
+            <ListBox ItemsSource="{Binding ArmouredCarsEntries}" SelectedItem="{Binding SelectedArmouredCarsEntry, Mode=TwoWay}" Grid.Column="1" Grid.Row="20">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
-            <TextBox x:Name="NumberOfArmouredCarsUnits" Grid.Column="2" Grid.Row="21" VerticalAlignment="Center"/>
-            <Button Content="Add next units" Grid.Column="1" Grid.Row="22" Cursor="Hand" VerticalAlignment="Center"/>
+            <Button Content="Add next entry" Command="{Binding AddNextArmouredCars, Mode=TwoWay}" Grid.Column="2" Grid.Row="20" VerticalAlignment="Center"/>
+            <Button Content="Edit entry" Command="{Binding EditArmouredCars, Mode=TwoWay}" Grid.Column="3" Grid.Row="20" VerticalAlignment="Center"/>
+
 
             <Label Content="Tanks, Tank destroyers, Asault guns, Self-propelled artillery and Anti-aircraft vehicles" Grid.Column="1" Grid.Row="23" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-            <ListBox Grid.Column="1" Grid.Row="24">
-                <ListBoxItem>Unit1</ListBoxItem>
-                <ListBoxItem>Unit2</ListBoxItem>
-                <ListBoxItem>Unit3</ListBoxItem>
+            <ListBox ItemsSource="{Binding TanksEntries}" SelectedItem="{Binding SelectedTanksEntry, Mode=TwoWay}" Grid.Column="1" Grid.Row="24">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
-            <TextBox x:Name="NumberOfVehicleUnits" Grid.Column="2" Grid.Row="25" VerticalAlignment="Center"/>
-            <Button Content="Add next units" Grid.Column="1" Grid.Row="26" Cursor="Hand" VerticalAlignment="Center"/>
+            <Button Content="Add next entry" Command="{Binding AddNextTanks, Mode=TwoWay}" Grid.Column="2" Grid.Row="24" VerticalAlignment="Center"/>
+            <Button Content="Edit entry" Command="{Binding EditTanks, Mode=TwoWay}" Grid.Column="3" Grid.Row="24" VerticalAlignment="Center"/>
+
 
             <Label Content="Transports and Tows" Grid.Column="1" Grid.Row="27" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-            <ListBox Grid.Column="1" Grid.Row="28">
-                <ListBoxItem>Unit1</ListBoxItem>
-                <ListBoxItem>Unit2</ListBoxItem>
-                <ListBoxItem>Unit3</ListBoxItem>
+            <ListBox ItemsSource="{Binding TransportsEntries}" SelectedItem="{Binding SelectedTransportsEntry, Mode=TwoWay}" Grid.Column="1" Grid.Row="28">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
-            <TextBox x:Name="NumberOfTransportsUnits" Grid.Column="2" Grid.Row="29" VerticalAlignment="Center"/>
-            <Button Content="Add next units" Grid.Column="1" Grid.Row="30" Cursor="Hand" VerticalAlignment="Center"/>
+            <Button Content="Add next entry" Command="{Binding AddNextTransports, Mode=TwoWay}" Grid.Column="2" Grid.Row="28" VerticalAlignment="Center"/>
+            <Button Content="Edit entry" Command="{Binding EditTransports, Mode=TwoWay}" Grid.Column="3" Grid.Row="28" VerticalAlignment="Center"/>
+
 
             <Button Content="Back" Command="{Binding Back, Mode=TwoWay}" Grid.Column="1" Grid.Row="99" Cursor="Hand" VerticalAlignment="Center"/>
             <Button Content="Confirm" Command="{Binding Confirm, Mode=TwoWay}" Grid.Column="4" Grid.Row="99" Cursor="Hand" VerticalAlignment="Center"/>

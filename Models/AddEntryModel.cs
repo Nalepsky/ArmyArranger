@@ -76,7 +76,7 @@ namespace ArmyArranger.Models
 
         public ObservableCollection<Unit> AddToExcluding(Unit NewUnit)
         {
-            if (NewUnit != null)
+            if (NewUnit != null && !ExcludingUnitsList.Contains(NewUnit))
                 ExcludingUnitsList.Add(NewUnit);
             return ExcludingUnitsList;
         }

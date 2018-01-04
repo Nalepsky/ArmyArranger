@@ -18,7 +18,7 @@ namespace ArmyArranger.Global
         public string Headquarters{ get; set; }
         public string Infantry { get; set; }
         public string ArmouredCars { get; set; }
-        public string Artilery { get; set; }
+        public string Artillery { get; set; }
         public string Tanks { get; set; }
         public string Transport { get; set; }
         public string NationId { get; set; }
@@ -27,6 +27,16 @@ namespace ArmyArranger.Global
 
         public Selector()
         {
+            Name = "";
+            Date = "";
+            Mandatory = "";
+            Headquarters = "";
+            Infantry = "";
+            ArmouredCars = "";
+            Artillery = "";
+            Tanks = "";
+            Transport = "";
+            NationId = "";
         }
 
         public Selector(string name, string date, string mandatory, string headquarters, string infantry, string armouredCars, string artilery, string tanks, string transport, string nationId, List<int> listOfActiveRules)
@@ -37,7 +47,7 @@ namespace ArmyArranger.Global
             Headquarters = (headquarters != null) ? headquarters : "null";
             Infantry = (infantry != null) ? infantry : "null";
             ArmouredCars = (armouredCars != null) ? armouredCars : "null";
-            Artilery = (artilery != null) ? artilery : "null";
+            Artillery = (artilery != null) ? artilery : "null";
             Tanks = (tanks != null) ? tanks : "null";
             Transport = (transport != null) ? transport : "null";
             NationId = (nationId != null) ? nationId : "null";
