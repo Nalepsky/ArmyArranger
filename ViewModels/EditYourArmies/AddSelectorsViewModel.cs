@@ -317,7 +317,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             OnLoad = new DelegateCommand(FunctionOnLoad);
             MouseClick = new DelegateCommand(FunctionOnClick);
             Back = new DelegateCommand(ChangeViewToEditYourArmies);
-            Confirm = new DelegateCommand(ChangeViewToEditYourArmies);
+            Confirm = new DelegateCommand(Save);
 
             AddNextMandatory = new DelegateCommand(OpenMandatoryWindow);
             EditMandatory = new DelegateCommand(OpenEditMandatoryWindow);
@@ -362,8 +362,11 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             thisModel.EmptyNation.ClearNationsCollecion();
             thisModel.EmptyRule.ClearRulesCollection();
             thisModel.EmptySelector.ClearSelectorsCollection();
-            
-            App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
+        }
+
+        private void Save()
+        {
+            thisModel.AddSelector(SelectorName, Year, thisModel.MandatoryString, thisModel.HeadquartersString, thisModel.InfantryString, thisModel.ArmouredCarsString, thisModel.ArtilleryString, thisModel.TanksString, thisModel.TransportsString, SelectedNation.ID);
         }
 
         private void OpenMandatoryWindow()
@@ -504,7 +507,9 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 thisModel.EmptySelector = SelectedSelector;
                 SelectorName = SelectedSelector.Name;
                 Year = SelectedSelector.Date;
-                //add nation
+                Console.WriteLine("id" + SelectedSelector.NationId);                
+                SelectedNation = thisModel.getNation(SelectedSelector.NationId, NationsList);
+
                 MandatoryEntries = thisModel.GetMandatoryentries();
                 HeadquaetersEntries = thisModel.GetHeadquartersentries();
                 InfantryEntries = thisModel.GetInfantryentries();

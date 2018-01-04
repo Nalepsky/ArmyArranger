@@ -21,25 +21,25 @@ namespace ArmyArranger.Global
         public string Artillery { get; set; }
         public string Tanks { get; set; }
         public string Transport { get; set; }
-        public string NationId { get; set; }
+        public int NationId { get; set; }
         public List<int> ListOfActiveRules = new List<int>();
 
 
         public Selector()
         {
-            Name = "";
-            Date = "";
-            Mandatory = "";
-            Headquarters = "";
-            Infantry = "";
-            ArmouredCars = "";
-            Artillery = "";
-            Tanks = "";
-            Transport = "";
-            NationId = "";
+            //Name = "";
+            //Date = "";
+            //Mandatory = "";
+            //Headquarters = "";
+            //Infantry = "";
+            //ArmouredCars = "";
+            //Artillery = "";
+            //Tanks = "";
+            //Transport = "";
+            //NationId = 0;
         }
 
-        public Selector(string name, string date, string mandatory, string headquarters, string infantry, string armouredCars, string artilery, string tanks, string transport, string nationId, List<int> listOfActiveRules)
+        public Selector(string name, string date, string mandatory, string headquarters, string infantry, string armouredCars, string artilery, string tanks, string transport, int nationId, List<int> listOfActiveRules)
         {
             Name = (name != null) ? name : "null";
             Date = (date != null) ? date : "null";
@@ -50,10 +50,37 @@ namespace ArmyArranger.Global
             Artillery = (artilery != null) ? artilery : "null";
             Tanks = (tanks != null) ? tanks : "null";
             Transport = (transport != null) ? transport : "null";
-            NationId = (nationId != null) ? nationId : "null";
+            NationId = nationId;
             ListOfActiveRules = listOfActiveRules;
             SelectorsCollection.Add(this);
             Console.WriteLine(ListOfActiveRules.Count);
+        }
+
+        public void CreateNewAndSaveToDB(string name, string date, string mandatory, string headquarters, string infantry, string armouredCars, string artillery, string tanks, string transport, int nationID)
+        {
+            //temp
+            List<int> newListOfActiveRules = new List<int>();
+
+            string sql_name = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + name + "'";
+            string sql_date = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + date + "'";
+            string sql_mandatory = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + mandatory + "'";
+            string sql_headquarters = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + headquarters + "'";
+            string sql_infantry = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + infantry + "'";
+            string sql_armouredCars = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + armouredCars + "'";
+            string sql_artillery = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + artillery + "'";
+            string sql_tanks = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + tanks + "'";
+            string sql_transport = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + transport + "'";
+
+            try
+            {
+                Database.ExecuteCommand("INSERT INTO Selector (Name, Date, Mandatory, Headquarters, Infantry, ArmouredCars, Artilery, Tanks, Transport, NationID) VALUES ("
+                    + sql_name + "," + sql_date + "," + sql_mandatory + "," + sql_headquarters + "," + sql_infantry + "," + sql_armouredCars + "," + sql_artillery + "," + sql_tanks + "," + sql_transport + "," + nationID + ")");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            new Selector(name, date, mandatory, headquarters, infantry, armouredCars, artillery, tanks, transport, nationID, newListOfActiveRules);
         }
 
         public void ClearSelectorsCollection()
@@ -99,7 +126,7 @@ namespace ArmyArranger.Global
                     newListOfActiveRules.Add(ruleResult.GetInt32(0));
                 }
 
-                new Selector(Name, Date, Mandatory, Headquarters, Infantry, ArmouredCars, Artilery, Tanks, Transport, NationId, newListOfActiveRules);
+                new Selector(Name, Date, Mandatory, Headquarters, Infantry, ArmouredCars, Artilery, Tanks, Transport, NationID, newListOfActiveRules);
             }
             result.Close();
         }

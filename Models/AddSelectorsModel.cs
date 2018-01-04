@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ArmyArranger.Models
 {
@@ -23,14 +24,14 @@ namespace ArmyArranger.Models
         public ObservableCollection<Entry> ArmouredCarsEntriesList = new ObservableCollection<Entry>();
         public ObservableCollection<Entry> TanksEntriesList = new ObservableCollection<Entry>();
         public ObservableCollection<Entry> TransportsEntriesList = new ObservableCollection<Entry>();
-        
-        private string MandatoryString;
-        private string HeadquartersString;
-        private string InfantryString;
-        private string ArtilleryString;
-        private string ArmouredCarsString;
-        private string TanksString;
-        private string TransportsString;
+
+        public string MandatoryString;
+        public string HeadquartersString;
+        public string InfantryString;
+        public string ArtilleryString;
+        public string ArmouredCarsString;
+        public string TanksString;
+        public string TransportsString;
 
         public string EditedEntry;
 
@@ -56,6 +57,28 @@ namespace ArmyArranger.Models
 
         #region Actions       
         
+        public Nation getNation(int NationId, ObservableCollection<Nation> NationsList)
+        {
+            foreach(var nation in NationsList)
+                if (nation.ID == NationId)
+                    return nation;
+            return null;
+        }
+
+        public void AddSelector(string name, string date, string mandatory, string headquarters, string infantry, string armouredCars, string artillery, string tanks, string transport, int nationID)
+        {
+            try
+            {
+                EmptySelector.CreateNewAndSaveToDB(name, date, mandatory, headquarters, infantry, armouredCars, artillery, tanks, transport, nationID);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            MessageBox.Show("Successfully added");
+        }
+
         public void AddEntry(String NewEntry)
         {
             if (EditedEntry == "mandatory")
@@ -77,7 +100,7 @@ namespace ArmyArranger.Models
             MandatoryEntriesList.Clear();
             MandatoryString = EmptySelector.Mandatory;
 
-            if (MandatoryString != "")
+            if (MandatoryString != "" && MandatoryString != null)
             {
                 String[] MandatoryEntries = MandatoryString.Split('|');
 
@@ -127,7 +150,7 @@ namespace ArmyArranger.Models
             HeadquartersEntriesList.Clear();
             HeadquartersString = EmptySelector.Headquarters;
 
-            if (HeadquartersString != "")
+            if (HeadquartersString != "" && HeadquartersString != null)
             {
                 String[] HeadquartersEntries = HeadquartersString.Split('|');
 
@@ -178,7 +201,7 @@ namespace ArmyArranger.Models
             InfantryEntriesList.Clear();
             InfantryString = EmptySelector.Infantry;
 
-            if (InfantryString != "")
+            if (InfantryString != "" && InfantryString != null)
             {
                 String[] InfantryEntries = InfantryString.Split('|');
 
@@ -228,7 +251,7 @@ namespace ArmyArranger.Models
             ArtilleryEntriesList.Clear();
             ArtilleryString = EmptySelector.Artillery;
 
-            if (ArtilleryString != "")
+            if (ArtilleryString != "" && ArtilleryString != null)
             {
                 String[] ArtilleryEntries = ArtilleryString.Split('|');
 
@@ -278,7 +301,7 @@ namespace ArmyArranger.Models
             ArmouredCarsEntriesList.Clear();
             ArmouredCarsString = EmptySelector.ArmouredCars;
 
-            if (ArmouredCarsString != "")
+            if (ArmouredCarsString != "" && ArmouredCarsString != null)
             {
                 String[] ArmouredCarsEntries = ArmouredCarsString.Split('|');
 
@@ -328,7 +351,7 @@ namespace ArmyArranger.Models
             TanksEntriesList.Clear();
             TanksString = EmptySelector.Tanks;
 
-            if (TanksString != "")
+            if (TanksString != "" && TanksString != null)
             {
                 String[] TanksEntries = TanksString.Split('|');
 
@@ -378,7 +401,7 @@ namespace ArmyArranger.Models
             TransportsEntriesList.Clear();
             TransportsString = EmptySelector.Transport;
 
-            if (TransportsString != "")
+            if (TransportsString != "" && TransportsString != null)
             {
                 String[] TransportsEntries = TransportsString.Split('|');
 
