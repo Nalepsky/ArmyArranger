@@ -362,6 +362,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             thisModel.EmptyNation.ClearNationsCollecion();
             thisModel.EmptyRule.ClearRulesCollection();
             thisModel.EmptySelector.ClearSelectorsCollection();
+
+            App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
         }
 
         private void Save()
