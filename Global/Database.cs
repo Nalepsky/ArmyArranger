@@ -60,13 +60,13 @@ namespace ArmyArranger.Global
                     "ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE," +
                     "Name VARCHAR(50) NOT NULL," +
                     "Date DATE NOT NULL," +
-                    "Mandatory VARCHAR(255) NULL," +
-                    "Headquarters VARCHAR(255) NULL," +
-                    "Infantry VARCHAR(255) NULL," +
-                    "ArmouredCars VARCHAR(255) NULL," +
-                    "Artilery VARCHAR(255) NULL," +
-                    "Tanks VARCHAR(255) NULL," +
-                    "Transport VARCHAR(255) NULL," +
+                    "Mandatory VARCHAR(500) NULL," +
+                    "Headquarters VARCHAR(500) NULL," +
+                    "Infantry VARCHAR(500) NULL," +
+                    "ArmouredCars VARCHAR(500) NULL," +
+                    "Artilery VARCHAR(500) NULL," +
+                    "Tanks VARCHAR(500) NULL," +
+                    "Transport VARCHAR(500) NULL," +
                     "NationID INTEGER NOT NULL," +
                     "FOREIGN KEY(NationID) REFERENCES Nation(ID)" +
                     ")", sqlconnect);
@@ -76,7 +76,7 @@ namespace ArmyArranger.Global
                     "CREATE TABLE IF NOT EXISTS Rule(" +
                     "ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE," +
                     "Name VARCHAR(50) NOT NULL," +
-                    "Description VARCHAR(255) NOT NULL," +
+                    "Description VARCHAR(500) NOT NULL," +
                     "Type VARCHAR(50) NOT NULL," +
                     "Source VARCHAR(50) NULL" +
                     ")", sqlconnect);
