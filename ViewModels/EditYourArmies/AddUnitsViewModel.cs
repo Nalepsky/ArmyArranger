@@ -226,7 +226,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             if (SelectedUnit != null)
             {
-                Window OptionsWindow = new AddUnitOptionWindow();
+                Window OptionsWindow = new AddUnitOptionWindow(SelectedUnit.ID);
                 OptionsWindow.Show();
             }
         }

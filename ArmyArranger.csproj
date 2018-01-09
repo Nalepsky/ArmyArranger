@@ -95,6 +95,7 @@
     <Compile Include="Global\Option.cs" />
     <Compile Include="Global\Selector.cs" />
     <Compile Include="Global\Unit.cs" />
+    <Compile Include="Global\UnitOption.cs" />
     <Compile Include="Global\Weapon.cs" />
     <Compile Include="Global\WindowsService.cs" />
     <Compile Include="Models\AddEntryModel.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="ViewModels\EditYourArmies\AddEntryViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddOptionsViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddUnitOptionViewModel.cs" />
+    <Compile Include="ViewModels\EditYourArmies\Rules.cs" />
     <Compile Include="ViewModels\Menu\AboutViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddRulesViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddUnitsViewModel.cs" />

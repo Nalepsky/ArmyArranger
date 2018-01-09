@@ -20,10 +20,10 @@ namespace ArmyArranger.Views
     /// </summary>
     public partial class AddUnitOptionWindow : Window
     {
-        public AddUnitOptionWindow()
+        public AddUnitOptionWindow(int id)
         {
             InitializeComponent();
-            DataContext = new AddUnitOptionViewModel();
+            DataContext = new AddUnitOptionViewModel(id);
         }
     }
 }
