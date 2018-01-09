@@ -13,7 +13,7 @@
             <viewsEditYourArmies:AddUnitOptionView DataContext="{Binding}"/>
         </DataTemplate>
     </Window.Resources>
-    <Grid>
-        
+    <Grid Background="LightCoral">
+        <ContentControl Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Grid.RowSpan="5" Content="{Binding}"/>
     </Grid>
 </Window>

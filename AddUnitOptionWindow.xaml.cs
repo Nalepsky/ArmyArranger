@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArmyArranger.ViewModels.EditYourArmies;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace ArmyArranger.Views
         public AddUnitOptionWindow()
         {
             InitializeComponent();
+            DataContext = new AddUnitOptionViewModel();
         }
     }
 }

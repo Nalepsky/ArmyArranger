@@ -119,7 +119,7 @@
     <Compile Include="ViewModels\Menu\ContactUsViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddNationsViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddSelectorsViewModel.cs" />
-    <Compile Include="Views\AddUnitOptionWindow.xaml.cs">
+    <Compile Include="AddUnitOptionWindow.xaml.cs">
       <DependentUpon>AddUnitOptionWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditYourArmies\AddEntryView.xaml.cs">
@@ -177,7 +177,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\AddUnitOptionWindow.xaml">
+    <Page Include="AddUnitOptionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

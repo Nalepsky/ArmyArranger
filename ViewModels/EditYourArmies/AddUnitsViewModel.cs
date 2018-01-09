@@ -7,6 +7,8 @@ using System.Collections.ObjectModel;
 using ArmyArranger.Models;
 using System;
 using System.Linq;
+using System.Windows;
+using ArmyArranger.Views;
 
 namespace ArmyArranger.ViewModels.EditYourArmies
 {
@@ -184,6 +186,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         public ICommand GoToWeapons { get; set; }
         public ICommand Remove { get; set; }
         public ICommand Confirm { get; set; }
+        public ICommand AddUnitOption { get; set; }
 
         #endregion
 
@@ -199,6 +202,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             GoToWeapons = new DelegateCommand(ChangeViewToAddWeapons);
             Remove = new DelegateCommand(RemoveSelectedUnit);
             Confirm = new DelegateCommand(ConfirmChanges);
+            AddUnitOption = new DelegateCommand(OpenAddUnitOptions);
         }
 
         #endregion
@@ -216,6 +220,15 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             WeaponsList = Weapon.WeaponsCollection;
             thisModel.EmptyNation.LoadAll();
             NationsList = Nation.NationsCollecion;
+        }
+
+        private void OpenAddUnitOptions()
+        {
+            if (SelectedUnit != null)
+            {
+                Window OptionsWindow = new AddUnitOptionWindow();
+                OptionsWindow.Show();
+            }
         }
 
         private void FunctionOnClick()
