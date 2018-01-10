@@ -46,6 +46,8 @@ namespace ArmyArranger.Global
                     "Name VARCHAR(50) NOT NULL," +
                     "NationID INTEGER NOT NULL," +
                     "Type VARCHAR(50) NOT NULL," +
+                    "BasePoints INTEGER NULL," +
+                    "WeaponDescription VARCHAR(255) NULL," +
                     "Composition VARCHAR(50) NOT NULL," +
                     "Inexperienced INTEGER NOT NULL," +
                     "Regular INTEGER NOT NULL," +
@@ -55,9 +57,7 @@ namespace ArmyArranger.Global
                     "PointsPerVeteran INTEGER NOT NULL," +
                     "BaseSize INTEGER NOT NULL," +
                     "MaxSize INTEGER NOT NULL," +
-                    "WeaponDescription VARCHAR(255) NULL," +
                     "ArmourClass INTEGER NULL," +
-                    "BasePoints INTEGER NULL," +
                     "FOREIGN KEY(NationID) REFERENCES Nation(ID)" +
                     ")", sqlconnect);
                 command.ExecuteNonQuery();
@@ -125,7 +125,7 @@ namespace ArmyArranger.Global
                     "RuleID INTEGER NOT NULL," +
                     "UnitID INTEGER NOT NULL," +
                     "FOREIGN KEY(RuleID) REFERENCES Rule(ID)" +
-                    "FOREIGN KEY(UnitID) REFERENCES Unit(ID)" +                 
+                    "FOREIGN KEY(UnitID) REFERENCES Unit(ID)" +
                     ")", sqlconnect);
                 command.ExecuteNonQuery();
 

@@ -95,8 +95,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
-
-
         private string _type;
         public string Type
         {
@@ -116,17 +114,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             {
                 _composition = value;
                 RaisePropertyChanged(nameof(Composition));
-            }
-        }
-
-        private int _experience;
-        public int Experience
-        {
-            get { return _experience; }
-            set
-            {
-                _experience = value;
-                RaisePropertyChanged(nameof(Experience));
             }
         }
 
@@ -160,6 +147,94 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             {
                 _basePoints = value;
                 RaisePropertyChanged(nameof(BasePoints));
+            }
+        }
+
+        private int _inexperienced;
+        public int Inexperienced
+        {
+            get { return _inexperienced; }
+            set
+            {
+                _inexperienced = value;
+                RaisePropertyChanged(nameof(Inexperienced));
+            }
+        }
+
+        private int _regular;
+        public int Regular
+        {
+            get { return _regular; }
+            set
+            {
+                _regular = value;
+                RaisePropertyChanged(nameof(Regular));
+            }
+        }
+
+        private int _veteran;
+        public int Veteran
+        {
+            get { return _veteran; }
+            set
+            {
+                _veteran = value;
+                RaisePropertyChanged(nameof(Veteran));
+            }
+        }
+
+        private int _pointsInexp;
+        public int PointsInexp
+        {
+            get { return _pointsInexp; }
+            set
+            {
+                _pointsInexp = value;
+                RaisePropertyChanged(nameof(PointsInexp));
+            }
+        }
+
+        private int _pointsReg;
+        public int PointsReg
+        {
+            get { return _pointsReg; }
+            set
+            {
+                _pointsReg = value;
+                RaisePropertyChanged(nameof(PointsReg));
+            }
+        }
+
+        private int _pointsVet;
+        public int PointsVet
+        {
+            get { return _pointsVet; }
+            set
+            {
+                _pointsVet = value;
+                RaisePropertyChanged(nameof(PointsVet));
+            }
+        }
+
+        private int _baseSize;
+        public int BaseSize
+        {
+            get { return _baseSize; }
+            set
+            {
+                _baseSize= value;
+                RaisePropertyChanged(nameof(BaseSize));
+            }
+        }
+
+        private int _maxSize;
+        public int MaxSize
+        {
+            get { return _maxSize; }
+            set
+            {
+                _maxSize = value;
+                RaisePropertyChanged(nameof(MaxSize));
             }
         }
 
@@ -232,17 +307,25 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         }
 
         private void FunctionOnClick()
-        {               
+        {
             if (thisModel.ChosenUnitEqualsSelected(SelectedUnit) && SelectedUnit != null)
             {
                 Name = SelectedUnit.Name;
                 SelectedNation = NationsList.Single(x => x.ID == SelectedUnit.NationID);
                 Type = SelectedUnit.Type;
                 Composition = SelectedUnit.Composition;
-                Experience = SelectedUnit.Experience;
                 WeaponDescription = SelectedUnit.WeaponDescription;
                 ArmourClass = SelectedUnit.ArmourClass;
                 BasePoints = SelectedUnit.BasePoints;
+                Inexperienced = SelectedUnit.Inexperienced;
+                Regular = SelectedUnit.Regular;
+                Veteran = SelectedUnit.Veteran;
+                PointsInexp = SelectedUnit.PointsInexp;
+                PointsReg = SelectedUnit.PointsReg;
+                PointsVet = SelectedUnit.PointsVet;
+                BaseSize = SelectedUnit.BaseSize;
+                MaxSize = SelectedUnit.MaxSize;
+
                 thisModel.CheckActiveRules(SelectedUnit);
                 thisModel.CheckActiveWeapons(SelectedUnit);
 
@@ -256,10 +339,16 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             SelectedNation = null;
             Type = "";
             Composition = "";
-            Experience = 0;
             WeaponDescription = null;
             ArmourClass = 0;
             BasePoints = 0;
+            Regular = 0;
+            Veteran = 0;
+            PointsInexp = 0;
+            PointsReg = 0;
+            PointsVet = 0;
+            BaseSize = 0;
+            MaxSize = 0;
             thisModel.ClearUnits();
             thisModel.ClearRules();
             thisModel.ClearWeapons();
@@ -301,10 +390,16 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             SelectedNation = null;
             Type = "";
             Composition = "";
-            Experience = 0;
             WeaponDescription = null;
             ArmourClass = 0;
             BasePoints = 0;
+            Regular = 0;
+            Veteran = 0;
+            PointsInexp = 0;
+            PointsReg = 0;
+            PointsVet = 0;
+            BaseSize = 0;
+            MaxSize = 0;
             thisModel.ClearUnits();
             thisModel.ClearRules();
             thisModel.ClearWeapons();
@@ -318,17 +413,24 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             ObservableCollection<Weapon> SelectedWeaponsList = new ObservableCollection<Weapon>(WeaponsList.Where(w => (w.IsSelected == true)));
             int SelectedNationID = (SelectedNation != null) ? SelectedNation.ID : 0;
 
-            thisModel.ConfirmChanges(Name, SelectedNationID, Type, Composition, Experience, WeaponDescription, ArmourClass, BasePoints, SelectedUnit, UnitsList, SelectedRulesList, SelectedWeaponsList);
+            thisModel.ConfirmChanges(Name, SelectedNationID, Type, Composition, WeaponDescription, ArmourClass, BasePoints, Inexperienced, Regular, Veteran, PointsInexp, PointsReg, PointsVet, BaseSize, MaxSize, SelectedUnit, UnitsList, SelectedRulesList, SelectedWeaponsList);
             if (SelectedUnit != null)
             {
                 Name = SelectedUnit.Name;
                 SelectedNation = NationsList.Single(x => x.ID == SelectedUnit.NationID);
                 Type = SelectedUnit.Type;
                 Composition = SelectedUnit.Composition;
-                Experience = SelectedUnit.Experience;
                 WeaponDescription = SelectedUnit.WeaponDescription;
                 ArmourClass = SelectedUnit.ArmourClass;
                 BasePoints = SelectedUnit.BasePoints;
+                Inexperienced = SelectedUnit.Inexperienced;
+                Regular = SelectedUnit.Regular;
+                Veteran = SelectedUnit.Veteran;
+                PointsInexp = SelectedUnit.PointsInexp;
+                PointsReg = SelectedUnit.PointsReg;
+                PointsVet = SelectedUnit.PointsVet;
+                BaseSize = SelectedUnit.BaseSize;
+                MaxSize = SelectedUnit.MaxSize;
             }
             else
             {
@@ -336,10 +438,16 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 SelectedNation = null;
                 Type = "";
                 Composition = "";
-                Experience = 0;
                 WeaponDescription = null;
                 ArmourClass = 0;
                 BasePoints = 0;
+                Regular = 0;
+                Veteran = 0;
+                PointsInexp = 0;
+                PointsReg = 0;
+                PointsVet = 0;
+                BaseSize = 0;
+                MaxSize = 0;
                 thisModel.ClearUnits();
                 thisModel.ClearRules();
                 thisModel.ClearWeapons();
