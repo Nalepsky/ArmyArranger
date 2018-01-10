@@ -29,7 +29,7 @@ namespace ArmyArranger.Models
 
         #region Actions   
 
-        public void AddWeapon(string name, int range, int shots, int penetration, bool requiresLoader, ObservableCollection<GameRule> rulesList)
+        public void AddWeapon(string name, String range, int shots, int penetration, bool requiresLoader, ObservableCollection<GameRule> rulesList)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace ArmyArranger.Models
             MessageBox.Show("Successfully added");
         }
 
-        public void UpdateWeapon(Weapon selectedWeapon, string name, int range, int shots, int penetration, bool requiresLoader, ObservableCollection<GameRule> rulesList)
+        public void UpdateWeapon(Weapon selectedWeapon, string name, String range, int shots, int penetration, bool requiresLoader, ObservableCollection<GameRule> rulesList)
         {
             if (selectedWeapon == null)
                 return;
@@ -128,7 +128,7 @@ namespace ArmyArranger.Models
 
         }
 
-        public void ConfirmChanges(string name, int range, int shots, int penetration, bool requiresLoader, Weapon selectedWeapon, ObservableCollection<Weapon> weaponsList, ObservableCollection<GameRule> selectedRulesList)
+        public void ConfirmChanges(string name, String range, int shots, int penetration, bool requiresLoader, Weapon selectedWeapon, ObservableCollection<Weapon> weaponsList, ObservableCollection<GameRule> selectedRulesList)
         {
             if (String.IsNullOrWhiteSpace(name))
                 return;

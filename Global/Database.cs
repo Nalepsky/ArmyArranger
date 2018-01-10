@@ -33,7 +33,7 @@ namespace ArmyArranger.Global
                     "CREATE TABLE IF NOT EXISTS Weapon(" +
                     "ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE," +
                     "Name VARCHAR(50) NOT NULL," +
-                    "Range INTEGER NOT NULL," +
+                    "Range VARCHAR(50) NOT NULL," +
                     "Shots INTEGER NOT NULL," +
                     "Penetration INTEGER NULL," +
                     "RequiresLoader BIT NOT NULL" +

@@ -30,7 +30,7 @@ namespace ArmyArranger.Global
             get { return _name; }
             set { _name = value; OnPropertyChanged<Weapon>(); }
         }
-        public int Range { get; set; }
+        public String Range { get; set; }
         public int Shots { get; set; }
         public int Penetration { get; set; }
         public bool RequiresLoader { get; set; }
@@ -48,7 +48,7 @@ namespace ArmyArranger.Global
             isEmpty = true;
         }
 
-        public Weapon(int id, string name, int range, int shots, int penetration, bool requiresLoader, List<int> listOfActiveRules)
+        public Weapon(int id, string name, String range, int shots, int penetration, bool requiresLoader, List<int> listOfActiveRules)
         {
             ID = id;
             Name = name;
@@ -63,11 +63,11 @@ namespace ArmyArranger.Global
             isEmpty = false;
         }
 
-        public void CreateNewAndSaveToDB(string name, int range, int shots, int penetration, bool requiresLoader, ObservableCollection<GameRule> selectedRulesList)
+        public void CreateNewAndSaveToDB(string name, String range, int shots, int penetration, bool requiresLoader, ObservableCollection<GameRule> selectedRulesList)
         {
             int id;
             string sql_name = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + name + "'";
-            string sql_range = (range == 0) ? "null" : "'" + range + "'";
+            string sql_range = (range == "0") ? "null" : "'" + range + "'";
             string sql_shots = (shots == 0) ? "null" : "'" + shots + "'";
             string sql_penetration = (penetration == 0) ? "null" : "'" + penetration + "'";
             string sql_requiresLoader = "'"+requiresLoader+"'";
@@ -98,10 +98,10 @@ namespace ArmyArranger.Global
             new Weapon(id, name, range, shots, penetration, requiresLoader, newListOfActiveRules);
         }
 
-        public void UpdateInDB(string name, int range, int shots, int penetration, bool requiresLoader, ObservableCollection<GameRule> selectedRulesList)
+        public void UpdateInDB(string name, String range, int shots, int penetration, bool requiresLoader, ObservableCollection<GameRule> selectedRulesList)
         {
             string sql_name = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + name + "'";
-            int sql_range = range;
+            String sql_range = range;
             int sql_shots = shots;
             int sql_penetration = penetration;
             string sql_requiresLoader = "'" + requiresLoader + "'";
@@ -164,9 +164,8 @@ namespace ArmyArranger.Global
         {
             SQLiteDataReader result = Database.ExecuteCommand("SELECT * FROM Weapon");
             int ID;
-            string Name;
-            int Range,
-                Shots,
+            String Name, Range;
+            int Shots,
                 Penetration;
             bool RequiresLoader;
             List<int> newListOfActiveRules;
@@ -175,7 +174,7 @@ namespace ArmyArranger.Global
             {
                 ID = result.GetInt32(0);
                 Name = result.GetString(1);
-                Range = result.GetInt32(2);
+                Range = result.GetString(2);
                 Shots = result.GetInt32(3);
                 Penetration = (!result.IsDBNull(4)) ? result.GetInt32(4) : 0;
                 RequiresLoader = result["RequiresLoader"] as bool? ?? false;
