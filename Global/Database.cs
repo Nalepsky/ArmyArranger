@@ -91,6 +91,7 @@ namespace ArmyArranger.Global
                     "WeaponID INTEGER NULL," +
                     "UnitID INTEGER NULL," +
                     "FOREIGN KEY(WeaponID) REFERENCES Weapon(ID)," +
+                    "FOREIGN KEY(RuleID) REFERENCES Rule(ID)," +
                     "FOREIGN KEY(UnitID) REFERENCES Unit(ID)" +
                     ")", sqlconnect);
                 command.ExecuteNonQuery();
