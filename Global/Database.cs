@@ -48,12 +48,12 @@ namespace ArmyArranger.Global
                     "Type VARCHAR(50) NOT NULL," +
                     "WeaponDescription VARCHAR(255) NULL," +
                     "Composition VARCHAR(50) NOT NULL," +
-                    "Inexperienced INTEGER NOT NULL," +
-                    "Regular INTEGER NOT NULL," +
-                    "Veteran INTEGER NOT NULL," +
-                    "PointsPerInexp INTEGER NOT NULL," +
-                    "PointsPerRegular INTEGER NOT NULL," +
-                    "PointsPerVeteran INTEGER NOT NULL," +
+                    "Inexperienced INTEGER," +
+                    "Regular INTEGER," +
+                    "Veteran INTEGER," +
+                    "PointsPerInexp INTEGER," +
+                    "PointsPerRegular INTEGER," +
+                    "PointsPerVeteran INTEGER," +
                     "BaseSize INTEGER NOT NULL," +
                     "MaxSize INTEGER NOT NULL," +
                     "ArmourClass INTEGER NULL," +
