@@ -73,7 +73,10 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 _selectedPossibleWeapon = value;
                 _selectedPossibleRule = null;
                 RaisePropertyChanged(nameof(SelectedPossibleWeapon));
-                SelectedAddition = SelectedPossibleWeapon.Name;
+                if (value != null)
+                    SelectedAddition = SelectedPossibleWeapon.Name;
+                else
+                    SelectedAddition = "";
             }
         }
 
@@ -86,7 +89,10 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 _selectedPossibleRule = value;
                 _selectedPossibleWeapon = null;
                 RaisePropertyChanged(nameof(SelectedPossibleRule));
-                SelectedAddition = SelectedPossibleRule.Name;
+                if(value != null)
+                    SelectedAddition = SelectedPossibleRule.Name;
+                else
+                    SelectedAddition = "";
             }
         }
 
@@ -212,12 +218,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             PossibleRulesList = GameRule.RulesCollection;
             PossibleWeaponsList = Weapon.WeaponsCollection;
             thisModel.EmptyUnitOption.LoadAll(UnitID);
-            OptionsList = UnitOption.UnitOptionsCollection;
-
-            foreach(var u in OptionsList)
-            {
-                Console.WriteLine("TUTAJ " + u.Describtion);
-            }
+            OptionsList = UnitOption.UnitOptionsCollection;            
 
             Describtion = "";
             Cost = 0;
