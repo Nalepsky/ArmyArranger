@@ -189,7 +189,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                       
             thisModel.EmptyUnitOption.CreateNewAndSaveToDB(Description, MaxNumber, Cost, WeaponID, RuleID, UnitID, WeaponOrRule);
 
-            thisModel.EmptyUnitOption.clearCollection();
+            thisModel.EmptyUnitOption.ClearCollection();
             thisModel.EmptyUnitOption.LoadAll(UnitID);
             OptionsList = UnitOption.UnitOptionsCollection;
 
@@ -197,7 +197,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void FunctionCancel()
         {
-            thisModel.EmptyUnitOption.clearCollection();
+            thisModel.EmptyUnitOption.ClearCollection();
         }
 
         private void FunctionOnClick()
