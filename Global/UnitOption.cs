@@ -13,17 +13,17 @@ namespace ArmyArranger.Global
         public static ObservableCollection<UnitOption> UnitOptionsCollection = new ObservableCollection<UnitOption>();
 
         public int id { get; set; }
-        public String Describtion { get; set; }
+        public String Description { get; set; }
         public int maxNumber { get; set; }
         public int cost { get; set; }
         public int ruleId { get; set; }
         public int weaponId { get; set; }
         public int unitID { get; set; }
 
-        public UnitOption(int id, string describtion, int maxNumber, int cost, int weaponId, int ruleId, int unitID)
+        public UnitOption(int id, string description, int maxNumber, int cost, int weaponId, int ruleId, int unitID)
         {
             this.id = id;
-            this.Describtion = describtion;
+            this.Description = description;
             this.maxNumber = maxNumber;
             this.cost = cost;
             this.unitID = unitID;
@@ -40,11 +40,11 @@ namespace ArmyArranger.Global
             UnitOptionsCollection.Clear();
         }
 
-        public void CreateNewAndSaveToDB(string describtion, int maxNumber, int cost, int weaponID, int ruleID, int unitID,  bool WeaponOrRule)
+        public void CreateNewAndSaveToDB(string description, int maxNumber, int cost, int weaponID, int ruleID, int unitID,  bool WeaponOrRule)
         {
             int id;
             //if WeaponOrRule == true, save WeaponID, else save RuleID
-            string sql_desctibtion = (String.IsNullOrWhiteSpace(describtion)) ? "null" : "'" + describtion + "'";
+            string sql_desctibtion = (String.IsNullOrWhiteSpace(description)) ? "null" : "'" + description + "'";
             string sql_maxNumber = (maxNumber < 1) ? "1" : "'" + maxNumber + "'";
             string sql_cost = "'" + cost + "'";
             string sql_unitID =  "'" + unitID + "'";
@@ -62,7 +62,7 @@ namespace ArmyArranger.Global
                 throw ex;
             }
 
-            new UnitOption(id, describtion, maxNumber, cost, weaponID, ruleId, unitID);
+            new UnitOption(id, description, maxNumber, cost, weaponID, ruleId, unitID);
         }
 
         public void LoadAll(int unit_id)

@@ -96,14 +96,14 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
-        private String _describtion;
-        public String Describtion
+        private String _description;
+        public String Description
         {
-            get { return _describtion; }
+            get { return _description; }
             set
             {
-                _describtion = value;
-                RaisePropertyChanged(nameof(Describtion));
+                _description = value;
+                RaisePropertyChanged(nameof(Description));
             }
         }
 
@@ -187,7 +187,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 weaponID = _selectedPossibleRule.ID;
             }             
                       
-            thisModel.EmptyUnitOption.CreateNewAndSaveToDB(Describtion, MaxNumber, Cost, weaponID, ruleID, UnitID, WeaponOrRule);
+            thisModel.EmptyUnitOption.CreateNewAndSaveToDB(Description, MaxNumber, Cost, weaponID, ruleID, UnitID, WeaponOrRule);
 
             thisModel.EmptyUnitOption.clearCollection();
             thisModel.EmptyUnitOption.LoadAll(UnitID);
@@ -210,7 +210,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             SelectedOption = null;
             SelectedPossibleRule = null;
             SelectedPossibleWeapon = null;
-            Describtion = "";
+            Description = "";
             Cost = 0;
             MaxNumber = 1;
         }
@@ -222,7 +222,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             thisModel.EmptyUnitOption.LoadAll(UnitID);
             OptionsList = UnitOption.UnitOptionsCollection;            
 
-            Describtion = "";
+            Description = "";
             Cost = 0;
             MaxNumber = 1;
         }
