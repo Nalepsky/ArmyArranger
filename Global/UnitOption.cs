@@ -14,17 +14,17 @@ namespace ArmyArranger.Global
 
         public int id { get; set; }
         public String Description { get; set; }
-        public int maxNumber { get; set; }
+        public int count { get; set; }
         public int cost { get; set; }
         public int ruleId { get; set; }
         public int weaponId { get; set; }
         public int unitID { get; set; }
 
-        public UnitOption(int id, string description, int maxNumber, int cost, int weaponId, int ruleId, int unitID)
+        public UnitOption(int id, string description, int count, int cost, int weaponId, int ruleId, int unitID)
         {
             this.id = id;
             this.Description = description;
-            this.maxNumber = maxNumber;
+            this.count = count;
             this.cost = cost;
             this.unitID = unitID;
             this.weaponId = weaponId;
@@ -40,12 +40,12 @@ namespace ArmyArranger.Global
             UnitOptionsCollection.Clear();
         }
 
-        public void CreateNewAndSaveToDB(string description, int maxNumber, int cost, int weaponID, int ruleID, int unitID,  bool WeaponOrRule)
+        public void CreateNewAndSaveToDB(string description, int count, int cost, int weaponID, int ruleID, int unitID,  bool WeaponOrRule)
         {
             int id;
             //if WeaponOrRule == true, save WeaponID, else save RuleID
             string sql_desctibtion = (String.IsNullOrWhiteSpace(description)) ? "null" : "'" + description + "'";
-            string sql_maxNumber = (maxNumber < 1) ? "1" : "'" + maxNumber + "'";
+            string sql_count = (count < 1) ? "1" : "'" + count + "'";
             string sql_cost = (cost == 0) ? "null" : "'" + cost + "'";
             string sql_unitID = (unitID == 0) ? "null" : "'" + unitID + "'";
             string sql_weaponID = (weaponID == 0) ? "null" : "'" + weaponID + "'";            
@@ -54,7 +54,7 @@ namespace ArmyArranger.Global
             try
             {
                 Database.ExecuteCommand("INSERT INTO Option (Description, Cost, Count, WeaponID, RuleID, UnitID) " +
-                    "VALUES (" + sql_desctibtion + "," + sql_cost + "," + sql_maxNumber + "," + sql_weaponID + "," + sql_ruleID + "," + sql_unitID + ")");
+                    "VALUES (" + sql_desctibtion + "," + sql_cost + "," + sql_count + "," + sql_weaponID + "," + sql_ruleID + "," + sql_unitID + ")");
                 id = Database.GetLastInsertedID();
             }
             catch (Exception ex)
@@ -62,7 +62,7 @@ namespace ArmyArranger.Global
                 throw ex;
             }
 
-            new UnitOption(id, description, maxNumber, cost, weaponID, ruleId, unitID);
+            new UnitOption(id, description, count, cost, weaponID, ruleId, unitID);
         }
 
         public void LoadAll(int unit_id)

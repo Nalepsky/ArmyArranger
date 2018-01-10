@@ -129,13 +129,13 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
-        private int _maxNumber;
+        private int _count;
         public int MaxNumber
         {
-            get { return _maxNumber; }
+            get { return _count; }
             set
             {
-                _maxNumber = value;
+                _count = value;
                 RaisePropertyChanged(nameof(MaxNumber));
             }
         }
