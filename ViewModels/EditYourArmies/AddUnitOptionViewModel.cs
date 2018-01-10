@@ -185,17 +185,19 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 WeaponOrRule = false;
                 ruleID = -1;
                 weaponID = _selectedPossibleRule.ID;
-            }
-                
-
-            
-
+            }             
+                      
             thisModel.EmptyUnitOption.CreateNewAndSaveToDB(Describtion, MaxNumber, Cost, weaponID, ruleID, UnitID, WeaponOrRule);
+
+            thisModel.EmptyUnitOption.clearCollection();
+            thisModel.EmptyUnitOption.LoadAll(UnitID);
+            OptionsList = UnitOption.UnitOptionsCollection;
+
         }
 
         private void FunctionCancel()
         {
-            //throw new NotImplementedException();
+            thisModel.EmptyUnitOption.clearCollection();
         }
 
         private void FunctionOnClick()

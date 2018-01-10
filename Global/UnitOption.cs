@@ -12,13 +12,13 @@ namespace ArmyArranger.Global
     {
         public static ObservableCollection<UnitOption> UnitOptionsCollection = new ObservableCollection<UnitOption>();
 
-        public int id;
-        public String Describtion;
-        public int maxNumber;
-        public int cost;
-        public int ruleId;
-        public int weaponId;
-        public int unitID;
+        public int id { get; set; }
+        public String Describtion { get; set; }
+        public int maxNumber { get; set; }
+        public int cost { get; set; }
+        public int ruleId { get; set; }
+        public int weaponId { get; set; }
+        public int unitID { get; set; }
 
         public UnitOption(int id, string describtion, int maxNumber, int cost, int weaponId, int ruleId, int unitID)
         {
@@ -33,6 +33,11 @@ namespace ArmyArranger.Global
 
         public UnitOption()
         {
+        }
+
+        public void clearCollection()
+        {
+            UnitOptionsCollection.Clear();
         }
 
         public void CreateNewAndSaveToDB(string describtion, int maxNumber, int cost, int weaponID, int ruleID, int unitID,  bool WeaponOrRule)
