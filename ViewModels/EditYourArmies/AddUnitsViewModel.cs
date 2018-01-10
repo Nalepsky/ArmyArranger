@@ -342,6 +342,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             WeaponDescription = null;
             ArmourClass = 0;
             BasePoints = 0;
+            Inexperienced = 0;
             Regular = 0;
             Veteran = 0;
             PointsInexp = 0;
@@ -393,6 +394,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             WeaponDescription = null;
             ArmourClass = 0;
             BasePoints = 0;
+            Inexperienced = 0;
             Regular = 0;
             Veteran = 0;
             PointsInexp = 0;
@@ -441,6 +443,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 WeaponDescription = null;
                 ArmourClass = 0;
                 BasePoints = 0;
+                Inexperienced = 0;
                 Regular = 0;
                 Veteran = 0;
                 PointsInexp = 0;

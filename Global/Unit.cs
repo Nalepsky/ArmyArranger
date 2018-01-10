@@ -108,7 +108,8 @@ namespace ArmyArranger.Global
 
             try
             {
-                Database.ExecuteCommand("INSERT INTO Unit (Name, NationID, Type, Composition, WeaponDescription, ArmourClass, BasePointsInexperienced, Regular, Veteran, PointsPerInexp, PointsPerReg, PointsPerVet, BaseSize, MaxSize,) VALUES (" + sql_name + "," + sql_nationID + "," + sql_type + "," + sql_composition + "," + sql_weaponDescription + "," + sql_armourClass + "," + sql_basePoints + "," + sql_inexperienced + "," + sql_regular + "," + sql_veteran + "," + sql_pointsInexp + "," + sql_pointsReg + "," + sql_pointsVet + "," + sql_baseSize + "," + sql_maxSize + ")");
+                Database.ExecuteCommand("INSERT INTO Unit (Name, NationID, Type, Composition, WeaponDescription, ArmourClass, BasePoints, Inexperienced, Regular, Veteran, PointsPerInexp, PointsPerRegular, PointsPerVeteran, BaseSize, MaxSize) VALUES (" + sql_name + "," + sql_nationID + "," + sql_type + "," + sql_composition + "," + sql_weaponDescription + "," + sql_armourClass + "," + sql_basePoints + "," + sql_inexperienced + "," + sql_regular + "," + sql_veteran + "," + sql_pointsInexp + "," + sql_pointsReg + "," + sql_pointsVet + "," + sql_baseSize + "," + sql_maxSize + ")");
+
                 id = Database.GetLastInsertedID();
             }
             catch (Exception ex)
@@ -167,7 +168,7 @@ namespace ArmyArranger.Global
 
             try
             {
-                Database.ExecuteCommand("UPDATE Unit SET Name = " + sql_name + ", NationID = " + sql_nationID + ", Type = " + sql_type + ", Composition = " + sql_composition + ", WeaponDescription = " + sql_weaponDescription + ", ArmourClass = " + sql_armourClass + ", BasePoints = " + sql_basePoints + ", Inexperienced = " + sql_inexperienced + "Regular = " + sql_regular + "Veteran = " + sql_veteran + "PointsPerInexp = " + sql_pointsInexp + "PointsPerReg = " + sql_pointsReg + "PointsPerVet = " + sql_pointsVet + "baseSize = " + sql_baseSize + "maxSize" + sql_maxSize + "WHERE ID = " + ID);
+                Database.ExecuteCommand("UPDATE Unit SET Name = " + sql_name + ", NationID = " + sql_nationID + ", Type = " + sql_type + ", Composition = " + sql_composition + ", WeaponDescription = " + sql_weaponDescription + ", ArmourClass = " + sql_armourClass + ", BasePoints = " + sql_basePoints + ", Inexperienced = " + sql_inexperienced + ", Regular = " + sql_regular + ", Veteran = " + sql_veteran + ", PointsPerInexp = " + sql_pointsInexp + ", PointsPerRegular = " + sql_pointsReg + ", PointsPerVeteran = " + sql_pointsVet + ", baseSize = " + sql_baseSize + ", maxSize = " + sql_maxSize + " WHERE ID = " + ID);
             }
             catch (Exception ex)
             {
