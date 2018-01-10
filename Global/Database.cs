@@ -34,7 +34,7 @@ namespace ArmyArranger.Global
                     "ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE," +
                     "Name VARCHAR(50) NOT NULL," +
                     "Range VARCHAR(50) NOT NULL," +
-                    "Shots INTEGER NOT NULL," +
+                    "Shots VARCHAR(50) NOT NULL," +
                     "Penetration INTEGER NULL," +
                     "RequiresLoader BIT NOT NULL" +
                     ")", sqlconnect);

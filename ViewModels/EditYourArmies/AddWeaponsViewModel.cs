@@ -71,8 +71,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
-        private int _shots;
-        public int Shots
+        private String _shots;
+        public String Shots
         {
             get { return _shots; }
             set
@@ -175,7 +175,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             Name = "";
             Range = "0";
-            Shots = 0;
+            Shots = "0";
             Penetration = 0;
             RequiresLoader = false;
             thisModel.ClearWeapons();
@@ -203,7 +203,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             thisModel.RemoveWeapon(SelectedWeapon);
             Name = "";
             Range = "0";
-            Shots = 0;
+            Shots = "0";
             Penetration = 0;
             RequiresLoader = false;
             thisModel.ClearWeapons();
@@ -228,7 +228,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             {
                 Name = "";
                 Range = "0";
-                Shots = 0;
+                Shots = "0";
                 Penetration = 0;
                 RequiresLoader = false;
                 thisModel.ClearWeapons();
