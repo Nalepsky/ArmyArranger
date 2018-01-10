@@ -46,9 +46,6 @@
         <DataTemplate DataType="{x:Type viewmodelsEditYourArmies:AddRulesViewModel}">
             <viewsEditYourArmies:AddRulesView DataContext="{Binding}"/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodelsEditYourArmies:AddOptionsViewModel}">
-            <viewsEditYourArmies:AddOptionsView DataContext="{Binding}"/>
-        </DataTemplate>
     </Window.Resources>
     <Grid Background="#FFC4C6CB">
         <ContentControl Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Grid.RowSpan="5" Content="{Binding}"/>

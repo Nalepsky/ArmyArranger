@@ -46,10 +46,10 @@ namespace ArmyArranger.Global
             //if WeaponOrRule == true, save WeaponID, else save RuleID
             string sql_desctibtion = (String.IsNullOrWhiteSpace(description)) ? "null" : "'" + description + "'";
             string sql_maxNumber = (maxNumber < 1) ? "1" : "'" + maxNumber + "'";
-            string sql_cost = "'" + cost + "'";
-            string sql_unitID =  "'" + unitID + "'";
-            string sql_weaponID =  "'" + weaponID + "'";            
-            string sql_ruleID = "'" + ruleID + "'";
+            string sql_cost = (cost == 0) ? "null" : "'" + cost + "'";
+            string sql_unitID = (unitID == 0) ? "null" : "'" + unitID + "'";
+            string sql_weaponID = (weaponID == 0) ? "null" : "'" + weaponID + "'";            
+            string sql_ruleID = (ruleID == 0) ? "null" : "'" + ruleID + "'";
 
             try
             {
@@ -70,7 +70,7 @@ namespace ArmyArranger.Global
             SQLiteDataReader result = Database.ExecuteCommand("SELECT * FROM Option WHERE UnitID = " + unit_id);
 
             String Description;
-            int id,
+            int ID,
                 Cost,
                 Count,
                 WeaponID,
@@ -79,13 +79,13 @@ namespace ArmyArranger.Global
 
             while (result.Read())
             {             
-                id = result.GetInt32(0);
+                ID = result.GetInt32(0);
                 Description = result.GetString(1);
-                Cost = result.GetInt32(2);
-                Count = result.GetInt32(3);
-                WeaponID = result.GetInt32(4);
-                RuleID = result.GetInt32(4);
-                UnitID = result.GetInt32(6);
+                Cost = (!result.IsDBNull(2)) ? result.GetInt32(2) : 0;
+                Count = (!result.IsDBNull(3)) ? result.GetInt32(3) : 0;
+                WeaponID = (!result.IsDBNull(4)) ? result.GetInt32(4) : 0;
+                RuleID = (!result.IsDBNull(5)) ? result.GetInt32(5) : 0;
+                UnitID = (!result.IsDBNull(6)) ? result.GetInt32(6) : 0;
                 
                 UnitOptionsCollection.Add(new UnitOption(id, Description, Count, Cost, RuleID, WeaponID, UnitID));
             }

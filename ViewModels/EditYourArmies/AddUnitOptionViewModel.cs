@@ -171,23 +171,23 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         private void FunctionConfirm()
         {
             bool WeaponOrRule;
-            int ruleID;
-            int weaponID;
+            int RuleID;
+            int WeaponID;
 
             if (_selectedPossibleWeapon != null)
             {
                 WeaponOrRule = true;
-                ruleID = _selectedPossibleWeapon.ID;
-                weaponID = -1;
+                RuleID = _selectedPossibleWeapon.ID;
+                WeaponID = 0;
             }
             else
             {
                 WeaponOrRule = false;
-                ruleID = -1;
-                weaponID = _selectedPossibleRule.ID;
+                RuleID = 0;
+                WeaponID = _selectedPossibleRule.ID;
             }             
                       
-            thisModel.EmptyUnitOption.CreateNewAndSaveToDB(Description, MaxNumber, Cost, weaponID, ruleID, UnitID, WeaponOrRule);
+            thisModel.EmptyUnitOption.CreateNewAndSaveToDB(Description, MaxNumber, Cost, WeaponID, RuleID, UnitID, WeaponOrRule);
 
             thisModel.EmptyUnitOption.clearCollection();
             thisModel.EmptyUnitOption.LoadAll(UnitID);

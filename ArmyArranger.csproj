@@ -92,7 +92,6 @@
     <Compile Include="Global\GameRule.cs" />
     <Compile Include="Global\IShareString.cs" />
     <Compile Include="Global\Nation.cs" />
-    <Compile Include="Global\Option.cs" />
     <Compile Include="Global\Selector.cs" />
     <Compile Include="Global\Unit.cs" />
     <Compile Include="Global\UnitOption.cs" />
@@ -108,7 +107,6 @@
     <Compile Include="Models\ContactUsModel.cs" />
     <Compile Include="Global\Database.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddEntryViewModel.cs" />
-    <Compile Include="ViewModels\EditYourArmies\AddOptionsViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddUnitOptionViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\Rules.cs" />
     <Compile Include="ViewModels\Menu\AboutViewModel.cs" />
@@ -126,9 +124,6 @@
     </Compile>
     <Compile Include="Views\EditYourArmies\AddEntryView.xaml.cs">
       <DependentUpon>AddEntryView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\EditYourArmies\AddOptionsView.xaml.cs">
-      <DependentUpon>AddOptionsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditYourArmies\AddUnitOptionView.xaml.cs">
       <DependentUpon>AddUnitOptionView.xaml</DependentUpon>
@@ -184,10 +179,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EditYourArmies\AddEntryView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\EditYourArmies\AddOptionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
