@@ -47,7 +47,14 @@ namespace ArmyArranger.Global
                     "NationID INTEGER NOT NULL," +
                     "Type VARCHAR(50) NOT NULL," +
                     "Composition VARCHAR(50) NOT NULL," +
-                    "Experience INTEGER NOT NULL," +
+                    "Inexperienced INTEGER NOT NULL," +
+                    "Regular INTEGER NOT NULL," +
+                    "Veteran INTEGER NOT NULL," +
+                    "PointsPerInexp INTEGER NOT NULL," +
+                    "PointsPerRegular INTEGER NOT NULL," +
+                    "PointsPerVeteran INTEGER NOT NULL," +
+                    "BaseSize INTEGER NOT NULL," +
+                    "MaxSize INTEGER NOT NULL," +
                     "WeaponDescription VARCHAR(255) NULL," +
                     "ArmourClass INTEGER NULL," +
                     "BasePoints INTEGER NULL," +
