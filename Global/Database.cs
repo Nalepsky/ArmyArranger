@@ -96,6 +96,7 @@ namespace ArmyArranger.Global
                     "Cost INTEGER NULL," +
                     "Count INTEGER NULL," +
                     "WeaponID INTEGER NULL," +
+                    "RuleID INTEGER NULL," +
                     "UnitID INTEGER NULL," +
                     "FOREIGN KEY(WeaponID) REFERENCES Weapon(ID)," +
                     "FOREIGN KEY(RuleID) REFERENCES Rule(ID)," +
