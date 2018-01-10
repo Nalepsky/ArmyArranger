@@ -18,6 +18,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         AddUnitOptionModel thisModel;
 
+        private int UnitID;
+
         private ObservableCollection<UnitOption> _optionsList;
         public ObservableCollection<UnitOption> OptionsList
         {
@@ -69,7 +71,9 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             set
             {
                 _selectedPossibleWeapon = value;
+                _selectedPossibleRule = null;
                 RaisePropertyChanged(nameof(SelectedPossibleWeapon));
+                SelectedAddition = SelectedPossibleWeapon.Name;
             }
         }
 
@@ -80,7 +84,9 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             set
             {
                 _selectedPossibleRule = value;
+                _selectedPossibleWeapon = null;
                 RaisePropertyChanged(nameof(SelectedPossibleRule));
+                SelectedAddition = SelectedPossibleRule.Name;
             }
         }
 
@@ -144,6 +150,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         public AddUnitOptionViewModel(int id)
         {
             thisModel = new AddUnitOptionModel(id);
+            UnitID = id;
 
             OnLoad = new DelegateCommand(FunctionOnLoad);
             MouseClick = new DelegateCommand(FunctionOnClick);
@@ -157,7 +164,27 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         #region Actions
         private void FunctionConfirm()
         {
-            //throw new NotImplementedException();
+            bool WeaponOrRule;
+            int ruleID;
+            int weaponID;
+
+            if (_selectedPossibleWeapon != null)
+            {
+                WeaponOrRule = true;
+                ruleID = _selectedPossibleWeapon.ID;
+                weaponID = -1;
+            }
+            else
+            {
+                WeaponOrRule = false;
+                ruleID = -1;
+                weaponID = _selectedPossibleRule.ID;
+            }
+                
+
+            
+
+            thisModel.EmptyUnitOption.CreateNewAndSaveToDB(Describtion, MaxNumber, Cost, weaponID, ruleID, UnitID, WeaponOrRule);
         }
 
         private void FunctionCancel()
@@ -184,7 +211,13 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             PossibleRulesList = GameRule.RulesCollection;
             PossibleWeaponsList = Weapon.WeaponsCollection;
-            OptionsList = thisModel.LoadOptions();
+            thisModel.EmptyUnitOption.LoadAll(UnitID);
+            OptionsList = UnitOption.UnitOptionsCollection;
+
+            foreach(var u in OptionsList)
+            {
+                Console.WriteLine("TUTAJ " + u.Describtion);
+            }
 
             Describtion = "";
             Cost = 0;
