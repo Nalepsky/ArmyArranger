@@ -12,30 +12,30 @@ namespace ArmyArranger.Global
     {
         public static ObservableCollection<UnitOption> UnitOptionsCollection = new ObservableCollection<UnitOption>();
 
-        public int id { get; set; }
+        public int ID { get; set; }
         public String Description { get; set; }
-        public int count { get; set; }
-        public int cost { get; set; }
-        public int ruleId { get; set; }
-        public int weaponId { get; set; }
-        public int unitID { get; set; }
+        public int Count { get; set; }
+        public int Cost { get; set; }
+        public int RuleId { get; set; }
+        public int WeaponId { get; set; }
+        public int UnitID { get; set; }
 
         public UnitOption(int id, string description, int count, int cost, int weaponId, int ruleId, int unitID)
         {
-            this.id = id;
+            this.ID = id;
             this.Description = description;
-            this.count = count;
-            this.cost = cost;
-            this.unitID = unitID;
-            this.weaponId = weaponId;
-            this.ruleId = ruleId;             
+            this.Count = count;
+            this.Cost = cost;
+            this.UnitID = unitID;
+            this.WeaponId = weaponId;
+            this.RuleId = ruleId;             
         }
 
         public UnitOption()
         {
         }
 
-        public void clearCollection()
+        public void ClearCollection()
         {
             UnitOptionsCollection.Clear();
         }
@@ -62,7 +62,7 @@ namespace ArmyArranger.Global
                 throw ex;
             }
 
-            new UnitOption(id, description, count, cost, weaponID, ruleId, unitID);
+            new UnitOption(id, description, count, cost, weaponID, RuleId, unitID);
         }
 
         public void LoadAll(int unit_id)
@@ -87,7 +87,7 @@ namespace ArmyArranger.Global
                 RuleID = (!result.IsDBNull(5)) ? result.GetInt32(5) : 0;
                 UnitID = (!result.IsDBNull(6)) ? result.GetInt32(6) : 0;
                 
-                UnitOptionsCollection.Add(new UnitOption(id, Description, Count, Cost, RuleID, WeaponID, UnitID));
+                UnitOptionsCollection.Add(new UnitOption(ID, Description, Count, Cost, RuleID, WeaponID, UnitID));
             }
             result.Close();
         }
