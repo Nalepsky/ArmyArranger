@@ -138,18 +138,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 RaisePropertyChanged(nameof(ArmourClass));
             }
         }
-
-        private int _basePoints;
-        public int BasePoints
-        {
-            get { return _basePoints; }
-            set
-            {
-                _basePoints = value;
-                RaisePropertyChanged(nameof(BasePoints));
-            }
-        }
-
+       
         private int _inexperienced;
         public int Inexperienced
         {
@@ -316,7 +305,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 Composition = SelectedUnit.Composition;
                 WeaponDescription = SelectedUnit.WeaponDescription;
                 ArmourClass = SelectedUnit.ArmourClass;
-                BasePoints = SelectedUnit.BasePoints;
                 Inexperienced = SelectedUnit.Inexperienced;
                 Regular = SelectedUnit.Regular;
                 Veteran = SelectedUnit.Veteran;
@@ -341,7 +329,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             Composition = "";
             WeaponDescription = null;
             ArmourClass = 0;
-            BasePoints = 0;
             Inexperienced = 0;
             Regular = 0;
             Veteran = 0;
@@ -393,7 +380,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             Composition = "";
             WeaponDescription = null;
             ArmourClass = 0;
-            BasePoints = 0;
             Inexperienced = 0;
             Regular = 0;
             Veteran = 0;
@@ -415,7 +401,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             ObservableCollection<Weapon> SelectedWeaponsList = new ObservableCollection<Weapon>(WeaponsList.Where(w => (w.IsSelected == true)));
             int SelectedNationID = (SelectedNation != null) ? SelectedNation.ID : 0;
 
-            thisModel.ConfirmChanges(Name, SelectedNationID, Type, Composition, WeaponDescription, ArmourClass, BasePoints, Inexperienced, Regular, Veteran, PointsInexp, PointsReg, PointsVet, BaseSize, MaxSize, SelectedUnit, UnitsList, SelectedRulesList, SelectedWeaponsList);
+            thisModel.ConfirmChanges(Name, SelectedNationID, Type, Composition, WeaponDescription, ArmourClass, Inexperienced, Regular, Veteran, PointsInexp, PointsReg, PointsVet, BaseSize, MaxSize, SelectedUnit, UnitsList, SelectedRulesList, SelectedWeaponsList);
             if (SelectedUnit != null)
             {
                 Name = SelectedUnit.Name;
@@ -424,7 +410,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 Composition = SelectedUnit.Composition;
                 WeaponDescription = SelectedUnit.WeaponDescription;
                 ArmourClass = SelectedUnit.ArmourClass;
-                BasePoints = SelectedUnit.BasePoints;
                 Inexperienced = SelectedUnit.Inexperienced;
                 Regular = SelectedUnit.Regular;
                 Veteran = SelectedUnit.Veteran;
@@ -442,7 +427,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 Composition = "";
                 WeaponDescription = null;
                 ArmourClass = 0;
-                BasePoints = 0;
                 Inexperienced = 0;
                 Regular = 0;
                 Veteran = 0;

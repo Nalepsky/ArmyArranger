@@ -36,7 +36,6 @@ namespace ArmyArranger.Global
         public int Experience { get; set; }
         public string WeaponDescription { get; set; }
         public int ArmourClass { get; set; }
-        public int BasePoints { get; set; }
         public int Inexperienced { get; set; }
         public int Regular { get; set; }
         public int Veteran { get; set; }
@@ -59,7 +58,7 @@ namespace ArmyArranger.Global
             LoadID(id);
         }
 
-        public Unit(int id, string name, int nationID, string type, string composition, string weaponDescription, int armourClass, int basePoints, int inexperienced, int regular, int veteran, int pointsInexp, int pointsReg, int pointsVet, int baseSize, int maxSize, List<int> listOfActiveRules, List<int> listOfActiveWeapons)
+        public Unit(int id, string name, int nationID, string type, string composition, string weaponDescription, int armourClass, int inexperienced, int regular, int veteran, int pointsInexp, int pointsReg, int pointsVet, int baseSize, int maxSize, List<int> listOfActiveRules, List<int> listOfActiveWeapons)
         {
             ID = id;
             Name = name;
@@ -68,7 +67,6 @@ namespace ArmyArranger.Global
             Composition = composition;
             WeaponDescription = weaponDescription;
             ArmourClass = armourClass;
-            BasePoints = basePoints;
             Inexperienced = inexperienced;
             Regular = regular;
             Veteran = veteran;
@@ -85,7 +83,7 @@ namespace ArmyArranger.Global
             isEmpty = false;
         }
 
-        public void CreateNewAndSaveToDB(string name, int nationID, string type, string composition, string weaponDescription, int armourClass, int basePoints, int inexperienced, int regular, int veteran, int pointsInexp, int pointsReg, int pointsVet, int baseSize, int maxSize, ObservableCollection<GameRule> selectedRulesList, ObservableCollection<Weapon> selectedWeaponsList)
+        public void CreateNewAndSaveToDB(string name, int nationID, string type, string composition, string weaponDescription, int armourClass,  int inexperienced, int regular, int veteran, int pointsInexp, int pointsReg, int pointsVet, int baseSize, int maxSize, ObservableCollection<GameRule> selectedRulesList, ObservableCollection<Weapon> selectedWeaponsList)
         {
             int id;
             string sql_name = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + name + "'";
@@ -94,7 +92,6 @@ namespace ArmyArranger.Global
             string sql_composition = (String.IsNullOrWhiteSpace(composition)) ? "null" : "'" + composition + "'";
             string sql_weaponDescription = (String.IsNullOrWhiteSpace(weaponDescription)) ? "null" : "'" + weaponDescription + "'";
             string sql_armourClass = (armourClass == 0) ? "null" : "'" + armourClass + "'";
-            string sql_basePoints = (basePoints == 0) ? "null" : "'" + basePoints + "'";
             string sql_inexperienced = (inexperienced == 0) ? "null" : "'" + inexperienced + "'";
             string sql_regular = (regular == 0) ? "null" : "'" + regular + "'";
             string sql_veteran = (veteran == 0) ? "null" : "'" + veteran + "'";
@@ -108,7 +105,7 @@ namespace ArmyArranger.Global
 
             try
             {
-                Database.ExecuteCommand("INSERT INTO Unit (Name, NationID, Type, Composition, WeaponDescription, ArmourClass, BasePoints, Inexperienced, Regular, Veteran, PointsPerInexp, PointsPerRegular, PointsPerVeteran, BaseSize, MaxSize) VALUES (" + sql_name + "," + sql_nationID + "," + sql_type + "," + sql_composition + "," + sql_weaponDescription + "," + sql_armourClass + "," + sql_basePoints + "," + sql_inexperienced + "," + sql_regular + "," + sql_veteran + "," + sql_pointsInexp + "," + sql_pointsReg + "," + sql_pointsVet + "," + sql_baseSize + "," + sql_maxSize + ")");
+                Database.ExecuteCommand("INSERT INTO Unit (Name, NationID, Type, Composition, WeaponDescription, ArmourClass,  Inexperienced, Regular, Veteran, PointsPerInexp, PointsPerRegular, PointsPerVeteran, BaseSize, MaxSize) VALUES (" + sql_name + "," + sql_nationID + "," + sql_type + "," + sql_composition + "," + sql_weaponDescription + "," + sql_armourClass + "," + sql_inexperienced + "," + sql_regular + "," + sql_veteran + "," + sql_pointsInexp + "," + sql_pointsReg + "," + sql_pointsVet + "," + sql_baseSize + "," + sql_maxSize + ")");
 
                 id = Database.GetLastInsertedID();
             }
@@ -143,10 +140,10 @@ namespace ArmyArranger.Global
                 newListOfActiveWeapons.Add(weapon.ID);
             }
 
-            new Unit(id, name, nationID, type, composition, weaponDescription, armourClass, basePoints, inexperienced, regular, veteran, pointsInexp, pointsReg, pointsVet, baseSize, maxSize, newListOfActiveRules, newListOfActiveWeapons);
+            new Unit(id, name, nationID, type, composition, weaponDescription, armourClass, inexperienced, regular, veteran, pointsInexp, pointsReg, pointsVet, baseSize, maxSize, newListOfActiveRules, newListOfActiveWeapons);
         }
 
-        public void UpdateInDB(string name, int nationID, string type, string composition, string weaponDescription, int armourClass, int basePoints, int inexperienced, int regular, int veteran, int pointsInexp, int pointsReg, int pointsVet, int baseSize, int maxSize, ObservableCollection<GameRule> selectedRulesList, ObservableCollection<Weapon> selectedWeaponsList)
+        public void UpdateInDB(string name, int nationID, string type, string composition, string weaponDescription, int armourClass, int inexperienced, int regular, int veteran, int pointsInexp, int pointsReg, int pointsVet, int baseSize, int maxSize, ObservableCollection<GameRule> selectedRulesList, ObservableCollection<Weapon> selectedWeaponsList)
         {
             string sql_name = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + name + "'";
             int sql_nationID = nationID;
@@ -154,7 +151,6 @@ namespace ArmyArranger.Global
             string sql_composition = (String.IsNullOrWhiteSpace(composition)) ? "null" : "'" + composition + "'";
             string sql_weaponDescription = (String.IsNullOrWhiteSpace(weaponDescription)) ? "null" : "'" + weaponDescription + "'";
             int sql_armourClass = armourClass;
-            int sql_basePoints = basePoints;
             int sql_inexperienced = inexperienced;
             int sql_regular = regular;
             int sql_veteran = veteran;
@@ -168,7 +164,7 @@ namespace ArmyArranger.Global
 
             try
             {
-                Database.ExecuteCommand("UPDATE Unit SET Name = " + sql_name + ", NationID = " + sql_nationID + ", Type = " + sql_type + ", Composition = " + sql_composition + ", WeaponDescription = " + sql_weaponDescription + ", ArmourClass = " + sql_armourClass + ", BasePoints = " + sql_basePoints + ", Inexperienced = " + sql_inexperienced + ", Regular = " + sql_regular + ", Veteran = " + sql_veteran + ", PointsPerInexp = " + sql_pointsInexp + ", PointsPerRegular = " + sql_pointsReg + ", PointsPerVeteran = " + sql_pointsVet + ", baseSize = " + sql_baseSize + ", maxSize = " + sql_maxSize + " WHERE ID = " + ID);
+                Database.ExecuteCommand("UPDATE Unit SET Name = " + sql_name + ", NationID = " + sql_nationID + ", Type = " + sql_type + ", Composition = " + sql_composition + ", WeaponDescription = " + sql_weaponDescription + ", ArmourClass = " + sql_armourClass + ", Inexperienced = " + sql_inexperienced + ", Regular = " + sql_regular + ", Veteran = " + sql_veteran + ", PointsPerInexp = " + sql_pointsInexp + ", PointsPerRegular = " + sql_pointsReg + ", PointsPerVeteran = " + sql_pointsVet + ", baseSize = " + sql_baseSize + ", maxSize = " + sql_maxSize + " WHERE ID = " + ID);
             }
             catch (Exception ex)
             {
@@ -223,7 +219,6 @@ namespace ArmyArranger.Global
             Composition = composition;
             WeaponDescription = weaponDescription;
             ArmourClass = armourClass;
-            BasePoints = basePoints;
             Inexperienced = inexperienced;
             Regular = regular;
             Veteran = veteran;
@@ -260,7 +255,6 @@ namespace ArmyArranger.Global
               Name = result.GetString(1);
               NationID = (!result.IsDBNull(2)) ? result.GetInt32(2) : 0;
               Type = (!result.IsDBNull(3)) ? result.GetString(3) : "";
-              BasePoints = (!result.IsDBNull(4)) ? result.GetInt32(4) : 0;
               WeaponDescription = (!result.IsDBNull(5)) ? result.GetString(5) : "";
               Composition = (!result.IsDBNull(6)) ? result.GetString(6) : "";
               Inexperienced =(!result.IsDBNull(7)) ? result.GetInt32(7): 0;
@@ -285,7 +279,6 @@ namespace ArmyArranger.Global
                 WeaponDescription;
             int NationID,
                 ArmourClass,
-                BasePoints,
                 Inexperienced,
                 Regular,
                 Veteran,
@@ -303,7 +296,6 @@ namespace ArmyArranger.Global
                 Name = result.GetString(1);
                 NationID = (!result.IsDBNull(2)) ? result.GetInt32(2) : 0;
                 Type = (!result.IsDBNull(3)) ? result.GetString(3) : "";
-                BasePoints = (!result.IsDBNull(4)) ? result.GetInt32(4) : 0;
                 WeaponDescription = (!result.IsDBNull(5)) ? result.GetString(5) : "";
                 Composition = (!result.IsDBNull(6)) ? result.GetString(6) : "";
                 Inexperienced =(!result.IsDBNull(7)) ? result.GetInt32(7): 0;
@@ -330,7 +322,7 @@ namespace ArmyArranger.Global
                     newListOfActiveWeapons.Add(weaponResult.GetInt32(0));
                 }
 
-                new Unit(ID, Name, NationID, Type, Composition, WeaponDescription, ArmourClass, BasePoints, Inexperienced, Regular, Veteran, PointsInexp, PointsReg, PointsVet, BaseSize, MaxSize, newListOfActiveRules, newListOfActiveWeapons);
+                new Unit(ID, Name, NationID, Type, Composition, WeaponDescription, ArmourClass, Inexperienced, Regular, Veteran, PointsInexp, PointsReg, PointsVet, BaseSize, MaxSize, newListOfActiveRules, newListOfActiveWeapons);
             }
             result.Close();
         }

@@ -46,7 +46,6 @@ namespace ArmyArranger.Global
                     "Name VARCHAR(50) NOT NULL," +
                     "NationID INTEGER NOT NULL," +
                     "Type VARCHAR(50) NOT NULL," +
-                    "BasePoints INTEGER NULL," +
                     "WeaponDescription VARCHAR(255) NULL," +
                     "Composition VARCHAR(50) NOT NULL," +
                     "Inexperienced INTEGER NOT NULL," +
