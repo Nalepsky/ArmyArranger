@@ -94,20 +94,20 @@
     <Compile Include="Global\Nation.cs" />
     <Compile Include="Global\Selector.cs" />
     <Compile Include="Global\Unit.cs" />
-    <Compile Include="Global\UnitOption.cs" />
+    <Compile Include="Global\Option.cs" />
     <Compile Include="Global\Weapon.cs" />
     <Compile Include="Global\WindowsService.cs" />
     <Compile Include="Models\AddEntryModel.cs" />
     <Compile Include="Models\AddNationsModel.cs" />
     <Compile Include="Models\AddSelectorsModel.cs" />
-    <Compile Include="Models\AddUnitOptionModel.cs" />
+    <Compile Include="Models\AddOptionModel.cs" />
     <Compile Include="Models\AddWeaponsModel.cs" />
     <Compile Include="Models\AddRulesModel.cs" />
     <Compile Include="Models\AddUnitsModel.cs" />
     <Compile Include="Models\ContactUsModel.cs" />
     <Compile Include="Global\Database.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddEntryViewModel.cs" />
-    <Compile Include="ViewModels\EditYourArmies\AddUnitOptionViewModel.cs" />
+    <Compile Include="ViewModels\EditYourArmies\AddOptionViewModel.cs" />
     <Compile Include="ViewModels\Menu\AboutViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddRulesViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddUnitsViewModel.cs" />
@@ -118,14 +118,14 @@
     <Compile Include="ViewModels\Menu\ContactUsViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddNationsViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddSelectorsViewModel.cs" />
-    <Compile Include="AddUnitOptionWindow.xaml.cs">
-      <DependentUpon>AddUnitOptionWindow.xaml</DependentUpon>
+    <Compile Include="AddOptionWindow.xaml.cs">
+      <DependentUpon>AddOptionWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditYourArmies\AddEntryView.xaml.cs">
       <DependentUpon>AddEntryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EditYourArmies\AddUnitOptionView.xaml.cs">
-      <DependentUpon>AddUnitOptionView.xaml</DependentUpon>
+    <Compile Include="Views\EditYourArmies\AddOptionView.xaml.cs">
+      <DependentUpon>AddOptionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Menu\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
@@ -173,7 +173,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="AddUnitOptionWindow.xaml">
+    <Page Include="AddOptionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -181,7 +181,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EditYourArmies\AddUnitOptionView.xaml">
+    <Page Include="Views\EditYourArmies\AddOptionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

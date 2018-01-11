@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ArmyArranger.Views.EditYourArmies
 {
     /// <summary>
-    /// Interaction logic for AddUnitOptionView.xaml
+    /// Interaction logic for AddOptionView.xaml
     /// </summary>
-    public partial class AddUnitOptionView : UserControl
+    public partial class AddOptionView : UserControl
     {
-        public AddUnitOptionView()
+        public AddOptionView()
         {
             InitializeComponent();
         }

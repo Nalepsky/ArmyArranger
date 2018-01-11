@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace ArmyArranger.Global
 {
-    class UnitOption : INotifyPropertyChanged
+    class Option : INotifyPropertyChanged
     {
-        public static ObservableCollection<UnitOption> UnitOptionsCollection = new ObservableCollection<UnitOption>();
+        public static ObservableCollection<Option> OptionsCollection = new ObservableCollection<Option>();
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged<T>([CallerMemberName]string caller = null)
         {
@@ -32,7 +32,7 @@ namespace ArmyArranger.Global
         public int WeaponID { get; set; }
         public int UnitID { get; set; }
 
-        public UnitOption(int id, string description, int count, int cost, int weaponId, int ruleId, int unitID)
+        public Option(int id, string description, int count, int cost, int weaponId, int ruleId, int unitID)
         {
             this.ID = id;
             this.Description = description;
@@ -42,16 +42,16 @@ namespace ArmyArranger.Global
             this.WeaponID = weaponId;
             this.RuleID = ruleId;
 
-            UnitOptionsCollection.Add(this);
+            OptionsCollection.Add(this);
         }
 
-        public UnitOption()
+        public Option()
         {
         }
 
         public void ClearCollection()
         {
-            UnitOptionsCollection.Clear();
+            OptionsCollection.Clear();
         }
 
         public void CreateNewAndSaveToDB(string description, int count, int cost, int weaponID, int ruleID, int unitID)
@@ -74,7 +74,7 @@ namespace ArmyArranger.Global
                 throw ex;
             }
 
-            new UnitOption(id, description, count, cost, weaponID, ruleID, unitID);
+            new Option(id, description, count, cost, weaponID, ruleID, unitID);
         }
         public void UpdateInDB(string description, int count, int cost, int weaponID, int ruleID, int unitID)
         {
@@ -124,7 +124,7 @@ namespace ArmyArranger.Global
                 RuleID = (!result.IsDBNull(5)) ? result.GetInt32(5) : 0;
                 UnitID = (!result.IsDBNull(6)) ? result.GetInt32(6) : 0;
                 
-                new UnitOption(ID, Description, Count, Cost, RuleID, WeaponID, UnitID);
+                new Option(ID, Description, Count, Cost, RuleID, WeaponID, UnitID);
             }
             result.Close();
         }
@@ -139,7 +139,7 @@ namespace ArmyArranger.Global
             {
                 throw ex;
             }
-            UnitOptionsCollection.Remove(this);
+            OptionsCollection.Remove(this);
         }
     }
 }

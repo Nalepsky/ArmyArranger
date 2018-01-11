@@ -250,7 +250,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         public ICommand GoToWeapons { get; set; }
         public ICommand Remove { get; set; }
         public ICommand Confirm { get; set; }
-        public ICommand AddUnitOption { get; set; }
+        public ICommand AddOption { get; set; }
 
         #endregion
 
@@ -266,7 +266,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             GoToWeapons = new DelegateCommand(ChangeViewToAddWeapons);
             Remove = new DelegateCommand(RemoveSelectedUnit);
             Confirm = new DelegateCommand(ConfirmChanges);
-            AddUnitOption = new DelegateCommand(OpenAddUnitOptions);
+            AddOption = new DelegateCommand(OpenAddOptions);
         }
 
         #endregion
@@ -286,11 +286,11 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             NationsList = Nation.NationsCollecion;
         }
 
-        private void OpenAddUnitOptions()
+        private void OpenAddOptions()
         {
             if (SelectedUnit != null)
             {                
-                Window OptionsWindow = new AddUnitOptionWindow(SelectedUnit.ID);
+                Window OptionsWindow = new AddOptionWindow(SelectedUnit.ID);
                 OptionsWindow.Show();
             }
         }

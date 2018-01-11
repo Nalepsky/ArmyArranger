@@ -12,16 +12,16 @@ using System.Windows.Input;
 
 namespace ArmyArranger.ViewModels.EditYourArmies
 {
-    class AddUnitOptionViewModel : BindableBase
+    class AddOptionViewModel : BindableBase
     {
         #region Properties
 
-        AddUnitOptionModel thisModel;
+        AddOptionModel thisModel;
 
         private int UnitID;
 
-        private ObservableCollection<UnitOption> _optionsList;
-        public ObservableCollection<UnitOption> OptionsList
+        private ObservableCollection<Option> _optionsList;
+        public ObservableCollection<Option> OptionsList
         {
             get { return _optionsList; }
             set
@@ -53,8 +53,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
-        private UnitOption _selectedOption;
-        public UnitOption SelectedOption
+        private Option _selectedOption;
+        public Option SelectedOption
         {
             get { return _selectedOption; }
             set
@@ -166,9 +166,9 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         #region Constructors
 
-        public AddUnitOptionViewModel(int id)
+        public AddOptionViewModel(int id)
         {
-            thisModel = new AddUnitOptionModel(id);
+            thisModel = new AddOptionModel(id);
             UnitID = id;
 
             OnLoad = new DelegateCommand(FunctionOnLoad);
@@ -188,8 +188,8 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             ConfirmButtonText = "Save New";
             PossibleRulesList = GameRule.RulesCollection;
             PossibleWeaponsList = Weapon.WeaponsCollection;
-            thisModel.EmptyUnitOption.LoadAll(UnitID);
-            OptionsList = UnitOption.UnitOptionsCollection;
+            thisModel.EmptyOption.LoadAll(UnitID);
+            OptionsList = Option.OptionsCollection;
 
             Description = "";
             Cost = 0;
@@ -255,7 +255,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void FunctionCancel()
         {
-            thisModel.EmptyUnitOption.ClearCollection();
+            thisModel.EmptyOption.ClearCollection();
         }
         #endregion
     }
