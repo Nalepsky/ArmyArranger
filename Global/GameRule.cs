@@ -26,7 +26,7 @@ namespace ArmyArranger.Global
         public string Name
         {
             get { return _name; }
-            set {  _name = value;  OnPropertyChanged<GameRule>(); }
+            set { _name = value; OnPropertyChanged<GameRule>(); }
         }
         public string Description { get; set; }
         public string Type { get; set; }
@@ -39,7 +39,7 @@ namespace ArmyArranger.Global
         }
         public Boolean isEmpty;
 
-        public GameRule(){
+        public GameRule() {
             isEmpty = true;
         }
 
@@ -110,19 +110,43 @@ namespace ArmyArranger.Global
         public void LoadAll()
         {
             SQLiteDataReader result = Database.ExecuteCommand("SELECT * FROM Rule");
+            int ID;
+            string Name,
+                Description,
+                Type,
+                Source;
+
             while (result.Read())
             {
-                new GameRule(result.GetInt32(0), result.GetString(1), result.GetString(2), result.GetString(3), result.GetString(4));
+                ID = result.GetInt32(0);
+                Name = result.GetString(1);
+                Description = (!result.IsDBNull(2)) ? result.GetString(2) : "";
+                Type = (!result.IsDBNull(3)) ? result.GetString(3) : "";
+                Source = (!result.IsDBNull(4)) ? result.GetString(4) : "";
+
+                new GameRule(ID, Name, Description, Type, Source);
             }
             result.Close();
         }
 
         public void LoadAll(String type)
         {
-            SQLiteDataReader result = Database.ExecuteCommand("SELECT * FROM Rule WHERE Type = '"+type+"'");
+            SQLiteDataReader result = Database.ExecuteCommand("SELECT * FROM Rule WHERE Type = '" + type + "'");
+            int ID;
+            string Name,
+                Description,
+                Type,
+                Source;
+
             while (result.Read())
             {
-                new GameRule(result.GetInt32(0), result.GetString(1), result.GetString(2), result.GetString(3), result.GetString(4));
+                ID = result.GetInt32(0);
+                Name = result.GetString(1);
+                Description = (!result.IsDBNull(2)) ? result.GetString(2) : "";
+                Type = (!result.IsDBNull(3)) ? result.GetString(3) : "";
+                Source = (!result.IsDBNull(4)) ? result.GetString(4) : "";
+
+                new GameRule(ID, Name, Description, Type, Source);
             }
 
             result.Close();

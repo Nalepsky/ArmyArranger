@@ -138,7 +138,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 RaisePropertyChanged(nameof(ArmourClass));
             }
         }
-
+ 
         private int _inexperienced;
         public int Inexperienced
         {
@@ -289,7 +289,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         private void OpenAddUnitOptions()
         {
             if (SelectedUnit != null)
-            {
+            {                
                 Window OptionsWindow = new AddUnitOptionWindow(SelectedUnit.ID);
                 OptionsWindow.Show();
             }

@@ -458,7 +458,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void OpenTanksWindow()
         {
-            thisModel.EditedEntry = "transport";
+            thisModel.EditedEntry = "tanks";
             Window EntryWindow = new AddEntryWindow(service);
             service.AddSubscriber(this);
             EntryWindow.Show();
@@ -475,6 +475,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void OpenTransportsWindow()
         {
+            thisModel.EditedEntry = "transport";
             Window EntryWindow = new AddEntryWindow(service);
             service.AddSubscriber(this);
             EntryWindow.Show();

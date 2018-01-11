@@ -184,7 +184,7 @@ namespace ArmyArranger.Models
                 }
                 else
                 {
-                    if (PromptQuestion("Do you wish to update name of choosen unit? \nOtherwise new unit with given name  will be added."))
+                    if (PromptQuestion("Do you wish to update name of choosen unit? \nOtherwise new unit with given name will by added."))
                         UpdateUnit(selectedUnit, name, nationID, type, composition, weaponDescription, armourClass, inexperienced, regular, veteran, pointsInexp, pointsReg, pointsVet, baseSize, maxSize, selectedRulesList, selectedWeaponsList);
                     else
                         AddUnit(name, nationID, type, composition, weaponDescription, armourClass, inexperienced, regular, veteran, pointsInexp, pointsReg, pointsVet, baseSize, maxSize, selectedRulesList, selectedWeaponsList);
