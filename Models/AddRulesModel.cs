@@ -142,7 +142,7 @@ namespace ArmyArranger.Models
                 }
                 else
                 {
-                    if (PromptQuestion("Do you wish to update name of choosen rule? \nOtherwise new rule with given name will by added."))
+                    if (PromptQuestion("Do you wish to update name of choosen rule? \nOtherwise new rule with given name  will be added."))
                         UpdateRule(SelectedRule, Name, Description, Type, Source);
                     else
                         AddRule(Name, Description, Type, Source);

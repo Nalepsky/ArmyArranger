@@ -130,13 +130,24 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         }
 
         private int _count;
-        public int MaxNumber
+        public int Count
         {
             get { return _count; }
             set
             {
                 _count = value;
-                RaisePropertyChanged(nameof(MaxNumber));
+                RaisePropertyChanged(nameof(Count));
+            }
+        }
+
+        private string _confirmButtonText;
+        public string ConfirmButtonText
+        {
+            get { return _confirmButtonText; }
+            set
+            {
+                _confirmButtonText = value;
+                RaisePropertyChanged(nameof(ConfirmButtonText));
             }
         }
 
@@ -145,9 +156,11 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         #region Commands
         public ICommand OnLoad { get; set; }
         public ICommand MouseClick { get; set; }
+        public ICommand AddNew { get; set; }
         public ICommand Cancel { get; set; }
+        public ICommand Remove { get; set; }
         public ICommand Confirm { get; set; }
-        public ICommand AddNewOption { get; set; }
+
 
         #endregion
 
@@ -160,71 +173,89 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
             OnLoad = new DelegateCommand(FunctionOnLoad);
             MouseClick = new DelegateCommand(FunctionOnClick);
+            AddNew = new DelegateCommand(PrepareToAddNew);
             Cancel = new DelegateCommand(FunctionCancel);
-            Confirm = new DelegateCommand(FunctionConfirm);
-            AddNewOption = new DelegateCommand(FunctionAddNewOption);
+            Remove = new DelegateCommand(RemoveSelectedOption);
+            Confirm = new DelegateCommand(ConfirmChanges);
         }
 
         #endregion
 
         #region Actions
-        private void FunctionConfirm()
+
+        private void FunctionOnLoad()
         {
-            bool WeaponOrRule;
-            int RuleID;
-            int WeaponID;
-
-            if (_selectedPossibleWeapon != null)
-            {
-                WeaponOrRule = true;
-                RuleID = _selectedPossibleWeapon.ID;
-                WeaponID = 0;
-            }
-            else
-            {
-                WeaponOrRule = false;
-                RuleID = 0;
-                WeaponID = _selectedPossibleRule.ID;
-            }             
-                      
-            thisModel.EmptyUnitOption.CreateNewAndSaveToDB(Description, MaxNumber, Cost, WeaponID, RuleID, UnitID, WeaponOrRule);
-
-            thisModel.EmptyUnitOption.ClearCollection();
+            ConfirmButtonText = "Save New";
+            PossibleRulesList = GameRule.RulesCollection;
+            PossibleWeaponsList = Weapon.WeaponsCollection;
             thisModel.EmptyUnitOption.LoadAll(UnitID);
             OptionsList = UnitOption.UnitOptionsCollection;
 
-        }
-
-        private void FunctionCancel()
-        {
-            thisModel.EmptyUnitOption.ClearCollection();
+            Description = "";
+            Cost = 0;
+            Count = 1;
         }
 
         private void FunctionOnClick()
         {
-            //throw new NotImplementedException();
+            if (thisModel.ChosenEqualsSelected(SelectedOption) && SelectedOption != null)
+            {
+                Description = SelectedOption.Description;
+                Cost = SelectedOption.Cost;
+                Count = SelectedOption.Count;
+                if (SelectedOption.WeaponID != 0)
+                    SelectedPossibleWeapon = PossibleWeaponsList.Where(x => x.ID == SelectedOption.WeaponID).FirstOrDefault();
+                else if (SelectedOption.RuleID != 0)
+                    SelectedPossibleRule = PossibleRulesList.Where(x => x.ID == SelectedOption.RuleID).FirstOrDefault();
+                else
+                    SelectedAddition = null;
+
+                ConfirmButtonText = "Update";
+            }
         }
 
-        private void FunctionAddNewOption()
+        private void PrepareToAddNew()
         {
             SelectedOption = null;
             SelectedPossibleRule = null;
             SelectedPossibleWeapon = null;
             Description = "";
             Cost = 0;
-            MaxNumber = 1;
+            Count = 1;
+            ConfirmButtonText = "Save New";
         }
 
-        private void FunctionOnLoad()
+        private void RemoveSelectedOption()
         {
-            PossibleRulesList = GameRule.RulesCollection;
-            PossibleWeaponsList = Weapon.WeaponsCollection;
-            thisModel.EmptyUnitOption.LoadAll(UnitID);
-            OptionsList = UnitOption.UnitOptionsCollection;            
+            thisModel.RemoveOption(SelectedOption);
+            PrepareToAddNew();
+        }
 
-            Description = "";
-            Cost = 0;
-            MaxNumber = 1;
+        private void ConfirmChanges()
+        {
+            int WeaponID = (SelectedPossibleWeapon != null) ? SelectedPossibleWeapon.ID : 0;
+            int RuleID = (SelectedPossibleRule != null) ? SelectedPossibleRule.ID : 0;
+
+            thisModel.ConfirmChanges(Description, Count, Cost, WeaponID, RuleID, UnitID, SelectedOption, OptionsList);
+            if (SelectedOption != null)
+            {
+                if (SelectedOption.WeaponID != 0)
+                    SelectedPossibleWeapon = PossibleWeaponsList.Where(x => x.ID == SelectedOption.WeaponID).FirstOrDefault();
+                if (SelectedOption.RuleID != 0)
+                    SelectedPossibleRule = PossibleRulesList.Where(x => x.ID == SelectedOption.RuleID).FirstOrDefault();
+                Description = SelectedOption.Description;
+                Cost = SelectedOption.Cost;
+                Count = SelectedOption.Count;
+            }
+            else
+            {
+                PrepareToAddNew();
+            }
+        }
+
+        private void FunctionCancel()
+        {
+            thisModel.EmptyUnitOption.ClearCollection();
         }
         #endregion
     }

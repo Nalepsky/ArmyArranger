@@ -160,12 +160,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         private void RemoveSelectedRule()
         {
             thisModel.RemoveRule(SelectedRule);
-            Name = "";
-            Description = "";
-            Type = "";
-            Source = "";
-            SelectedRule = null;
-            ConfirmButtonText = "Save New";
+            PrepareToAddNew();
         }
 
         private void ConfirmChanges() 
@@ -180,10 +175,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
             else
             {
-                Name = "";
-                Description = "";
-                Type = "";
-                Source = "";
+                PrepareToAddNew();
             }
         }
 

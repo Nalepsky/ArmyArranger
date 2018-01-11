@@ -142,7 +142,7 @@ namespace ArmyArranger.Models
                 }
                 else
                 {
-                    if (PromptQuestion("Do you wish to update name of choosen nation? \nOtherwise new nation with given name will by added."))
+                    if (PromptQuestion("Do you wish to update name of choosen nation? \nOtherwise new nation with given name  will be added."))
                         UpdateNation(SelectedNation, Name);
                     else
                         AddNation(Name);

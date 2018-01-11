@@ -1,23 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data.SQLite;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ArmyArranger.Global
 {
-    class UnitOption
+    class UnitOption : INotifyPropertyChanged
     {
         public static ObservableCollection<UnitOption> UnitOptionsCollection = new ObservableCollection<UnitOption>();
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged<T>([CallerMemberName]string caller = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(caller));
+        }
 
         public int ID { get; set; }
-        public String Description { get; set; }
+        private string _description;
+        public String Description
+        {
+            get { return _description; }
+            set { _description = value; OnPropertyChanged<Unit>(); }
+        }
         public int Count { get; set; }
         public int Cost { get; set; }
-        public int RuleId { get; set; }
-        public int WeaponId { get; set; }
+        public int RuleID { get; set; }
+        public int WeaponID { get; set; }
         public int UnitID { get; set; }
 
         public UnitOption(int id, string description, int count, int cost, int weaponId, int ruleId, int unitID)
@@ -27,8 +39,10 @@ namespace ArmyArranger.Global
             this.Count = count;
             this.Cost = cost;
             this.UnitID = unitID;
-            this.WeaponId = weaponId;
-            this.RuleId = ruleId;             
+            this.WeaponID = weaponId;
+            this.RuleID = ruleId;
+
+            UnitOptionsCollection.Add(this);
         }
 
         public UnitOption()
@@ -40,21 +54,19 @@ namespace ArmyArranger.Global
             UnitOptionsCollection.Clear();
         }
 
-        public void CreateNewAndSaveToDB(string description, int count, int cost, int weaponID, int ruleID, int unitID,  bool WeaponOrRule)
+        public void CreateNewAndSaveToDB(string description, int count, int cost, int weaponID, int ruleID, int unitID)
         {
             int id;
-            //if WeaponOrRule == true, save WeaponID, else save RuleID
-            string sql_desctibtion = (String.IsNullOrWhiteSpace(description)) ? "null" : "'" + description + "'";
-            string sql_count = (count < 1) ? "1" : "'" + count + "'";
+            string sql_description = (String.IsNullOrWhiteSpace(description)) ? "null" : "'" + description + "'";
             string sql_cost = (cost == 0) ? "null" : "'" + cost + "'";
-            string sql_unitID = (unitID == 0) ? "null" : "'" + unitID + "'";
-            string sql_weaponID = (weaponID == 0) ? "null" : "'" + weaponID + "'";            
+            string sql_count = (count < 1) ? "1" : "'" + count + "'";
+            string sql_weaponID = (weaponID == 0) ? "null" : "'" + weaponID + "'"; 
             string sql_ruleID = (ruleID == 0) ? "null" : "'" + ruleID + "'";
+            string sql_unitID = (unitID == 0) ? "null" : "'" + unitID + "'";
 
             try
             {
-                Database.ExecuteCommand("INSERT INTO Option (Description, Cost, Count, WeaponID, RuleID, UnitID) " +
-                    "VALUES (" + sql_desctibtion + "," + sql_cost + "," + sql_count + "," + sql_weaponID + "," + sql_ruleID + "," + sql_unitID + ")");
+                Database.ExecuteCommand("INSERT INTO Option (Description, Cost, Count, WeaponID, RuleID, UnitID) VALUES (" + sql_description + "," + sql_count + "," + sql_cost + "," + sql_weaponID + "," + sql_ruleID + "," + sql_unitID + ")");
                 id = Database.GetLastInsertedID();
             }
             catch (Exception ex)
@@ -62,7 +74,32 @@ namespace ArmyArranger.Global
                 throw ex;
             }
 
-            new UnitOption(id, description, count, cost, weaponID, RuleId, unitID);
+            new UnitOption(id, description, count, cost, weaponID, ruleID, unitID);
+        }
+        public void UpdateInDB(string description, int count, int cost, int weaponID, int ruleID, int unitID)
+        {
+            string sql_description = (String.IsNullOrWhiteSpace(description)) ? "null" : "'" + description + "'";
+            int sql_count = count;
+            int sql_cost = cost;
+            int sql_weaponID = weaponID;
+            int sql_ruleID = ruleID;
+            int sql_unitID = unitID;
+
+            try
+            {
+                Database.ExecuteCommand("UPDATE Option SET Description = " + sql_description + ", Cost = " + sql_cost + ", Count = " + sql_count + ", WeaponID = " + sql_weaponID + ", RuleID = " + sql_ruleID + ", UnitID = " + sql_unitID + " WHERE ID = " + ID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            Description = description;
+            Cost = cost;
+            Count = count;
+            WeaponID = weaponID;
+            RuleID = ruleID;
+            UnitID = unitID;
         }
 
         public void LoadAll(int unit_id)
@@ -87,9 +124,22 @@ namespace ArmyArranger.Global
                 RuleID = (!result.IsDBNull(5)) ? result.GetInt32(5) : 0;
                 UnitID = (!result.IsDBNull(6)) ? result.GetInt32(6) : 0;
                 
-                UnitOptionsCollection.Add(new UnitOption(ID, Description, Count, Cost, RuleID, WeaponID, UnitID));
+                new UnitOption(ID, Description, Count, Cost, RuleID, WeaponID, UnitID);
             }
             result.Close();
+        }
+
+        public void Remove()
+        {
+            try
+            {
+                Database.ExecuteCommand("DELETE FROM Option WHERE ID = " + ID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            UnitOptionsCollection.Remove(this);
         }
     }
 }

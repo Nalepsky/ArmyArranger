@@ -201,15 +201,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         private void RemoveSelectedWeapon()
         {
             thisModel.RemoveWeapon(SelectedWeapon);
-            Name = "";
-            Range = "0";
-            Shots = "0";
-            Penetration = 0;
-            RequiresLoader = false;
-            thisModel.ClearWeapons();
-            thisModel.ClearRules();
-            SelectedWeapon = null;
-            ConfirmButtonText = "Save New";
+            PrepareToAddNew();
         }
 
         private void ConfirmChanges()
@@ -226,13 +218,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
             else
             {
-                Name = "";
-                Range = "0";
-                Shots = "0";
-                Penetration = 0;
-                RequiresLoader = false;
-                thisModel.ClearWeapons();
-                thisModel.ClearRules();
+                PrepareToAddNew();
             }
         }
 

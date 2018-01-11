@@ -120,9 +120,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         private void RemoveSelectedRule()
         {
             thisModel.RemoveNation(SelectedNation);
-            Name = "";
-            SelectedNation = null;
-            ConfirmButtonText = "Save New";
+            PrepareToAddNew();
         }
 
         private void ConfirmChanges()
@@ -131,7 +129,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             if(SelectedNation != null)
                 Name = SelectedNation.Name;
             else
-                Name = "";
+                PrepareToAddNew();
         }
 
         #endregion

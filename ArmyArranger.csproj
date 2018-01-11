@@ -108,7 +108,6 @@
     <Compile Include="Global\Database.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddEntryViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddUnitOptionViewModel.cs" />
-    <Compile Include="ViewModels\EditYourArmies\Rules.cs" />
     <Compile Include="ViewModels\Menu\AboutViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddRulesViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddUnitsViewModel.cs" />

@@ -160,7 +160,7 @@ namespace ArmyArranger.Models
                 }
                 else
                 {
-                    if (PromptQuestion("Do you wish to update name of choosen weapon? \nOtherwise new weapon with given name will by added."))
+                    if (PromptQuestion("Do you wish to update name of choosen weapon? \nOtherwise new weapon with given name  will be added."))
                         UpdateWeapon(selectedWeapon, name, range, shots, penetration, requiresLoader, selectedRulesList);
                     else
                         AddWeapon(name, range, shots, penetration, requiresLoader, selectedRulesList);
