@@ -65,7 +65,7 @@ namespace ArmyArranger.Global
                     "CREATE TABLE IF NOT EXISTS Selector(" +
                     "ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE," +
                     "Name VARCHAR(50) NOT NULL," +
-                    "Date DATE NOT NULL," +
+                    "Date VARCHAR(50) NOT NULL," +
                     "Mandatory VARCHAR(500) NULL," +
                     "Headquarters VARCHAR(500) NULL," +
                     "Infantry VARCHAR(500) NULL," +

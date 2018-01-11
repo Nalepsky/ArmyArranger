@@ -219,6 +219,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             PossibleRulesList = GameRule.RulesCollection;
             PossibleWeaponsList = Weapon.WeaponsCollection;
+            thisModel.EmptyUnitOption.ClearCollection();
             thisModel.EmptyUnitOption.LoadAll(UnitID);
             OptionsList = UnitOption.UnitOptionsCollection;            
 

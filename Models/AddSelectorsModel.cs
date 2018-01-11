@@ -91,6 +91,8 @@ namespace ArmyArranger.Models
                 EmptySelector.Artillery += NewEntry;
             else if (EditedEntry == "armouredcars")
                 EmptySelector.ArmouredCars += NewEntry;
+            else if (EditedEntry == "tanks")
+                EmptySelector.Tanks += NewEntry;
             else if (EditedEntry == "transport")
                 EmptySelector.Transport += NewEntry;
         }        

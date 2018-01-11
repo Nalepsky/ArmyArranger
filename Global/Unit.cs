@@ -251,21 +251,21 @@ namespace ArmyArranger.Global
 
             while (result.Read())
             {
-              ID = result.GetInt32(0);
-              Name = result.GetString(1);
-              NationID = (!result.IsDBNull(2)) ? result.GetInt32(2) : 0;
-              Type = (!result.IsDBNull(3)) ? result.GetString(3) : "";
-              WeaponDescription = (!result.IsDBNull(5)) ? result.GetString(5) : "";
-              Composition = (!result.IsDBNull(6)) ? result.GetString(6) : "";
-              Inexperienced =(!result.IsDBNull(7)) ? result.GetInt32(7): 0;
-              Regular =(!result.IsDBNull(8)) ? result.GetInt32(8): 0;
-              Veteran =(!result.IsDBNull(9)) ? result.GetInt32(9): 0;
-              PointsInexp =(!result.IsDBNull(10)) ? result.GetInt32(10): 0;
-              PointsReg =(!result.IsDBNull(11)) ? result.GetInt32(11): 0;
-              PointsVet =(!result.IsDBNull(12)) ? result.GetInt32(12): 0;
-              BaseSize =(!result.IsDBNull(13)) ? result.GetInt32(13): 0;
-              MaxSize =(!result.IsDBNull(14)) ? result.GetInt32(14): 0;
-              ArmourClass = (!result.IsDBNull(15)) ? result.GetInt32(15) : 0;
+                ID = result.GetInt32(0);
+                Name = result.GetString(1);
+                NationID = (!result.IsDBNull(2)) ? result.GetInt32(2) : 0;
+                Type = (!result.IsDBNull(3)) ? result.GetString(3) : "";
+                WeaponDescription = (!result.IsDBNull(4)) ? result.GetString(4) : "";
+                Composition = (!result.IsDBNull(5)) ? result.GetString(5) : "";
+                Inexperienced = (!result.IsDBNull(6)) ? result.GetInt32(6) : 0;
+                Regular = (!result.IsDBNull(7)) ? result.GetInt32(7) : 0;
+                Veteran = (!result.IsDBNull(8)) ? result.GetInt32(8) : 0;
+                PointsInexp = (!result.IsDBNull(9)) ? result.GetInt32(9) : 0;
+                PointsReg = (!result.IsDBNull(10)) ? result.GetInt32(10) : 0;
+                PointsVet = (!result.IsDBNull(11)) ? result.GetInt32(11) : 0;
+                BaseSize = (!result.IsDBNull(12)) ? result.GetInt32(12) : 0;
+                MaxSize = (!result.IsDBNull(13)) ? result.GetInt32(13) : 0;
+                ArmourClass = (!result.IsDBNull(14)) ? result.GetInt32(14) : 0;
             }
         }
 
@@ -296,17 +296,17 @@ namespace ArmyArranger.Global
                 Name = result.GetString(1);
                 NationID = (!result.IsDBNull(2)) ? result.GetInt32(2) : 0;
                 Type = (!result.IsDBNull(3)) ? result.GetString(3) : "";
-                WeaponDescription = (!result.IsDBNull(5)) ? result.GetString(5) : "";
-                Composition = (!result.IsDBNull(6)) ? result.GetString(6) : "";
-                Inexperienced =(!result.IsDBNull(7)) ? result.GetInt32(7): 0;
-                Regular =(!result.IsDBNull(8)) ? result.GetInt32(8): 0;
-                Veteran =(!result.IsDBNull(9)) ? result.GetInt32(9): 0;
-                PointsInexp =(!result.IsDBNull(10)) ? result.GetInt32(10): 0;
-                PointsReg =(!result.IsDBNull(11)) ? result.GetInt32(11): 0;
-                PointsVet =(!result.IsDBNull(12)) ? result.GetInt32(12): 0;
-                BaseSize =(!result.IsDBNull(13)) ? result.GetInt32(13): 0;
-                MaxSize =(!result.IsDBNull(14)) ? result.GetInt32(14): 0;
-                ArmourClass = (!result.IsDBNull(15)) ? result.GetInt32(15) : 0;
+                WeaponDescription = (!result.IsDBNull(4)) ? result.GetString(4) : "";
+                Composition = (!result.IsDBNull(5)) ? result.GetString(5) : "";
+                Inexperienced =(!result.IsDBNull(6)) ? result.GetInt32(6): 0;
+                Regular =(!result.IsDBNull(7)) ? result.GetInt32(7): 0;
+                Veteran =(!result.IsDBNull(8)) ? result.GetInt32(8): 0;
+                PointsInexp =(!result.IsDBNull(9)) ? result.GetInt32(9): 0;
+                PointsReg =(!result.IsDBNull(10)) ? result.GetInt32(10): 0;
+                PointsVet =(!result.IsDBNull(11)) ? result.GetInt32(11): 0;
+                BaseSize =(!result.IsDBNull(12)) ? result.GetInt32(12): 0;
+                MaxSize =(!result.IsDBNull(13)) ? result.GetInt32(13): 0;
+                ArmourClass = (!result.IsDBNull(14)) ? result.GetInt32(14) : 0;
 
                 newListOfActiveRules = new List<int>();
                 SQLiteDataReader ruleResult = Database.ExecuteCommand("SELECT RuleID FROM Rule_Unit WHERE UnitID = " + ID);

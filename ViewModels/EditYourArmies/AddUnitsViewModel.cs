@@ -289,7 +289,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         private void OpenAddUnitOptions()
         {
             if (SelectedUnit != null)
-            {
+            {                
                 Window OptionsWindow = new AddUnitOptionWindow(SelectedUnit.ID);
                 OptionsWindow.Show();
             }
