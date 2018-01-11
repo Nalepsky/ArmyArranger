@@ -203,6 +203,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 Description = SelectedOption.Description;
                 Cost = SelectedOption.Cost;
                 Count = SelectedOption.Count;
+
                 if (SelectedOption.WeaponID != 0)
                     SelectedPossibleWeapon = PossibleWeaponsList.Where(x => x.ID == SelectedOption.WeaponID).FirstOrDefault();
                 else if (SelectedOption.RuleID != 0)

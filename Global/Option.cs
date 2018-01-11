@@ -79,11 +79,11 @@ namespace ArmyArranger.Global
         public void UpdateInDB(string description, int count, int cost, int weaponID, int ruleID, int unitID)
         {
             string sql_description = (String.IsNullOrWhiteSpace(description)) ? "null" : "'" + description + "'";
-            int sql_count = count;
-            int sql_cost = cost;
-            int sql_weaponID = weaponID;
-            int sql_ruleID = ruleID;
-            int sql_unitID = unitID;
+            string sql_cost = (cost == 0) ? "null" : "'" + cost + "'";
+            string sql_count = (count < 1) ? "1" : "'" + count + "'";
+            string sql_weaponID = (weaponID == 0) ? "null" : "'" + weaponID + "'";
+            string sql_ruleID = (ruleID == 0) ? "null" : "'" + ruleID + "'";
+            string sql_unitID = (unitID == 0) ? "null" : "'" + unitID + "'";
 
             try
             {
@@ -124,7 +124,7 @@ namespace ArmyArranger.Global
                 RuleID = (!result.IsDBNull(5)) ? result.GetInt32(5) : 0;
                 UnitID = (!result.IsDBNull(6)) ? result.GetInt32(6) : 0;
                 
-                new Option(ID, Description, Count, Cost, RuleID, WeaponID, UnitID);
+                new Option(ID, Description, Count, Cost, WeaponID, RuleID, UnitID);
             }
             result.Close();
         }
