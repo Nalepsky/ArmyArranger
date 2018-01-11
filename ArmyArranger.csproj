@@ -63,6 +63,8 @@
     <Reference Include="System.Data.SQLite.Linq, Version=1.0.106.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.106.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -104,8 +106,10 @@
     <Compile Include="Models\AddWeaponsModel.cs" />
     <Compile Include="Models\AddRulesModel.cs" />
     <Compile Include="Models\AddUnitsModel.cs" />
+    <Compile Include="Models\ArmyList\ChooseSelectorModel.cs" />
     <Compile Include="Models\ContactUsModel.cs" />
     <Compile Include="Global\Database.cs" />
+    <Compile Include="ViewModels\ArmyList\ChooseSelectorViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddEntryViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddOptionViewModel.cs" />
     <Compile Include="ViewModels\Menu\AboutViewModel.cs" />
@@ -120,6 +124,9 @@
     <Compile Include="ViewModels\EditYourArmies\AddSelectorsViewModel.cs" />
     <Compile Include="AddOptionWindow.xaml.cs">
       <DependentUpon>AddOptionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ArmyList\ChooseSelectorView.xaml.cs">
+      <DependentUpon>ChooseSelectorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditYourArmies\AddEntryView.xaml.cs">
       <DependentUpon>AddEntryView.xaml</DependentUpon>
@@ -174,6 +181,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="AddOptionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ArmyList\ChooseSelectorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

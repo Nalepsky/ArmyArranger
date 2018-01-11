@@ -7,9 +7,11 @@
         xmlns:viewmodels="clr-namespace:ArmyArranger.ViewModels"
         xmlns:viewmodelsEditYourArmies="clr-namespace:ArmyArranger.ViewModels.EditYourArmies"
         xmlns:viewmodelsMenu="clr-namespace:ArmyArranger.ViewModels.Menu"
+        xmlns:viewmodelsArmyList="clr-namespace:ArmyArranger.ViewModels.ArmyList"
         xmlns:views="clr-namespace:ArmyArranger.Views"
         xmlns:viewsEditYourArmies="clr-namespace:ArmyArranger.Views.EditYourArmies"
         xmlns:viewsMenu="clr-namespace:ArmyArranger.Views.Menu"
+        xmlns:viewsArmyList="clr-namespace:ArmyArranger.Views.ArmyList"        
         xmlns:global="clr-namespace:ArmyArranger.Global"
         mc:Ignorable="d"
         Title="Army Arranger" Height="500" Width="600" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -18,6 +20,10 @@
             <views:MenuView DataContext="{Binding}"/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewmodelsArmyList:ChooseSelectorViewModel}">
+            <viewsArmyList:ChooseSelectorView DataContext="{Binding}"/>
+        </DataTemplate>        
+        
         <DataTemplate DataType="{x:Type viewmodelsMenu:CreateArmyListViewModel}">
             <viewsMenu:CreateArmyListView DataContext="{Binding}"/>
         </DataTemplate>
@@ -30,7 +36,7 @@
         <DataTemplate DataType="{x:Type viewmodelsMenu:AboutViewModel}">
             <viewsMenu:AboutView DataContext="{Binding}"/>
         </DataTemplate>
-
+                    
         <DataTemplate DataType="{x:Type viewmodelsEditYourArmies:AddNationsViewModel}">
             <viewsEditYourArmies:AddNationsView DataContext="{Binding}"/>
         </DataTemplate>

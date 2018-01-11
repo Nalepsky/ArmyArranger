@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Input;
 using ArmyArranger.Global;
 using ArmyArranger.ViewModels.Menu;
+using ArmyArranger.ViewModels.ArmyList;
 
 namespace ArmyArranger.ViewModels
 {
@@ -40,7 +41,7 @@ namespace ArmyArranger.ViewModels
         
         private void ChangeViewToCreateArmyList()
         {
-            App.Current.MainWindow.DataContext = new CreateArmyListViewModel();
+            App.Current.MainWindow.DataContext = new ChooseSelectorViewModel();
         }
 
         private void ChangeViewToEditYourArmies()
