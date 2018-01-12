@@ -15,19 +15,15 @@ namespace ArmyArranger.ViewModels.ArmyList
 {
     class ChooseUnitsViewModel : BindableBase
     {
-        #region Propeties
+        #region SelectorUnits Class
 
-        ChooseUnitsModel thisModel = new ChooseUnitsModel();
-        Nation ChoosenNation;
-        Selector ChoosenSelector;
-
-        public class SelectorUnits {
-            public static ObservableCollection<SelectorUnits> SelectorUnitsCollections = new ObservableCollection<SelectorUnits>();
-            public event PropertyChangedEventHandler PropertyChanged;
-            private void OnPropertyChanged<T>([CallerMemberName]string caller = null)
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(caller));
-            }
+        public class SelectorUnits
+        {
+            //public event PropertyChangedEventHandler PropertyChanged;
+            //private void OnPropertyChanged<T>([CallerMemberName]string caller = null)
+            //{
+            //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(caller));
+            //}
             public string Count { get; set; }
             public ObservableCollection<UnitDetailed> UnitsList { get; set; }
 
@@ -35,24 +31,28 @@ namespace ArmyArranger.ViewModels.ArmyList
             {
                 Count = count;
                 UnitsList = unitsList;
-                SelectorUnitsCollections.Add(this);
             }
             private UnitDetailed _selectedUnit;
-            public UnitDetailed SelectedUnit {
+            public UnitDetailed SelectedUnit
+            {
                 get { return _selectedUnit; }
                 set
                 {
                     _selectedUnit = value;
-                    MessageBox.Show("selected: " + SelectedUnit.Name + " to get all informations about selected unit use SelectedUnit from SelectorUnits class from ChooseUnitsViewModel.cs like: SelectedUnit.[every needed property]");
+                    MessageBox.Show("selected: " + SelectedUnit.Name + "  -- to get all informations about selected unit use SelectedUnit from SelectorUnits class from ChooseUnitsViewModel.cs like: SelectedUnit.[every needed property]");
                 }
             }
         }
 
+        #endregion
 
+        #region Propeties
 
+        ChooseUnitsModel thisModel = new ChooseUnitsModel();
+        Nation ChoosenNation;
+        Selector ChoosenSelector;
 
-
-
+        public string SelectorTitle { get; set; }
 
         private ObservableCollection<SelectorUnits> _mandatoryListsList;
         public ObservableCollection<SelectorUnits> MandatoryListsList
@@ -65,18 +65,16 @@ namespace ArmyArranger.ViewModels.ArmyList
             }
         }
 
-        private ObservableCollection<UnitDetailed> _mandatoryList;
-        public ObservableCollection<UnitDetailed> MandatoryList
+        private ObservableCollection<SelectorUnits> _headquartersListsList;
+        public ObservableCollection<SelectorUnits> HeadquartersListsList
         {
-            get { return _mandatoryList; }
+            get { return _headquartersListsList; }
             set
             {
-                _mandatoryList = value;
-                RaisePropertyChanged(nameof(MandatoryList));
+                _headquartersListsList = value;
+                RaisePropertyChanged(nameof(HeadquartersListsList));
             }
         }
-
-        public string SelectorTitle { get; set; }
 
         #endregion
 
@@ -107,29 +105,37 @@ namespace ArmyArranger.ViewModels.ArmyList
         private void FunctionOnLoad()
         {
             SelectorTitle = ChoosenSelector.Name + " - " + ChoosenSelector.Date;
-            string[] MandatoryEntries = ChoosenSelector.Mandatory.Split(new char[] {'|'});
-            string last = MandatoryEntries.Last();
-            foreach (string mandatoryEntry in MandatoryEntries)
+
+            MandatoryListsList = LoadSelectorListByType(ChoosenSelector.Mandatory);
+            HeadquartersListsList = LoadSelectorListByType(ChoosenSelector.Headquarters);
+        }
+
+
+        private ObservableCollection<SelectorUnits> LoadSelectorListByType(string encodedUnits)
+        {
+            ObservableCollection<SelectorUnits> temp_ListsList = new ObservableCollection<SelectorUnits>();
+            string[] Entries = encodedUnits.Split(new char[] { '|' });
+            string last = Entries.Last();
+            foreach (string Entry in Entries)
             {
-                if (!mandatoryEntry.Equals(last))
+                if (!Entry.Equals(last))
                 {
-                    string[] MandatoryStringInfo = mandatoryEntry.Split(new char[] { ';' }, 2);
-                    string Count = MandatoryStringInfo[0];
+                    string[] StringInfo = Entry.Split(new char[] { ';' }, 2);
+                    string Count = StringInfo[0];
 
-                    ObservableCollection<UnitDetailed> temp_UnitsCollection = new ObservableCollection<UnitDetailed>();
-                    UnitDetailed.LoadFromStringToCollection(MandatoryStringInfo[1], temp_UnitsCollection);
-
-                    SelectorUnits selectorUnits = new SelectorUnits(Count, temp_UnitsCollection);
-                    MandatoryListsList = SelectorUnits.SelectorUnitsCollections;
+                    temp_ListsList.Add(new SelectorUnits(Count, UnitDetailed.LoadFromStringToCollection(StringInfo[1])));
                 }
             }
+            return temp_ListsList;
         }
+
 
         private void ChangeViewToChooseSelector()
         {
-            //thisModel.EmptyUnitDetailed.ClearUnitsCollection();
+            MandatoryListsList = new ObservableCollection<SelectorUnits>();
             App.Current.MainWindow.DataContext = new ArmyList.ChooseSelectorViewModel();
         }
+
 
         private void ChangeViewToChooseUnits()
         {

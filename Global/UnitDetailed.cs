@@ -51,8 +51,9 @@ namespace ArmyArranger.Global
 
 
 
-        public static void LoadFromStringToCollection(string loadString, ObservableCollection<UnitDetailed> UnitsCollection)
+        public static ObservableCollection<UnitDetailed> LoadFromStringToCollection(string loadString)
         {
+            ObservableCollection<UnitDetailed> UnitsCollection = new ObservableCollection<UnitDetailed>();
             string[] UnitsIDAndFlags = loadString.Split(new char[] { ';' });
             foreach (string unitsIDAndFlags in UnitsIDAndFlags)
             {
@@ -60,12 +61,13 @@ namespace ArmyArranger.Global
 
                 bool t_OnlyOne = (UnitIDAndFlag[1] == "true") ? true : false;
 
-                LoadFromDBToCollectionByID(Convert.ToInt32(UnitIDAndFlag[0]), t_OnlyOne, UnitsCollection);
+                UnitsCollection.Add(getUnitDetailedInfoFromDBByID(Convert.ToInt32(UnitIDAndFlag[0]), t_OnlyOne));
             }
+            return UnitsCollection;
         }
 
 
-        public static void LoadFromDBToCollectionByID(int t_ID, bool t_OnlyOne, ObservableCollection<UnitDetailed> UnitsCollection)
+        public static UnitDetailed getUnitDetailedInfoFromDBByID(int t_ID, bool t_OnlyOne)
         {
             string t_Name = null,
                 t_Type = null,
@@ -121,7 +123,7 @@ namespace ArmyArranger.Global
 
 
 
-            UnitsCollection.Add(new UnitDetailed
+            return new UnitDetailed
             {
                 ID = t_ID,
                 Name = t_Name,
@@ -144,7 +146,7 @@ namespace ArmyArranger.Global
                 isEmpty = false,
                 ListOfActiveRules = t_ListOfActiveRules,
                 ListOfActiveWeapons = t_ListOfActiveWeapons,
-            });
+            };
         }
     }
 }

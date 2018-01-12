@@ -62,19 +62,24 @@
         </ScrollViewer>
 
         <Label Content="Headquarters" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <ListBox ItemsSource="{Binding HQListsList}" Grid.Column="3" Grid.Row="2" Background="LightGray">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <ListBox ItemsSource="{Binding HQList}" Cursor="Hand">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Name}" />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Column="3" Grid.Row="2">
+            <ItemsControl ItemsSource="{Binding HeadquartersListsList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ItemsControl BorderThickness="0">
+                            <TextBlock Text="{Binding Count}" />
+                            <ListBox ItemsSource="{Binding UnitsList}" SelectedItem="{Binding SelectedUnit, Mode=TwoWay}" Cursor="Hand">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </ItemsControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
 
         <Button Content="Cancel" Command="{Binding Back, Mode=TwoWay}" Grid.Column="1" Grid.Row="3" Cursor="Hand" VerticalAlignment="Center"/>
         <Button Content="Confirm" Command="{Binding Confirm, Mode=TwoWay}" Grid.Column="9" Grid.Row="3" Cursor="Hand" VerticalAlignment="Center" Margin="0,11,0,12"/>
