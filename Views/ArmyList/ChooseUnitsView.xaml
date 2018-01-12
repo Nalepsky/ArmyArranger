@@ -38,26 +38,31 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-
+        
         <Label Content="{Binding SelectorTitle}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="9" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36"/>
 
         <Label Content="Mandatory" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <ListBox ItemsSource="{Binding MandatoryListsList}" Grid.Column="1" Grid.Row="2">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <ListBox ItemsSource="{Binding MandatoryList}" Cursor="Hand">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Name}" />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Column="1" Grid.Row="2">
+            <ItemsControl ItemsSource="{Binding MandatoryListsList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ItemsControl BorderThickness="0">
+                            <TextBlock Text="{Binding Count}" />
+                            <ListBox ItemsSource="{Binding UnitsList}" SelectedItem="{Binding SelectedUnit, Mode=TwoWay}" Cursor="Hand">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </ItemsControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
 
         <Label Content="Headquarters" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <ListBox ItemsSource="{Binding HQListsList}" Grid.Column="3" Grid.Row="2">
+        <ListBox ItemsSource="{Binding HQListsList}" Grid.Column="3" Grid.Row="2" Background="LightGray">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <ListBox ItemsSource="{Binding HQList}" Cursor="Hand">

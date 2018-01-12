@@ -5,6 +5,10 @@ using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ArmyArranger.ViewModels.ArmyList
@@ -14,15 +18,61 @@ namespace ArmyArranger.ViewModels.ArmyList
         #region Propeties
 
         ChooseUnitsModel thisModel = new ChooseUnitsModel();
-        
-        private ObservableCollection<ObservableCollection<Unit>> _mandatoryListsList;
-        public ObservableCollection<ObservableCollection<Unit>> MandatoryListsList
+        Nation ChoosenNation;
+        Selector ChoosenSelector;
+
+        public class SelectorUnits {
+            public static ObservableCollection<SelectorUnits> SelectorUnitsCollections = new ObservableCollection<SelectorUnits>();
+            public event PropertyChangedEventHandler PropertyChanged;
+            private void OnPropertyChanged<T>([CallerMemberName]string caller = null)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(caller));
+            }
+            public string Count { get; set; }
+            public ObservableCollection<UnitDetailed> UnitsList { get; set; }
+
+            public SelectorUnits(String count, ObservableCollection<UnitDetailed> unitsList)
+            {
+                Count = count;
+                UnitsList = unitsList;
+                SelectorUnitsCollections.Add(this);
+            }
+            private UnitDetailed _selectedUnit;
+            public UnitDetailed SelectedUnit {
+                get { return _selectedUnit; }
+                set
+                {
+                    _selectedUnit = value;
+                    MessageBox.Show("selected: " + SelectedUnit.Name + " to get all informations about selected unit use SelectedUnit from SelectorUnits class from ChooseUnitsViewModel.cs like: SelectedUnit.[every needed property]");
+                }
+            }
+        }
+
+
+
+
+
+
+
+        private ObservableCollection<SelectorUnits> _mandatoryListsList;
+        public ObservableCollection<SelectorUnits> MandatoryListsList
         {
             get { return _mandatoryListsList; }
             set
             {
                 _mandatoryListsList = value;
                 RaisePropertyChanged(nameof(MandatoryListsList));
+            }
+        }
+
+        private ObservableCollection<UnitDetailed> _mandatoryList;
+        public ObservableCollection<UnitDetailed> MandatoryList
+        {
+            get { return _mandatoryList; }
+            set
+            {
+                _mandatoryList = value;
+                RaisePropertyChanged(nameof(MandatoryList));
             }
         }
 
@@ -46,16 +96,9 @@ namespace ArmyArranger.ViewModels.ArmyList
             OnLoad = new DelegateCommand(FunctionOnLoad);
             Back = new DelegateCommand(ChangeViewToChooseSelector);
             Confirm = new DelegateCommand(ChangeViewToChooseUnits);
-            SelectorTitle = choosenSelector.Name + " - " + choosenSelector.Date;
-            Console.WriteLine(choosenNation.Name);
-            Console.WriteLine(choosenSelector.Name);
+            ChoosenNation = choosenNation;
+            ChoosenSelector = choosenSelector;
         }
-
-        private void ChangeViewToChooseUnits()
-        {
-            throw new NotImplementedException();
-        }
-
 
         #endregion
 
@@ -63,16 +106,36 @@ namespace ArmyArranger.ViewModels.ArmyList
 
         private void FunctionOnLoad()
         {
-            thisModel.EmptyUnit.LoadAll();
+            SelectorTitle = ChoosenSelector.Name + " - " + ChoosenSelector.Date;
+            string[] MandatoryEntries = ChoosenSelector.Mandatory.Split(new char[] {'|'});
+            string last = MandatoryEntries.Last();
+            foreach (string mandatoryEntry in MandatoryEntries)
+            {
+                if (!mandatoryEntry.Equals(last))
+                {
+                    string[] MandatoryStringInfo = mandatoryEntry.Split(new char[] { ';' }, 2);
+                    string Count = MandatoryStringInfo[0];
+
+                    ObservableCollection<UnitDetailed> temp_UnitsCollection = new ObservableCollection<UnitDetailed>();
+                    UnitDetailed.LoadFromStringToCollection(MandatoryStringInfo[1], temp_UnitsCollection);
+
+                    SelectorUnits selectorUnits = new SelectorUnits(Count, temp_UnitsCollection);
+                    MandatoryListsList = SelectorUnits.SelectorUnitsCollections;
+                }
+            }
         }
 
         private void ChangeViewToChooseSelector()
         {
-            thisModel.EmptyUnit.ClearUnitsCollection();
+            //thisModel.EmptyUnitDetailed.ClearUnitsCollection();
             App.Current.MainWindow.DataContext = new ArmyList.ChooseSelectorViewModel();
         }
 
-        #endregion
+        private void ChangeViewToChooseUnits()
+        {
+            throw new NotImplementedException();
+        }
 
+        #endregion
     }
 }
