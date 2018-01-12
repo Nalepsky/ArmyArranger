@@ -66,7 +66,7 @@ namespace ArmyArranger.ViewModels.ArmyList
         public ICommand OnLoad { get; set; }
         public ICommand MouseClick { get; set; }
         public ICommand GoToNations { get; set; }
-        public ICommand GoToSelectors { get; set; }
+        public ICommand GoToSelector { get; set; }
         public ICommand Back { get; set; }
         public ICommand Confirm { get; set; }
 
@@ -78,7 +78,7 @@ namespace ArmyArranger.ViewModels.ArmyList
         {
             OnLoad = new DelegateCommand(FunctionOnLoad);
             GoToNations = new DelegateCommand(ChangeViewToAddNations);
-            GoToSelectors = new DelegateCommand(ChangeViewToAddSelectors);
+            GoToSelector = new DelegateCommand(ChangeViewToAddSelectors);
             Back = new DelegateCommand(ChangeViewToMenuView);
             Confirm = new DelegateCommand(ChangeViewToChooseUnits);
         }
@@ -113,13 +113,17 @@ namespace ArmyArranger.ViewModels.ArmyList
         {
             thisModel.EmptyNation.ClearNationsCollection();
             thisModel.EmptySelector.ClearSelectorsCollection();
-            App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
+            App.Current.MainWindow.DataContext = new MenuViewModel();
         }
 
         private void ChangeViewToChooseUnits()
         {
-            if((SelectedNation != null) && (SelectedSelector != null))
+            if ((SelectedNation != null) && (SelectedSelector != null))
+            {
                 App.Current.MainWindow.DataContext = new ChooseUnitsViewModel(SelectedNation, SelectedSelector);
+                thisModel.EmptyNation.ClearNationsCollection();
+                thisModel.EmptySelector.ClearSelectorsCollection();
+            }
         }
 
         #endregion

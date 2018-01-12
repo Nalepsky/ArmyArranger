@@ -127,6 +127,9 @@
     <Compile Include="AddOptionWindow.xaml.cs">
       <DependentUpon>AddOptionWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ArmyList\ChooseUnitsView.xaml.cs">
+      <DependentUpon>ChooseUnitsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ArmyList\ChooseSelectorView.xaml.cs">
       <DependentUpon>ChooseSelectorView.xaml</DependentUpon>
     </Compile>
@@ -185,6 +188,10 @@
     <Page Include="AddOptionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ArmyList\ChooseUnitsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ArmyList\ChooseSelectorView.xaml">
       <SubType>Designer</SubType>

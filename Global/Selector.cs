@@ -53,7 +53,6 @@ namespace ArmyArranger.Global
             NationId = nationId;
             ListOfActiveRules = listOfActiveRules;
             SelectorsCollection.Add(this);
-            Console.WriteLine(ListOfActiveRules.Count);
         }
 
         public void CreateNewAndSaveToDB(string name, string date, string mandatory, string headquarters, string infantry, string armouredCars, string artillery, string tanks, string transport, int nationID)

@@ -14,7 +14,7 @@
         xmlns:viewsArmyList="clr-namespace:ArmyArranger.Views.ArmyList"        
         xmlns:global="clr-namespace:ArmyArranger.Global"
         mc:Ignorable="d"
-        Title="Army Arranger" Height="500" Width="600" HorizontalAlignment="Center" VerticalAlignment="Center">
+        Title="Army Arranger" Height="650" Width="900" HorizontalAlignment="Center" VerticalAlignment="Center">
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewmodels:MenuViewModel}">
             <views:MenuView DataContext="{Binding}"/>
@@ -22,8 +22,11 @@
 
         <DataTemplate DataType="{x:Type viewmodelsArmyList:ChooseSelectorViewModel}">
             <viewsArmyList:ChooseSelectorView DataContext="{Binding}"/>
-        </DataTemplate>        
-        
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodelsArmyList:ChooseUnitsViewModel}">
+            <viewsArmyList:ChooseUnitsView DataContext="{Binding}"/>
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type viewmodelsMenu:CreateArmyListViewModel}">
             <viewsMenu:CreateArmyListView DataContext="{Binding}"/>
         </DataTemplate>
