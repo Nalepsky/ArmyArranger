@@ -91,7 +91,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             ConfirmButtonText = "Save New";
             thisModel.EmptyNation.LoadAll();
-            NationsList = Nation.NationsCollecion;
+            NationsList = Nation.NationsCollection;
         }
 
         private void FunctionOnClick()
@@ -113,7 +113,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void ChangeViewToEditYourArmies()
         {
-            thisModel.EmptyNation.ClearNationsCollecion();
+            thisModel.EmptyNation.ClearNationsCollection();
             App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
         }
 

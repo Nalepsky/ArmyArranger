@@ -99,6 +99,7 @@
     <Compile Include="Global\Option.cs" />
     <Compile Include="Global\Weapon.cs" />
     <Compile Include="Global\WindowsService.cs" />
+    <Compile Include="Models\ArmyList\ChooseUnitsModel.cs" />
     <Compile Include="Models\EditYourArmies\AddEntryModel.cs" />
     <Compile Include="Models\EditYourArmies\AddNationsModel.cs" />
     <Compile Include="Models\EditYourArmies\AddSelectorsModel.cs" />
@@ -106,10 +107,11 @@
     <Compile Include="Models\EditYourArmies\AddWeaponsModel.cs" />
     <Compile Include="Models\EditYourArmies\AddRulesModel.cs" />
     <Compile Include="Models\EditYourArmies\AddUnitsModel.cs" />
-    <Compile Include="Models\ArmyList\ChooseSelectorModel.cs" />
     <Compile Include="Models\Menu\ContactUsModel.cs" />
     <Compile Include="Global\Database.cs" />
+    <Compile Include="Models\ArmyList\ChooseSelectorModel.cs" />
     <Compile Include="ViewModels\ArmyList\ChooseSelectorViewModel.cs" />
+    <Compile Include="ViewModels\ArmyList\ChooseUnitsViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddEntryViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddOptionViewModel.cs" />
     <Compile Include="ViewModels\Menu\AboutViewModel.cs" />

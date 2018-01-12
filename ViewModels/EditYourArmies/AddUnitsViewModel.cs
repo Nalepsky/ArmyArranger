@@ -283,7 +283,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             thisModel.EmptyWeapon.LoadAll();
             WeaponsList = Weapon.WeaponsCollection;
             thisModel.EmptyNation.LoadAll();
-            NationsList = Nation.NationsCollecion;
+            NationsList = Nation.NationsCollection;
         }
 
         private void OpenAddOptions()
@@ -349,7 +349,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             thisModel.EmptyUnit.ClearUnitsCollection();
             thisModel.EmptyRule.ClearRulesCollection();
             thisModel.EmptyWeapon.ClearWeaponsCollection();
-            thisModel.EmptyNation.ClearNationsCollecion();
+            thisModel.EmptyNation.ClearNationsCollection();
             App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
         }
 
@@ -358,7 +358,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             thisModel.EmptyUnit.ClearUnitsCollection();
             thisModel.EmptyRule.ClearRulesCollection();
             thisModel.EmptyWeapon.ClearWeaponsCollection();
-            thisModel.EmptyNation.ClearNationsCollecion();
+            thisModel.EmptyNation.ClearNationsCollection();
             App.Current.MainWindow.DataContext = new AddRulesViewModel();
         }
 
@@ -367,7 +367,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             thisModel.EmptyUnit.ClearUnitsCollection();
             thisModel.EmptyRule.ClearRulesCollection();
             thisModel.EmptyWeapon.ClearWeaponsCollection();
-            thisModel.EmptyNation.ClearNationsCollecion();
+            thisModel.EmptyNation.ClearNationsCollection();
             App.Current.MainWindow.DataContext = new AddWeaponsViewModel();
         }
 

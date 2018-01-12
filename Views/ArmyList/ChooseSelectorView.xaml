@@ -19,7 +19,7 @@
 
     <Grid Background="LightGray">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>            
+            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
@@ -32,23 +32,24 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Label Content="Choose Selector" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="16"/>
-        <ListBox ItemsSource="{Binding NationsList}" SelectedItem="{Binding CurrentNation, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" Cursor="Hand">
+        <ListBox ItemsSource="{Binding NationsList}" SelectedItem="{Binding SelectedNation, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" Cursor="Hand">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox ItemsSource="{Binding SelectorsList}" SelectedItem="{Binding CurrentSelector, Mode=TwoWay}" Grid.Column="3" Grid.Row="1" Cursor="Hand">
+        <ListBox ItemsSource="{Binding SelectorsList}" SelectedItem="{Binding SelectedSelector, Mode=TwoWay}" Grid.Column="3" Grid.Row="1" Cursor="Hand">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Content="Add new Selector" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        
-        <Button Content="Cancel" Command="{Binding Cancel, Mode=TwoWay}" Grid.Column="1" Grid.Row="3" Cursor="Hand" VerticalAlignment="Center"/>
-        <Button Content="Confirm" Command="{Binding Next, Mode=TwoWay}" Grid.Column="3" Grid.Row="3" Cursor="Hand" VerticalAlignment="Center"/>
+        <Button Content="Add new Nation" Command="{Binding GoToNations, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,23"/>
+        <Button Content="Add new Selector" Command="{Binding GoToSelector, Mode=TwoWay}" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,23"/>
+
+        <Button Content="Cancel" Command="{Binding Back, Mode=TwoWay}" Grid.Column="1" Grid.Row="3" Cursor="Hand" VerticalAlignment="Center"/>
+        <Button Content="Confirm" Command="{Binding Confirm, Mode=TwoWay}" Grid.Column="3" Grid.Row="3" Cursor="Hand" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

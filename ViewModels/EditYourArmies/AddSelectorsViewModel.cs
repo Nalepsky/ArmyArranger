@@ -349,7 +349,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             //ConfirmButtonText = "Save New";
             thisModel.EmptyNation.LoadAll();
-            NationsList = Nation.NationsCollecion;
+            NationsList = Nation.NationsCollection;
             NationsComboBox = NationsList;
             thisModel.EmptySelector.LoadAll();            
             SelectorsList = Selector.SelectorsCollection;
@@ -359,7 +359,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void ChangeViewToEditYourArmies()
         {
-            thisModel.EmptyNation.ClearNationsCollecion();
+            thisModel.EmptyNation.ClearNationsCollection();
             thisModel.EmptyRule.ClearRulesCollection();
             thisModel.EmptySelector.ClearSelectorsCollection();
 

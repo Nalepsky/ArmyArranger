@@ -8,16 +8,16 @@ namespace ArmyArranger.Global
 {
     class Nation : INotifyPropertyChanged
     {
-        public static ObservableCollection<Nation> NationsCollecion = new ObservableCollection<Nation>();
+        public static ObservableCollection<Nation> NationsCollection = new ObservableCollection<Nation>();
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged<T>([CallerMemberName]string caller = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(caller));
         }
 
-        public void ClearNationsCollecion()
+        public void ClearNationsCollection()
         {
-            NationsCollecion.Clear();
+            NationsCollection.Clear();
         }
 
 
@@ -39,7 +39,7 @@ namespace ArmyArranger.Global
         {
             ID = id;
             Name = name;
-            NationsCollecion.Add(this);
+            NationsCollection.Add(this);
             isEmpty = false;
         }
 
@@ -55,7 +55,7 @@ namespace ArmyArranger.Global
             {
                 throw ex;
             }
-            new Nation(NationsCollecion.Count, name);
+            new Nation(NationsCollection.Count, name);
         }
         public void UpdateInDB(string name)
         {
@@ -82,7 +82,7 @@ namespace ArmyArranger.Global
             {
                 throw ex;
             }
-            NationsCollecion.Remove(this);
+            NationsCollection.Remove(this);
         }
 
         public void LoadAll()
