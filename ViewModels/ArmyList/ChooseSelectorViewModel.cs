@@ -64,6 +64,7 @@ namespace ArmyArranger.ViewModels.ArmyList
         #region Commands
 
         public ICommand OnLoad { get; set; }
+        public ICommand OnClick { get; set; }
         public ICommand MouseClick { get; set; }
         public ICommand GoToNations { get; set; }
         public ICommand GoToSelector { get; set; }
@@ -77,6 +78,7 @@ namespace ArmyArranger.ViewModels.ArmyList
         public ChooseSelectorViewModel()
         {
             OnLoad = new DelegateCommand(FunctionOnLoad);
+            MouseClick = new DelegateCommand(FunctionOnClick);
             GoToNations = new DelegateCommand(ChangeViewToAddNations);
             GoToSelector = new DelegateCommand(ChangeViewToAddSelectors);
             Back = new DelegateCommand(ChangeViewToMenuView);
@@ -90,30 +92,42 @@ namespace ArmyArranger.ViewModels.ArmyList
         private void FunctionOnLoad()
         {
             thisModel.EmptyNation.LoadAll();
-            thisModel.EmptySelector.LoadAll();
             NationsList = Nation.NationsCollection;
-            SelectorsList = Selector.SelectorsCollection;
+        }
+
+        private void FunctionOnClick()
+        {
+            if (thisModel.ChosenNationEqualsSelected(SelectedNation) && SelectedNation != null)
+            {
+                thisModel.EmptySelector.ClearSelectorsCollection();
+                thisModel.EmptySelector.LoadByNationID(SelectedNation.ID);
+                SelectorsList = Selector.SelectorsCollection;
+            }
         }
 
         private void ChangeViewToAddNations()
         {
-            thisModel.EmptyNation.ClearNationsCollection();
-            thisModel.EmptySelector.ClearSelectorsCollection();
+            ClearBeforeUnload();
             App.Current.MainWindow.DataContext = new EditYourArmies.AddNationsViewModel();
         }
 
         private void ChangeViewToAddSelectors()
         {
-            thisModel.EmptyNation.ClearNationsCollection();
-            thisModel.EmptySelector.ClearSelectorsCollection();
+            ClearBeforeUnload();
             App.Current.MainWindow.DataContext = new EditYourArmies.AddSelectorsViewModel();
         }
 
         private void ChangeViewToMenuView()
         {
+            ClearBeforeUnload();
+            App.Current.MainWindow.DataContext = new MenuViewModel();
+        }
+
+        private void ClearBeforeUnload()
+        {
+            thisModel.ClearSelectors();
             thisModel.EmptyNation.ClearNationsCollection();
             thisModel.EmptySelector.ClearSelectorsCollection();
-            App.Current.MainWindow.DataContext = new MenuViewModel();
         }
 
         private void ChangeViewToChooseUnits()

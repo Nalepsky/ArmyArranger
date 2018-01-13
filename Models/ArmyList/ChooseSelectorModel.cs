@@ -13,6 +13,7 @@ namespace ArmyArranger.Models
 
         public Nation EmptyNation = new Nation();
         public Selector EmptySelector = new Selector();
+        public Nation lastChoosenNation;
 
         #endregion
 
@@ -26,7 +27,21 @@ namespace ArmyArranger.Models
 
         #region Actions
 
+        public bool ChosenNationEqualsSelected(Nation selectedNation)
+        {
+            if (lastChoosenNation != selectedNation)
+            {
+                lastChoosenNation = selectedNation;
+                return true;
+            }
+            return false;
+        }
 
+
+        public void ClearSelectors()
+        {
+            lastChoosenNation = EmptyNation;
+        }
 
         #endregion
     }

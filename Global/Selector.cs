@@ -132,5 +132,47 @@ namespace ArmyArranger.Global
             }
             result.Close();
         }
+        public void LoadByNationID(int nationID)
+        {
+            SQLiteDataReader result = Database.ExecuteCommand("SELECT * FROM Selector WHERE NationID=" + nationID);
+            int ID;
+            String Name,
+             Date,
+             Mandatory,
+             Headquarters,
+             Infantry,
+             ArmouredCars,
+             Artillery,
+             Tanks,
+             Transport;
+            int NationID;
+
+            List<int> newListOfActiveRules;
+
+            while (result.Read())
+            {
+                ID = result.GetInt32(0);
+                Name = result.GetString(1);
+                Date = result.GetString(2);
+                Mandatory = (!result.IsDBNull(3)) ? result.GetString(3) : "";
+                Headquarters = (!result.IsDBNull(4)) ? result.GetString(4) : "";
+                Infantry = (!result.IsDBNull(5)) ? result.GetString(5) : "";
+                ArmouredCars = (!result.IsDBNull(6)) ? result.GetString(6) : "";
+                Artillery = (!result.IsDBNull(7)) ? result.GetString(7) : "";
+                Tanks = (!result.IsDBNull(8)) ? result.GetString(8) : "";
+                Transport = (!result.IsDBNull(9)) ? result.GetString(9) : "";
+                NationID = (!result.IsDBNull(10)) ? result.GetInt32(10) : -1;
+
+                newListOfActiveRules = new List<int>();
+                SQLiteDataReader ruleResult = Database.ExecuteCommand("SELECT RuleID FROM Rule_Selector WHERE SelectorID = " + ID);
+                while (ruleResult.Read())
+                {
+                    newListOfActiveRules.Add(ruleResult.GetInt32(0));
+                }
+
+                new Selector(ID, Name, Date, Mandatory, Headquarters, Infantry, ArmouredCars, Artillery, Tanks, Transport, NationID, newListOfActiveRules);
+            }
+            result.Close();
+        }
     }
 }
