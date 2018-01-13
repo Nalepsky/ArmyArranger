@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Prism.Commands;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.SQLite;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Input;
 
 namespace ArmyArranger.Global
 {
@@ -45,12 +47,19 @@ namespace ArmyArranger.Global
         public List<int> ListOfActiveRules = new List<int>();
         public List<int> ListOfActiveWeapons = new List<int>();
 
+        public ICommand OnClick { get; set; }
+
         public UnitDetailed()
         {
             isEmpty = true;
+            OnClick = new DelegateCommand(FunctionOnClick);
         }
 
-
+        private void FunctionOnClick()
+        {
+            MessageBox.Show("selected: " + this.Name + "  -- to get all informations about selected unit use UnitDetailed class like this.[every needed property]");
+            this.Color = "pink";
+        }
 
 
 
@@ -72,7 +81,6 @@ namespace ArmyArranger.Global
             }
             return UnitsCollection;
         }
-
 
         public static UnitDetailed GetUnitDetailedInfoFromDBByID(int t_ID, bool t_OnlyOne)
         {
