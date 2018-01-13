@@ -1,4 +1,5 @@
 ﻿using ArmyArranger.Global;
+using ArmyArranger.Models.ArmyList;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ namespace ArmyArranger.ViewModels.ArmyList
         #region Propeties
 
         UnitDetailed Selectedunit;
+        EditUnitModel thisModel = new EditUnitModel();
 
         private String _extraModels;
         public String ExtraModels
@@ -140,12 +142,14 @@ namespace ArmyArranger.ViewModels.ArmyList
             RulesList = "";
             foreach (var rule in Selectedunit.ListOfActiveRules)
             {
-                RulesList += rule + "\n";
+                Console.WriteLine("r" + rule);
+                RulesList += thisModel.GetRules(rule) + "\n\n";
             }
 
-            foreach (var rule in Selectedunit.ListOfActiveWeapons)
+            foreach (var weapon in Selectedunit.ListOfActiveWeapons)
             {
-                RulesList += rule + "\n";
+                Console.WriteLine("W" + weapon);
+                RulesList += thisModel.GetWeaponsRules(weapon) + "\n\n"; ;
             }
 
 

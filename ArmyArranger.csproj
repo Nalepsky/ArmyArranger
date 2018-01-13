@@ -101,6 +101,7 @@
     <Compile Include="Global\Weapon.cs" />
     <Compile Include="Global\WindowsService.cs" />
     <Compile Include="Models\ArmyList\ChooseUnitsModel.cs" />
+    <Compile Include="Models\ArmyList\EditUnitModel.cs" />
     <Compile Include="Models\EditYourArmies\AddEntryModel.cs" />
     <Compile Include="Models\EditYourArmies\AddNationsModel.cs" />
     <Compile Include="Models\EditYourArmies\AddSelectorsModel.cs" />

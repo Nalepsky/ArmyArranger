@@ -33,7 +33,7 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>            
+            <RowDefinition Height="3*"/>            
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
@@ -71,7 +71,9 @@
         <Label Content="Options: " Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
         <Label Content="Rules: " Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Text="{Binding RulesList}" Grid.Column="2" Grid.Row="7"/>        
         
+        <TextBlock Text="{Binding RulesList}" ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Column="2" Grid.Row="7"/>
+        
+
     </Grid>
 </UserControl>
