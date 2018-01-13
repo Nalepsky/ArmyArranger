@@ -35,6 +35,7 @@ namespace ArmyArranger.ViewModels.ArmyList
                 {
                     _selectedUnit = value;
                     MessageBox.Show("selected: " + SelectedUnit.Name + "  -- to get all informations about selected unit use SelectedUnit from SelectorUnits class from ChooseUnitsViewModel.cs like: SelectedUnit.[every needed property]");
+                    App.Current.MainWindow.DataContext = new ArmyList.ChooseUnitsViewModel(ChooseUnitsViewModel.currentNation, ChooseUnitsViewModel.currentSelector);
                 }
             }
         }
@@ -46,6 +47,8 @@ namespace ArmyArranger.ViewModels.ArmyList
         ChooseUnitsModel thisModel = new ChooseUnitsModel();
         Nation ChoosenNation;
         Selector ChoosenSelector;
+        public static Nation currentNation;
+        public static Selector currentSelector;
 
         private string _selectorTitle;
         public string SelectorTitle
@@ -119,11 +122,13 @@ namespace ArmyArranger.ViewModels.ArmyList
         public ChooseUnitsViewModel(Nation choosenNation, Selector choosenSelector)
         {
             OnLoad = new DelegateCommand(FunctionOnLoad);
-            MouseClick = new DelegateCommand(FunctionOnClick);
             Back = new DelegateCommand(ChangeViewToChooseSelector);
             Confirm = new DelegateCommand(ChangeViewToChooseUnits);
             ChoosenNation = choosenNation;
             ChoosenSelector = choosenSelector;
+            ChooseUnitsViewModel.currentNation = choosenNation;
+            ChooseUnitsViewModel.currentSelector = choosenSelector;
+            FunctionOnLoad();
         }
 
         #endregion
@@ -141,11 +146,6 @@ namespace ArmyArranger.ViewModels.ArmyList
             ArtilleryListsList = LoadSelectorListByType(ChoosenSelector.Artillery);
             TanksListsList = LoadSelectorListByType(ChoosenSelector.Tanks);
             TransportListsList = LoadSelectorListByType(ChoosenSelector.Transport);
-        }
-
-        private void FunctionOnClick()
-        {
-            MessageBox.Show("click");
         }
 
         private ObservableCollection<SelectorUnits> LoadSelectorListByType(string encodedUnits)
