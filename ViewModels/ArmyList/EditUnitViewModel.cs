@@ -9,6 +9,18 @@ using System.Threading.Tasks;
 
 namespace ArmyArranger.ViewModels.ArmyList
 {
+    class Experience
+    {
+        int Cost { get; set; }
+        String ExpSescribtion { get; set; }
+
+        public Experience(int cost, string expSescribtion)
+        {
+            Cost = cost;
+            ExpSescribtion = expSescribtion;
+        }
+    }
+
     class EditUnitViewModel : BindableBase
     {
         #region Propeties
@@ -27,15 +39,15 @@ namespace ArmyArranger.ViewModels.ArmyList
             set { _name = value; RaisePropertyChanged(nameof(Name)); }
         }
 
-        private ObservableCollection<String> _experienceList;
-        public ObservableCollection<String> ExperienceList
+        private ObservableCollection<Experience> _experienceList;
+        public ObservableCollection<Experience> ExperienceList
         {
             get { return _experienceList; }
             set { _experienceList = value; RaisePropertyChanged(nameof(ExperienceList)); }
         }
 
-        private ObservableCollection<String> _additionalModels;
-        public ObservableCollection<String> AdditionalModels
+        private ObservableCollection<int> _additionalModels;
+        public ObservableCollection<int> AdditionalModels
         {
             get { return _additionalModels; }
             set { _additionalModels = value; RaisePropertyChanged(nameof(AdditionalModels)); }
@@ -73,7 +85,24 @@ namespace ArmyArranger.ViewModels.ArmyList
         {
             Points = 0;
             Name = SlectedUnit.Name;
+            if (SlectedUnit.Inexperienced != 0)
+                ExperienceList.Add(new Experience(SlectedUnit.Inexperienced, "Inexperienced for :"));
+            if (SlectedUnit.Regular != 0)
+                ExperienceList.Add(new Experience(SlectedUnit.Regular, "Regular for :"));
+            if (SlectedUnit.Veteran != 0)
+                ExperienceList.Add(new Experience(SlectedUnit.Veteran, "Veteran for :"));
+            AdditionalModels.Add(SlectedUnit.PointsInexp);
+            AdditionalModels.Add(SlectedUnit.PointsReg);
+            AdditionalModels.Add(SlectedUnit.PointsVet);
+            Composition = SlectedUnit.Composition;
+            Weapons = SlectedUnit.WeaponDescription;
+            ArmourClass = SlectedUnit.ArmourClass + "+";
 
+            RulesList = "";
+            foreach(var rule in SlectedUnit.ListOfActiveRules)
+            {
+                RulesList += rule + " ";
+            }
         }
 
         #endregion

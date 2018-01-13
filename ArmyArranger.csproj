@@ -113,6 +113,7 @@
     <Compile Include="Models\ArmyList\ChooseSelectorModel.cs" />
     <Compile Include="ViewModels\ArmyList\ChooseSelectorViewModel.cs" />
     <Compile Include="ViewModels\ArmyList\ChooseUnitsViewModel.cs" />
+    <Compile Include="ViewModels\ArmyList\EditUnitViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddEntryViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddOptionViewModel.cs" />
     <Compile Include="ViewModels\Menu\AboutViewModel.cs" />
