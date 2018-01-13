@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="ArmyArranger.Views.ArmyList.EditUnit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ArmyArranger.Views.ArmyList"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding OnLoad}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="MouseUp">
+            <i:InvokeCommandAction Command="{Binding MouseClick}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid Background="LightGray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>            
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="0" Cursor="Hand" VerticalAlignment="Center">
+            <Button Content="Clear options" Command="{Binding Clear, Mode=TwoWay}"/>
+            <Button Content="Delete unit" Command="{Binding Delete, Mode=TwoWay}"/>
+            <Button Content="Save changes" Command="{Binding Save, Mode=TwoWay}"/>
+        </StackPanel>
+
+        <Label Content="{Binding Points}" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <Label Content="{Binding Name}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        
+        <Label Content="Cost: " Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <ComboBox ItemsSource="{Binding ExperienceList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedExperience, Mode=TwoWay}" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Cursor="Hand" HorizontalAlignment="Left">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Label Content="Composition: " Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="{Binding Composition}" Grid.Column="2" Grid.Row="3"/>
+
+        <Label Content="Weapons: " Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="{Binding Weapons}" Grid.Column="2" Grid.Row="4"/>
+
+        <Label Content="Damage Value: " Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="{Binding ArmourClass}" Grid.Column="2" Grid.Row="5"/>
+
+        <Label Content="Options: " Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <Label Content="Rules: " Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="{Binding RulesList}" Grid.Column="2" Grid.Row="3"/>        
+        
+    </Grid>
+</UserControl>

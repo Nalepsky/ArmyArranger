@@ -133,6 +133,9 @@
     <Compile Include="Views\ArmyList\ChooseSelectorView.xaml.cs">
       <DependentUpon>ChooseSelectorView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ArmyList\EditUnit.xaml.cs">
+      <DependentUpon>EditUnit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EditYourArmies\AddEntryView.xaml.cs">
       <DependentUpon>AddEntryView.xaml</DependentUpon>
     </Compile>
@@ -194,6 +197,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ArmyList\ChooseSelectorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ArmyList\EditUnit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
