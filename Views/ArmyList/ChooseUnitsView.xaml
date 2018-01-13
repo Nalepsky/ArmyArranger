@@ -20,15 +20,19 @@
     <Grid Background="LightGray">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -39,39 +43,154 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <Label Content="{Binding SelectorTitle}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="9" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36"/>
+        <Label Content="{Binding SelectorTitle}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="13" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36"/>
+        
+        <TextBox Text="{Binding PointsLimit}" Grid.Column="9" Grid.ColumnSpan="1" Height="20" VerticalAlignment="Top"/>
+        <Button Content="OK" Command="{Binding PointsAccept}" Grid.Column="10" Grid.ColumnSpan="1" Height="20" VerticalAlignment="Top"/>
+        <Label Content="{Binding PointsCurrent}" Grid.Column="11" Grid.ColumnSpan="1" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        <Label Content="{Binding PointsLeft}" Grid.Column="13" Grid.ColumnSpan="1" VerticalAlignment="Top" HorizontalAlignment="Center"/>
 
         <Label Content="Mandatory" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <ListBox ItemsSource="{Binding MandatoryListsList}" Grid.Column="1" Grid.Row="2">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <ListBox ItemsSource="{Binding MandatoryList}" Cursor="Hand">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Name}" />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Column="1" Grid.Row="2">
+            <ItemsControl ItemsSource="{Binding MandatoryListsList}" Background="Gainsboro">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ItemsControl BorderThickness="0">
+                            <TextBlock Text="{Binding Count}" />
+                            <ListView ItemsSource="{Binding UnitsList}" SelectedValue="{Binding SelectedUnit}" Cursor="Hand">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" Background="{Binding Color}"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </ItemsControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
 
         <Label Content="Headquarters" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <ListBox ItemsSource="{Binding HQListsList}" Grid.Column="3" Grid.Row="2">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <ListBox ItemsSource="{Binding HQList}" Cursor="Hand">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Name}" />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Column="3" Grid.Row="2">
+            <ItemsControl ItemsSource="{Binding HeadquartersListsList}" Background="Gainsboro">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ItemsControl BorderThickness="0">
+                            <TextBlock Text="{Binding Count}" />
+                            <ListView ItemsSource="{Binding UnitsList}" SelectedValue="{Binding SelectedUnit}" Cursor="Hand">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" Background="{Binding Color}"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </ItemsControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <Label Content="Infantry" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Column="5" Grid.Row="2">
+            <ItemsControl ItemsSource="{Binding InfantryListsList}" Background="Gainsboro">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ItemsControl BorderThickness="0">
+                            <TextBlock Text="{Binding Count}" />
+                            <ListView ItemsSource="{Binding UnitsList}" SelectedValue="{Binding SelectedUnit}" Cursor="Hand">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" Background="{Binding Color}"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </ItemsControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <Label Content="Armored Cars" Grid.Column="7" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Column="7" Grid.Row="2">
+            <ItemsControl ItemsSource="{Binding ArmouredCarsListsList}" Background="Gainsboro">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ItemsControl BorderThickness="0">
+                            <TextBlock Text="{Binding Count}" />
+                            <ListView ItemsSource="{Binding UnitsList}" SelectedValue="{Binding SelectedUnit}" Cursor="Hand">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" Background="{Binding Color}"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </ItemsControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <Label Content="Artillery" Grid.Column="9" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Column="9" Grid.Row="2">
+            <ItemsControl ItemsSource="{Binding ArtilleryListsList}" Background="Gainsboro">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ItemsControl BorderThickness="0">
+                            <TextBlock Text="{Binding Count}" />
+                            <ListView ItemsSource="{Binding UnitsList}" SelectedValue="{Binding SelectedUnit}" Cursor="Hand">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" Background="{Binding Color}"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </ItemsControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <Label Content="Tanks" Grid.Column="11" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Column="11" Grid.Row="2">
+            <ItemsControl ItemsSource="{Binding TanksListsList}" Background="Gainsboro">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ItemsControl BorderThickness="0">
+                            <TextBlock Text="{Binding Count}" />
+                            <ListView ItemsSource="{Binding UnitsList}" SelectedValue="{Binding SelectedUnit}" Cursor="Hand">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" Background="{Binding Color}"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </ItemsControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <Label Content="Transport" Grid.Column="13" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Column="13" Grid.Row="2">
+            <ItemsControl ItemsSource="{Binding TransportListsList}" Background="Gainsboro">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ItemsControl BorderThickness="0">
+                            <TextBlock Text="{Binding Count}" />
+                            <ListView ItemsSource="{Binding UnitsList}" SelectedValue="{Binding SelectedUnit}" Cursor="Hand">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" Background="{Binding Color}"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </ItemsControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
 
         <Button Content="Cancel" Command="{Binding Back, Mode=TwoWay}" Grid.Column="1" Grid.Row="3" Cursor="Hand" VerticalAlignment="Center"/>
-        <Button Content="Confirm" Command="{Binding Confirm, Mode=TwoWay}" Grid.Column="9" Grid.Row="3" Cursor="Hand" VerticalAlignment="Center" Margin="0,11,0,12"/>
+        <Button Content="Confirm" Command="{Binding Confirm, Mode=TwoWay}" Grid.Column="13" Grid.Row="3" Cursor="Hand" VerticalAlignment="Center" Margin="0,11,0,12"/>
     </Grid>
 </UserControl>

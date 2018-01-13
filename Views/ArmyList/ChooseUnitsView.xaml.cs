@@ -24,5 +24,10 @@ namespace ArmyArranger.Views.ArmyList
         {
             InitializeComponent();
         }
+
+        private void ListView_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

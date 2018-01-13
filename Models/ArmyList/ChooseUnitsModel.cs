@@ -9,7 +9,7 @@ namespace ArmyArranger.Models
     {
         #region Properties
 
-        public Unit EmptyUnit = new Unit();
+        public UnitDetailed EmptyUnitDetailed = new UnitDetailed();
 
         #endregion
 
@@ -22,7 +22,6 @@ namespace ArmyArranger.Models
         #endregion
 
         #region Actions
-
 
 
         #endregion

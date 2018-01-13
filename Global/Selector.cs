@@ -12,6 +12,7 @@ namespace ArmyArranger.Global
     {
         public static ObservableCollection<Selector> SelectorsCollection = new ObservableCollection<Selector>();
 
+        public int ID { get; set; }
         public string Name { get; set; }
         public string Date { get; set; }
         public string Mandatory { get; set; }
@@ -39,15 +40,16 @@ namespace ArmyArranger.Global
             //NationId = 0;
         }
 
-        public Selector(string name, string date, string mandatory, string headquarters, string infantry, string armouredCars, string artilery, string tanks, string transport, int nationId, List<int> listOfActiveRules)
+        public Selector(int id, string name, string date, string mandatory, string headquarters, string infantry, string armouredCars, string artillery, string tanks, string transport, int nationId, List<int> listOfActiveRules)
         {
+            ID = id;
             Name = (name != null) ? name : "null";
             Date = (date != null) ? date : "null";
             Mandatory = (mandatory != null) ? mandatory : "null";
             Headquarters = (headquarters != null) ? headquarters : "null";
             Infantry = (infantry != null) ? infantry : "null";
             ArmouredCars = (armouredCars != null) ? armouredCars : "null";
-            Artillery = (artilery != null) ? artilery : "null";
+            Artillery = (artillery != null) ? artillery : "null";
             Tanks = (tanks != null) ? tanks : "null";
             Transport = (transport != null) ? transport : "null";
             NationId = nationId;
@@ -59,7 +61,7 @@ namespace ArmyArranger.Global
         {
             //temp
             List<int> newListOfActiveRules = new List<int>();
-
+            int id;
             string sql_name = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + name + "'";
             string sql_date = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + date + "'";
             string sql_mandatory = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + mandatory + "'";
@@ -72,14 +74,15 @@ namespace ArmyArranger.Global
 
             try
             {
-                Database.ExecuteCommand("INSERT INTO Selector (Name, Date, Mandatory, Headquarters, Infantry, ArmouredCars, Artilery, Tanks, Transport, NationID) VALUES ("
+                Database.ExecuteCommand("INSERT INTO Selector (Name, Date, Mandatory, Headquarters, Infantry, ArmouredCars, Artillery, Tanks, Transport, NationID) VALUES ("
                     + sql_name + "," + sql_date + "," + sql_mandatory + "," + sql_headquarters + "," + sql_infantry + "," + sql_armouredCars + "," + sql_artillery + "," + sql_tanks + "," + sql_transport + "," + nationID + ")");
+                id = Database.GetLastInsertedID();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            new Selector(name, date, mandatory, headquarters, infantry, armouredCars, artillery, tanks, transport, nationID, newListOfActiveRules);
+            new Selector(id, name, date, mandatory, headquarters, infantry, armouredCars, artillery, tanks, transport, nationID, newListOfActiveRules);
         }
 
         public void ClearSelectorsCollection()
@@ -97,7 +100,7 @@ namespace ArmyArranger.Global
              Headquarters,
              Infantry,
              ArmouredCars,
-             Artilery,
+             Artillery,
              Tanks,
              Transport;
             int NationID;
@@ -113,7 +116,7 @@ namespace ArmyArranger.Global
                 Headquarters = (!result.IsDBNull(4)) ? result.GetString(4) : "";
                 Infantry = (!result.IsDBNull(5)) ? result.GetString(5) : "";
                 ArmouredCars = (!result.IsDBNull(6)) ? result.GetString(6) : "";
-                Artilery = (!result.IsDBNull(7)) ? result.GetString(7) : "";
+                Artillery = (!result.IsDBNull(7)) ? result.GetString(7) : "";
                 Tanks = (!result.IsDBNull(8)) ? result.GetString(8) : "";
                 Transport = (!result.IsDBNull(9)) ? result.GetString(9) : "";
                 NationID = (!result.IsDBNull(10)) ? result.GetInt32(10) : -1;
@@ -125,7 +128,49 @@ namespace ArmyArranger.Global
                     newListOfActiveRules.Add(ruleResult.GetInt32(0));
                 }
 
-                new Selector(Name, Date, Mandatory, Headquarters, Infantry, ArmouredCars, Artilery, Tanks, Transport, NationID, newListOfActiveRules);
+                new Selector(ID, Name, Date, Mandatory, Headquarters, Infantry, ArmouredCars, Artillery, Tanks, Transport, NationID, newListOfActiveRules);
+            }
+            result.Close();
+        }
+        public void LoadByNationID(int nationID)
+        {
+            SQLiteDataReader result = Database.ExecuteCommand("SELECT * FROM Selector WHERE NationID=" + nationID);
+            int ID;
+            String Name,
+             Date,
+             Mandatory,
+             Headquarters,
+             Infantry,
+             ArmouredCars,
+             Artillery,
+             Tanks,
+             Transport;
+            int NationID;
+
+            List<int> newListOfActiveRules;
+
+            while (result.Read())
+            {
+                ID = result.GetInt32(0);
+                Name = result.GetString(1);
+                Date = result.GetString(2);
+                Mandatory = (!result.IsDBNull(3)) ? result.GetString(3) : "";
+                Headquarters = (!result.IsDBNull(4)) ? result.GetString(4) : "";
+                Infantry = (!result.IsDBNull(5)) ? result.GetString(5) : "";
+                ArmouredCars = (!result.IsDBNull(6)) ? result.GetString(6) : "";
+                Artillery = (!result.IsDBNull(7)) ? result.GetString(7) : "";
+                Tanks = (!result.IsDBNull(8)) ? result.GetString(8) : "";
+                Transport = (!result.IsDBNull(9)) ? result.GetString(9) : "";
+                NationID = (!result.IsDBNull(10)) ? result.GetInt32(10) : -1;
+
+                newListOfActiveRules = new List<int>();
+                SQLiteDataReader ruleResult = Database.ExecuteCommand("SELECT RuleID FROM Rule_Selector WHERE SelectorID = " + ID);
+                while (ruleResult.Read())
+                {
+                    newListOfActiveRules.Add(ruleResult.GetInt32(0));
+                }
+
+                new Selector(ID, Name, Date, Mandatory, Headquarters, Infantry, ArmouredCars, Artillery, Tanks, Transport, NationID, newListOfActiveRules);
             }
             result.Close();
         }

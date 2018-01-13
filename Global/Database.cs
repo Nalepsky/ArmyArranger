@@ -70,7 +70,7 @@ namespace ArmyArranger.Global
                     "Headquarters VARCHAR(500) NULL," +
                     "Infantry VARCHAR(500) NULL," +
                     "ArmouredCars VARCHAR(500) NULL," +
-                    "Artilery VARCHAR(500) NULL," +
+                    "Artillery VARCHAR(500) NULL," +
                     "Tanks VARCHAR(500) NULL," +
                     "Transport VARCHAR(500) NULL," +
                     "NationID INTEGER NOT NULL," +
