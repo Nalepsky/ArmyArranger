@@ -48,10 +48,13 @@
         <Label Content="{Binding Name}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         
         <Label Content="Cost: " Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <Label Content="{Binding ExtraModels}" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        
         <ComboBox ItemsSource="{Binding ExperienceList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedExperience, Mode=TwoWay}" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Cursor="Hand" HorizontalAlignment="Left">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}"/>
+                    <TextBlock Text="{Binding ExpDescribtion}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
@@ -68,7 +71,7 @@
         <Label Content="Options: " Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
         <Label Content="Rules: " Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Text="{Binding RulesList}" Grid.Column="2" Grid.Row="3"/>        
+        <TextBlock Text="{Binding RulesList}" Grid.Column="2" Grid.Row="7"/>        
         
     </Grid>
 </UserControl>

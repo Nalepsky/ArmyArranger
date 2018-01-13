@@ -64,7 +64,8 @@ namespace ArmyArranger.Global
 
         private void FunctionOnClick()
         {
-
+            Window OptionsWindow = new SelectorUnitWindow(this);
+            OptionsWindow.Show();
             this.Color = "pink";
         }
 

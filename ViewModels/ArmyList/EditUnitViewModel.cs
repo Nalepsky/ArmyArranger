@@ -12,12 +12,14 @@ namespace ArmyArranger.ViewModels.ArmyList
     public class Experience
     {
         public int Cost { get; set; }
-        public String ExpSescribtion { get; set; }
+        public int ExpValue;
+        public String ExpDescribtion { get; set; }
 
-        public Experience(int cost, string expSescribtion)
+        public Experience(int cost, string expSescribtion, int expValue)
         {
             Cost = cost;
-            ExpSescribtion = expSescribtion;
+            ExpValue = expValue;
+            ExpDescribtion = expSescribtion + cost + " points";
         }
     }
 
@@ -25,18 +27,45 @@ namespace ArmyArranger.ViewModels.ArmyList
     {
         #region Propeties
 
+        UnitDetailed Selectedunit;
+
+        private String _extraModels;
+        public String ExtraModels
+        {
+            get { return _extraModels; }
+            set { _extraModels = value; RaisePropertyChanged(nameof(ExtraModels)); }
+        }
+
+        private int _numberOfExtraModels;
+        public int NumberOfExtraModels
+        {
+            get { return _numberOfExtraModels; }
+            set { _numberOfExtraModels = value; RaisePropertyChanged(nameof(NumberOfExtraModels)); }
+        }
+
         private int _points;
         public int Points
         {
             get { return _points; }
             set { _points = value; RaisePropertyChanged(nameof(Points)); }
         }
-
+                
         private String _name;
         public String Name
         {
             get { return _name; }
             set { _name = value; RaisePropertyChanged(nameof(Name)); }
+        }
+                
+        private Experience _selectedExperience;
+        public Experience SelectedExperience
+        {
+            get { return _selectedExperience; }
+            set {
+                _selectedExperience = value;
+                setExtraModels();
+                RaisePropertyChanged(nameof(SelectedExperience));
+            }
         }
 
         private ObservableCollection<Experience> _experienceList;
@@ -80,36 +109,62 @@ namespace ArmyArranger.ViewModels.ArmyList
             get { return _rulesList; }
             set { _rulesList = value; RaisePropertyChanged(nameof(RulesList)); }
         }
-
-        public EditUnitViewModel(UnitDetailed SlectedUnit)
-        {
-            Points = 0;
-            Name = SlectedUnit.Name;
-            if (SlectedUnit.Inexperienced != 0)
-                ExperienceList.Add(new Experience(SlectedUnit.Inexperienced, "Inexperienced for :"));
-            if (SlectedUnit.Regular != 0)
-                ExperienceList.Add(new Experience(SlectedUnit.Regular, "Regular for :"));
-            if (SlectedUnit.Veteran != 0)
-                ExperienceList.Add(new Experience(SlectedUnit.Veteran, "Veteran for :"));
-            AdditionalModels.Add(SlectedUnit.PointsInexp);
-            AdditionalModels.Add(SlectedUnit.PointsReg);
-            AdditionalModels.Add(SlectedUnit.PointsVet);
-            Composition = SlectedUnit.Composition;
-            Weapons = SlectedUnit.WeaponDescription;
-            ArmourClass = SlectedUnit.ArmourClass + "+";
-
-            RulesList = "";
-            foreach(var rule in SlectedUnit.ListOfActiveRules)
-            {
-                RulesList += rule + " ";
-            }
-        }
-
+        
         #endregion
 
         #region Constructors
 
+        public EditUnitViewModel(UnitDetailed Selectedunit)
+        {
+            this.Selectedunit = Selectedunit;
+            Points = 0;
+            Name = Selectedunit.Name;
+            ExperienceList = new ObservableCollection<Experience>();
+            AdditionalModels = new ObservableCollection<int>();
 
+            if (Selectedunit.Inexperienced != 0)
+                ExperienceList.Add(new Experience(Selectedunit.Inexperienced, "Inexperienced for : ", 0));
+            if (Selectedunit.Regular != 0)
+                ExperienceList.Add(new Experience(Selectedunit.Regular, "Regular for : ", 1));
+            if (Selectedunit.Veteran != 0)
+                ExperienceList.Add(new Experience(Selectedunit.Veteran, "Veteran for : ", 2));
+            AdditionalModels.Add(Selectedunit.PointsInexp);
+            AdditionalModels.Add(Selectedunit.PointsReg);
+            AdditionalModels.Add(Selectedunit.PointsVet);
+            Composition = Selectedunit.Composition;
+            Weapons = Selectedunit.WeaponDescription;
+            ArmourClass = Selectedunit.ArmourClass + "+";
+
+            SelectedExperience = ExperienceList.First<Experience>();
+
+            RulesList = "";
+            foreach (var rule in Selectedunit.ListOfActiveRules)
+            {
+                RulesList += rule + "\n";
+            }
+
+            foreach (var rule in Selectedunit.ListOfActiveWeapons)
+            {
+                RulesList += rule + "\n";
+            }
+
+
+        }
+
+        #endregion
+
+        #region Actions
+
+        private void setExtraModels()
+        {
+            int temp = Selectedunit.MaxSize - Selectedunit.BaseSize;
+            
+
+            if (temp > 0)
+                ExtraModels = "you can add up to " + temp + "models, for " + AdditionalModels.ElementAt<int>(SelectedExperience.ExpValue) + " points each";
+            else
+                ExtraModels = "";
+        }
 
         #endregion
 
