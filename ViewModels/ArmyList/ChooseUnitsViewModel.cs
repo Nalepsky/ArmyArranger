@@ -27,17 +27,6 @@ namespace ArmyArranger.ViewModels.ArmyList
                 Count = count;
                 UnitsList = unitsList;
             }
-            private UnitDetailed _selectedUnit;
-            public UnitDetailed SelectedUnit
-            {
-                get { return _selectedUnit; }
-                set
-                {
-                    _selectedUnit = value;
-                    MessageBox.Show("selected: " + SelectedUnit.Name + "  -- to get all informations about selected unit use SelectedUnit from SelectorUnits class from ChooseUnitsViewModel.cs like: SelectedUnit.[every needed property]");
-                    SelectedUnit.Color = "pink";
-                }
-            }
         }
 
         #endregion
@@ -130,7 +119,6 @@ namespace ArmyArranger.ViewModels.ArmyList
         #region Commands
 
         public ICommand OnLoad { get; set; }
-        public ICommand MouseClick { get; set; }
         public ICommand PointsAccept { get; set; }
         public ICommand Back { get; set; }
         public ICommand Confirm { get; set; }
@@ -170,6 +158,9 @@ namespace ArmyArranger.ViewModels.ArmyList
 
         private void UpdatePoints()
         {
+            foreach(UnitDetailed kk in UnitDetailed.AllUnitsCollection){
+                Console.WriteLine(kk.Name);
+            }
             PointsLeft = PointsLimit - PointsCurrent;
         }
 
@@ -199,6 +190,7 @@ namespace ArmyArranger.ViewModels.ArmyList
 
         private void ChangeViewToChooseSelector()
         {
+            ClearBeforeUnload();
             MandatoryListsList = new ObservableCollection<SelectorUnits>();
             App.Current.MainWindow.DataContext = new ArmyList.ChooseSelectorViewModel();
         }
@@ -206,7 +198,13 @@ namespace ArmyArranger.ViewModels.ArmyList
 
         private void ChangeViewToChooseUnits()
         {
+            ClearBeforeUnload();
             throw new NotImplementedException();
+        }
+
+        private void ClearBeforeUnload()
+        {
+            UnitDetailed.AllUnitsCollection.Clear();
         }
 
         #endregion
