@@ -19,11 +19,6 @@ namespace ArmyArranger.ViewModels.ArmyList
 
         public class SelectorUnits
         {
-            //public event PropertyChangedEventHandler PropertyChanged;
-            //private void OnPropertyChanged<T>([CallerMemberName]string caller = null)
-            //{
-            //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(caller));
-            //}
             public string Count { get; set; }
             public ObservableCollection<UnitDetailed> UnitsList { get; set; }
 
@@ -52,28 +47,60 @@ namespace ArmyArranger.ViewModels.ArmyList
         Nation ChoosenNation;
         Selector ChoosenSelector;
 
-        public string SelectorTitle { get; set; }
+        private string _selectorTitle;
+        public string SelectorTitle
+        {
+            get { return _selectorTitle; }
+            set { _selectorTitle = value; RaisePropertyChanged(nameof(SelectorTitle)); }
+        }
 
         private ObservableCollection<SelectorUnits> _mandatoryListsList;
         public ObservableCollection<SelectorUnits> MandatoryListsList
         {
             get { return _mandatoryListsList; }
-            set
-            {
-                _mandatoryListsList = value;
-                RaisePropertyChanged(nameof(MandatoryListsList));
-            }
+            set { _mandatoryListsList = value; RaisePropertyChanged(nameof(MandatoryListsList)); }
         }
 
         private ObservableCollection<SelectorUnits> _headquartersListsList;
         public ObservableCollection<SelectorUnits> HeadquartersListsList
         {
             get { return _headquartersListsList; }
-            set
-            {
-                _headquartersListsList = value;
-                RaisePropertyChanged(nameof(HeadquartersListsList));
-            }
+            set {  _headquartersListsList = value; RaisePropertyChanged(nameof(HeadquartersListsList)); }
+        }
+
+        private ObservableCollection<SelectorUnits> _infantryListsList;
+        public ObservableCollection<SelectorUnits> InfantryListsList
+        {
+            get { return _infantryListsList; }
+            set { _infantryListsList = value; RaisePropertyChanged(nameof(InfantryListsList)); }
+        }
+
+        private ObservableCollection<SelectorUnits> _armouredCarsListsList;
+        public ObservableCollection<SelectorUnits> ArmouredCarsListsList
+        {
+            get { return _armouredCarsListsList; }
+            set { _armouredCarsListsList = value; RaisePropertyChanged(nameof(ArmouredCarsListsList)); }
+        }
+
+        private ObservableCollection<SelectorUnits> _artilleryListsList;
+        public ObservableCollection<SelectorUnits> ArtilleryListsList
+        {
+            get { return _artilleryListsList; }
+            set { _artilleryListsList = value; RaisePropertyChanged(nameof(ArtilleryListsList)); }
+        }
+
+        private ObservableCollection<SelectorUnits> _tanksListsList;
+        public ObservableCollection<SelectorUnits> TanksListsList
+        {
+            get { return _tanksListsList; }
+            set { _tanksListsList = value; RaisePropertyChanged(nameof(TanksListsList)); }
+        }
+
+        private ObservableCollection<SelectorUnits> _transportListsList;
+        public ObservableCollection<SelectorUnits> TransportListsList
+        {
+            get { return _transportListsList; }
+            set { _transportListsList = value; RaisePropertyChanged(nameof(TransportListsList)); }
         }
 
         #endregion
@@ -92,6 +119,7 @@ namespace ArmyArranger.ViewModels.ArmyList
         public ChooseUnitsViewModel(Nation choosenNation, Selector choosenSelector)
         {
             OnLoad = new DelegateCommand(FunctionOnLoad);
+            MouseClick = new DelegateCommand(FunctionOnClick);
             Back = new DelegateCommand(ChangeViewToChooseSelector);
             Confirm = new DelegateCommand(ChangeViewToChooseUnits);
             ChoosenNation = choosenNation;
@@ -108,8 +136,17 @@ namespace ArmyArranger.ViewModels.ArmyList
 
             MandatoryListsList = LoadSelectorListByType(ChoosenSelector.Mandatory);
             HeadquartersListsList = LoadSelectorListByType(ChoosenSelector.Headquarters);
+            InfantryListsList = LoadSelectorListByType(ChoosenSelector.Infantry);
+            ArmouredCarsListsList = LoadSelectorListByType(ChoosenSelector.ArmouredCars);
+            ArtilleryListsList = LoadSelectorListByType(ChoosenSelector.Artillery);
+            TanksListsList = LoadSelectorListByType(ChoosenSelector.Tanks);
+            TransportListsList = LoadSelectorListByType(ChoosenSelector.Transport);
         }
 
+        private void FunctionOnClick()
+        {
+            MessageBox.Show("click");
+        }
 
         private ObservableCollection<SelectorUnits> LoadSelectorListByType(string encodedUnits)
         {

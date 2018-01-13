@@ -61,13 +61,13 @@ namespace ArmyArranger.Global
 
                 bool t_OnlyOne = (UnitIDAndFlag[1] == "true") ? true : false;
 
-                UnitsCollection.Add(getUnitDetailedInfoFromDBByID(Convert.ToInt32(UnitIDAndFlag[0]), t_OnlyOne));
+                UnitsCollection.Add(GetUnitDetailedInfoFromDBByID(Convert.ToInt32(UnitIDAndFlag[0]), t_OnlyOne));
             }
             return UnitsCollection;
         }
 
 
-        public static UnitDetailed getUnitDetailedInfoFromDBByID(int t_ID, bool t_OnlyOne)
+        public static UnitDetailed GetUnitDetailedInfoFromDBByID(int t_ID, bool t_OnlyOne)
         {
             string t_Name = null,
                 t_Type = null,
@@ -119,9 +119,6 @@ namespace ArmyArranger.Global
             {
                 t_ListOfActiveWeapons.Add(weaponResult.GetInt32(0));
             }
-
-
-
 
             return new UnitDetailed
             {

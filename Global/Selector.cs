@@ -40,7 +40,7 @@ namespace ArmyArranger.Global
             //NationId = 0;
         }
 
-        public Selector(int id, string name, string date, string mandatory, string headquarters, string infantry, string armouredCars, string artilery, string tanks, string transport, int nationId, List<int> listOfActiveRules)
+        public Selector(int id, string name, string date, string mandatory, string headquarters, string infantry, string armouredCars, string artillery, string tanks, string transport, int nationId, List<int> listOfActiveRules)
         {
             ID = id;
             Name = (name != null) ? name : "null";
@@ -49,7 +49,7 @@ namespace ArmyArranger.Global
             Headquarters = (headquarters != null) ? headquarters : "null";
             Infantry = (infantry != null) ? infantry : "null";
             ArmouredCars = (armouredCars != null) ? armouredCars : "null";
-            Artillery = (artilery != null) ? artilery : "null";
+            Artillery = (artillery != null) ? artillery : "null";
             Tanks = (tanks != null) ? tanks : "null";
             Transport = (transport != null) ? transport : "null";
             NationId = nationId;
@@ -74,7 +74,7 @@ namespace ArmyArranger.Global
 
             try
             {
-                Database.ExecuteCommand("INSERT INTO Selector (Name, Date, Mandatory, Headquarters, Infantry, ArmouredCars, Artilery, Tanks, Transport, NationID) VALUES ("
+                Database.ExecuteCommand("INSERT INTO Selector (Name, Date, Mandatory, Headquarters, Infantry, ArmouredCars, Artillery, Tanks, Transport, NationID) VALUES ("
                     + sql_name + "," + sql_date + "," + sql_mandatory + "," + sql_headquarters + "," + sql_infantry + "," + sql_armouredCars + "," + sql_artillery + "," + sql_tanks + "," + sql_transport + "," + nationID + ")");
                 id = Database.GetLastInsertedID();
             }
@@ -100,7 +100,7 @@ namespace ArmyArranger.Global
              Headquarters,
              Infantry,
              ArmouredCars,
-             Artilery,
+             Artillery,
              Tanks,
              Transport;
             int NationID;
@@ -116,7 +116,7 @@ namespace ArmyArranger.Global
                 Headquarters = (!result.IsDBNull(4)) ? result.GetString(4) : "";
                 Infantry = (!result.IsDBNull(5)) ? result.GetString(5) : "";
                 ArmouredCars = (!result.IsDBNull(6)) ? result.GetString(6) : "";
-                Artilery = (!result.IsDBNull(7)) ? result.GetString(7) : "";
+                Artillery = (!result.IsDBNull(7)) ? result.GetString(7) : "";
                 Tanks = (!result.IsDBNull(8)) ? result.GetString(8) : "";
                 Transport = (!result.IsDBNull(9)) ? result.GetString(9) : "";
                 NationID = (!result.IsDBNull(10)) ? result.GetInt32(10) : -1;
@@ -128,7 +128,7 @@ namespace ArmyArranger.Global
                     newListOfActiveRules.Add(ruleResult.GetInt32(0));
                 }
 
-                new Selector(ID, Name, Date, Mandatory, Headquarters, Infantry, ArmouredCars, Artilery, Tanks, Transport, NationID, newListOfActiveRules);
+                new Selector(ID, Name, Date, Mandatory, Headquarters, Infantry, ArmouredCars, Artillery, Tanks, Transport, NationID, newListOfActiveRules);
             }
             result.Close();
         }
