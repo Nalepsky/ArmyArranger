@@ -170,6 +170,9 @@ namespace ArmyArranger.ViewModels.ArmyList
 
         private void UpdatePoints()
         {
+            foreach(UnitDetailed kk in UnitDetailed.AllUnitsCollection){
+                Console.WriteLine(kk.Name);
+            }
             PointsLeft = PointsLimit - PointsCurrent;
         }
 
@@ -199,6 +202,7 @@ namespace ArmyArranger.ViewModels.ArmyList
 
         private void ChangeViewToChooseSelector()
         {
+            ClearBeforeUnload();
             MandatoryListsList = new ObservableCollection<SelectorUnits>();
             App.Current.MainWindow.DataContext = new ArmyList.ChooseSelectorViewModel();
         }
@@ -206,7 +210,13 @@ namespace ArmyArranger.ViewModels.ArmyList
 
         private void ChangeViewToChooseUnits()
         {
+            ClearBeforeUnload();
             throw new NotImplementedException();
+        }
+
+        private void ClearBeforeUnload()
+        {
+            UnitDetailed.AllUnitsCollection.Clear();
         }
 
         #endregion

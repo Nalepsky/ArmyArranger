@@ -56,7 +56,7 @@ namespace ArmyArranger.Global
 
 
 
-
+        public static ObservableCollection<UnitDetailed> AllUnitsCollection = new ObservableCollection<UnitDetailed>();
 
         public static ObservableCollection<UnitDetailed> LoadFromStringToCollection(string loadString)
         {
@@ -121,7 +121,7 @@ namespace ArmyArranger.Global
                 t_ListOfActiveWeapons.Add(weaponResult.GetInt32(0));
             }
 
-            return new UnitDetailed
+            UnitDetailed newUnit = new UnitDetailed
             {
                 ID = t_ID,
                 Name = t_Name,
@@ -143,6 +143,8 @@ namespace ArmyArranger.Global
                 ListOfActiveRules = t_ListOfActiveRules,
                 ListOfActiveWeapons = t_ListOfActiveWeapons,
             };
+            AllUnitsCollection.Add(newUnit);
+            return newUnit;
         }
     }
 }
