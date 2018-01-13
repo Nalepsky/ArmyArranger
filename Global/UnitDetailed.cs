@@ -64,7 +64,7 @@ namespace ArmyArranger.Global
 
         private void FunctionOnClick()
         {
-            MessageBox.Show("selected: " + this.Name + "  -- to get all informations about selected unit use UnitDetailed class like this.[every needed property]");
+
             this.Color = "pink";
         }
 

@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace ArmyArranger.ViewModels.ArmyList
 {
-    class Experience
+    public class Experience
     {
-        int Cost { get; set; }
-        String ExpSescribtion { get; set; }
+        public int Cost { get; set; }
+        public String ExpSescribtion { get; set; }
 
         public Experience(int cost, string expSescribtion)
         {
@@ -21,7 +21,7 @@ namespace ArmyArranger.ViewModels.ArmyList
         }
     }
 
-    class EditUnitViewModel : BindableBase
+    public class EditUnitViewModel : BindableBase
     {
         #region Propeties
 

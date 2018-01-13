@@ -111,6 +111,9 @@
     <Compile Include="Models\Menu\ContactUsModel.cs" />
     <Compile Include="Global\Database.cs" />
     <Compile Include="Models\ArmyList\ChooseSelectorModel.cs" />
+    <Compile Include="SelectorUnitWindow.xaml.cs">
+      <DependentUpon>SelectorUnitWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\ArmyList\ChooseSelectorViewModel.cs" />
     <Compile Include="ViewModels\ArmyList\ChooseUnitsViewModel.cs" />
     <Compile Include="ViewModels\ArmyList\EditUnitViewModel.cs" />
@@ -191,6 +194,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="AddOptionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectorUnitWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
