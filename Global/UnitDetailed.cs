@@ -17,15 +17,16 @@ namespace ArmyArranger.Global
         }
 
         public int ID { get; set; }
-        public string Name { get; set; }
+        private string _name;
+        public string Name {
+            get { return _name; }
+            set { _name = value; OnPropertyChanged<Unit>(); }
+        }
         public int NationID { get; set; }
         public string Type { get; set; }
         public string Composition { get; set; }
         public string WeaponDescription { get; set; }
         public int ArmourClass { get; set; }
-        public int Inexperienced { get; set; }
-        public int Regular { get; set; }
-        public int Veteran { get; set; }
         public int PointsInexp { get; set; }
         public int PointsReg { get; set; }
         public int PointsVet { get; set; }
@@ -33,6 +34,12 @@ namespace ArmyArranger.Global
         public int MaxSize { get; set; }
 
         public bool OnlyOne { get; set; }
+        private string _color;
+        public string Color
+        {
+            get { return _color; }
+            set { _color = value; OnPropertyChanged<Unit>(); }
+        }
 
         public bool isEmpty;
         public List<int> ListOfActiveRules = new List<int>();
@@ -75,9 +82,6 @@ namespace ArmyArranger.Global
                 t_WeaponDescription = null;
 
             int t_NationID = 0,
-                t_Inexperienced = 0,
-                t_Regular = 0,
-                t_Veteran = 0,
                 t_PointsInexp = 0,
                 t_PointsReg = 0,
                 t_PointsVet = 0,
@@ -97,9 +101,6 @@ namespace ArmyArranger.Global
                 t_Type = (!result.IsDBNull(3)) ? result.GetString(3) : "";
                 t_WeaponDescription = (!result.IsDBNull(4)) ? result.GetString(4) : "";
                 t_Composition = (!result.IsDBNull(5)) ? result.GetString(5) : "";
-                t_Inexperienced = (!result.IsDBNull(6)) ? result.GetInt32(6) : 0;
-                t_Regular = (!result.IsDBNull(7)) ? result.GetInt32(7) : 0;
-                t_Veteran = (!result.IsDBNull(8)) ? result.GetInt32(8) : 0;
                 t_PointsInexp = (!result.IsDBNull(9)) ? result.GetInt32(9) : 0;
                 t_PointsReg = (!result.IsDBNull(10)) ? result.GetInt32(10) : 0;
                 t_PointsVet = (!result.IsDBNull(11)) ? result.GetInt32(11) : 0;
@@ -129,9 +130,6 @@ namespace ArmyArranger.Global
                 Composition = t_Composition,
                 WeaponDescription = t_WeaponDescription,
                 ArmourClass = t_ArmourClass,
-                Inexperienced = t_Inexperienced,
-                Regular = t_Regular,
-                Veteran = t_Veteran,
                 PointsInexp = t_PointsInexp,
                 PointsReg = t_PointsReg,
                 PointsVet = t_PointsVet,
@@ -139,6 +137,7 @@ namespace ArmyArranger.Global
                 MaxSize = t_MaxSize,
 
                 OnlyOne = t_OnlyOne,
+                Color = "white",
 
                 isEmpty = false,
                 ListOfActiveRules = t_ListOfActiveRules,

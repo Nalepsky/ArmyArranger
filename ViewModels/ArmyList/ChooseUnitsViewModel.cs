@@ -35,7 +35,7 @@ namespace ArmyArranger.ViewModels.ArmyList
                 {
                     _selectedUnit = value;
                     MessageBox.Show("selected: " + SelectedUnit.Name + "  -- to get all informations about selected unit use SelectedUnit from SelectorUnits class from ChooseUnitsViewModel.cs like: SelectedUnit.[every needed property]");
-                    App.Current.MainWindow.DataContext = new ArmyList.ChooseUnitsViewModel(ChooseUnitsViewModel.currentNation, ChooseUnitsViewModel.currentSelector);
+                    SelectedUnit.Color = "pink";
                 }
             }
         }
@@ -47,8 +47,27 @@ namespace ArmyArranger.ViewModels.ArmyList
         ChooseUnitsModel thisModel = new ChooseUnitsModel();
         Nation ChoosenNation;
         Selector ChoosenSelector;
-        public static Nation currentNation;
-        public static Selector currentSelector;
+
+        private int _pointsLimit;
+        public int PointsLimit
+        {
+            get { return _pointsLimit; }
+            set { _pointsLimit = value; RaisePropertyChanged(nameof(PointsLimit)); }
+        }
+
+        private int _pointsCurrent;
+        public int PointsCurrent
+        {
+            get { return _pointsCurrent; }
+            set { _pointsCurrent = value; RaisePropertyChanged(nameof(PointsCurrent)); }
+        }
+
+        private int _pointsLeft;
+        public int PointsLeft
+        {
+            get { return _pointsLeft; }
+            set { _pointsLeft = value; RaisePropertyChanged(nameof(PointsLeft)); }
+        }
 
         private string _selectorTitle;
         public string SelectorTitle
@@ -112,6 +131,7 @@ namespace ArmyArranger.ViewModels.ArmyList
 
         public ICommand OnLoad { get; set; }
         public ICommand MouseClick { get; set; }
+        public ICommand PointsAccept { get; set; }
         public ICommand Back { get; set; }
         public ICommand Confirm { get; set; }
 
@@ -123,12 +143,10 @@ namespace ArmyArranger.ViewModels.ArmyList
         {
             OnLoad = new DelegateCommand(FunctionOnLoad);
             Back = new DelegateCommand(ChangeViewToChooseSelector);
+            PointsAccept = new DelegateCommand(AcceptPoints);
             Confirm = new DelegateCommand(ChangeViewToChooseUnits);
             ChoosenNation = choosenNation;
             ChoosenSelector = choosenSelector;
-            ChooseUnitsViewModel.currentNation = choosenNation;
-            ChooseUnitsViewModel.currentSelector = choosenSelector;
-            FunctionOnLoad();
         }
 
         #endregion
@@ -138,6 +156,8 @@ namespace ArmyArranger.ViewModels.ArmyList
         private void FunctionOnLoad()
         {
             SelectorTitle = ChoosenSelector.Name + " - " + ChoosenSelector.Date;
+            PointsCurrent = 0;
+            PointsLeft = 0;
 
             MandatoryListsList = LoadSelectorListByType(ChoosenSelector.Mandatory);
             HeadquartersListsList = LoadSelectorListByType(ChoosenSelector.Headquarters);
@@ -146,6 +166,16 @@ namespace ArmyArranger.ViewModels.ArmyList
             ArtilleryListsList = LoadSelectorListByType(ChoosenSelector.Artillery);
             TanksListsList = LoadSelectorListByType(ChoosenSelector.Tanks);
             TransportListsList = LoadSelectorListByType(ChoosenSelector.Transport);
+        }
+
+        private void UpdatePoints()
+        {
+            PointsLeft = PointsLimit - PointsCurrent;
+        }
+
+        private void AcceptPoints()
+        {
+            UpdatePoints();
         }
 
         private ObservableCollection<SelectorUnits> LoadSelectorListByType(string encodedUnits)
