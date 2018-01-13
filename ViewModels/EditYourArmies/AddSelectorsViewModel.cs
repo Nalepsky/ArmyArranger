@@ -18,7 +18,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         AddSelectorsModel thisModel = new AddSelectorsModel();
         AddRulesModel rulesModel = new AddRulesModel();
         WindowsService service = new WindowsService();
-                        
+
         private ObservableCollection<Selector> _selectorsList;
         public ObservableCollection<Selector> SelectorsList
         {
@@ -283,6 +283,18 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             }
         }
 
+        private string _confirmButtonText;
+        public string ConfirmButtonText
+        {
+            get { return _confirmButtonText; }
+            set
+            {
+                _confirmButtonText = value;
+                RaisePropertyChanged(nameof(ConfirmButtonText));
+            }
+        }
+
+
 
 
         #endregion
@@ -290,6 +302,9 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         #region Commands
 
         public ICommand OnLoad { get; set; }
+        public ICommand GoToNation { get; set; }
+        public ICommand AddNew { get; set; }
+        public ICommand Remove { get; set; }
         public ICommand Back { get; set; }
         public ICommand Confirm { get; set; }
         public ICommand MouseClick { get; set; }
@@ -298,7 +313,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         public ICommand AddNextHeadquaeters { get; set; }
         public ICommand EditHeadquaeters { get; set; }
         public ICommand AddNextInfantry { get; set; }
-        public ICommand EditInfntry { get; set; }
+        public ICommand EditInfantry { get; set; }
         public ICommand AddNextArtillery { get; set; }
         public ICommand EditArtillery { get; set; }
         public ICommand AddNextArmouredCars { get; set; }
@@ -316,7 +331,10 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             OnLoad = new DelegateCommand(FunctionOnLoad);
             MouseClick = new DelegateCommand(FunctionOnClick);
+            GoToNation = new DelegateCommand(ChangeViewToAddNation);
             Back = new DelegateCommand(ChangeViewToEditYourArmies);
+            AddNew = new DelegateCommand(PrepareToAddNew);
+            Remove = new DelegateCommand(RemoveSelectedUnit);
             Confirm = new DelegateCommand(Save);
 
             AddNextMandatory = new DelegateCommand(OpenMandatoryWindow);
@@ -326,7 +344,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             EditHeadquaeters = new DelegateCommand(OpenEditHeadquaetersWindow);
 
             AddNextInfantry = new DelegateCommand(OpenInfantryWindow);
-            EditInfntry = new DelegateCommand(OpenEditInfantryWindow);
+            EditInfantry = new DelegateCommand(OpenEditInfantryWindow);
 
             AddNextArtillery = new DelegateCommand(OpenArtilleryWindow);
             EditArtillery = new DelegateCommand(OpenEditArtilleryWindow);
@@ -347,14 +365,40 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         private void FunctionOnLoad()
         {
-            //ConfirmButtonText = "Save New";
+            ConfirmButtonText = "Save New";
             thisModel.EmptyNation.LoadAll();
             NationsList = Nation.NationsCollection;
             NationsComboBox = NationsList;
-            thisModel.EmptySelector.LoadAll();            
+            thisModel.EmptySelector.LoadAll();
             SelectorsList = Selector.SelectorsCollection;
             thisModel.EmptyRule.LoadAll("Selector");
             RulesList = GameRule.RulesCollection;
+        }
+
+        private void PrepareToAddNew()
+        {
+            Year = null;
+            SelectedNation = null;
+            SelectorName = null;
+            MandatoryEntries = null;
+            HeadquaetersEntries = null;
+            InfantryEntries = null;
+            ArtilleryEntries = null;
+            ArmouredCarsEntries = null;
+            TanksEntries = null;
+            TransportsEntries = null;
+            SelectedSelector = null;
+            NationsList.Clear();
+            SelectorsList.Clear();
+            RulesList.Clear();
+            thisModel.EmptySelector.ResetData();
+            FunctionOnLoad();
+        }
+
+        private void RemoveSelectedUnit()
+        {
+            thisModel.RemoveSelector(SelectedSelector);
+            PrepareToAddNew();
         }
 
         private void ChangeViewToEditYourArmies()
@@ -366,9 +410,26 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             App.Current.MainWindow.DataContext = new EditYourArmiesViewModel();
         }
 
+        private void ChangeViewToAddNation()
+        {
+            thisModel.EmptyNation.ClearNationsCollection();
+            thisModel.EmptyRule.ClearRulesCollection();
+            thisModel.EmptySelector.ClearSelectorsCollection();
+
+            App.Current.MainWindow.DataContext = new AddNationsViewModel();
+        }
+
         private void Save()
         {
-            thisModel.AddSelector(SelectorName, Year, thisModel.MandatoryString, thisModel.HeadquartersString, thisModel.InfantryString, thisModel.ArmouredCarsString, thisModel.ArtilleryString, thisModel.TanksString, thisModel.TransportsString, SelectedNation.ID);
+            if (SelectedSelector == null)
+            {
+                if(SelectedNation != null)
+                    thisModel.AddSelector(SelectorName, Year, thisModel.MandatoryString, thisModel.HeadquartersString, thisModel.InfantryString, thisModel.ArmouredCarsString, thisModel.ArtilleryString, thisModel.TanksString, thisModel.TransportsString, SelectedNation.ID);
+            }
+            else
+            {
+                SelectedSelector.UpdateSelector(SelectorName, Year, thisModel.MandatoryString, thisModel.HeadquartersString, thisModel.InfantryString, thisModel.ArmouredCarsString, thisModel.ArtilleryString, thisModel.TanksString, thisModel.TransportsString, SelectedNation.ID);
+            }
         }
 
         private void OpenMandatoryWindow()
@@ -376,16 +437,17 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             thisModel.EditedEntry = "mandatory";
             Window EntryWindow = new AddEntryWindow(service);
             service.AddSubscriber(this);
-            EntryWindow.Show();            
+            EntryWindow.Show();
         }
         private void OpenEditMandatoryWindow()
         {
             if(SelectedMandatoryEntry != null)
             {
+                thisModel.EditedEntry = "mandatory";
                 Window EntryWindow = new AddEntryWindow(service, SelectedMandatoryEntry);
                 service.AddSubscriber(this);
                 EntryWindow.Show();
-            }            
+            }
         }
 
         private void OpenHeadquaetersWindow()
@@ -399,6 +461,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             if (SelectedMandatoryEntry != null)
             {
+                thisModel.EditedEntry = "headquarters";
                 Window EntryWindow = new AddEntryWindow(service, SelectedHeadquaetersEntry);
                 service.AddSubscriber(this);
                 EntryWindow.Show();
@@ -416,6 +479,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             if (SelectedMandatoryEntry != null)
             {
+                thisModel.EditedEntry = "infantry";
                 Window EntryWindow = new AddEntryWindow(service, SelectedInfantryEntry);
                 service.AddSubscriber(this);
                 EntryWindow.Show();
@@ -433,6 +497,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             if (SelectedMandatoryEntry != null)
             {
+                thisModel.EditedEntry = "artillery";
                 Window EntryWindow = new AddEntryWindow(service, SelectedArtilleryEntry);
                 service.AddSubscriber(this);
                 EntryWindow.Show();
@@ -450,6 +515,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             if (SelectedMandatoryEntry != null)
             {
+                thisModel.EditedEntry = "armouredcars";
                 Window EntryWindow = new AddEntryWindow(service, SelectedArmouredCarsEntry);
                 service.AddSubscriber(this);
                 EntryWindow.Show();
@@ -467,6 +533,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             if (SelectedMandatoryEntry != null)
             {
+                thisModel.EditedEntry = "tanks";
                 Window EntryWindow = new AddEntryWindow(service, SelectedTanksEntry);
                 service.AddSubscriber(this);
                 EntryWindow.Show();
@@ -484,6 +551,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             if (SelectedMandatoryEntry != null)
             {
+                thisModel.EditedEntry = "transport";
                 Window EntryWindow = new AddEntryWindow(service, SelectedTransportsEntry);
                 service.AddSubscriber(this);
                 EntryWindow.Show();
@@ -507,10 +575,10 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         {
             if (thisModel.ChosenEqualsSelected(SelectedSelector) && SelectedSelector != null)
             {
+                ConfirmButtonText = "Update";
                 thisModel.EmptySelector = SelectedSelector;
                 SelectorName = SelectedSelector.Name;
                 Year = SelectedSelector.Date;
-                Console.WriteLine("id" + SelectedSelector.NationId);                
                 SelectedNation = thisModel.getNation(SelectedSelector.NationId, NationsList);
 
                 MandatoryEntries = thisModel.GetMandatoryentries();
@@ -521,7 +589,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 TanksEntries = thisModel.GetTanksentries();
                 TransportsEntries = thisModel.GetTransportsentries();
             }
-            
         }
 
         #endregion

@@ -39,7 +39,7 @@ namespace ArmyArranger.Models
             foreach(var unit in SelectedUnitsList)
             {
                 EntryString += ";" + unit.ID + ",";
-                if (ExcludingUnitsList.Contains(SelectedUnitsList.Where(i => i.Name == unit.Name).Single()))
+                if (ExcludingUnitsList.Contains(SelectedUnitsList.Where(i => i.Name == unit.Name).First()))
                     EntryString += "true";
                 else
                     EntryString += "false";
@@ -51,8 +51,15 @@ namespace ArmyArranger.Models
 
         public ObservableCollection<Unit> Add(Unit NewUnit)
         {
-            if(NewUnit != null && !SelectedUnitsList.Contains(NewUnit))
-                SelectedUnitsList.Add(NewUnit);
+            bool t_itemIsNotOnList = false;
+            if (NewUnit != null)
+            {
+                try { SelectedUnitsList.First(i => i.ID == NewUnit.ID); }
+                catch (Exception) { t_itemIsNotOnList = true; }
+
+                if (t_itemIsNotOnList)
+                    SelectedUnitsList.Add(NewUnit);
+            }
             return SelectedUnitsList;
         }
 
@@ -63,14 +70,27 @@ namespace ArmyArranger.Models
 
         public ObservableCollection<Unit> RemoveAll()
         {
-            ExcludingUnitsList.Clear();
-            return SelectedUnitsList = null;
+            //ExcludingUnitsList.Clear();
+            //while(SelectedUnitsList.Count > 0) { }
+            ObservableCollection<int> IDsToRemove = new ObservableCollection<int>();
+            foreach (Unit unit in SelectedUnitsList) {
+                IDsToRemove.Add(unit.ID);
+            }
+
+            foreach (int ID in IDsToRemove)
+            {
+                SelectedUnitsList.Remove(SelectedUnitsList.Where(i => i.ID == ID).First());
+            }
+
+            return SelectedUnitsList;
         }
 
         public ObservableCollection<Unit> Remove(Unit DeleteUnit)
         {
-            SelectedUnitsList.Remove(SelectedUnitsList.Where(i => i.Name == DeleteUnit.Name).Single());
-            
+            if (DeleteUnit != null)
+            {
+                SelectedUnitsList.Remove(SelectedUnitsList.Where(i => i.Name == DeleteUnit.Name).First());
+            }
             return SelectedUnitsList;
         }
 
@@ -83,8 +103,10 @@ namespace ArmyArranger.Models
 
         public ObservableCollection<Unit> RemoveFromExcluding(Unit DeleteUnit)
         {
-            ExcludingUnitsList.Remove(SelectedUnitsList.Where(i => i.Name == DeleteUnit.Name).Single());
-
+            if (DeleteUnit != null)
+            {
+                ExcludingUnitsList.Remove(SelectedUnitsList.Where(i => i.Name == DeleteUnit.Name).First());
+            }
             return ExcludingUnitsList;
         }
 

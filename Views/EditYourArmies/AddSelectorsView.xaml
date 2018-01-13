@@ -65,13 +65,6 @@
             </Grid.RowDefinitions>
 
             <Label Content="Selectors" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <ListBox ItemsSource="{Binding NationsList}" SelectedItem="{Binding SelectedNation, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" Cursor="Hand" Height="100">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Name}" />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
             <ListBox ItemsSource="{Binding SelectorsList}" SelectedItem="{Binding SelectedSelector, Mode=TwoWay}" Grid.Column="2" Grid.Row="1" Cursor="Hand" Height="100">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -86,8 +79,9 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-
-            <Button Content="Add new" Command="{Binding Back, Mode=TwoWay}" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Content="Add new.." Command="{Binding AddNew, Mode=TwoWay}" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,20"/>
+            <Button Content="Remove Selected" Command="{Binding Remove, Mode=TwoWay}" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,-20"/>
+            <Button Content="Add new Nation" Command="{Binding GoToNation, Mode=TwoWay}" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Label Content="Selector Name" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <TextBox x:Name="SelectorName" Text="{Binding SelectorName, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="2" Cursor="Hand" VerticalAlignment="Center"/>
             <Label Content="Year" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -185,7 +179,7 @@
 
 
             <Button Content="Back" Command="{Binding Back, Mode=TwoWay}" Grid.Column="1" Grid.Row="99" Cursor="Hand" VerticalAlignment="Center"/>
-            <Button Content="Confirm" Command="{Binding Confirm, Mode=TwoWay}" Grid.Column="4" Grid.Row="99" Cursor="Hand" VerticalAlignment="Center"/>
+            <Button Content="{Binding ConfirmButtonText}" Command="{Binding Confirm, Mode=TwoWay}" Grid.Column="4" Grid.Row="99" Cursor="Hand" VerticalAlignment="Center"/>
         </Grid>
     </ScrollViewer>
 </UserControl>
