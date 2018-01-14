@@ -73,7 +73,7 @@ namespace ArmyArranger.Global
             SelectorsCollection.Add(this);
         }
 
-        public void CreateNewAndSaveToDB(string name, string date, string mandatory, string headquarters, string infantry, string armouredCars, string artillery, string tanks, string transport, int nationID)
+        public void CreateNewAndSaveToDB(string name, string date, string mandatory, string headquarters, string infantry, string armouredCars, string artillery, string tanks, string transport, int nationID, ObservableCollection<GameRule> selectedRulesList)
         {
             //temp
             List<int> newListOfActiveRules = new List<int>();
@@ -98,7 +98,66 @@ namespace ArmyArranger.Global
             {
                 throw ex;
             }
+            foreach (GameRule rule in selectedRulesList)
+            {
+                try
+                {
+                    Database.ExecuteCommand("INSERT INTO Rule_Selector (RuleID, SelectorID) VALUES (" + rule.ID + "," + id + ")");
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                newListOfActiveRules.Add(rule.ID);
+            }
+
             new Selector(id, name, date, mandatory, headquarters, infantry, armouredCars, artillery, tanks, transport, nationID, newListOfActiveRules);
+        }
+
+        public void UpdateInDB(string name, string date, string mandatory, string headquarters, string infantry, string armouredCars, string artillery, string tanks, string transport, int nationID, ObservableCollection<GameRule> selectedRulesList)
+        {
+            //temp
+            List<int> newListOfActiveRules = new List<int>();
+            string sql_name = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + name + "'";
+            string sql_date = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + date + "'";
+            string sql_mandatory = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + mandatory + "'";
+            string sql_headquarters = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + headquarters + "'";
+            string sql_infantry = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + infantry + "'";
+            string sql_armouredCars = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + armouredCars + "'";
+            string sql_artillery = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + artillery + "'";
+            string sql_tanks = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + tanks + "'";
+            string sql_transport = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + transport + "'";
+
+            try
+            {
+                Database.ExecuteCommand("UPDATE Selector SET Name = " + sql_name + ", Date = " + sql_date + ", Mandatory = " + sql_mandatory + ", Headquarters = " + sql_headquarters + ", Infantry = " + sql_infantry + ", ArmouredCars = " + sql_armouredCars + ", Artillery = " + sql_artillery + ", Tanks = " + sql_tanks + ", Transport = " + sql_transport + ", NationID = " + nationID + " WHERE ID = " + ID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            try
+            {
+                Database.ExecuteCommand("DELETE FROM Rule_Weapon WHERE WeaponID = " + ID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            foreach (GameRule rule in selectedRulesList)
+            {
+                try
+                {
+                    Database.ExecuteCommand("INSERT INTO Rule_Selector (RuleID, SelectorID) VALUES (" + rule.ID + "," + ID + ")");
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                newListOfActiveRules.Add(rule.ID);
+            }
+            ListOfActiveRules = newListOfActiveRules;
         }
 
         public void Remove()
@@ -203,29 +262,6 @@ namespace ArmyArranger.Global
                 new Selector(ID, Name, Date, Mandatory, Headquarters, Infantry, ArmouredCars, Artillery, Tanks, Transport, NationID, newListOfActiveRules);
             }
             result.Close();
-        }
-        public void UpdateSelector(string name, string date, string mandatory, string headquarters, string infantry, string armouredCars, string artillery, string tanks, string transport, int nationID)
-        {
-            //temp
-            List<int> newListOfActiveRules = new List<int>();
-            string sql_name = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + name + "'";
-            string sql_date = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + date + "'";
-            string sql_mandatory = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + mandatory + "'";
-            string sql_headquarters = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + headquarters + "'";
-            string sql_infantry = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + infantry + "'";
-            string sql_armouredCars = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + armouredCars + "'";
-            string sql_artillery = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + artillery + "'";
-            string sql_tanks = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + tanks + "'";
-            string sql_transport = (String.IsNullOrWhiteSpace(name)) ? "null" : "'" + transport + "'";
-
-            try
-            {
-                Database.ExecuteCommand("UPDATE Selector SET Name = " + sql_name + ", Date = " + sql_date + ", Mandatory = " + sql_mandatory + ", Headquarters = " + sql_headquarters + ", Infantry = " + sql_infantry + ", ArmouredCars = " + sql_armouredCars + ", Artillery = " + sql_artillery + ", Tanks = " + sql_tanks + ", Transport = " + sql_transport + ", NationID = " + nationID + " WHERE ID = " + ID);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
         }
     }
 }

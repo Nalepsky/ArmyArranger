@@ -8,6 +8,7 @@ using ArmyArranger.Global;
 using Prism.Mvvm;
 using ArmyArranger.Views.EditYourArmies;
 using System.Windows;
+using System.Linq;
 
 namespace ArmyArranger.ViewModels.EditYourArmies
 {
@@ -16,7 +17,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
         #region Propeties
 
         AddSelectorsModel thisModel = new AddSelectorsModel();
-        AddRulesModel rulesModel = new AddRulesModel();
         WindowsService service = new WindowsService();
 
         private ObservableCollection<Selector> _selectorsList;
@@ -148,17 +148,6 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             {
                 _selectedselector = value;
                 RaisePropertyChanged(nameof(SelectedSelector));
-            }
-        }
-
-        private GameRule _selectedrule;
-        public GameRule SelectedRule
-        {
-            get { return _selectedrule; }
-            set
-            {
-                _selectedrule = value;
-                RaisePropertyChanged(nameof(SelectedRule));
             }
         }
 
@@ -303,6 +292,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
 
         public ICommand OnLoad { get; set; }
         public ICommand GoToNation { get; set; }
+        public ICommand GoToRules { get; set; }
         public ICommand AddNew { get; set; }
         public ICommand Remove { get; set; }
         public ICommand Back { get; set; }
@@ -332,6 +322,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             OnLoad = new DelegateCommand(FunctionOnLoad);
             MouseClick = new DelegateCommand(FunctionOnClick);
             GoToNation = new DelegateCommand(ChangeViewToAddNation);
+            GoToRules = new DelegateCommand(ChangeViewToAddRules);
             Back = new DelegateCommand(ChangeViewToEditYourArmies);
             AddNew = new DelegateCommand(PrepareToAddNew);
             Remove = new DelegateCommand(RemoveSelectedUnit);
@@ -419,16 +410,25 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             App.Current.MainWindow.DataContext = new AddNationsViewModel();
         }
 
+        private void ChangeViewToAddRules()
+        {
+            thisModel.EmptyNation.ClearNationsCollection();
+            thisModel.EmptyRule.ClearRulesCollection();
+            thisModel.EmptySelector.ClearSelectorsCollection();
+            App.Current.MainWindow.DataContext = new AddRulesViewModel();
+        }
+
         private void Save()
         {
+            ObservableCollection<GameRule> SelectedRulesList = new ObservableCollection<GameRule>(RulesList.Where(w => (w.IsSelected == true)));
             if (SelectedSelector == null)
             {
                 if(SelectedNation != null)
-                    thisModel.AddSelector(SelectorName, Year, thisModel.MandatoryString, thisModel.HeadquartersString, thisModel.InfantryString, thisModel.ArmouredCarsString, thisModel.ArtilleryString, thisModel.TanksString, thisModel.TransportsString, SelectedNation.ID);
+                    thisModel.AddSelector(SelectorName, Year, thisModel.MandatoryString, thisModel.HeadquartersString, thisModel.InfantryString, thisModel.ArmouredCarsString, thisModel.ArtilleryString, thisModel.TanksString, thisModel.TransportsString, SelectedNation.ID, SelectedRulesList);
             }
             else
             {
-                SelectedSelector.UpdateSelector(SelectorName, Year, thisModel.MandatoryString, thisModel.HeadquartersString, thisModel.InfantryString, thisModel.ArmouredCarsString, thisModel.ArtilleryString, thisModel.TanksString, thisModel.TransportsString, SelectedNation.ID);
+                thisModel.UpdateSelector(SelectorName, Year, thisModel.MandatoryString, thisModel.HeadquartersString, thisModel.InfantryString, thisModel.ArmouredCarsString, thisModel.ArtilleryString, thisModel.TanksString, thisModel.TransportsString, SelectedNation.ID, SelectedRulesList);
             }
         }
 
@@ -580,6 +580,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
                 SelectorName = SelectedSelector.Name;
                 Year = SelectedSelector.Date;
                 SelectedNation = thisModel.getNation(SelectedSelector.NationId, NationsList);
+                thisModel.CheckActiveRules(SelectedSelector);
 
                 MandatoryEntries = thisModel.GetMandatoryentries();
                 HeadquaetersEntries = thisModel.GetHeadquartersentries();

@@ -17,6 +17,7 @@ namespace ArmyArranger.Models
         public GameRule EmptyRule = new GameRule();
         public Nation EmptyNation = new Nation();
         public Selector LastChosenSelector;
+
         public ObservableCollection<Entry> MandatoryEntriesList = new ObservableCollection<Entry>();
         public ObservableCollection<Entry> HeadquartersEntriesList = new ObservableCollection<Entry>();
         public ObservableCollection<Entry> InfantryEntriesList = new ObservableCollection<Entry>();
@@ -65,11 +66,11 @@ namespace ArmyArranger.Models
             return null;
         }
 
-        public void AddSelector(string name, string date, string mandatory, string headquarters, string infantry, string armouredCars, string artillery, string tanks, string transport, int nationID)
+        public void AddSelector(string name, string date, string mandatory, string headquarters, string infantry, string armouredCars, string artillery, string tanks, string transport, int nationID, ObservableCollection<GameRule> selectedRulesList)
         {
             try
             {
-                EmptySelector.CreateNewAndSaveToDB(name, date, mandatory, headquarters, infantry, armouredCars, artillery, tanks, transport, nationID);
+                EmptySelector.CreateNewAndSaveToDB(name, date, mandatory, headquarters, infantry, armouredCars, artillery, tanks, transport, nationID, selectedRulesList);
             }
             catch (Exception ex)
             {
@@ -77,6 +78,20 @@ namespace ArmyArranger.Models
                 return;
             }
             MessageBox.Show("Successfully added");
+        }
+
+        public void UpdateSelector(string name, string date, string mandatory, string headquarters, string infantry, string armouredCars, string artillery, string tanks, string transport, int nationID, ObservableCollection<GameRule> selectedRulesList)
+        {
+            try
+            {
+                EmptySelector.UpdateInDB(name, date, mandatory, headquarters, infantry, armouredCars, artillery, tanks, transport, nationID, selectedRulesList);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            MessageBox.Show("Successfully updated");
         }
 
         public void RemoveSelector(Selector selectedSelector)
@@ -112,7 +127,26 @@ namespace ArmyArranger.Models
                 EmptySelector.Tanks += NewEntry;
             else if (EditedEntry == "transport")
                 EmptySelector.Transport += NewEntry;
-        }        
+        }
+
+        public void ClearRules()
+        {
+            foreach (GameRule tempRule in GameRule.RulesCollection)
+            {
+                tempRule.IsSelected = false;
+            }
+        }
+
+        public void CheckActiveRules(Selector selectedSelector)
+        {
+            foreach (GameRule tempRule in GameRule.RulesCollection)
+            {
+                if (selectedSelector.ListOfActiveRules.Contains(tempRule.ID))
+                    tempRule.IsSelected = true;
+                else
+                    tempRule.IsSelected = false;
+            }
+        }
 
         public ObservableCollection<Entry> GetMandatoryentries()
         {
