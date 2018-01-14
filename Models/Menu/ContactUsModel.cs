@@ -30,9 +30,9 @@ namespace ArmyArranger.Models
                 SmtpServer.Send(mail);
                 MessageBox.Show("Email sent.\nThank you for your feedback.");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Email error.\nPlease check your internet connection.\n\n\n" + ex.ToString());
+                MessageBox.Show("Email error.\nPlease check your internet connection.");
             }
         }
     }
