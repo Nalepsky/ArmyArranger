@@ -1,5 +1,6 @@
 ﻿using ArmyArranger.Global;
 using ArmyArranger.Models.ArmyList;
+using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace ArmyArranger.ViewModels.ArmyList
 {
@@ -70,8 +72,8 @@ namespace ArmyArranger.ViewModels.ArmyList
             }
         }               
 
-        private ObservableCollection<Option> _optionsList;
-        public ObservableCollection<Option> OptionsList
+        private ObservableCollection<AmyListOption> _optionsList;
+        public ObservableCollection<AmyListOption> OptionsList
         {
             get { return _optionsList; }
             set { _optionsList = value; RaisePropertyChanged(nameof(OptionsList)); }
@@ -118,13 +120,24 @@ namespace ArmyArranger.ViewModels.ArmyList
             get { return _rulesList; }
             set { _rulesList = value; RaisePropertyChanged(nameof(RulesList)); }
         }
+
+        #endregion
+
+        #region Commands
         
+        public ICommand Clear { get; set; }
+        public ICommand Save { get; set; }
+
         #endregion
 
         #region Constructors
 
         public EditUnitViewModel(UnitDetailed Selectedunit)
         {
+
+            Clear = new DelegateCommand(FunctionClear);
+            Save = new DelegateCommand(FunctionSave);
+
             this.Selectedunit = Selectedunit;
             Points = 0;
             Name = Selectedunit.Name;
@@ -144,7 +157,7 @@ namespace ArmyArranger.ViewModels.ArmyList
             Weapons = Selectedunit.WeaponDescription;
             ArmourClass = Selectedunit.ArmourClass + "+";
 
-            SelectedExperience = ExperienceList.First<Experience>();
+            SelectedExperience = ExperienceList.First();
             OptionsList = Selectedunit.ListOfOptions;
             
             RulesList = "";
@@ -158,12 +171,27 @@ namespace ArmyArranger.ViewModels.ArmyList
                 RulesList += thisModel.GetWeaponsRules(weapon) + "\n\n"; ;
             }
 
-
+            FunctionSave();
         }
 
         #endregion
 
         #region Actions
+
+        private void FunctionSave()
+        {
+            foreach (var o in OptionsList)
+                if (o.IsChecked)
+                    Points += o.Cost;
+            Points += SelectedExperience.Cost;
+        }
+
+        private void FunctionClear()
+        {
+            Selectedunit.ListOfOptions.Clear();
+            SelectedExperience = ExperienceList.First();
+            Points = 0;
+        }
 
         private void setExtraModels()
         {

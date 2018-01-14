@@ -8,15 +8,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding OnLoad}" />
-        </i:EventTrigger>
-        <i:EventTrigger EventName="MouseUp">
-            <i:InvokeCommandAction Command="{Binding MouseClick}" />
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
-
     <Grid Background="LightGray">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -39,7 +30,6 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="0" Cursor="Hand" VerticalAlignment="Center">
             <Button Content="Clear options" Command="{Binding Clear, Mode=TwoWay}"/>
-            <Button Content="Delete unit" Command="{Binding Delete, Mode=TwoWay}"/>
             <Button Content="Save changes" Command="{Binding Save, Mode=TwoWay}"/>
         </StackPanel>
 
@@ -72,7 +62,7 @@
         <ListBox ItemsSource="{Binding OptionsList, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="6" VerticalAlignment="Center" Cursor="Hand" HorizontalAlignment="Left">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <CheckBox Content="{Binding Description}"/>
+                    <CheckBox Content="{Binding Description}" IsChecked="{Binding IsChecked}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

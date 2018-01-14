@@ -49,8 +49,7 @@ namespace ArmyArranger.Global
         public bool isEmpty;
         public List<int> ListOfActiveRules = new List<int>();
         public List<int> ListOfActiveWeapons = new List<int>();
-
-        public ObservableCollection<Option> ListOfOptions = new ObservableCollection<Option>();
+        public ObservableCollection<AmyListOption> ListOfOptions = new ObservableCollection<AmyListOption>();
 
 
         public ICommand OnClick { get; set; }
@@ -116,7 +115,7 @@ namespace ArmyArranger.Global
 
             List<int> t_ListOfActiveRules = new List<int>();
             List<int> t_ListOfActiveWeapons = new List<int>();
-            ObservableCollection<Option> t_ListOfOptions = new ObservableCollection<Option>();
+            ObservableCollection<AmyListOption> t_ListOfOptions = new ObservableCollection<AmyListOption>();
 
             SQLiteDataReader result = Database.ExecuteCommand("SELECT * FROM Unit WHERE ID = " + t_ID);
             while (result.Read())
@@ -162,7 +161,7 @@ namespace ArmyArranger.Global
 
 
 
-                t_ListOfOptions.Add(new Option(o_ID, o_Description, o_Count, o_Cost, o_WeaponID, o_RuleID, t_ID));
+                t_ListOfOptions.Add(new AmyListOption(o_ID, o_Description, o_Count, o_Cost, o_WeaponID, o_RuleID, t_ID));
             }
 
             UnitDetailed newUnit = new UnitDetailed

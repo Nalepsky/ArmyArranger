@@ -12,6 +12,7 @@ namespace ArmyArranger.Global
 {
     public class Option : INotifyPropertyChanged
     {
+        
         public static ObservableCollection<Option> OptionsCollection = new ObservableCollection<Option>();
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged<T>([CallerMemberName]string caller = null)
