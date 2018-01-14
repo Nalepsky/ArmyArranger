@@ -8,6 +8,8 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 
+
+
 namespace ArmyArranger.Global
 {
     public class UnitDetailed : INotifyPropertyChanged
@@ -38,6 +40,7 @@ namespace ArmyArranger.Global
         public int BaseSize { get; set; }
         public int MaxSize { get; set; }
 
+        public int SelectedAditionalUnits { get; set; }
         public bool OnlyOne { get; set; }
         public int Points { get; set; }
         public bool Selected { get; set; }

@@ -245,6 +245,7 @@ namespace ArmyArranger.ViewModels.ArmyList
             SelectedUnit.Selected = true;
             Status = "Selected";
             SelectedUnit.Color = "green";
+            SelectedUnit.SelectedAditionalUnits = NumberOfAdditionalModels;
             ChooseUnitsViewModel.UpdateView();
         }
 
@@ -253,6 +254,7 @@ namespace ArmyArranger.ViewModels.ArmyList
             SelectedUnit.Selected = false;
             Status = "Not selected";
             SelectedUnit.Color = "white";
+            SelectedUnit.SelectedAditionalUnits = 0;
             ChooseUnitsViewModel.UpdateView();
         }
 
