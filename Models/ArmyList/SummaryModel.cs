@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace ArmyArranger.Models.ArmyList
 {
@@ -64,6 +66,7 @@ namespace ArmyArranger.Models.ArmyList
                     outputFile.WriteLine(u.line3);
                     Console.WriteLine(u.line3);
                 }
+            MessageBox.Show("File ArmyList.txt created.\nYou can find it next to ArmyArranger.exe file.");
         }
     }    
 }
