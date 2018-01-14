@@ -15,7 +15,7 @@ namespace ArmyArranger.ViewModels.ArmyList
     public class Experience
     {
         public int Cost { get; set; }
-        public int ExpValue;
+        public int ExpValue { get; set; }
         public String ExpDescribtion { get; set; }
 
         public Experience(int cost, string expSescribtion, int expValue)
@@ -38,6 +38,17 @@ namespace ArmyArranger.ViewModels.ArmyList
         {
             get { return _extraModels; }
             set { _extraModels = value; RaisePropertyChanged(nameof(ExtraModels)); }
+        }
+
+        private ObservableCollection<int> _additionalModels;
+        public ObservableCollection<int> AdditionalModels
+        {
+            get { return _additionalModels; }
+            set
+            {
+                _additionalModels = value;
+                RaisePropertyChanged(nameof(AdditionalModels));
+            }
         }
 
         private int _numberOfExtraModels;
@@ -68,6 +79,7 @@ namespace ArmyArranger.ViewModels.ArmyList
             set {
                 _selectedExperience = value;
                 setExtraModels();
+                CountPoints();
                 RaisePropertyChanged(nameof(SelectedExperience));
             }
         }               
@@ -76,7 +88,8 @@ namespace ArmyArranger.ViewModels.ArmyList
         public ObservableCollection<ArmyListOption> OptionsList
         {
             get { return _optionsList; }
-            set { _optionsList = value; RaisePropertyChanged(nameof(OptionsList)); }
+            set { _optionsList = value;
+                RaisePropertyChanged(nameof(OptionsList)); }
         }
 
         private ObservableCollection<Experience> _experienceList;
@@ -86,11 +99,19 @@ namespace ArmyArranger.ViewModels.ArmyList
             set { _experienceList = value; RaisePropertyChanged(nameof(ExperienceList)); }
         }
 
-        private ObservableCollection<int> _additionalModels;
-        public ObservableCollection<int> AdditionalModels
+        private ObservableCollection<int> _addModels;
+        public ObservableCollection<int> AddModels
         {
-            get { return _additionalModels; }
-            set { _additionalModels = value; RaisePropertyChanged(nameof(AdditionalModels)); }
+            get { return _addModels; }
+            set { _addModels = value; RaisePropertyChanged(nameof(AddModels)); }
+        }
+
+        
+        private int _numberOfAdditionalModels;
+        public int NumberOfAdditionalModels
+        {
+            get { return _numberOfAdditionalModels; }
+            set { _numberOfAdditionalModels = value; RaisePropertyChanged(nameof(NumberOfAdditionalModels)); }
         }
 
         private String _composition;
@@ -133,20 +154,20 @@ namespace ArmyArranger.ViewModels.ArmyList
         #region Commands
 
         public ICommand Clear { get; set; }
-        public ICommand Save { get; set; }
         public ICommand SelectUnit { get; set; }
-        public ICommand DeselectUnit { get; set; }
+        public ICommand DeselectUnit { get; set; }      
+        public ICommand MouseMove { get; set; }
 
         #endregion
 
         #region Constructors
 
         public EditUnitViewModel(UnitDetailed SelectedUnit)
-            {
+        {
             Clear = new DelegateCommand(FunctionClear);
-            Save = new DelegateCommand(FunctionSave);
             SelectUnit = new DelegateCommand(OnUnitSelect);
             DeselectUnit = new DelegateCommand(OnUnitDeselect);
+            MouseMove = new DelegateCommand(FunctionMouseMove);
 
             this.SelectedUnit = SelectedUnit;
             Points = 0;
@@ -154,6 +175,7 @@ namespace ArmyArranger.ViewModels.ArmyList
             Status = (SelectedUnit.Selected) ? "Selected" : "Not selected";
             ExperienceList = new ObservableCollection<Experience>();
             AdditionalModels = new ObservableCollection<int>();
+            AddModels = new ObservableCollection<int>();
 
             if (SelectedUnit.Inexperienced != 0)
                 ExperienceList.Add(new Experience(SelectedUnit.Inexperienced, "Inexperienced for : ", 0));
@@ -168,8 +190,11 @@ namespace ArmyArranger.ViewModels.ArmyList
             Weapons = SelectedUnit.WeaponDescription;
             ArmourClass = SelectedUnit.ArmourClass + "+";
 
-            SelectedExperience = ExperienceList.First();
+            for (int i = 0; i <= SelectedUnit.MaxSize - SelectedUnit.BaseSize; ++i)
+                AddModels.Add(i);
+
             OptionsList = SelectedUnit.ListOfOptions;
+            SelectedExperience = ExperienceList.First();
             
             RulesList = "";
             foreach (var rule in SelectedUnit.ListOfActiveRules)
@@ -198,10 +223,12 @@ namespace ArmyArranger.ViewModels.ArmyList
                     Points += o.Cost;
             Points += SelectedExperience.Cost;
 
+            Points += NumberOfAdditionalModels * AdditionalModels.ElementAt<int>(SelectedExperience.ExpValue);
+
             SelectedUnit.Points = Points;
         }
 
-        private void FunctionSave()
+        private void FunctionMouseMove()
         {
             CountPoints();
         }
@@ -235,7 +262,7 @@ namespace ArmyArranger.ViewModels.ArmyList
             
 
             if (temp > 0)
-                ExtraModels = "you can add up to " + temp + "models, for " + AdditionalModels.ElementAt<int>(SelectedExperience.ExpValue) + " points each";
+                ExtraModels = "you can add up to " + temp + " models, for " + AdditionalModels.ElementAt<int>(SelectedExperience.ExpValue) + " points each";
             else
                 ExtraModels = "";
         }
