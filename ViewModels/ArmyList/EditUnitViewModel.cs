@@ -171,19 +171,26 @@ namespace ArmyArranger.ViewModels.ArmyList
                 RulesList += thisModel.GetWeaponsRules(weapon) + "\n\n"; ;
             }
 
-            FunctionSave();
+            CountPoints();
         }
 
         #endregion
 
         #region Actions
 
-        private void FunctionSave()
+        private void CountPoints()
         {
+            Points = 0;
+
             foreach (var o in OptionsList)
                 if (o.IsChecked)
                     Points += o.Cost;
             Points += SelectedExperience.Cost;
+        }
+
+        private void FunctionSave()
+        {
+            CountPoints();
         }
 
         private void FunctionClear()
