@@ -26,6 +26,9 @@
         <DataTemplate DataType="{x:Type viewmodelsArmyList:ChooseUnitsViewModel}">
             <viewsArmyList:ChooseUnitsView DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodelsArmyList:SummaryViewModel}">
+            <viewsArmyList:SummaryView DataContext="{Binding}"/>
+        </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewmodelsMenu:CreateArmyListViewModel}">
             <viewsMenu:CreateArmyListView DataContext="{Binding}"/>

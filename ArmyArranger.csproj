@@ -35,6 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
@@ -103,6 +104,7 @@
     <Compile Include="Global\WindowsService.cs" />
     <Compile Include="Models\ArmyList\ChooseUnitsModel.cs" />
     <Compile Include="Models\ArmyList\EditUnitModel.cs" />
+    <Compile Include="Models\ArmyList\SummaryModel.cs" />
     <Compile Include="Models\EditYourArmies\AddEntryModel.cs" />
     <Compile Include="Models\EditYourArmies\AddNationsModel.cs" />
     <Compile Include="Models\EditYourArmies\AddSelectorsModel.cs" />
@@ -119,6 +121,7 @@
     <Compile Include="ViewModels\ArmyList\ChooseSelectorViewModel.cs" />
     <Compile Include="ViewModels\ArmyList\ChooseUnitsViewModel.cs" />
     <Compile Include="ViewModels\ArmyList\EditUnitViewModel.cs" />
+    <Compile Include="ViewModels\ArmyList\SummaryViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddEntryViewModel.cs" />
     <Compile Include="ViewModels\EditYourArmies\AddOptionViewModel.cs" />
     <Compile Include="ViewModels\Menu\AboutViewModel.cs" />
@@ -142,6 +145,9 @@
     </Compile>
     <Compile Include="Views\ArmyList\EditUnit.xaml.cs">
       <DependentUpon>EditUnit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ArmyList\SummaryView.xaml.cs">
+      <DependentUpon>SummaryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditYourArmies\AddEntryView.xaml.cs">
       <DependentUpon>AddEntryView.xaml</DependentUpon>
@@ -212,6 +218,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ArmyList\EditUnit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ArmyList\SummaryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

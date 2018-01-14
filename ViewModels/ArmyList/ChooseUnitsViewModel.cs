@@ -132,7 +132,7 @@ namespace ArmyArranger.ViewModels.ArmyList
             OnLoad = new DelegateCommand(FunctionOnLoad);
             Back = new DelegateCommand(ChangeViewToChooseSelector);
             PointsAccept = new DelegateCommand(AcceptPoints);
-            Confirm = new DelegateCommand(ChangeViewToChooseUnits);
+            Confirm = new DelegateCommand(ChangeViewToSummary);
             ChoosenNation = choosenNation;
             ChoosenSelector = choosenSelector;
         }
@@ -218,10 +218,9 @@ namespace ArmyArranger.ViewModels.ArmyList
         }
 
 
-        private void ChangeViewToChooseUnits()
+        private void ChangeViewToSummary()
         {
-            ClearBeforeUnload();
-            throw new NotImplementedException();
+            App.Current.MainWindow.DataContext = new SummaryViewModel();
         }
 
         private void ClearBeforeUnload()
