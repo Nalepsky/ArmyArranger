@@ -62,15 +62,15 @@ namespace ArmyArranger.Global
             OnClick = new DelegateCommand(FunctionOnClick);
         }
 
-
-
-
-
         private void FunctionOnClick()
         {
             Window OptionsWindow = new SelectorUnitWindow(this);
             OptionsWindow.Show();
         }
+
+
+
+
 
 
 
@@ -184,6 +184,7 @@ namespace ArmyArranger.Global
 
                 OnlyOne = t_OnlyOne,
                 Color = "white",
+                Points = (t_Inexperienced != 0) ? t_Inexperienced : (t_Regular != 0) ? t_Regular : t_Veteran,
 
                 isEmpty = false,
                 ListOfActiveRules = t_ListOfActiveRules,
