@@ -59,7 +59,7 @@
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name}" Background="{Binding Color}">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDown">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding OnClick}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -85,7 +85,7 @@
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name}" Background="{Binding Color}">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDown">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding OnClick}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -111,7 +111,7 @@
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name}" Background="{Binding Color}">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDown">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding OnClick}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -137,7 +137,7 @@
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name}" Background="{Binding Color}">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDown">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding OnClick}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -163,7 +163,7 @@
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name}" Background="{Binding Color}">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDown">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding OnClick}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -189,7 +189,7 @@
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name}" Background="{Binding Color}">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDown">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding OnClick}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -215,7 +215,7 @@
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name}" Background="{Binding Color}">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDown">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding OnClick}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
