@@ -39,6 +39,8 @@ namespace ArmyArranger.Global
         public int MaxSize { get; set; }
 
         public bool OnlyOne { get; set; }
+        public int Points { get; set; }
+        public bool Selected { get; set; }
         private string _color;
         public string Color
         {

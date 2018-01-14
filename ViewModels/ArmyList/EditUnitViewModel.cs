@@ -30,7 +30,7 @@ namespace ArmyArranger.ViewModels.ArmyList
     {
         #region Propeties
 
-        UnitDetailed Selectedunit;
+        UnitDetailed SelectedUnit;
         EditUnitModel thisModel = new EditUnitModel();
 
         private String _extraModels;
@@ -121,52 +121,64 @@ namespace ArmyArranger.ViewModels.ArmyList
             set { _rulesList = value; RaisePropertyChanged(nameof(RulesList)); }
         }
 
+        private String _status;
+        public String Status
+        {
+            get { return _status; }
+            set { _status = value; RaisePropertyChanged(nameof(Status)); }
+        }
+
         #endregion
 
         #region Commands
-        
+
         public ICommand Clear { get; set; }
         public ICommand Save { get; set; }
+        public ICommand SelectUnit { get; set; }
+        public ICommand DeselectUnit { get; set; }
 
-        #endregion
+    #endregion
 
-        #region Constructors
+    #region Constructors
 
-        public EditUnitViewModel(UnitDetailed Selectedunit)
+    public EditUnitViewModel(UnitDetailed SelectedUnit)
         {
 
             Clear = new DelegateCommand(FunctionClear);
             Save = new DelegateCommand(FunctionSave);
+            SelectUnit = new DelegateCommand(OnUnitSelect);
+            DeselectUnit = new DelegateCommand(OnUnitDeselect);
 
-            this.Selectedunit = Selectedunit;
+            this.SelectedUnit = SelectedUnit;
             Points = 0;
-            Name = Selectedunit.Name;
+            Name = SelectedUnit.Name;
+            Status = (SelectedUnit.Selected) ? "Selected" : "Not selected";
             ExperienceList = new ObservableCollection<Experience>();
             AdditionalModels = new ObservableCollection<int>();
 
-            if (Selectedunit.Inexperienced != 0)
-                ExperienceList.Add(new Experience(Selectedunit.Inexperienced, "Inexperienced for : ", 0));
-            if (Selectedunit.Regular != 0)
-                ExperienceList.Add(new Experience(Selectedunit.Regular, "Regular for : ", 1));
-            if (Selectedunit.Veteran != 0)
-                ExperienceList.Add(new Experience(Selectedunit.Veteran, "Veteran for : ", 2));
-            AdditionalModels.Add(Selectedunit.PointsInexp);
-            AdditionalModels.Add(Selectedunit.PointsReg);
-            AdditionalModels.Add(Selectedunit.PointsVet);
-            Composition = Selectedunit.Composition;
-            Weapons = Selectedunit.WeaponDescription;
-            ArmourClass = Selectedunit.ArmourClass + "+";
+            if (SelectedUnit.Inexperienced != 0)
+                ExperienceList.Add(new Experience(SelectedUnit.Inexperienced, "Inexperienced for : ", 0));
+            if (SelectedUnit.Regular != 0)
+                ExperienceList.Add(new Experience(SelectedUnit.Regular, "Regular for : ", 1));
+            if (SelectedUnit.Veteran != 0)
+                ExperienceList.Add(new Experience(SelectedUnit.Veteran, "Veteran for : ", 2));
+            AdditionalModels.Add(SelectedUnit.PointsInexp);
+            AdditionalModels.Add(SelectedUnit.PointsReg);
+            AdditionalModels.Add(SelectedUnit.PointsVet);
+            Composition = SelectedUnit.Composition;
+            Weapons = SelectedUnit.WeaponDescription;
+            ArmourClass = SelectedUnit.ArmourClass + "+";
 
             SelectedExperience = ExperienceList.First();
-            OptionsList = Selectedunit.ListOfOptions;
+            OptionsList = SelectedUnit.ListOfOptions;
             
             RulesList = "";
-            foreach (var rule in Selectedunit.ListOfActiveRules)
+            foreach (var rule in SelectedUnit.ListOfActiveRules)
             {
                 RulesList += thisModel.GetRules(rule) + "\n\n";
             }
 
-            foreach (var weapon in Selectedunit.ListOfActiveWeapons)
+            foreach (var weapon in SelectedUnit.ListOfActiveWeapons)
             {
                 RulesList += thisModel.GetWeaponsRules(weapon) + "\n\n"; ;
             }
@@ -186,6 +198,8 @@ namespace ArmyArranger.ViewModels.ArmyList
                 if (o.IsChecked)
                     Points += o.Cost;
             Points += SelectedExperience.Cost;
+
+            SelectedUnit.Points = Points;
         }
 
         private void FunctionSave()
@@ -195,14 +209,26 @@ namespace ArmyArranger.ViewModels.ArmyList
 
         private void FunctionClear()
         {
-            Selectedunit.ListOfOptions.Clear();
+            SelectedUnit.ListOfOptions.Clear();
             SelectedExperience = ExperienceList.First();
             Points = 0;
         }
 
+        private void OnUnitSelect()
+        {
+            SelectedUnit.Selected = true;
+            Status = "Selected";
+        }
+
+        private void OnUnitDeselect()
+        {
+            SelectedUnit.Selected = false;
+            Status = "Not selected";
+        }
+
         private void setExtraModels()
         {
-            int temp = Selectedunit.MaxSize - Selectedunit.BaseSize;
+            int temp = SelectedUnit.MaxSize - SelectedUnit.BaseSize;
             
 
             if (temp > 0)

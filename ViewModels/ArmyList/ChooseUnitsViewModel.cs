@@ -158,8 +158,8 @@ namespace ArmyArranger.ViewModels.ArmyList
 
         private void UpdatePoints()
         {
-            foreach(UnitDetailed kk in UnitDetailed.AllUnitsCollection){
-                Console.WriteLine(kk.Name);
+            foreach(UnitDetailed unit in UnitDetailed.AllUnitsCollection){
+                Console.WriteLine(unit.Points + " " + unit.Selected);
             }
             PointsLeft = PointsLimit - PointsCurrent;
         }

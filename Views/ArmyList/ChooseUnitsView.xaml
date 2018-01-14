@@ -54,7 +54,7 @@
                     <DataTemplate>
                         <ItemsControl BorderThickness="0">
                             <TextBlock Text="{Binding Count}" />
-                            <ListView ItemsSource="{Binding UnitsList}" SelectedValue="{Binding SelectedUnit}" Cursor="Hand">
+                            <ListView ItemsSource="{Binding UnitsList}" Cursor="Hand">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name}" Background="{Binding Color}">
@@ -80,7 +80,7 @@
                     <DataTemplate>
                         <ItemsControl BorderThickness="0">
                             <TextBlock Text="{Binding Count}" />
-                            <ListView ItemsSource="{Binding UnitsList}" SelectedValue="{Binding SelectedUnit}" Cursor="Hand">
+                            <ListView ItemsSource="{Binding UnitsList}"  Cursor="Hand">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name}" Background="{Binding Color}">
@@ -106,7 +106,7 @@
                     <DataTemplate>
                         <ItemsControl BorderThickness="0">
                             <TextBlock Text="{Binding Count}" />
-                            <ListView ItemsSource="{Binding UnitsList}" SelectedValue="{Binding SelectedUnit}" Cursor="Hand">
+                            <ListView ItemsSource="{Binding UnitsList}" Cursor="Hand">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name}" Background="{Binding Color}">
@@ -132,7 +132,7 @@
                     <DataTemplate>
                         <ItemsControl BorderThickness="0">
                             <TextBlock Text="{Binding Count}" />
-                            <ListView ItemsSource="{Binding UnitsList}" SelectedValue="{Binding SelectedUnit}" Cursor="Hand">
+                            <ListView ItemsSource="{Binding UnitsList}" Cursor="Hand">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name}" Background="{Binding Color}">
@@ -158,7 +158,7 @@
                     <DataTemplate>
                         <ItemsControl BorderThickness="0">
                             <TextBlock Text="{Binding Count}" />
-                            <ListView ItemsSource="{Binding UnitsList}" SelectedValue="{Binding SelectedUnit}" Cursor="Hand">
+                            <ListView ItemsSource="{Binding UnitsList}" Cursor="Hand">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name}" Background="{Binding Color}">
@@ -184,7 +184,7 @@
                     <DataTemplate>
                         <ItemsControl BorderThickness="0">
                             <TextBlock Text="{Binding Count}" />
-                            <ListView ItemsSource="{Binding UnitsList}" SelectedValue="{Binding SelectedUnit}" Cursor="Hand">
+                            <ListView ItemsSource="{Binding UnitsList}" Cursor="Hand">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name}" Background="{Binding Color}">
@@ -210,7 +210,7 @@
                     <DataTemplate>
                         <ItemsControl BorderThickness="0">
                             <TextBlock Text="{Binding Count}" />
-                            <ListView ItemsSource="{Binding UnitsList}" SelectedValue="{Binding SelectedUnit}" Cursor="Hand">
+                            <ListView ItemsSource="{Binding UnitsList}" Cursor="Hand">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name}" Background="{Binding Color}">
