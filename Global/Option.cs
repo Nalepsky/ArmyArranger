@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ArmyArranger.Global
 {
-    class Option : INotifyPropertyChanged
+    public class Option : INotifyPropertyChanged
     {
         public static ObservableCollection<Option> OptionsCollection = new ObservableCollection<Option>();
         public event PropertyChangedEventHandler PropertyChanged;

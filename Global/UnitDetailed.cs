@@ -50,12 +50,16 @@ namespace ArmyArranger.Global
         public List<int> ListOfActiveRules = new List<int>();
         public List<int> ListOfActiveWeapons = new List<int>();
 
+        public ObservableCollection<Option> ListOfOptions = new ObservableCollection<Option>();
+
+
         public ICommand OnClick { get; set; }
 
         public UnitDetailed()
         {
             isEmpty = true;
             OnClick = new DelegateCommand(FunctionOnClick);
+            
         }
 
 
@@ -112,6 +116,7 @@ namespace ArmyArranger.Global
 
             List<int> t_ListOfActiveRules = new List<int>();
             List<int> t_ListOfActiveWeapons = new List<int>();
+            ObservableCollection<Option> t_ListOfOptions = new ObservableCollection<Option>();
 
             SQLiteDataReader result = Database.ExecuteCommand("SELECT * FROM Unit WHERE ID = " + t_ID);
             while (result.Read())
@@ -145,6 +150,21 @@ namespace ArmyArranger.Global
                 t_ListOfActiveWeapons.Add(weaponResult.GetInt32(0));
             }
 
+            SQLiteDataReader OptionResult = Database.ExecuteCommand("SELECT * FROM Option WHERE UnitID = " + t_ID);
+            while (OptionResult.Read())
+            {
+                int o_ID = OptionResult.GetInt32(0);
+                string o_Description = OptionResult.GetString(1);
+                int o_Cost = OptionResult.GetInt32(2),
+                    o_Count = OptionResult.GetInt32(3),
+                    o_WeaponID = (!OptionResult.IsDBNull(4)) ? OptionResult.GetInt32(4) : 0,
+                    o_RuleID = (!OptionResult.IsDBNull(5)) ? OptionResult.GetInt32(5) : 0;
+
+
+
+                t_ListOfOptions.Add(new Option(o_ID, o_Description, o_Count, o_Cost, o_WeaponID, o_RuleID, t_ID));
+            }
+
             UnitDetailed newUnit = new UnitDetailed
             {
                 ID = t_ID,
@@ -169,6 +189,7 @@ namespace ArmyArranger.Global
                 isEmpty = false,
                 ListOfActiveRules = t_ListOfActiveRules,
                 ListOfActiveWeapons = t_ListOfActiveWeapons,
+                ListOfOptions = t_ListOfOptions
             };
             AllUnitsCollection.Add(newUnit);
             return newUnit;

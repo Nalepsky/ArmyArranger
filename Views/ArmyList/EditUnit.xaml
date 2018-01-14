@@ -69,9 +69,15 @@
         <TextBlock Text="{Binding ArmourClass}" Grid.Column="2" Grid.Row="5"/>
 
         <Label Content="Options: " Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <ListBox ItemsSource="{Binding OptionsList, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="6" VerticalAlignment="Center" Cursor="Hand" HorizontalAlignment="Left">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Content="{Binding Description}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
         <Label Content="Rules: " Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        
         <TextBlock Text="{Binding RulesList}" ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Column="2" Grid.Row="7"/>
         
 

@@ -68,6 +68,13 @@ namespace ArmyArranger.ViewModels.ArmyList
                 setExtraModels();
                 RaisePropertyChanged(nameof(SelectedExperience));
             }
+        }               
+
+        private ObservableCollection<Option> _optionsList;
+        public ObservableCollection<Option> OptionsList
+        {
+            get { return _optionsList; }
+            set { _optionsList = value; RaisePropertyChanged(nameof(OptionsList)); }
         }
 
         private ObservableCollection<Experience> _experienceList;
@@ -138,17 +145,16 @@ namespace ArmyArranger.ViewModels.ArmyList
             ArmourClass = Selectedunit.ArmourClass + "+";
 
             SelectedExperience = ExperienceList.First<Experience>();
-
+            OptionsList = Selectedunit.ListOfOptions;
+            
             RulesList = "";
             foreach (var rule in Selectedunit.ListOfActiveRules)
             {
-                Console.WriteLine("r" + rule);
                 RulesList += thisModel.GetRules(rule) + "\n\n";
             }
 
             foreach (var weapon in Selectedunit.ListOfActiveWeapons)
             {
-                Console.WriteLine("W" + weapon);
                 RulesList += thisModel.GetWeaponsRules(weapon) + "\n\n"; ;
             }
 
