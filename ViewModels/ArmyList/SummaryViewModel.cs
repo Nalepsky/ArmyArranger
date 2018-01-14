@@ -59,7 +59,7 @@ namespace ArmyArranger.ViewModels.ArmyList
 
         private void FunctionConfirm()
         {
-           // throw new NotImplementedException();
+            thisModel.SaveToTxt();
         }
 
         private void FunctionBack()

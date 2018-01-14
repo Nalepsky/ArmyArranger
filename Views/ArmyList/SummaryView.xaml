@@ -17,7 +17,7 @@
             <RowDefinition Height="4*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <ListBox ItemsSource="{Binding SummaryUnitsList, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Cursor="Hand" HorizontalAlignment="Left">
+        <ListBox ItemsSource="{Binding SummaryUnitsList, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" Cursor="Hand">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Content}"/>
@@ -25,7 +25,6 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button Content="Back" Command="{Binding Back, Mode=TwoWay}" Grid.Column="0" Grid.Row="3" Cursor="Hand" VerticalAlignment="Center"/>
-        <Button Content="Confirm" Command="{Binding Confirm, Mode=TwoWay}" Grid.Column="3" Grid.Row="3" Cursor="Hand" VerticalAlignment="Center"/>
+        <Button Content="Save as txt" Command="{Binding Confirm, Mode=TwoWay}" Grid.Column="3" Grid.Row="3" Cursor="Hand" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

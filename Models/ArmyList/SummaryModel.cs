@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,19 +15,25 @@ namespace ArmyArranger.Models.ArmyList
         private String Name;
         private int points,
             size;
+        public string line1, line2, line3;
 
+        private List<String> OutputString = new List<string>();
 
         public SummaryUnit(UnitDetailed unit)
         {
             Name = unit.Name;
             points = unit.Points;
-            size = unit.BaseSize + unit.SelectedAditionalUnits;
+            size = unit.BaseSize + unit.SelectedAditionalUnits;            
 
-            Content = Name + "...." + points + " points" + "\n" + size + " men\n";
-
-            Content += "Selected upgrades:\n";
+            line1 = Name + "...." + points + " points" + "\n" + size + " model(s)\n";
+            
+            line2 = "Selected upgrades:\n";
+            line3 = "";
             foreach (var option in unit.ListOfOptions)
-                Content += option.Description = "\n";          
+            {
+                line3 += option.Description + "\n";
+            }
+            Content = line1 + line2 + line3;       
 
         }
     }
@@ -34,14 +41,29 @@ namespace ArmyArranger.Models.ArmyList
 
     class SummaryModel
     {
+        private ObservableCollection<SummaryUnit> SelectedUnitsList = new ObservableCollection<SummaryUnit>();
+
         public ObservableCollection<SummaryUnit> GetSummaryUnitList(ObservableCollection<UnitDetailed> AllUnitsCollection)
         {
-            ObservableCollection<SummaryUnit> temp = new ObservableCollection<SummaryUnit>();
             foreach (var u in AllUnitsCollection)
                 if(u.Selected)
-                    temp.Add(new SummaryUnit(u));
+                    SelectedUnitsList.Add(new SummaryUnit(u));
 
-            return temp;
+            return SelectedUnitsList;
         }
-    }
+
+        public void SaveToTxt()
+        {
+            using (StreamWriter outputFile = new StreamWriter("ArmyList.txt"))
+                foreach (var u in SelectedUnitsList)
+                {
+                    outputFile.WriteLine(u.line1);
+                    Console.WriteLine(u.line1);
+                    outputFile.WriteLine(u.line2);
+                    Console.WriteLine(u.line2);
+                    outputFile.WriteLine(u.line3);
+                    Console.WriteLine(u.line3);
+                }
+        }
+    }    
 }
