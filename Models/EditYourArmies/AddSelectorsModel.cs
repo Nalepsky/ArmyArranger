@@ -79,6 +79,23 @@ namespace ArmyArranger.Models
             MessageBox.Show("Successfully added");
         }
 
+        public void RemoveSelector(Selector selectedSelector)
+        {
+            if (selectedSelector == null)
+                return;
+
+            try
+            {
+                selectedSelector.Remove();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            MessageBox.Show("Successfully removed");
+        }
+
         public void AddEntry(String NewEntry)
         {
             if (EditedEntry == "mandatory")
@@ -98,7 +115,7 @@ namespace ArmyArranger.Models
         }        
 
         public ObservableCollection<Entry> GetMandatoryentries()
-        {            
+        {
             MandatoryEntriesList.Clear();
             MandatoryString = EmptySelector.Mandatory;
 
