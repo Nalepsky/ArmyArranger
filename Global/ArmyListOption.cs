@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace ArmyArranger.Global
 {
-    public class AmyListOption : Option
+    public class ArmyListOption : Option
     {
 
-        public new static ObservableCollection<AmyListOption> OptionsCollection = new ObservableCollection<AmyListOption>();
+        public new static ObservableCollection<ArmyListOption> OptionsCollection = new ObservableCollection<ArmyListOption>();
         public Boolean IsChecked { get; set; }
 
-        public AmyListOption(int id, string description, int count, int cost, int weaponId, int ruleId, int unitID)
+        public ArmyListOption(int id, string description, int count, int cost, int weaponId, int ruleId, int unitID)
         {
             this.ID = id;
             this.Description = description;

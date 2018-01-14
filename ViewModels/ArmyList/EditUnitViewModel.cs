@@ -72,8 +72,8 @@ namespace ArmyArranger.ViewModels.ArmyList
             }
         }               
 
-        private ObservableCollection<AmyListOption> _optionsList;
-        public ObservableCollection<AmyListOption> OptionsList
+        private ObservableCollection<ArmyListOption> _optionsList;
+        public ObservableCollection<ArmyListOption> OptionsList
         {
             get { return _optionsList; }
             set { _optionsList = value; RaisePropertyChanged(nameof(OptionsList)); }

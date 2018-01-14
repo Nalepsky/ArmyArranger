@@ -430,6 +430,7 @@ namespace ArmyArranger.ViewModels.EditYourArmies
             {
                 thisModel.UpdateSelector(SelectorName, Year, thisModel.MandatoryString, thisModel.HeadquartersString, thisModel.InfantryString, thisModel.ArmouredCarsString, thisModel.ArtilleryString, thisModel.TanksString, thisModel.TransportsString, SelectedNation.ID, SelectedRulesList);
             }
+            PrepareToAddNew();
         }
 
         private void OpenMandatoryWindow()
