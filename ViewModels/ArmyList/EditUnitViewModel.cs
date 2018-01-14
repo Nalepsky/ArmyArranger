@@ -137,13 +137,12 @@ namespace ArmyArranger.ViewModels.ArmyList
         public ICommand SelectUnit { get; set; }
         public ICommand DeselectUnit { get; set; }
 
-    #endregion
+        #endregion
 
-    #region Constructors
+        #region Constructors
 
-    public EditUnitViewModel(UnitDetailed SelectedUnit)
-        {
-
+        public EditUnitViewModel(UnitDetailed SelectedUnit)
+            {
             Clear = new DelegateCommand(FunctionClear);
             Save = new DelegateCommand(FunctionSave);
             SelectUnit = new DelegateCommand(OnUnitSelect);
@@ -218,12 +217,16 @@ namespace ArmyArranger.ViewModels.ArmyList
         {
             SelectedUnit.Selected = true;
             Status = "Selected";
+            SelectedUnit.Color = "green";
+            ChooseUnitsViewModel.UpdateView();
         }
 
         private void OnUnitDeselect()
         {
             SelectedUnit.Selected = false;
             Status = "Not selected";
+            SelectedUnit.Color = "white";
+            ChooseUnitsViewModel.UpdateView();
         }
 
         private void setExtraModels()

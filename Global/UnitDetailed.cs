@@ -60,7 +60,6 @@ namespace ArmyArranger.Global
         {
             isEmpty = true;
             OnClick = new DelegateCommand(FunctionOnClick);
-            
         }
 
 
@@ -71,7 +70,6 @@ namespace ArmyArranger.Global
         {
             Window OptionsWindow = new SelectorUnitWindow(this);
             OptionsWindow.Show();
-            this.Color = "pink";
         }
 
 

@@ -141,8 +141,38 @@ namespace ArmyArranger.ViewModels.ArmyList
 
         #region Actions
 
+        public static ChooseUnitsViewModel ActiveView;
+        public static void UpdateView()
+        {
+            ActiveView.PointsCurrent = 0;
+            foreach (UnitDetailed unit in UnitDetailed.AllUnitsCollection)
+            {
+                if (unit.Selected)
+                    ActiveView.PointsCurrent += unit.Points;
+            }
+            ActiveView.PointsLeft = ActiveView.PointsLimit - ActiveView.PointsCurrent;
+
+            if (ActiveView.PointsLeft < 0)
+                MessageBox.Show("You have exceeded available points. \n Please unselect units to reduce used points count.");
+
+            foreach (UnitDetailed unit in UnitDetailed.AllUnitsCollection)
+            {
+                if ((ActiveView.PointsLeft - unit.Points) < 0)
+                    unit.Color = "red";
+                else
+                    unit.Color = "white";
+
+                if (unit.Selected)
+                    unit.Color = "green";
+            }
+        }
+
+
+
+
         private void FunctionOnLoad()
         {
+            ActiveView = this;
             SelectorTitle = ChoosenSelector.Name + " - " + ChoosenSelector.Date;
             PointsCurrent = 0;
             PointsLeft = 0;
@@ -156,17 +186,9 @@ namespace ArmyArranger.ViewModels.ArmyList
             TransportListsList = LoadSelectorListByType(ChoosenSelector.Transport);
         }
 
-        private void UpdatePoints()
-        {
-            foreach(UnitDetailed unit in UnitDetailed.AllUnitsCollection){
-                Console.WriteLine(unit.Points + " " + unit.Selected);
-            }
-            PointsLeft = PointsLimit - PointsCurrent;
-        }
-
         private void AcceptPoints()
         {
-            UpdatePoints();
+            UpdateView();
         }
 
         private ObservableCollection<SelectorUnits> LoadSelectorListByType(string encodedUnits)
